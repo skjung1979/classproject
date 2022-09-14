@@ -14,6 +14,8 @@ public class Person {
 		String memberName = null;
 		String memberNumber = null;
 		String personID = null;
+		long memPerID2; // 주민번호가 숫자로만 구성될 경우
+		// 숫자로만 표시될 경우는 데이터의 크기를 생각하여 적절한 데이터 타입으로 선언한다.
 		
 	}
 	
