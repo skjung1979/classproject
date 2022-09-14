@@ -1,0 +1,18 @@
+package MyProject;
+
+public class Calculator {
+	
+	public static void main(String[] args) {
+		
+		
+		
+	}
+	
+	public static void double addResultPrint(double num1, double num2) {
+		
+		
+		
+	}
+	
+
+}

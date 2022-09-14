@@ -1,0 +1,14 @@
+package GenerateNumber;
+
+public static int generateNumber() {
+	return (int)(Math.random() * 45) + 1;
+}
+
+public class GenerateNumber {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

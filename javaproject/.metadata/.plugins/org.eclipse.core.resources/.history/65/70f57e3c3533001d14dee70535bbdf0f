@@ -1,0 +1,11 @@
+package chapter02;
+
+public class VariableCharType {
+
+	public static void main(String[] args) {
+		
+		// 
+		
+	}
+	
+}

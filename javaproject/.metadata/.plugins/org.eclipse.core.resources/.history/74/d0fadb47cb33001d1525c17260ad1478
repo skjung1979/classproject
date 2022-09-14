@@ -1,0 +1,47 @@
+package MyProject_t;
+
+public class Calculator {
+	
+	public static void main(String[] args) {
+		
+		plusResultPrint(10.880548,20);
+		subResultPrint(10,20);
+		mulResultPrint(11.5,20);
+		divResultPrint(10.8,20);
+				
+	}
+	
+	// 숫자 2개, 더하기 메소드
+	public static void plusResultPrint(double num1, double num2) {
+		
+		double sum = num1 + num2;
+		
+		System.out.println(sum);
+		
+	}
+	
+	// 숫자 2개, 빼기 메소드
+	public static void subResultPrint(double num1, double num2) {
+		
+		double sum = num1 - num2;
+		
+		System.out.println(sum);
+	}
+	
+	// 숫자 2개, 곱하기 메소드
+	public static void mulResultPrint(double num1, double num2) {
+		
+		double sum = num1 * num2;
+		
+		System.out.println(sum);
+	}
+	
+	// 숫자 2개, 나누기 메소드
+	public static void divResultPrint(double num1, double num2) {
+		
+		double sum = num1 / num2;
+		
+		System.out.println(sum);
+	}
+
+}

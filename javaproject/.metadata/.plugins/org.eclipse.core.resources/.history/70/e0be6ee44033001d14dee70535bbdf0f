@@ -1,0 +1,15 @@
+package chapter02;
+
+public class VariableCastingOperator {
+
+	public static void main(String[] args) {
+		
+		//
+		char c1 = 'a';
+		int result = c1 + 10; // char + int => int + int => 결과는 int
+		
+		System.out.println(c1+0);
+		System.out.println(result);
+		
+	}
+}

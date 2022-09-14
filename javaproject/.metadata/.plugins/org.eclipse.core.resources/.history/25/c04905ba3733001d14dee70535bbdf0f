@@ -1,0 +1,11 @@
+package chapter02;
+
+public class VariableIntegerType {
+
+	public static void main(String[] args) {
+		
+		// 정수: byte   short   int(기본타입)  long
+		// 		1byte   2byte   4byte          8byte
+		
+	}
+}

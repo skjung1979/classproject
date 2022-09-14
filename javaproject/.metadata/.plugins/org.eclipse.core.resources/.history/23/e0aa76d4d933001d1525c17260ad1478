@@ -1,0 +1,12 @@
+package MyProject;
+
+public class Person {
+	
+	public static void main(String[] args) {
+		
+		String memName; // 회원 이름
+		String memPhone; // 회원 전화번호
+		String memPerID; // 회원 주민번호
+	}
+
+}

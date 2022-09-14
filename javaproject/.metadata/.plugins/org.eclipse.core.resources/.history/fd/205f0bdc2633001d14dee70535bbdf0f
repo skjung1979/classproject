@@ -1,0 +1,14 @@
+package first;
+
+public class ConsolePrintTest {
+
+	public static void main(String[] args) {
+
+
+		System.out.print("안녕하세요.\n 정성균\t\t입니다.\n"); // 공백도 공백 문자열이다.
+		System.out.print("자바는 \"객체지향 언어\" 입니다."); // 쌍따옴표안에 문자 넣기
+		System.out.print("C:\\Users\\skjung_gram");
+
+	}
+
+}

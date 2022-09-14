@@ -1,0 +1,19 @@
+package MyProject;
+
+public class Member {
+	
+	public static void main(String[] args) {
+		
+		aaaMyName(정성균);
+		
+	}
+	
+	public static void aaaMyName(name) {
+		
+		String name;
+		
+		System.out.println(name);
+		
+	}
+
+}

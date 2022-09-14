@@ -1,0 +1,17 @@
+package testtest;
+
+public class CalOil {
+
+	public static void main(String[] args) {
+	
+		int a = 52;
+		int b = 1733;
+		double c = 17.4;
+		int d = a/c*b;
+		
+		System.out.println(d);
+		
+		
+	}
+
+}
