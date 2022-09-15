@@ -1,3 +1,5 @@
+// 문제 풀이 chaper3 - 정성균
+
 package chapter03;
 
 import java.util.Scanner;
