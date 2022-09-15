@@ -61,8 +61,7 @@ public class Member {
 		System.out.println("제 나이는 "+age+"세 입니다.");
 		System.out.println("제 별명은 "+nickName+" 입니다.");
 		System.out.println("제 키는 "+height+"cm 입니다.");
-		System.out.println("자바책의 보유 여부: "+hasBook);
-		
+		System.out.println("자바책의 보유 여부: "+ hasBK(hasBook));
 		
 		
 	}
@@ -81,5 +80,44 @@ public class Member {
 		
 	}
 	
+	public static String hasBK(boolean a) {
+	  	    
+	    if (a==true){
+		String b = "갖고 있어요.";
+		return b;
+	    }else {
+		String b = "아직 갖고 있지 않아요.";
+		return b;
+	    }
+	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
