@@ -13,7 +13,8 @@ public class SwitchCaseTest3 {
 		
 		// 쓰기 / 읽기 / 회원 승인 / 지표 보기
 		if(grade.equals("admin"))
-		// String 객체에서 equal()메소드를 사용한다. -> 문자를 비교하는 메소드 반환값은 true 또는 false이다.
+		// String 객체에서 equal()메소드를 사용한다.
+		// -> 문자를 비교하는 메소드 반환값은 true 또는 false이다.
 		{
 			System.out.println("지표보기 기능 가능합니다.");
 			System.out.println("회원승인 가능합니다.");
