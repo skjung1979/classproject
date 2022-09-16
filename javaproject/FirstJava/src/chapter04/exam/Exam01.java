@@ -16,6 +16,25 @@ public class Exam01 {
 			System.out.print(i + " : " + result + "\n");
 		}
 		
+		
+// 복습 생각하며 따라하기
+		System.out.println("-------복습-------");
+		//for 문을 이용하여 1부터 10까지를 곱해서 그 결과를 출력하는 프로그램을 작성
+		
+		int result2 = 1;
+		
+		for(int j=1; j<=10; j++)
+		{
+			result2 = result2 * j;
+			//System.out.println(j);
+		} System.out.println("1~10까지 곱의 최종값: "+ result2);
+		
+		
+		
+		
+		
+		
+		
 	}
 
 }
