@@ -19,16 +19,30 @@ public class Alternative1 {
 			n = scan.nextInt();
 		}while(n<=0);
 
-		for(int i=1;i<=n;i++)
+//		for(int i=1;i<=n;i++)
+//		{
+//			if(i%2==1)
+//			{
+//				System.out.print("+");
+//			}else
+//			{
+//				System.out.print("-");
+//			}
+//		}
+		
+		// 위 코드는 비효율적이므로, 아래와 같이 수정한다.
+		
+		for(int i = 0; i < n/2; i++)
 		{
-			if(i%2==1)
-			{
-				System.out.print("+");
-			}else
-			{
-				System.out.print("-");
-			}
+			System.out.print("+-");
+
 		}
+		if(n%2!=0)
+		{
+			System.out.print("+");
+		}
+		
+		
 		
 	}
 
