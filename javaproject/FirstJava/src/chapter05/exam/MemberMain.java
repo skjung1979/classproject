@@ -33,18 +33,15 @@ public class MemberMain {
 		System.out.print("주소: >>> ");
 		String address = scan.nextLine();
 		
-		System.out.println("-----<모든 정보>를 표시하는 인스턴스 생성-----");
-		//Member mem1 = new Member(name,phoneNM,major,grade,email1,birthDay,address);
-		Member mem1 = new Member(name,phoneNM,major,grade,email1,birthDay,address);
-		mem1.showInfo();
 		
-		// .equals() 하고 == null 로 찾아내기
+		// .equals("")로 비교하거나 == null 로 찾아내기
+		System.out.println();
 //		int a = birthDay.length();
 //		boolean b = birthDay == null ? true: false;
 //		System.out.println(a);
 //		System.out.println(email1.length());
 		
-		if(birthDay.length() == 0 && address.length() == 0)
+		if((birthDay.equals("") || birthDay == null) && (address.equals("") || address == null))
 		{
 		// 두번째 생성자를 이용해 인스턴스 생성: 이름, 전화번호, 전공, 학년, email / 생일과 주소는 입력하지 않을 때
 		System.out.println("--<생일,주소 제외한 정보들>를 표시하는 인스턴스 생성--");
@@ -52,8 +49,14 @@ public class MemberMain {
 		Member mem2 = new Member(name,phoneNM,major,grade,email1);
 		mem2.showInfo();
 		
-		System.out.println(birthDay.hashCode());
-		
+	
+		}else
+		{
+			System.out.println("-----<모든 정보>를 표시하는 인스턴스 생성-----");
+			//Member mem1 = new Member(name,phoneNM,major,grade,email1,birthDay,address);
+			Member mem1 = new Member(name,phoneNM,major,grade,email1,birthDay,address);
+			mem1.showInfo();
+			
 		}
 
 		
