@@ -107,13 +107,6 @@ public class SmartPhone
 		System.out.println("색상: " + this.color); // this.color라고하면 위의 color(인스턴스 메소드의)를 호출한다.
 		System.out.println("사이즈: " + size);
 		System.out.println("현재 볼륨: " + volumeSize);
-		
-	}
-//	void showPhoneInfo(SmartPhone sp)
-//	{
-//		sp.showInfo();
-//	}
-//	
 	
-
+	}
 }
