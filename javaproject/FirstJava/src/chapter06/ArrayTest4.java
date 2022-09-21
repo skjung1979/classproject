@@ -25,9 +25,9 @@ public class ArrayTest4 {
 		arr[1][1] = 22;
 		arr[1][2] = 23;
 		
-		for(int i=0; i<arr.length; i++)
+		for(int i=0; i<arr.length; i++) // 조건식에 입력한 배열의 (전체)사이즈는 행의 개수이다.
 		{
-			for(int j=0; j<arr[i].length; j++)
+			for(int j=0; j<arr[i].length; j++) // 조건식에 입력한 i차원 배열의 사이즈는 열의 개수이다.
 			{
 				System.out.print("arr["+i+"]"+"["+j+"] = "+ arr[i][j]+"\t");
 			}
