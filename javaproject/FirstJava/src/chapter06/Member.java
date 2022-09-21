@@ -20,7 +20,9 @@ public class Member
 	public String toString()
 	{
 		// 아래 return의 패턴을 변형하여 사용하라!!!
-		return "Member [memberNo=" + memberNo + ", memberID=" + memberID + ", memberName=" + memberName + "]";
+		return "Member [memberNo=" + memberNo + ","
+				+ " memberID=" + memberID + ","
+						+ " memberName=" + memberName + "]";
 	}
 
 	// getter 자동 생성 (getter만 생성: 읽기 전용)	
