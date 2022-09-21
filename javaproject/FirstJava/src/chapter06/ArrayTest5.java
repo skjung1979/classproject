@@ -7,7 +7,7 @@ public class ArrayTest5 {
 		int[] numbers = {2, 6, 14, 90, 40};
 		
 	// 일괄 참조	
-		// 1차원 배열 일괄 참고
+		// 1차원 배열 일괄 참조
 		for(int num : numbers)
 		{
 			System.out.print(num + "\t");

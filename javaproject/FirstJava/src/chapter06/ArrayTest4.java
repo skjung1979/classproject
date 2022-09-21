@@ -51,9 +51,6 @@ public class ArrayTest4 {
 				System.out.print(scores[i][j]+"\t");
 			}
 			System.out.println();
-		}
-		
-		
-		
+		}	
 	}
 }
