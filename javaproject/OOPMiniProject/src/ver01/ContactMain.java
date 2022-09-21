@@ -10,6 +10,7 @@ public class ContactMain
 	
 		while(true)
 		{
+			
 					
 			System.out.println("-----------------------");
 			System.out.println("원하는 항목을 싶은 항목을 선택하세요...");
@@ -28,31 +29,29 @@ public class ContactMain
 			int bd = 00000000;
 			String gr = null;
 		
+			Contact c1 = new Contact(nm, pn, em, ad, bd, gr);
+			
 			if (n == 0) {
-
-				Contact c1 = new Contact(nm, pn, em, ad, bd, gr);
-				
+	
 				System.out.println("사용자의 정보를 입력하세요....");
 
 				System.out.print("이름: ");
-				nm = scan.nextLine();
-
+				c1.setName(scan.nextLine());
+				
 				System.out.print("전화번호: ");
-				pn = scan.nextLine();
+				c1.setPhoneNumber(scan.nextLine());
 
 				System.out.print("이메일: ");
-				em = scan.nextLine();
+				c1.setEmail(scan.nextLine());
 
 				System.out.print("주소: ");
-				ad = scan.nextLine();
+				c1.setAddress(scan.nextLine());
 
 				System.out.print("생일: ");
-				bd = scan.nextInt();
+				c1.setBirthday(scan.nextInt());
 				scan.nextLine();
 				System.out.print("그룹: ");
-				gr = scan.nextLine();
-
-				c1.print();
+				c1.setGroup(scan.nextLine());
 
 				// getter 에의한 정보 출력
 				System.out.println("getter에 의한 정보 출력----");
@@ -62,6 +61,8 @@ public class ContactMain
 				System.out.println(c1.getAddress());
 				System.out.println(c1.getBirthday());
 				System.out.println(c1.getGroup());
+				
+				c1.print();
 
 			} else if (n == 1 || n == 2 || n == 3 || n == 4 || n == 5 || n == 6) {
 			
@@ -94,8 +95,8 @@ public class ContactMain
 					System.out.print("종료합니다~ bye~!");
 					break;
 				}
-				System.out.println("swith문 종료 됨");
-				// c1.print();
+				System.out.println("변경하면 나머지값이 다시 null로 되네...");
+				c1.print();
 			} else if(n==7)
 			{
 				break;
