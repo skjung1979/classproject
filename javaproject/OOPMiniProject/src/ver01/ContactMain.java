@@ -8,28 +8,28 @@ public class ContactMain
 	public static void main(String[] args)
 	{
 	
+		String nm = null;
+		String pn = null;
+		String em = null;
+		String ad = null;
+		int bd = 00000000;
+		String gr = null;
+		
+		Contact c1 = new Contact(nm, pn, em, ad, bd, gr);
+		
 		while(true)
 		{
-			
 					
 			System.out.println("-----------------------");
 			System.out.println("원하는 항목을 싶은 항목을 선택하세요...");
 			System.out.println("0.전체입력/1.이름/2.전화번호/3.이메일/4.주소/5.생일/6.그룹/7.종료");
 
 			Scanner scan = new Scanner(System.in);
-
 			int n = scan.nextInt();
 			scan.nextLine();
 
-			// 연락처 데이터를 저장하는 인스턴스를 생성합니다.
-			String nm = null;
-			String pn = null;
-			String em = null;
-			String ad = null;
-			int bd = 00000000;
-			String gr = null;
-		
-			Contact c1 = new Contact(nm, pn, em, ad, bd, gr);
+			// 연락처 데이터를 저장하는 인스턴스를 생성합니다.		
+			// Contact c1 = new Contact(nm, pn, em, ad, bd, gr); // 이게 여기 있으면 수정할때 변경하지 않은 변수들이 null이 되어 버림
 			
 			if (n == 0) {
 	
@@ -95,7 +95,7 @@ public class ContactMain
 					System.out.print("종료합니다~ bye~!");
 					break;
 				}
-				System.out.println("변경하면 나머지값이 다시 null로 되네...");
+				System.out.println("변경하면 나머지 변수 값들이 null로 되네...");
 				c1.print();
 			} else if(n==7)
 			{
