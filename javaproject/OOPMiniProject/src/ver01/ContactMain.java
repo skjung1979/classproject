@@ -96,8 +96,9 @@ public class ContactMain
 					System.out.print("종료합니다~ bye~!");
 					break;
 				}
-				System.out.println("변경하면 나머지 변수 값들이 null로 되네...");
+				
 				c1.print();
+				
 			} else if(n==7)
 			{
 				break;
