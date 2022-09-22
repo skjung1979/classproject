@@ -1,7 +1,7 @@
 package ver01;
 
-public class Contact {
-	// 연락처 정보 
+//public 지우면 패키지에서만 사용됨
+class Contact {
 	
 	private String name;
 	private String phoneNumber;

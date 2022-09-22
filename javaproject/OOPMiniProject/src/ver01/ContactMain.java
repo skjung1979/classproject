@@ -2,7 +2,8 @@ package ver01;
 
 import java.util.Scanner;
 
-public class ContactMain
+//public 지우면 패키지에서만 사용됨
+class ContactMain
 {
 
 	public static void main(String[] args)

@@ -6,8 +6,8 @@ package ver01;
 // contact 클래스의 용도는? -> 데이터 저장
 // 인스턴스 생성 -> 변수의 메모리 생성 -> 데이터 저장
 
-public class contact_t {
-
+//public 지우면 패키지에서만 사용됨
+class contact_t {
 	/*
 		저장 정보
 			이름
