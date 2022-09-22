@@ -71,6 +71,7 @@ public class StudentMainSK
 					int es = scan.nextInt();
 					System.out.print((i+1)+"번째 학생의 수학 점수는? >>>");
 					int ms = scan.nextInt();
+					scan.nextLine(); // nextInt()다음에는 이걸 꼭
 					System.out.print((i+1)+"번째 학생의 이름은? >>>");
 					String nm = scan.nextLine(); // 이름은 왜 입력이 안될까?...ㅠ
 					
