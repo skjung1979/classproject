@@ -34,7 +34,7 @@ public class SmartPhone {
 	// 싱글톤 조건: 인스턴스 생성 시 private static
 	private static SmartPhone sp = new SmartPhone(10);
 
-	// 싱글톤 조건: 반환 메소드에 private public static
+	// 싱글톤 조건: 반환 메소드에 public static
 	public static SmartPhone getInstance() {
 		if (sp == null) {
 			sp = new SmartPhone(10);
