@@ -84,8 +84,9 @@ public class ContactMain
 					c1.setAddress(scan.nextLine());
 					break;
 				case 5:
-					System.out.print("변경할 생일은? ");
+					System.out.print("변경할 생일은(숫자)? ");
 					c1.setBirthday(scan.nextInt());
+					scan.nextLine();
 					break;
 				case 6:
 					System.out.print("변경할 그룹은? ");
