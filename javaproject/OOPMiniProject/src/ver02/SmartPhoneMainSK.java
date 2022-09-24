@@ -6,7 +6,7 @@ public class SmartPhoneMainSK {
 		
 		//SmartPhoneSK sp = new SmartPhoneSK(10); 이렇게 할 필요 없다. 이미 생성해 놨으니 호출해서 사용
 
-		SmartPhoneSK sp = SmartPhoneSK.getInstance();
+		SmartPhoneSK sp = SmartPhoneSK.getInstance(); // 클래스 변수 쓰는거라서??
 		
 		while(true)
 		{

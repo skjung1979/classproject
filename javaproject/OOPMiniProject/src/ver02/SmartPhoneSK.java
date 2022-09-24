@@ -118,7 +118,7 @@ public class SmartPhoneSK {
 		String name = sc.nextLine();
 		
 		// 삭제 원하는 index 찾기
-		int searchIndex = -1;
+		int searchIndex = -1; // 현재 검색 결과는 없다는 것!
 		
 		// 데이터 찾기
 		for(int i=0; i<numOfContact;i++)
@@ -160,7 +160,7 @@ public class SmartPhoneSK {
 			if(contacts[i].getName().equals(name))
 			{
 				contact = contacts[i];
-				break;
+				break; // 반복문 벗어남.
 			}
 		}
 		
@@ -182,7 +182,7 @@ public class SmartPhoneSK {
 		if(numOfContact==0)
 		{
 			System.out.println("입력된 정보가 없습니다.");
-			return;
+			return; // 메소드 호출한 곳으로 이동
 		}
 		for (int i=0; i<numOfContact; i++)
 		{
@@ -193,9 +193,9 @@ public class SmartPhoneSK {
 	// 정보 입력
 	void insertContact()
 	{
-		if(numOfContact>contacts.length)
+		if(numOfContact==contacts.length)
 		{
-			System.out.println("최대 저장 개수는 "+ contacts + "개 입니다.");
+			System.out.println("최대 저장 개수는 "+ contacts.length + "개 입니다.");
 			return;
 		}
 		String name = null;
@@ -225,12 +225,11 @@ public class SmartPhoneSK {
 		System.out.print("그룹 >");
 		group = sc.nextLine();
 		
-		
 		// 2. 인스턴스 생성
 		ContactSK contact = new ContactSK(name, phoneNumber, email, address, birthday, group);
 		
-		// 3. 배열에 저장
-		contacts[numOfContact++] = contact;
+		// 3. 배열에 저장하고 입력 순번을 증가 시킨
+		contacts[numOfContact++] = contact; // 인덱스값0에 넣고 numOfContact를 증가 시킨다.
 		
 	}
 }
