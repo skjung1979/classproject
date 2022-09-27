@@ -5,7 +5,7 @@ public class PersonMain {
 	public static void main(String[] args) {
 
 		Male m = new Male("SON", "971111-1011111","sonny");
-		Female f = new Female("King", "00124-2222222","체육",3);
+		Female f = new Female("King", "001204-4222222","체육",3);
 		
 		m.printInfo();
 		m.hi();
