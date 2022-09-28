@@ -6,7 +6,7 @@ import java.util.Date;
 public class Person{
 
 	String name;
-	static String personNumber;
+	String personNumber;
 	
 	
 	public Person(String name, String personNumber) {
@@ -22,7 +22,7 @@ public class Person{
 			
 		if(obj != null && obj instanceof Person) {
 			Person p = (Person)obj;
-			result = this.personNumber.equals(Person.personNumber);
+			result = this.personNumber.equals(p.personNumber);
 		}
 		return result;
 		
@@ -41,24 +41,22 @@ public class Person{
 		// 2. 1~100,000,000까지 더하기하는 연산의 실행 시간을 측정하는 프로그램을 만들어봅시다. 
 		System.out.println("연습문제09-1번====================");
 		
-		Date now = new Date();
-		
-		long sTime = now.getTime();
+	
+		long sTime = System.currentTimeMillis();
 		System.out.println("시작 밀리초: " + sTime);
 		
 		//시작시간을 밀리초
 		int sum = 0;
-		for(int i=0; i<=100000000; i++) {
+		for(int i=1; i<=100000000; i++) {
 			sum += i;
 		}
 		System.out.println("합계: "+sum);
 		
 		//끝난시간밀리초
-		Date now2 = new Date();
-		long eTime = now2.getTime();
+		long eTime = System.currentTimeMillis();
 		System.out.println("끝난 밀리초: " + eTime);
 		
-		System.out.println("1~100000000의 합계가 실행된 시간은: "+ (eTime-sTime)+"초");
+		System.out.println("1~100000000의 합계가 실행된 시간은: "+ (eTime-sTime)+"밀리초");
 		
 		
 		
