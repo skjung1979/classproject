@@ -3,7 +3,7 @@ package chapter09.exam;
 import java.time.LocalTime;
 import java.util.Date;
 
-public class Person extends Object {
+public class Person{
 
 	String name;
 	static String personNumber;
