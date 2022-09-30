@@ -1,5 +1,6 @@
 package chapter10.exam;
 
+import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class Exam10d1Main {
@@ -14,11 +15,14 @@ public class Exam10d1Main {
 		// 정상적인 영문자와 숫자로만 이루어진 값을 입력했는지 확인하는 프로그램을 만들어봅시다. 
 		// 'a' <= c <= 'z' || 'A' <= c <= 'Z' || '0' <= c <= '9'   < 이것이 조건의 정상적인 입력 범위 이다!!!
 		
-		String str = "12ABCabc!";
-		boolean chk1 = Pattern.matches("^[a-z0-9A-Z]*$", str); // ==> 영문자와 숫자 조합의 패턴
-		// ^: 패턴의 시작 / $: 패턴의 종료 / *: 앞의 문자패턴이 있는지 없는지 / +: 반드시 들어가야한다.
-		System.out.println(chk1);
+		Scanner sc = new Scanner(System.in);
 		
+		System.out.print("아이디를 입력하세요.(영문자,숫자만) >>> ");
+		String id = sc.nextLine(); //  "12ABCabc!";
+		boolean chk1 = Pattern.matches("^[a-z0-9A-Z]*$", id); // ==> 영문자와 숫자 조합의 패턴
+		// ^: 패턴의 시작 / $: 패턴의 종료 / *: 앞의 문자패턴이 있는지 없는지 / +: 반드시 들어가야한다.
+		System.out.println(chk1?"Good":"Try again");
+			
 		try {
 			if (!chk1) {
 				throw new Exception();
