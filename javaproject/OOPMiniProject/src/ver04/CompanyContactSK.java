@@ -52,4 +52,10 @@ public class CompanyContactSK extends ContactSK {
 	public String toString() {
 		return "CompanyContactSK [company=" + company + ", division=" + division + ", manager=" + manager + "]";
 	}
+
+	@Override
+	public void showData() {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -47,4 +47,10 @@ public class CustomerContactSK extends ContactSK {
 	public void setManager(String manager) {
 		this.manager = manager;
 	}
+
+	@Override
+	public void showData() {
+		// TODO Auto-generated method stub
+		
+	}
 }
