@@ -1,6 +1,6 @@
 package chapter11.exam;
 
-public class FootballPlayer {
+public class FootballPlayer implements Comparable<FootballPlayer> {
 	
 	private String name;
 	private int number;
@@ -66,20 +66,53 @@ public class FootballPlayer {
 			result = team.equals(player.getTeam())
 					&& name.equals(player.getName())
 					&& age==player.getAge();
-			
 		}
-		
 		return result;
+	}
+	
+	@Override
+	public int compareTo(FootballPlayer o) {
+		// 팀이름 -> 선수이름 -> 등번호
+		int result = team.compareTo(o.getTeam());
+		if(result == 0) {
+			result = name.compareTo(o.getName());
+			if(result == 0) {
+				result = number - o.getNumber();
+			}
+		}
+		return result; // *-1은 역순
 	}
 
 	@Override
 	public String toString() {
 		return "FootballPlayer [name=" + name + ", number=" + number + ", team=" + team + ", age=" + age + "]";
 	}
-	
-	// 메인메소드는 현재클래스의 기능 테스트용도로 기술하여 사용한다.
-	
-	
-	
 
+	// 메인메소드는 현재클래스의 기능 테스트용도로 기술하여 사용한다.
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
