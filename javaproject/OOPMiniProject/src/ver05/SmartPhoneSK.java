@@ -54,7 +54,7 @@ public class SmartPhoneSK {
 		// 추후 트랜젝션 처리를 할 필요가 있다!!!! 예외처리로!!!
 
 		System.out.println("변경하고자하는 이름을 입력해주세요. (현재값: " + contact.getName() + ")\n" + "변경하지않으려면 엔터를치세요. >");
-		String newName = sc.nextLine();
+		String newName = getName();
 		if (newName != null && newName.trim().length() > 0) {
 			contact.setName(newName);
 		}
@@ -182,11 +182,9 @@ public class SmartPhoneSK {
 
 		int searchIndex = getIndex();
 
-		Contact contact = null;
-
 		// 3. 결과 출력
 		System.out.println("검색의 결과 ===============");
-		if (contact == null) {
+		if (searchIndex < 0) {
 			System.out.println("입력한 이름 " + name + "의 검색 정보가 없습니다.");
 		} else {
 			contacts[searchIndex].printInfo();
@@ -265,10 +263,8 @@ public class SmartPhoneSK {
 			String manager = getString();
 
 			// 인스턴스 생성
-			contact = new CompanyContactSK(
-					name, phoneNumber, email,
-					address, birthday, group,
-					company, division, manager);
+			contact = new CompanyContactSK(name, phoneNumber, email, address, birthday, group, company, division,
+					manager);
 
 		} else {
 			// CustomerContact 인스턴스 생성
@@ -280,10 +276,8 @@ public class SmartPhoneSK {
 			String manager = getString();
 
 			// 인스턴스 생성
-			contact = new CustomerContactSK(
-					name, phoneNumber, email,
-					address, birthday, group,
-					company, product, manager);
+			contact = new CustomerContactSK(name, phoneNumber, email, address, birthday, group, company, product,
+					manager);
 		}
 
 		// 3. 배열에 저장
@@ -292,8 +286,7 @@ public class SmartPhoneSK {
 
 	}
 
-	// Scanner를 통해서 사용자에게 문자열을 받아서 반환화는 메ㅗㅅ드
-	// 입력 문자가 공백일 경우 다시 입력하도록 하는 기능
+	// 입력 항목이 공란일 경우 다시 입력하도록 하는 기능
 	private String getString() {
 
 		String str = null;
@@ -334,7 +327,7 @@ public class SmartPhoneSK {
 				}
 
 			} else {
-				System.out.println("공백은 허용되지 않습니다. 정상적인 문자를 입력하세요.");
+				System.out.println("공란은 허용되지 않습니다. 정상적인 문자를 입력하세요.");
 			}
 		}
 		return name;
@@ -365,7 +358,7 @@ public class SmartPhoneSK {
 					break;
 				}
 			} else {
-				System.out.println("공백 문자 허용되니 않습니다. 다시 입력해주세요.");
+				System.out.println("공란은 허용되지 않습니다. 다시 입력해주세요.");
 			}
 		}
 		return phoneNumber;
