@@ -25,9 +25,9 @@ public class Exam10d1Main {
 			
 		try {
 			if (!chk1) {
-				throw new Exception();
+				throw new BadIdInputException();
 			}
-		} catch (Exception e) {
+		} catch (BadIdInputException e) {
 			System.out.println("소문자, 대문자, 숫자 입력만 가능합니다.");
 		}
 		
