@@ -28,7 +28,8 @@ public class Exam10d1Main {
 				throw new BadIdInputException();
 			}
 		} catch (BadIdInputException e) {
-			System.out.println("소문자, 대문자, 숫자 입력만 가능합니다.");
+			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		
 		
