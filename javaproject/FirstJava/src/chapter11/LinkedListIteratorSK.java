@@ -1,0 +1,38 @@
+package chapter11;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
+
+public class LinkedListIteratorSK {
+
+	public static void main(String[] args) {
+		
+		LinkedList<Integer> list = new LinkedList<>();
+		
+		list.add(10);
+		list.add(20);
+		list.add(30);
+		list.add(40);
+		list.add(50);
+		
+		printAll(list);
+		
+		
+		// for문이 아니어도 Iterator를 이용한 일괄 처리
+		Iterator<Integer> itr = list.iterator();
+		
+		while(itr.hasNext()) {
+			Integer integer = itr.next();
+			System.out.println(integer);
+		}
+		
+	}
+	
+	static <E> void printAll(LinkedList<E> list) {
+		for(E obj : list) {
+			System.out.println(obj);
+		}
+	}
+	
+}
