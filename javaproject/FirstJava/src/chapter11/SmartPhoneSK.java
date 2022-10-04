@@ -1,6 +1,6 @@
 package chapter11;
 
-public class SmartPhoneSK {
+public class SmartPhoneSK implements Comparable<SmartPhoneSK>{
 	
 	private String name;
 	private String phoneNumber;
@@ -42,10 +42,18 @@ public class SmartPhoneSK {
 	}
 	
 	@Override
+	public int compareTo(SmartPhoneSK o) {
+		
+		return name.compareTo(o.getName())*-1;
+	}
+
+	
+	@Override
 	public String toString() {
 		return "SmartPhoneSK [name=" + name + ", phoneNumber=" + phoneNumber + "]";
 	}
 
+	
 	
 
 }
