@@ -4,14 +4,23 @@ public class SmartPhoneMainSK {
 
 	public static void main(String[] args) {
 		
-		SmartPhone sp = SmartPhone.getInstance();
+		SmartPhoneSK sp = SmartPhoneSK.getInstance();
 
 		while (true) {
 
 			printMenu();
-
-			int select = Integer.parseInt(sp.sc.nextLine());
-
+			
+			int select = 0;
+			
+			try {
+				select = Integer.parseInt(sp.sc.nextLine());
+				if(select<0 || select>6) {
+					Exception e = new Exception();
+					throw e;
+				}
+			}catch(Exception e){
+				System.out.println("1~6사이 정수로 입력 해 주세요.");
+			}
 			switch (select) {
 			case 1:
 				sp.insertContact();

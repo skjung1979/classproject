@@ -1,16 +1,20 @@
 package ver07;
 
+import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class SmartPhoneSK {
 
-	private ContactSK[] contacts;
-	private int numOfContact;
+	// private ContactSK[] contacts;
+	// private int numOfContact;
+	
+	List<ContactSK> contacts;
 	Scanner sc;
 
 	private SmartPhoneSK(int size) {
-		contacts = new ContactSK[size];
-		numOfContact = 0;
+		// contacts = new ContactSK[size];
+		// numOfContact = 0;
 		sc = new Scanner(System.in);
 	}
 
@@ -27,8 +31,8 @@ public class SmartPhoneSK {
 		String name = sc.nextLine();
 		int searchIndex = -1; // 현재 검색의 결과는 없다는 의미
 
-		for (int i = 0; i < numOfContact; i++) {
-			if (contacts[i].getName().equals(name)) {
+		for (int i = 0; i < contacts.size(); i++) {
+			if (contacts.get(i).getName().equals(name)) {
 				searchIndex = i;
 				break;
 			}
@@ -48,7 +52,7 @@ public class SmartPhoneSK {
 			return;
 		}
 
-		ContactSK contact = contacts[searchIndex];
+		ContactSK contact = contacts.get(searchIndex);
 
 		System.out.println("데이터 수정을 진행합니다.");
 		// 추후 트랜젝션 처리를 할 필요가 있다!!!! 예외처리로!!!
@@ -162,10 +166,9 @@ public class SmartPhoneSK {
 		if (searchIndex < 0) {
 			System.out.println("삭제하고자하는 이름의 데이터가 존재하지 않습니다.");
 		} else {
-			for (int i = searchIndex; i < numOfContact - 1; i++) {
-				contacts[i] = contacts[i + 1];
-			}
-			numOfContact--;
+
+			contacts.remove(searchIndex);	
+			
 			System.out.println("데이터가 삭제되었습니다.");
 		}
 
@@ -187,7 +190,7 @@ public class SmartPhoneSK {
 		if (searchIndex < 0) {
 			System.out.println("입력한 이름 " + name + "의 검색 정보가 없습니다.");
 		} else {
-			contacts[searchIndex].printInfo();
+			contacts.get(searchIndex).printInfo();
 		}
 
 	}
@@ -196,13 +199,13 @@ public class SmartPhoneSK {
 	void printAllData() {
 		// 배열에 저장된 데이터를 모두 출력
 		System.out.println("전체 데이타를 출력합니다. ==============");
-		if (numOfContact == 0) {
+		if (contacts.isEmpty()) {
 			System.out.println("입력된 정보가 없습니다.");
 			return; // 조건에 맞지 않다면 호출했던 메인메소드로 다시 넘깁니다.
 		}
 
-		for (int i = 0; i < numOfContact; i++) {
-			contacts[i].printInfo();
+		for (int i = 0; i < contacts.size(); i++) {
+			contacts.get(i).printInfo();
 		}
 	}
 
@@ -212,8 +215,8 @@ public class SmartPhoneSK {
 		// 2. 인스턴스 생성하고,
 		// 3. 배열에 인스턴스의 참조값을 저장
 
-		if (numOfContact > contacts.length) {
-			System.out.println("최대 저장 개수는 " + contacts + "개 입니다.");
+		if (contacts.size() == 10) {
+			System.out.println("최대 저장 개수는 10개 입니다.");
 			return; // 조건에 맞지 않다면 호출했던 메인메소드로 다시 넘깁니다.
 		}
 
@@ -234,7 +237,7 @@ public class SmartPhoneSK {
 		System.out.println("입력을 시작합니다.");
 		System.out.print("이름 >");
 		name = getName();
-
+	
 		System.out.print("전화번호 >");
 		phoneNumber = getPhoneNumber();
 
@@ -282,7 +285,8 @@ public class SmartPhoneSK {
 
 		// 3. 배열에 저장
 		// 처음 입력: numOfContact => 0
-		contacts[numOfContact++] = contact;
+
+		contacts.add(contact);
 
 	}
 
@@ -292,6 +296,7 @@ public class SmartPhoneSK {
 		String str = null;
 
 		while (true) {
+			
 			str = sc.nextLine();
 			if (str != null && str.trim().length() != 0) {
 				break;
@@ -307,14 +312,28 @@ public class SmartPhoneSK {
 		String name = null;
 
 		while (true) {
-			name = sc.nextLine();
+			
+			
+				try {
+					name = sc.nextLine();
+
+					if ((Pattern.matches("^[a-zA-Z가-힣]*$", name)) == false) {
+
+						throw new Exception();
+					}
+				} catch (Exception e) {
+					System.out.println("영문 대소문자, 한글만 입력가능합니다. 다시 입력해주세요.");
+					continue;
+				}
+			
+			
 			if (name != null && name.trim().length() != 0) {
 				// 정상적으로 입력이 들어온 상태에서, 배열 요소에 같은 이름의 요소가 있는지
 				boolean check = false;
 
 				// 이름 검색
-				for (int i = 0; i < numOfContact; i++) {
-					if (name.equals(contacts[i].getName())) {
+				for (int i = 0; i < contacts.size(); i++) {
+					if (name.equals(contacts.get(i).getName())) {
 						check = true;
 						break;
 					}
@@ -339,23 +358,37 @@ public class SmartPhoneSK {
 
 		while (true) {
 
-			phoneNumber = sc.nextLine();
+			try {
+				phoneNumber = sc.nextLine();
+
+				if ((Pattern.matches("^01(?:0|1|0)-(?:\\d{3}|\\d{4})-\\d{4}$", phoneNumber)) == false) {
+
+					throw new Exception();
+				}
+			} catch (Exception e) {
+				System.out.println("010-0000-0000형식에 맞춰 다시 입력해주세요.");
+				continue;
+			}
 
 			if (phoneNumber != null && phoneNumber.trim().length() > 0) {
 
 				boolean check = false;
 
 				// 중복여부 체크
-				for (int i = 0; i < numOfContact; i++) {
-					if (phoneNumber.equals(contacts[i].getPhoneNumber())) {
+				for (int i = 0; i < contacts.size(); i++) {
+					if (phoneNumber.equals(contacts.get(i).getPhoneNumber())) {
 						check = true;
 						break;
 					}
 				}
-				if (check) {
-					System.out.println("중복된 전화번호가 존재합니다. \n 다시 입력해주세요. >> ");
-				} else {
-					break;
+				try {
+					if (check) {
+						throw new Exception();
+					} else {
+						break;
+					}
+				} catch (Exception e) {
+					System.out.println("중복된 전화번호가 존재합니다. \n 다시 입력해주세요. >>");
 				}
 			} else {
 				System.out.println("공란은 허용되지 않습니다. 다시 입력해주세요.");
