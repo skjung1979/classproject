@@ -35,6 +35,5 @@ public class FileInputStreamTest1 {
 				}
 			}
 		}
-
 	}
 }

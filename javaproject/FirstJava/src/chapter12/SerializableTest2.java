@@ -12,7 +12,6 @@ public class SerializableTest2 {
 
 	public static void main(String[] args) {
 
-
 		ObjectInputStream inputStream = null;
 		
 		try {
@@ -33,8 +32,7 @@ public class SerializableTest2 {
 			for(Person person : list) { // 출력3
 				person.tell();
 			}
-			
-		
+				
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -42,8 +40,5 @@ public class SerializableTest2 {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		
-
 	}
-
 }

@@ -8,7 +8,7 @@ public class FileOutputStreamTest1 {
 
 	public static void main(String[] args) {
 
-		// 파알에 쓰기 위해서는: OutputStream 필요 -> FileOutputStream
+		// 파일에 쓰기 위해서는: OutputStream 필요 -> FileOutputStream
 		
 		FileOutputStream outputStream = null;
 		

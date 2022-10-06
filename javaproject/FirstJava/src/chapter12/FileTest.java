@@ -62,8 +62,7 @@ public class FileTest {
 		list = dir1.listFiles();
 		
 		for(int i=0; i<list.length; i++) {
-			
-			// 파일 만 이동!!
+			// 파일만 이동!!
 			if(list[i].isFile()) {
 				// 옮겨야할 경로
 				File newFile = new File(dir2, list[i].getName());
@@ -86,7 +85,6 @@ public class FileTest {
 			}
 			System.out.println(newList[i].getName());
 		}
-		
 	}
 }
 

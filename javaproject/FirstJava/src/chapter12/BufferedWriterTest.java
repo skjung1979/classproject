@@ -28,7 +28,5 @@ public class BufferedWriterTest {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
-
 }

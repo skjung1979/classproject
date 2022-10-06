@@ -35,15 +35,11 @@ public class SerializableTest {
 			outputStream.writeObject(list);
 			
 			System.out.println("저장 되었습니다.");
-		
-		
+			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-
 	}
-
 }
