@@ -13,7 +13,6 @@ public class Product {
 				synchronized (this) {
 					System.out.println("상품이 준비되지 않아 대기 합니다.");
 					wait();
-					
 				} 
 				
 			} catch (InterruptedException e) {
@@ -32,6 +31,5 @@ public class Product {
 		synchronized (this) {
 			notifyAll();
 		}
-		
 	}
 }

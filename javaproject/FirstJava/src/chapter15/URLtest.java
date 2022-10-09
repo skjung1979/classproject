@@ -26,14 +26,9 @@ public class URLtest {
 				e.printStackTrace();
 			}
 			System.out.println(url.getFile());
-			System.out.println(url.getUserInfo());
-			
-			
+			System.out.println(url.getUserInfo());			
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} 
-		
-
 	}
-
 }

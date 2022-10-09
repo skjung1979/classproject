@@ -45,10 +45,6 @@ public class MessageClient {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
-		
-		
-		
+		}	
 	}
-
 }

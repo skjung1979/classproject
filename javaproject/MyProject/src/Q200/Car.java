@@ -34,4 +34,11 @@ public class Car
 		return direction;
 	}
 
+	//@Override
+	//public String toString() {
+	//	return "Car [speed=" + speed + ", direction=" + direction + "]";
+	//}
+	
+	
+
 }

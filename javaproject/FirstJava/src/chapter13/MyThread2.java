@@ -21,5 +21,4 @@ public class MyThread2 implements Runnable {
 //			
 		}
 	}
-
 }
