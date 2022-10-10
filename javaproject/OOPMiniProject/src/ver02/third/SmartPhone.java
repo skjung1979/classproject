@@ -32,7 +32,7 @@ public class SmartPhone {
 	// 싱글톤 메소드 public static: 내부에서 생성한 참조값을 반환한다. 
 	public static SmartPhone getInstance() {
 		if(sp == null) {
-			sp = new SmartPhone(10);
+			sp = new SmartPhone(10); // getInstance()메소드를 호출하면 new SmartPhone(10)을 반환한다.
 			System.out.println();
 		}
 		return sp;
