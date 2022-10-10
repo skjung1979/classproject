@@ -3,7 +3,7 @@ package ver01.second;
 // Contact 클래스의 용도 -> 데이터 저장
 // 인스턴스 생성 -> 변수의 메모리 생성 -> 데이터 저장(출력은 안하고 저장만 한다?)
 // 클래스는 하나의 역할만 담당하도록 설계한다.
-public class Contact {
+class Contact {
 	
 	private String name; 		// 친구 이름
 	private String phoneNumber; // - 폰번호

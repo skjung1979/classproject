@@ -1,8 +1,11 @@
-package ver01.third;
+package ver02.third;
 
-class Contact {
+// Contact 클래스의 용도는 "데이터 저장"이다.
+// 인스턴스 생성 -> 변수의 메모리 생성 -> 데이터 저장
+// 클래스는 하나의 역할만 담당하도록 설계한다.
+
+public class Contact {
 	
-	// 변수 선언 - 캡슐화
 	private String name;
 	private String phoneNumber;
 	private String email;
@@ -10,10 +13,10 @@ class Contact {
 	private String birthday;
 	private String group;
 	
-	// 생성자
 	public Contact() {
+		
 	}
-	
+
 	public Contact(String name, String phoneNumber, String email, String address, String birthday, String group) {
 		super();
 		this.name = name;
@@ -23,8 +26,8 @@ class Contact {
 		this.birthday = birthday;
 		this.group = group;
 	}
-	
-	// 케터, 세터
+
+	// 게커, 세터
 	public String getName() {
 		return name;
 	}
@@ -73,9 +76,9 @@ class Contact {
 		this.group = group;
 	}
 	
-	// 전체 출력 메소드
+	// 위 데이터를 출력하는 기능
 	public void printInfo() {
-		System.out.println("===== 전체 정보 출력 =====");
+		System.out.println("===== 친구 정보 =====");
 		System.out.println("이름: " + this.name);
 		System.out.println("전화번호: " + this.phoneNumber);
 		System.out.println("이메일: " + this.email);
@@ -83,28 +86,10 @@ class Contact {
 		System.out.println("생일: " + this.birthday);
 		System.out.println("그룹: " + this.group);
 	}
-	
 
+	@Override
+	public String toString() {
+		return "Contact [name=" + name + ", phoneNumber=" + phoneNumber + ", email=" + email + ", address=" + address
+				+ ", birthday=" + birthday + ", group=" + group + "]";
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
