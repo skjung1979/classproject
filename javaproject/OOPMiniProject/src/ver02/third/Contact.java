@@ -4,7 +4,7 @@ package ver02.third;
 // 인스턴스 생성 -> 변수의 메모리 생성 -> 데이터 저장
 // 클래스는 하나의 역할만 담당하도록 설계한다.
 
-public class Contact {
+class Contact {
 	
 	private String name;
 	private String phoneNumber;
@@ -27,7 +27,7 @@ public class Contact {
 		this.group = group;
 	}
 
-	// 게커, 세터
+	// 게터, 세터
 	public String getName() {
 		return name;
 	}
