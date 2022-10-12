@@ -177,7 +177,7 @@ public class SmartPhone {
 			
 			// 담당자
 			System.out.println(
-					"변경하고자하는 거래처명을 입력해주세요.(현재값: " + customerContact.getManager() + ")\n" + "변경하지 않으려면 엔터를 치세요. >>> ");
+					"변경하고자하는 담당자명을 입력해주세요.(현재값: " + customerContact.getManager() + ")\n" + "변경하지 않으려면 엔터를 치세요. >>> ");
 			String manager = sc.nextLine();
 
 			if (manager != null && manager.trim().length() > 0) {
