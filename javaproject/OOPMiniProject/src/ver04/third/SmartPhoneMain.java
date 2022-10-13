@@ -6,6 +6,7 @@ public class SmartPhoneMain {
 
 		SmartPhone sp = SmartPhone.getInstance();
 		
+		
 		while(true) {
 			printMenu();
 			

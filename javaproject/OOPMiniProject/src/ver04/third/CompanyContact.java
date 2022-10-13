@@ -47,18 +47,24 @@ public class CompanyContact extends Contact {
 		this.manager = manager;
 	}
 
-	// 정보를 출력하는 메소드를 오버라이딩 해서 추가된 정보를 추가해서 출력
-	@Override
-	public void printInfo() {
-		super.printInfo();
-		System.out.println("회사이름: " + this.company);
-		System.out.println("부서이름: " + this.division);
-		System.out.println("직급: " + this.manager);
-	}
-
 	@Override
 	public void showData() {
 		// TODO Auto-generated method stub
 		
 	}
+
+	// 정보를 출력하는 메소드를 오버라이딩 해서 추가된 정보를 추가해서 출력
+//	@Override
+//	public void printInfo() {
+//		super.printInfo();
+//		System.out.println("회사이름: " + this.company);
+//		System.out.println("부서이름: " + this.division);
+//		System.out.println("직급: " + this.manager);
+//	}
+//
+//	@Override
+//	public void showData() {
+//		// TODO Auto-generated method stub
+//		
+//	}
 }
