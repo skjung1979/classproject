@@ -16,13 +16,16 @@ public class SmartPhoneMain {
 				sp.inserContact();
 				break;
 			case 2:
+				sp.searchInfoPrint();
 				break;
 			case 3:
 				sp.editContact();
 				break;
 			case 4:
+				sp.deleteContact();
 				break;
 			case 5:
+				sp.printAllData();
 				break;
 			case 6:
 				System.out.println("프로그램을 종료합니다.");

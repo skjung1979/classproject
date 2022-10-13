@@ -256,11 +256,77 @@ public class SmartPhone {
 	}
 	
 	// 검색 출력 (이름 검색)
+	void searchInfoPrint() {
+		// 1. 사용자에게 검색할 키워드(이름) 입력 받는다.
+		// 2. 입력받은 이름으로 배열에서 같은 값이 있는지 검색한다.
+		// 3. 검색 결과를 출력한다.
+		
+		String name = null;
+		
+		System.out.println("검색을 시작합니다.");
+		System.out.print("검색할 이름을 입력하세요. >>> ");
+		name = sc.nextLine().trim();
+		
+		Contact contact = null;
+		
+		// 배열에서 입력 받은 이름이 있는지 검색
+		for(int i=0; i<seq; i++) {
+			// 각 요소의 참조변수로 객체를 참조해서 이름을 비교
+			if(contacts[i].getName().equals(name)) {
+				contact = contacts[i];
+				break;
+			}
+		}
+		
+		// 검색 결과 출력
+		System.out.println("===== 검색 결과 =====");
+		if(contact == null) {
+			System.out.println("검색한 이름 " + name + "의 정보가 없습니다.");
+		}else {
+			contact.printInfo();
+		}
+	}
 	
 	// 삭제 (이름 검색)
+	void deleteContact() {
+		System.out.println("데이터 삭제가 진행됩니다.");
+		System.out.print("삭제하고자 하는 이름을 입력해주세요. >>>");
+		String name = sc.nextLine();
+		
+		// 데이터 찾기. 삭제하고자 하는 index를 찾아야한다.
+		int searchIndex = -1;
+		
+		for(int i=0; i<seq; i++) {
+			if(contacts[i].getName().equals(name)) {
+				searchIndex = i;
+				break;
+			}
+		}
+		
+		// 검색한 index값으로 분기
+		if(searchIndex<0) {
+			System.out.println("삭제하고자 하는 이름의 데이터가 존재하지 않습니다.");
+		}else {
+			for(int i=searchIndex; i<seq-1; i++) {
+				contacts[i] = contacts[i+1];
+			}
+			seq--;
+			System.out.println("데이터가 삭제되었습니다.");
+		}
+	}
 	
 	// 전체 데이터 출력
-	
+	void printAllData() {
+		System.out.println("===== 전체 데이터 출력 =====");
+		if(seq == 0) {
+			System.out.println("입력된 데이터가 없습니다.");
+			return;
+		}
+		
+		for(int i=0; i<seq; i++) {
+			contacts[i].printInfo();
+		}
+	}
 	
 	
 	
