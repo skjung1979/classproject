@@ -193,8 +193,65 @@ public class SmartPhone {
 			contact.setName(newName);
 		}
 		
-		
-		
+		if(contact instanceof CompanyContact) {
+			
+			CompanyContact companyContact = (CompanyContact) contact;
+			
+			// 추가한 회사이름
+			System.out.println("변경하고자하는 회사명을 입력해주세요. (현재값: " + companyContact.getCompany()+")\n 변경을 원치 않으시면 엔터를 치세요.");
+			String newCompany = sc.nextLine().trim();
+			
+			if(newCompany != null && newCompany.length()>0) {
+				companyContact.setCompany(newCompany);
+			}
+			
+			// 추가한 부서이름
+			System.out.println("변경하고자하는 부서명을 입력해주세요. (현재값: " + companyContact.getDivision()+")\n 변경을 원치 않으시면 엔터를 치세요.");
+			String newDivision = sc.nextLine().trim();
+			
+			if(newDivision != null && newDivision.length()>0) {
+				companyContact.setDivision(newDivision);
+			}
+			
+			// 직급
+			System.out.println("변경하고자하는 직급 입력해주세요. (현재값: " + companyContact.getManager()+")\n 변경을 원치 않으시면 엔터를 치세요.");
+			String newManager = sc.nextLine().trim();
+			
+			if(newManager != null && newManager.length()>0) {
+				companyContact.setManager(newManager);
+			}
+			
+		}else if(contact instanceof CustomerContact) {
+			
+			CustomerContact customerContact = (CustomerContact) contact;
+			
+			// 거래처명
+			System.out.println("변경하고자하는 거래처명을 입력해주세요. (현재값: " + customerContact.getCompany()+")\n 변경을 원치 않으시면 엔터를 치세요.");
+			String newCompany = sc.nextLine();
+			
+			if(newCompany != null && newCompany.length()>0) {
+				customerContact.setCompany(newCompany);
+			}
+			
+			// 품목명
+			
+			System.out.println("변경하고자하는 품목명을 입력해주세요. (현재값: " + customerContact.getProduct()+")\n 변경을 원치 않으시면 엔터를 치세요.");
+			String newProduct = sc.nextLine();
+			
+			if(newProduct != null && newProduct.length()>0) {
+				customerContact.setProduct(newProduct);
+			}
+			
+			// 담당자
+			System.out.println("변경하고자하는 담당자명을 입력해주세요. (현재값: " + customerContact.getManager()+")\n 변경을 원치 않으시면 엔터를 치세요.");
+			String newManager = sc.nextLine();
+			
+			if(newManager != null && newManager.length()>0) {
+				customerContact.setManager(newManager);
+			}
+		}
+		System.out.println("데이터 수정이 완료되었습니다.");
+		contacts[searchIndex].printInfo();
 		
 	}
 	
