@@ -70,14 +70,99 @@ select round(sysdate) from dual;
 select trunc(sysdate) from dual;
 
 -- ★ 변환 함수
+-- 1. to_char(원본, '포맷')
+-- a. date => string pattern
+select sysdate, to_char(sysdate, 'YYYY-MM-DD'), to_char(sysdate, 'YYYY.MM.DD'),
+to_char(sysdate, 'YYYY.MM.DD PM HH12:MI:SS'), to_char(sysdate, 'YYYY.MM.DD HH24:MI:SS')
+from dual;
 
+-- b. number => varchar2
+select to_char(123456789, '000000000000'), to_char(123456789, '999,999,999,999'), to_char(123456789, 'L999,999,999,999')
+from dual; 
 
+select ename, sal, to_char(sal*1350, 'L999,999,999,999,999')  from emp;
 
+-- 2. varchar2 => date
+-- to_date(문자열, '날짜형식')
+select to_date('19991213', 'YYYYMMDD'), to_date('1999-12-13', 'YYYY-MM-DD')
+from dual;
 
+-- 3. varchar2 => numbers
+select '20,000', to_number('20,000', '999,999,999')+5, to_number('20,000', '999,999,999')+to_number('10,000', '999,999,999')
+from dual;
 
+-- decod 함수 => 여러가지 비교를 통해 결과 출력 switch - case와 유사한 개념
+select ename, deptno, decode(deptno, 10, 'ACCOUNTING', 20, 'RESEARCH', 30, 'SALES', 40, 'OPERATION') as dname from emp;
 
+-- 예제) 직급에 따라 급여를 인상하도록 하자.
+--직급이 'ANALYST'인 사원은 5%, 'SALESMAN'인 사원은 10%,'MANAGER'인 사원은 15%, 'CLERK'인 사원은 20%인 인상한다.
+select ename, job, sal
+, nvl(decode(job, 'ANALYST', sal*1.05, 'SALESMAN', sal*1.1, 'MANAGER', sal*1.15, 'CLERK', sal*1.2), 0) as up_sal
+from emp;
 
+-- case when then
+select ename, deptno
+, case when deptno=10 then 'ACCOUNTING' when deptno=20 then 'RESEARCH' when deptno=30 then 'SALES' when deptno =40 then 'OPERATION' end as dname
+from emp;
 
+-------------------------------------------------------------
+-- 그룹 함수 = 집합함수 = 집계함수 = 다중행 함수
+-- sum, avg, count, max, min
+
+-- 회사의 모든 사원의 급여 총액: 월 지출액
+select sum(sal) from emp;
+
+-- 커미션 총액
+select sum(comm), count(comm), avg(comm) from emp; -- comm에서 null은 제외하고 카운팅 됨
+
+-- 급여 평균
+select trunc(avg(sal), -1) from emp;
+select round(avg(sal)) from emp;
+
+-- 최고 급여 찾기
+select max(sal) from emp;
+
+-- 최저 급여 찾기
+select min(sal) from emp;
+
+-- 최저 급여를 받는 사원
+select * from emp where sal=(select min(sal) from emp);
+
+-- 전체 사원의 수
+select count(*) from emp;
+
+-- 보유한 책의 개수, 고객의 수, 판매 횟수
+select count(*) from book;
+select count(*) from customer;
+select count(*) from orders;
+
+-- 직급의 수
+select count(distinct job) from emp;
+
+-- 도서 DB에서 등록된 출판사의 수
+select count(distinct publisher) from book;
+
+-- group by => 특정 컬럼 값을 기준으로 그룹핑. 특정 컬럽을 기준으로 집합 함수로 통계를 출력할수 있다.
+select * from emp;
+select deptno, count(*), sum(sal), trunc(avg(sal)), max(sal), min(sal), count(comm)
+from emp group by deptno;
+
+-- having => group by 의 결과 값을 가지고 조건 걸어서 조회하는 것
+-- 부서별 평균 급여가 2000 이상인 부서의 데이터만 출력
+select deptno, count(*), sum(sal), trunc(avg(sal)), max(sal), min(sal), count(comm)
+from emp group by deptno
+having  avg(sal) >= 2000;
+
+-- 부서의 최대값과 최소값을 구하되 최대 급여가 2900이상인 부서만 출력합니다. 
+select deptno, max(sal), min(sal) from emp group by deptno having max(sal)>=2900;
+select deptno, count(*), sum(sal), trunc(avg(sal)), max(sal), min(sal), count(comm)
+from emp group by deptno
+having  max(sal) >= 2900;
+
+-- 직급 기준으로 그룹핑
+select * from emp;
+select job, count(*), max(sal), min(sal)
+from emp group by job;
 
 
 
