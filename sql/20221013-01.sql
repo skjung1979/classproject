@@ -32,16 +32,17 @@ select ename, hiredate from emp where hiredate like '81%' ;
 select ename, job from emp where mgr is null;
 
 -- 11. 커미션을 받을 수 있는 자격이 되는 사원의 이름, 급여, 커미션을 출력하되 급여 및 커미션을 기준으로 내림차순 정렬하여 표시하시오.
-select ename, sal, comm from emp where comm is not null order by sal desc, comm desc;
+select ename, sal, comm from emp where comm is not null and comm!=0 order by sal desc, comm desc;
 
 -- 12. 이름의 세번째 문자가 R인 사원의 이름을 표시하시오.
 select ename from emp where ename like '__R%';
 ​
 -- 13. 이름에 A와 E를 모두 포함하고 있는 사원의 이름을 표시하시오.
-select * from emp where ename like '%A%E%';
+select * from emp where ename like '%A%E%'; -- 이거는 A가 먼저 나오므로 문제의 범위보다 좁다!!!
+select * from emp where ename like '%A%' and ename like '%E%'; -- 이렇게 해야 문제에 만족하는 것임
 
 -- 14. 담당업무가 CLERK, 또는 SALESMAN이면서 급여가 $1600, $950 또는 $1300이 아닌 사원의 이름, 담당업무, 급여를 출력하시오.
 select ename, job, sal from emp where (job='CLERK' or job='SALESMAN') and sal not in (1600,950,1300);
 
 -- 15. 커미션이 $500 이상인 사원의 이름과 급여 및 커미션을 출력하시오.
-select ename, sal, comm from emp where comm>=500;
+select ename, sal, comm from emp where comm>=500; -- null은 아예 비교의 대상이 되지 않는다.
