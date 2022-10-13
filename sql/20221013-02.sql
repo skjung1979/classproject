@@ -1,3 +1,13 @@
+-- 테이블 구조, 속성 파악
+desc book;
+desc customer;
+desc orders;
+
+-- 테이블 자료 파악
+select * from book;
+select * from customer;
+select * from orders;
+
 --1 마당서점의고객이요구하는다음질문에대해SQL 문을작성하시오.
 --(1) 도서번호가1인도서의이름
 select bookname from book where bookid='1';
