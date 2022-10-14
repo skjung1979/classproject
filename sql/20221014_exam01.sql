@@ -59,3 +59,11 @@ sum(decode(deptno, 30, sal)) as 부서3, sum(sal) as 총액 from emp
 group by job, deptno
 order by dno;
 
+select job, deptno as dno, 
+decode(deptno, 10, sum(sal)) as 부서1, 
+decode(deptno, 20, sum(sal)) as 부서2, 
+decode(deptno, 30, sum(sal)) as 부서3, sum(sal) as 총액 from emp
+group by job, deptno
+order by dno;
+
+

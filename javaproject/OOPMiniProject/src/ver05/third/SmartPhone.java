@@ -82,6 +82,11 @@ public class SmartPhone {
 	}
 	
 	// 검색 후 결과 출력 (이름 검색)
+	void searchInfoPrint() {
+		System.out.println("데이터를 검색합니다.");
+		System.out.print("검색할 이름을 입력하세요.");
+		
+	}
 	
 	// 데이터 신규 등록
 	void inserContact() {
