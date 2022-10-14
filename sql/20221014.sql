@@ -60,6 +60,22 @@ select * from book, customer, orders where orders.custid=customer.custid and ord
 select orders.orderdate, customer.name, book.bookname, book.price, orders.saleprice from book, customer, orders
 where orders.custid=customer.custid and orders.bookid=book.bookid
 order by orders.orderdate desc;
+select * 
+from orders o join customer c on o.custid=c.custid
+join book b on o.bookid=b.bookid
+where c.name='박지성';
+
+select o.orderdate, c.custid, c.name, b.bookname, b.price, o.saleprice
+from orders o join customer c on o.custid=c.custid
+join book b on o.bookid=b.bookid
+where c.name='박지성';
+
+select c.name, count(*) as "구매횟수" 
+from orders o join customer c on o.custid=c.custid
+join book b on o.bookid=b.bookid
+group by c.name;
+
+
 
 
 

@@ -413,9 +413,7 @@ public class SmartPhone {
 				break;
 			}
 		}
-		return searchIndex;
-		
-		
+		return searchIndex;	
 	}
 }
 

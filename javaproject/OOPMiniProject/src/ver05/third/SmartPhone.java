@@ -84,24 +84,25 @@ public class SmartPhone {
 	// 검색 후 결과 출력 (이름 검색)
 	void searchInfoPrint() {
 		
-		String name = null;
+		// 1. 사용자에게 검색할 키워드 입력 받는다.
+		// 2. 배열에서 이름 검색
+		// 3. 결과 출력: "검색한 이름의 정보가 없습니다."
 		
-		System.out.println("데이터를 검색합니다.");
+		String name = null; // 검색하고자 하는 이름
+		
+		System.out.println("검색을 시작합니다.");
 		System.out.print("검색할 이름을 입력하세요. >>> ");
-		
-		
+
 		int searchIndex = getIndex();
 		
-		Contact contact = null;
-		
-		// 결과 출력
-		System.out.println("====== 검색 결과 =====");
-		if(contact == null) {
+		// 3. 결과 출력: "검색한 이름의 정보가 없습니다."
+		System.out.println("===== 검색의 결과 =====");
+		if (searchIndex < 0) {
 			System.out.println("검색한 이름의 정보가 없습니다.");
 		} else {
 			contacts[searchIndex].printInfo();
 		}
-		
+			
 	}
 	
 	// 데이터 신규 등록
@@ -116,11 +117,26 @@ public class SmartPhone {
 			return;
 		}
 		
-		System.out.println("입력하고자하는 친구 타입을 선택해주세요.");
-		System.out.println("1. 회사동료 | 2. 거래처");
-		int select = Integer.parseInt(sc.nextLine());
+		int select = 0;
 		
-		String name =  null;
+		while(true) {
+			System.out.println("입력하고자하는 친구 타입을 선택해주세요.");
+			System.out.println("1. 회사동료 | 2. 거래처");
+			
+			try {
+				select = Integer.parseInt(sc.nextLine());
+				if(!(select == 1 || select ==2)){
+					throw new Exception();
+				}else {
+					break;
+				}
+			}catch(Exception e) {
+				System.out.println("1과 2 중에 입력하세요.");
+			}
+		}
+		
+		
+		String name = null;
 		String phoneNumber =  null;
 		String email =  null;
 		String address =  null;
@@ -175,7 +191,7 @@ public class SmartPhone {
 			String manager = getString();
 			
 			contact = new CustomerContact(name, phoneNumber, email, address, birthday, group, company, product, manager);	
-		}
+		} 
 		
 		contacts[seq++] = contact;
 		
@@ -265,20 +281,18 @@ public class SmartPhone {
 	
 	// 이름 입력 받고 이름 가지고 해당 index를 찾아서 반환 => 수정, 검색, 삭제에서 사용
 	private int getIndex() {
-		
+
 		String name = getString().trim();
-		
+
 		int searchIndex = -1;
-		
+
 		for (int i=0; i<seq; i++) {
 			if(contacts[i].getName().equals(name)) {
 				searchIndex = i;
 				break;
 			}
 		}
-		return searchIndex;
-		
-		
+		return searchIndex;	
 	}
 }
 
