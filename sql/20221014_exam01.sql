@@ -11,14 +11,8 @@ select * from emp where substr(hiredate,4,2)='04';
 select * from emp where mod(empno,2)=0;
 
 --19. 입사일을 년도는 2자리(YY), 월은 숫자(MM)로 표시하고 요일은 약어 (DY)로 지정하여 출력하시오.
-select to_date()* from emp;
-select to_date(hiredate, 'YYMMDD') from emp;
+select to_char(hiredate, 'YY-MM-DY') from emp;
 ​
-
-​
-
-​
-
 --20. 올해 몇 칠이 지났는지 출력하시오. 현재날짜에서 올해 1월 1일을 뺀 결과를 출력하고 TO_DATE 함수를 사용하여 데이터 형을 일치 시키시오.
 select trunc(sysdate-to_date('2022/01/01', 'YYYY/MM/DD')) from dual;
 
@@ -58,18 +52,10 @@ decode(deptno,10,'NEW YORK', 20, 'DALLAS', 30, 'CHICAGO', 40, 'BOSTON') as loc, 
 -- 31. 업무를 표시한 다음 해당 업무에 대해 부서 번호별 급여 및 부서 10, 20, 30의 급여 총액을 각각 출력하시오.
 -- 별칭은 각 job, dno, 부서 10, 부서 20, 부서 30, 총액으로 지정하시오. 
 -- ( hint. Decode, group by )
---select * from emp;
---select * from dept;
-select job, decode(deptno, 10, sal, 20, sal, 30, sal) as dno from emp group by job, dno;
-select job, deptno, decode() as '부서10', decode() as '부서20', decode()as '부서30' from emp;
-
-
-
-
-
-
-
-
-
-
+select job, deptno as dno, 
+sum(decode(deptno, 10, sal)) as 부서1, 
+sum(decode(deptno, 20, sal)) as 부서2, 
+sum(decode(deptno, 30, sal)) as 부서3, sum(sal) as 총액 from emp
+group by job, deptno
+order by dno;
 
