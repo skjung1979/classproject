@@ -32,7 +32,7 @@ public class SmartPhone {
 	public static SmartPhone getInstance() {
 		if(sp == null) {
 			sp = new SmartPhone(10);
-			System.out.println();
+			//System.out.println();
 		}
 		return sp;
 	}
@@ -83,8 +83,24 @@ public class SmartPhone {
 	
 	// 검색 후 결과 출력 (이름 검색)
 	void searchInfoPrint() {
+		
+		String name = null;
+		
 		System.out.println("데이터를 검색합니다.");
-		System.out.print("검색할 이름을 입력하세요.");
+		System.out.print("검색할 이름을 입력하세요. >>> ");
+		
+		
+		int searchIndex = getIndex();
+		
+		Contact contact = null;
+		
+		// 결과 출력
+		System.out.println("====== 검색 결과 =====");
+		if(contact == null) {
+			System.out.println("검색한 이름의 정보가 없습니다.");
+		} else {
+			contacts[searchIndex].printInfo();
+		}
 		
 	}
 	
@@ -102,7 +118,7 @@ public class SmartPhone {
 		
 		System.out.println("입력하고자하는 친구 타입을 선택해주세요.");
 		System.out.println("1. 회사동료 | 2. 거래처");
-		int select = Integer.parseInt(getString());
+		int select = Integer.parseInt(sc.nextLine());
 		
 		String name =  null;
 		String phoneNumber =  null;
@@ -117,19 +133,19 @@ public class SmartPhone {
 		name = getName();
 		
 		System.out.print("전화번호 >>> ");
-		name = getPhoneNumber();
+		phoneNumber = getPhoneNumber();
 		
 		System.out.print("이메일 >>> ");
-		name = getString();
+		email = getString();
 		
 		System.out.print("주소 >>> ");
-		name = getString();
+		address = getString();
 		
 		System.out.print("생일 >>> ");
-		name = getString();
+		birthday = getString();
 		
 		System.out.print("그룹 >>> ");
-		name = getString();
+		group = getString();
 		
 		Contact contact = null;
 		
@@ -169,17 +185,17 @@ public class SmartPhone {
 	
 	// Scanner를 통해 입력받은 문자열이 공백일 경우 다시 입력하도록 하는 기능
 	private String getString() {
-		
+
 		String str = null;
-		
+
 		while (true) {
-			
+
 			str = sc.nextLine().trim();
-			
-			if (str != null && str.length()>0) {
+
+			if (str != null & str.length() >0) {
 				break;
 			}else {
-				System.out.println("공란은 허용되지 않습니다. 정상적인 문자를 입력해주세요.");
+				System.out.println("공백은 허용되지 않습니다. 정상적인 문자를 입력하세요.");
 			}
 		}
 		return str;
@@ -187,16 +203,16 @@ public class SmartPhone {
 	
 	// 이름을 입력 받을 때(신규 등록 시에만 적용) 중복 여부 체크. 중복되면 다시 입력 권유 + 공란 입력 방지
 	private String getName() {
-		
+
 		String name = null;
-		
+
 		while (true) {
-			
 			name = sc.nextLine().trim();
-			
-			if (name != null && name.length() > 0) {
+
+			if (name != null && name.length()>0) {
+				// 정상적인 입력이 들어온 상태에서, 배열 요소에 같은 이름의 요소가 있는지 체크
 				boolean check = false;
-				
+
 				// 이름 검색
 				for (int i=0; i<seq; i++) {
 					if(name.equals(contacts[i].getName())) {
@@ -204,77 +220,67 @@ public class SmartPhone {
 						break;
 					}
 				}
-				
 				if (check) {
-					System.out.println("같은 이름의 데이터가 존재합니다.\n 다시 입력하세요.");
+					System.out.println("같은 이름의 데이터가 존재합니다. \n 다시 입력하세요.");
 					continue;
 				}else {
 					break;
 				}
-				
 			}else {
 				System.out.println("공란은 허용되지 않습니다. 정상적인 문자를 입력하세요.");
 			}
 		}
-		return name;
+		return name;	
 	}
 	
 	// 전화번호 입력 받을 때 중복 여부 체크. 중복되면 다시 입력 권유 + 공란 입력 방지
 	private String getPhoneNumber() {
-
 		String phoneNumber = null;
-
+		
 		while (true) {
-			
 			phoneNumber = sc.nextLine().trim();
 			
-			if (phoneNumber != null && phoneNumber.length() > 0) {
-				// 정상적으로 입력 받은 상태
-
+			if(phoneNumber != null && phoneNumber.length()>0) {
 				boolean check = false;
-
-				// 배열에 이름이 있는지 검색
-				for (int i=0; i<seq; i++) {
-					if (phoneNumber.equals(contacts[i].getPhoneNumber())) {
-
+				
+				// 중복 여부 체크
+				for(int i=0; i<seq; i++) {
+					if(phoneNumber.equals(contacts[i].getPhoneNumber())) {
 						check = true;
 						break;
 					}
 				}
-
+				
 				if (check) {
-					System.out.println("같은 전화번호가 존재합니다. \n 다시 입력하세요.");
-					continue;
+					System.out.print("중복된 전화번호가 존재합니다.\n 다시 입력하세요. >>>");
 				}else {
 					break;
 				}
 			}else {
-				// 공란으로 입력한 상태
-				System.out.println("공란은 허용되지 않습니다. 정상적인 문자를 입력하세요.");
-				continue;
+				System.out.println("공란은 허용되지 않습니다. 다시 입력하세요.");
 			}
-			
 		}
 		return phoneNumber;
 	}
 	
 	// 이름 입력 받고 이름 가지고 해당 index를 찾아서 반환 => 수정, 검색, 삭제에서 사용
 	private int getIndex() {
-
-		String name = sc.nextLine().trim();
-
+		
+		String name = getString().trim();
+		
 		int searchIndex = -1;
-
+		
 		for (int i=0; i<seq; i++) {
-			if(name.equals(contacts[i].getName())) {
-				// 인덱스를 찾았다면
+			if(contacts[i].getName().equals(name)) {
 				searchIndex = i;
 				break;
 			}
 		}
 		return searchIndex;
+		
+		
 	}
+}
 
-}	
 	
 
