@@ -1,5 +1,7 @@
-package ver05.third;
+package ver07.second;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -17,14 +19,17 @@ public class SmartPhone {
 	// ① Contact 클래스의 인스턴스 10개를 저장 할 수 있는 배열을 정의합시다. Contact[]
 	// Contact 클래스 기반의 인스턴스를 최대 10개까지 만들어서 배열에 참조값을 저장한다.
 	
-	private Contact[] contacts;
-	int seq;
+	// private Contact[] contacts; 아래로 변경
+	// int seq; 아래로 변경
+	List<Contact> contacts;
 	Scanner sc;
 	
 	// 생성자
-	private SmartPhone(int size) {
-		contacts = new Contact[size];
-		seq = 0;
+	//private SmartPhone(int size) { 아래로 변경
+	private SmartPhone() {
+		// contacts = new Contact[size]; 아래로 변경
+		// seq = 0; 아래로 변경
+		contacts = new ArrayList<Contact>();
 		sc = new Scanner(System.in);
 	}
 	
@@ -32,8 +37,8 @@ public class SmartPhone {
 	
 	public static SmartPhone getInstance() {
 		if(sp == null) {
-			sp = new SmartPhone(10);
-			//System.out.println();
+			//sp = new SmartPhone(10); 아래로 변경
+			sp = new SmartPhone();
 		}
 		return sp;
 	}
@@ -49,13 +54,15 @@ public class SmartPhone {
 	void printAllData() {
 		System.out.println("===== 전체 데이터 출력 =====");
 		// 배열 변수에 저장된 모든 데이터 출력
-		if (seq==0) {
+		//if (seq==0) { 아래로 수정
+		if (contacts.size()==0) { // contacts.isEmpty()로 해도 됨
 			System.out.println("입력된 데이터가 없습니다.");
 			return;
 		}
-		
-		for (int i=0; i<seq; i++) {
-			contacts[i].printInfo();
+		//for (int i=0; i<seq; i++) { 아래로 수정
+		for (int i=0; i<contacts.size(); i++) {
+			//contacts[i].printInfo(); 아래로 수정
+			contacts.get(i).printInfo();
 		}
 	}
 	
@@ -72,7 +79,9 @@ public class SmartPhone {
 			return;
 		}
 		
-		Contact contact = contacts[searchIndex];
+		//Contact contact = contacts[searchIndex]; 아래로 변경
+		Contact contact = contacts.get(searchIndex);
+		
 		
 		System.out.println("데이터 수정을 시작합니다.");
 		
@@ -135,7 +144,8 @@ public class SmartPhone {
 		}
 		
 		System.out.println("데이터가 수정되었습니다.");
-		contacts[searchIndex].printInfo();
+		//contacts[searchIndex].printInfo(); 아래로 변경
+		contacts.get(searchIndex).printInfo();
 	}
 	
 	
@@ -143,17 +153,22 @@ public class SmartPhone {
 	void deleteContact() {
 		System.out.println("데이터 삭제를 진행합니다.");
 		System.out.print("삭제하고자 하는 이름을 입력하세요. >>> ");
-		String name = getString();
+		//String name = getString();
 		
 		int searchIndex = getIndex();
 		
 		if (searchIndex<0) {
 			System.out.println("삭제하고자 하는 이름의 데이터가 존재하지 않습니다.");
 		} else {
-			for (int i=searchIndex; i<seq; i++) {
-				contacts[i] = contacts[i+1];
-			}
-			seq--;
+			// 삭제하기 위해서 배열에서는 시프트를 해야 했지만, List를 적용하면 시프트를 할 필요 없다
+			//for (int i=searchIndex; i<seq; i++) {
+			//		contacts[i] = contacts[i+1];
+			//}
+			//seq--;
+			
+			// 리스트의 remove메소드를 호출하면 해당 인덱스의 값이 삭제된다.
+			contacts.remove(searchIndex);
+			
 			System.out.println("데이터가 삭제되었습니다.");
 		}
 		
@@ -178,7 +193,8 @@ public class SmartPhone {
 		if (searchIndex < 0) {
 			System.out.println("검색한 이름의 정보가 없습니다.");
 		} else {
-			contacts[searchIndex].printInfo();
+			//contacts[searchIndex].printInfo(); 아래로 수정
+			contacts.get(searchIndex).printInfo();
 		}
 			
 	}
@@ -190,8 +206,9 @@ public class SmartPhone {
 		// 2. 인스턴스 생성
 		// 3. 배열에 인스턴스 참조값 저장
 		
-		if(seq == contacts.length) {
-			System.out.println("최대 저장 개수는 " + contacts.length + "개 입니다.");
+		//if(seq == contacts.length) { 아래로 수정
+		if(contacts.size() == 10) {
+			System.out.println("최대 저장 개수는 10개 입니다.");
 			return;
 		}
 		
@@ -271,9 +288,11 @@ public class SmartPhone {
 			contact = new CustomerContact(name, phoneNumber, email, address, birthday, group, company, product, manager);	
 		} 
 		
-		contacts[seq++] = contact;
+		//contacts[seq++] = contact; 아래로 수정
+		contacts.add(contact);
 		
-		System.out.println(seq + "번째 데이타가 입력 되었습니다.");
+		//System.out.println(seq + "번째 데이타가 입력 되었습니다."); 아래로 수정
+		System.out.println(contacts.size() + "번째 데이타가 입력 되었습니다.");
 	
 	}
 	
@@ -316,8 +335,10 @@ public class SmartPhone {
 					boolean check = false;
 
 					// 이름 검색
-					for (int i=0; i<seq; i++) {
-						if(name.equals(contacts[i].getName())) {
+					//for (int i=0; i<seq; i++) { 아래로 수정
+					for (int i=0; i<contacts.size(); i++) {
+						//if(name.equals(contacts[i].getName())) { 아래로 수정
+						if(name.equals(contacts.get(i).getName())) {
 							check = true;
 							break;
 						}
@@ -361,8 +382,10 @@ public class SmartPhone {
 					boolean check = false;
 
 					// 중복 여부 체크
-					for(int i=0; i<seq; i++) {
-						if(phoneNumber.equals(contacts[i].getPhoneNumber())) {
+					//for(int i=0; i<seq; i++) { 아래로 수정
+					for(int i=0; i<contacts.size(); i++) {
+						//if(phoneNumber.equals(contacts[i].getPhoneNumber())) { 아래로 수정
+						if(phoneNumber.equals(contacts.get(i).getPhoneNumber())) {
 							check = true;
 							break;
 						}
@@ -383,6 +406,7 @@ public class SmartPhone {
 			}
 
 		}
+		
 		return phoneNumber;
 	}
 	
@@ -393,12 +417,15 @@ public class SmartPhone {
 
 		int searchIndex = -1;
 
-		for (int i=0; i<seq; i++) {
-			if(contacts[i].getName().equals(name)) {
+		//for (int i=0; i<seq; i++) { 아래로 변경
+		for (int i=0; i<contacts.size(); i++) {
+			//if(contacts[i].getName().equals(name)) { 아래로 변경
+			if(contacts.get(i).getName().equals(name)) {
 				searchIndex = i;
 				break;
 			}
 		}
+		
 		return searchIndex;	
 	}
 }

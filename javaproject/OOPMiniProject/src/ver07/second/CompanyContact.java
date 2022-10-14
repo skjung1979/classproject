@@ -1,4 +1,4 @@
-package ver05.third;
+package ver07.second;
 
 public class CompanyContact extends Contact {
 	

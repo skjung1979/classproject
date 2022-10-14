@@ -1,4 +1,4 @@
-package ver05.third;
+package ver07.second;
 
 public class SmartPhoneMain {
 
@@ -58,6 +58,4 @@ public class SmartPhoneMain {
 		System.out.println("==================");
 		System.out.println("원하시는 메뉴 번호를 입력해주세요. >>>");
 	}
-	
-
 }
