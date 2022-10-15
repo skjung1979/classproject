@@ -49,7 +49,7 @@ public class SmartPhone implements Comparable<SmartPhone>{
 	@Override
 	public int compareTo(SmartPhone o) {
 	
-		return name.compareTo(o.getName());
+		return name.compareTo(o.getName())*-1;
 		
 	}
 	
