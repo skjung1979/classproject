@@ -1,5 +1,8 @@
 package chapter11.second;
 
+//사용자가 생성한 참조형 변수를 타입 파라미터로 선언하는 경우
+// 정렬한다!!!
+
 import java.util.TreeSet;
 
 public class SmartPhoneTreeSetTest2 {

@@ -1,5 +1,9 @@
 package chapter11.second;
 
+//HashSet 코딩한 클래스에서 이 클래스를 선언해서 사용하려 한다.
+//Comparable<T>를 상속 받고,
+//compareTo(), hashCode(), equals() 메소드를 오버라이딩해야한다.
+
 public class SmartPhone implements Comparable<SmartPhone>{
 
 	private String name;
@@ -49,7 +53,7 @@ public class SmartPhone implements Comparable<SmartPhone>{
 	@Override
 	public int compareTo(SmartPhone o) {
 	
-		return name.compareTo(o.getName())*-1;
+		return name.compareTo(o.getName())*-1; // 뒤에 -1을 곱하면 역순 정렬이다!
 		
 	}
 	
