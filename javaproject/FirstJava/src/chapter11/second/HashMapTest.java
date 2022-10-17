@@ -1,13 +1,15 @@
 package chapter11.second;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 public class HashMapTest {
 
 	public static void main(String[] args) {
 
-		HashMap<String, SmartPhone> hashMap = new HashMap<>();
+		Map<String, SmartPhone> hashMap = new HashMap<>();
+		// Hash<String, SmartPhone) hasMap = new HashMap<>(); 이렇게 해도 되지만 위처럼 하는 것을 권장한다.
 		
 		hashMap.put("A", new SmartPhone("Spring", "010-1111-1111"));
 		hashMap.put("B", new SmartPhone("Summer", "010-2222-1111"));

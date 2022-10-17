@@ -1,5 +1,15 @@
 package ver07.second;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.Reader;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -23,6 +33,7 @@ public class SmartPhone {
 	// int seq; 아래로 변경
 	List<Contact> contacts;
 	Scanner sc;
+	int select = 0;
 	
 	// 생성자
 	//private SmartPhone(int size) { 아래로 변경
@@ -171,7 +182,6 @@ public class SmartPhone {
 			
 			System.out.println("데이터가 삭제되었습니다.");
 		}
-		
 	}
 	
 	// 검색 후 결과 출력 (이름 검색)
@@ -195,8 +205,7 @@ public class SmartPhone {
 		} else {
 			//contacts[searchIndex].printInfo(); 아래로 수정
 			contacts.get(searchIndex).printInfo();
-		}
-			
+		}	
 	}
 	
 	// 데이터 신규 등록
@@ -212,7 +221,7 @@ public class SmartPhone {
 			return;
 		}
 		
-		int select = 0;
+	
 		
 		while(true) {
 			System.out.println("입력하고자하는 친구 타입을 선택해주세요.");
@@ -220,7 +229,7 @@ public class SmartPhone {
 			
 			try {
 				select = Integer.parseInt(sc.nextLine());
-				if(!(select == 1 || select ==2)){
+				if(!(select == 1 || select == 2)){
 					throw new Exception();
 				}else {
 					break;
@@ -256,7 +265,7 @@ public class SmartPhone {
 		birthday = getString();
 		
 		System.out.print("그룹 >>> ");
-		group = getString();
+		group = getGroup();
 		
 		Contact contact = null;
 		
@@ -294,6 +303,115 @@ public class SmartPhone {
 		//System.out.println(seq + "번째 데이타가 입력 되었습니다."); 아래로 수정
 		System.out.println(contacts.size() + "번째 데이타가 입력 되었습니다.");
 	
+	}
+	
+	// 파일에 저장
+	void saveFile() {
+		
+		//Integer name = Integer.parseInt(contacts.get(0).getName());
+		
+		System.out.println(contacts.toString());
+		
+		Writer writer =null;	
+		
+		try {
+					
+			writer = new FileWriter("c:\\test\\SmartPhoneContacts1.txt");
+				
+			for (int i=0; i<contacts.size(); i++) {
+				writer.write("이름: " + contacts.get(i).getName() + "\t");
+				writer.write("전화번호: " + contacts.get(i).getPhoneNumber() + "\t");
+				writer.write("이메일: " + contacts.get(i).getEmail() + "\t");
+				writer.write("주소: " + contacts.get(i).getAddress() + "\t");
+				writer.write("생일: " + contacts.get(i).getBirthday() + "\t");
+				writer.write("그룹: " + contacts.get(i).getGroup() + "\t");
+				
+				if (contacts.get(i).getGroup().equals("회사동료")) {
+					
+					CompanyContact comCon = (CompanyContact) contacts.get(i);
+					
+					writer.write("회사명: " + comCon.getCompany() + "\t");
+					writer.write("부서명: " + comCon.getDivision() + "\t");
+					writer.write("직급: " + comCon.getManager() + "\n");
+					
+				} else if (contacts.get(i).getGroup().equals("거래처")) {
+					
+					CustomerContact custCon = (CustomerContact) contacts.get(i);
+					
+					writer.write("거래처명: " + custCon.getCompany() + "\t");
+					writer.write("품목명: " + custCon.getProduct() + "\t");
+					writer.write("담당자명: " + custCon.getManager() + "\n");
+							
+				}
+			}
+				
+			System.out.println("파일에 텍스트 문자열 쓰기 완료!");
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (writer != null) {
+				try {
+					writer.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}	
+	}
+	
+	// 파일 로딩
+	void loadFile() {
+//		char[] buf = new char[200];
+//		int readCnt = 0;
+//		
+//		Reader reader = null;
+//		
+//		try {
+//			reader = new FileReader("c:\\test\\SmartPhoneContacts1.txt");
+//			
+//			while (true) {
+//				
+//				readCnt = reader.read(buf);
+//				
+//				if (readCnt == -1) {
+//					break;
+//				}
+//				System.out.println(buf);
+//				
+//			}
+//			
+//		} catch (FileNotFoundException e) {
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+		
+		// try() <- 괄호 안에서 객체 선언, 생성하면 finally에서 close할 필요 업이 자동으로 close()처리가 된다.
+		try (BufferedReader in = new BufferedReader(new FileReader("c:\\test\\SmartPhoneContacts1.txt"))){
+			
+			while (true) {
+				
+				String str = in.readLine();
+				
+				if (str == null) {
+					break;
+				}
+				
+				System.out.println(str);
+			}
+			System.out.println("프로그램 종료");
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+			
 	}
 	
 	// Scanner를 통해 입력받은 문자열이 공백일 경우 다시 입력하도록 하는 기능
@@ -428,6 +546,36 @@ public class SmartPhone {
 		
 		return searchIndex;	
 	}
+
+	// 그룹 구분자
+	private String getGroup() {
+
+		System.out.println("아래 둘중 하나를 입력해주세요.");
+		System.out.print("1.회사동료 | 2. 거래처 >>> ");
+
+		String str = null;
+		int sel = 0;
+
+		while (true) {
+			try {
+				sel = Integer.parseInt(sc.nextLine());
+
+				if (!(sel == 1 || sel == 2)) {
+					throw new Exception("1과 2 중에 선책해주세요.");
+				} else if (sel == 1) {
+					str = "회사동료";
+					break;
+				} else if (sel == 2) {
+					str = "거래처";
+					break;
+				}
+
+			} catch (Exception e) {
+				System.out.println("1과 2 중에 선책해주세요.");
+			}
+		}
+		return str;
+	}		
 }
 
 	
