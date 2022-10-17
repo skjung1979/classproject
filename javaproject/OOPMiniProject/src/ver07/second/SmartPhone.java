@@ -11,8 +11,10 @@ import java.io.OutputStream;
 import java.io.Reader;
 import java.io.Writer;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Vector;
 import java.util.regex.Pattern;
 
 public class SmartPhone {
@@ -282,6 +284,11 @@ public class SmartPhone {
 			String manager = getString();
 			
 			contact = new CompanyContact(name, phoneNumber, email, address, birthday, group, company, divison, manager);
+			
+			List<String> contactList = new Vector<>();
+			
+			contactList.addAll(Arrays.toArray(contact));
+			
 			
 		}else {
 			// CustomerContact 인스턴스 생성
