@@ -4,8 +4,16 @@
 -- 32. EQUI 조인을 사용하여 SCOTT 사원의 부서번호와 부서 이름을 출력하시오.
 select e.ename, e.deptno, d.dname from emp e, dept d where e.deptno=d.deptno and e.ename='SCOTT'; -- SK
 -- 여러 케이스로 연습을 해보자
--- Using으로 적용해보기!!!!
-select * from emp e inner join dept d using(deptno); -- 조인할때 공통된 컬럼을 중복되지 않게 출력한다.
+
+select d.deptno, dname
+from emp e inner Join dept d
+on e.deptno=d.deptno
+where ename='SCOTT';
+
+select deptno, dname
+from emp e Join dept d
+USING(deptno)
+where ename='SCOTT';
 ​
 --33. INNER JOIN과 ON 연산자를 사용하여 사원 이름과 함께 그 사원이 소속된 부서이름과 지역 명을 출력하시오.
 select e.ename, d.dname, d.loc from emp e inner join dept d on e.deptno=d.deptno; -- SK
