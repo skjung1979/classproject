@@ -6,8 +6,6 @@ public class SmartPhoneMain {
 
 		SmartPhone sp = SmartPhone.getInstance();
 		
-		sp.loadFile();
-		
 		while (true) {
 			try {
 					

@@ -1,6 +1,8 @@
 package ver07.second;
 
-public abstract class Contact implements ShowData {
+import java.io.Serializable;
+
+public abstract class Contact implements ShowData, Serializable {
 	
 // Contact 클래스의 용도 -> 데이터 저장
 // 인스턴스 생성 -> 변수 메모리 생성 -> 데이터 저장

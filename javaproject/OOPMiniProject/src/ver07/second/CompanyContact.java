@@ -1,6 +1,8 @@
 package ver07.second;
 
-public class CompanyContact extends Contact {
+import java.io.Serializable;
+
+public class CompanyContact extends Contact implements Serializable {
 	
 	// ① CompanyContact
 //	회사, 거래처의 정보를 저장하는 하위 클래스를 정의합니다.

@@ -7,17 +7,20 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.Reader;
+import java.io.Serializable;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Vector;
 import java.util.regex.Pattern;
 
-public class SmartPhone {
+public class SmartPhone implements Serializable {
 
 	// 기능 클래스: 속성을 가지지 않고 메소드들로만 정의된 메소드
 	// 메인에서 여러개의 인스턴스가 생성될 필요가 없다면 => 싱글톤 패턴
@@ -42,8 +45,18 @@ public class SmartPhone {
 	private SmartPhone() {
 		// contacts = new Contact[size]; 아래로 변경
 		// seq = 0; 아래로 변경
-		contacts = new ArrayList<Contact>();
+		//contacts = new ArrayList<Contact>();
+		
+		File file = new File("instanceDataSK.ser");
+		if (file.exists()) {
+			loadFile();
+		} else {
+			contacts = new ArrayList<Contact>();
+		}
+				
 		sc = new Scanner(System.in);
+		
+		
 	}
 	
 	private static SmartPhone sp = null;
@@ -283,12 +296,7 @@ public class SmartPhone {
 			System.out.print("회사명 >>> ");
 			String manager = getString();
 			
-			contact = new CompanyContact(name, phoneNumber, email, address, birthday, group, company, divison, manager);
-			
-			List<String> contactList = new Vector<>();
-			
-			contactList.addAll(Arrays.toArray(contact));
-			
+			contact = new CompanyContact(name, phoneNumber, email, address, birthday, group, company, divison, manager);		
 			
 		}else {
 			// CustomerContact 인스턴스 생성
@@ -302,10 +310,35 @@ public class SmartPhone {
 			String manager = getString();
 			
 			contact = new CustomerContact(name, phoneNumber, email, address, birthday, group, company, product, manager);	
+		
 		} 
 		
 		//contacts[seq++] = contact; 아래로 수정
 		contacts.add(contact);
+		
+		// 직렬화해보자
+		ObjectOutputStream outputStream = null;
+		
+		try {
+			
+			String msg = "신규등록 직렬화";
+			
+			outputStream = new ObjectOutputStream(new FileOutputStream("instanceDataSK.ser"));
+		
+			outputStream.writeObject(msg);
+						
+			outputStream.writeObject(contacts);
+			
+			System.out.println("직렬화 완료!!!");
+			
+			outputStream.close();
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		
 		//System.out.println(seq + "번째 데이타가 입력 되었습니다."); 아래로 수정
 		System.out.println(contacts.size() + "번째 데이타가 입력 되었습니다.");
@@ -411,7 +444,6 @@ public class SmartPhone {
 				
 				System.out.println(str);
 			}
-			System.out.println("프로그램 종료");
 			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -582,7 +614,7 @@ public class SmartPhone {
 			}
 		}
 		return str;
-	}		
+	}			
 }
 
 	
