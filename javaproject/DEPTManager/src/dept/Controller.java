@@ -116,21 +116,120 @@ public class Controller {
 	// 3. 부서 정보 저장
 	public void insert() {
 		
+		System.out.println("부서정보 입력을 시작합니다.");
+		System.out.println("부서번호 >> ");
+		int deptno = Integer.parseInt(sc.nextLine());
+		
+		System.out.println("부서이름 >> ");
+		String dname = sc.nextLine().trim();
+		
+		System.out.println("부서위치 >> ");
+		String loc = sc.nextLine().trim();
+				
+		try {
+
+			String dburl = "jdbc:oracle:thin:@localhost:1521:xe"; // -> 오라클
+			//String dburl = "jdbc:mysql://localhost:3307/project";  // -> MySQL
+		
+			Connection conn = DriverManager.getConnection(dburl, "scott", "tiger");
+			
+			String sql = "insert into dept values(?, ?, ?)";
+			
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, deptno); // 첫번째 ?의 값을 10으로 넣겠다.
+			pstmt.setString(2, dname);
+			pstmt.setString(3, loc);
+			
+			int result = pstmt.executeUpdate(); // int로 반환 된다.
+			
+			if (result>0) {
+				System.out.println("입력 완료!!!");
+			}
+						
+			pstmt.close();
+			conn.close();
+						
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
 	}
 	
 	// 4. 부서 정보 수정
 	public void update() {
 		
+		System.out.println("부서 정보 수정을 시작합니다.");
+		System.out.println("수정하실 부서 번호를 입력해주세요. >> ");
+		int deptno = Integer.parseInt(sc.nextLine());
+		
+		System.out.println("새로운 부서 이름 >> ");
+		String dname = sc.nextLine();
+		
+		System.out.println("새로운 부서 위치 >> ");
+		String loc = sc.nextLine();
+				
+		try {
+			String dburl = "jdbc:oracle:thin:@localhost:1521:xe"; // -> 오라클 dburl
+			//String dburl = "jdbc:mysql://localhost:3307/project";  // -> MySQL dburl
+		
+			Connection conn = DriverManager.getConnection(dburl, "scott", "tiger");
+
+			String sql = "update dept set dname=?, loc=? where deptno=?";
+			
+			// 쿼리문에 ?가 있는 경우는 PreparedStament로 생성
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dname); // 첫번째 ?의 값을 "기획"으로 넣겠다.
+			pstmt.setString(2, loc); // 두번째 ?의 값은 "제주"로 넣겠다.
+			pstmt.setInt(3, deptno); // 세번째 ?의 값은 50으로 넣겠다.
+			
+			int result = pstmt.executeUpdate(); // int로 반환 된다.
+			
+			if (result>0) {
+				System.out.println("정보 변경 완료!!!");
+			}
+						
+			pstmt.close();
+			conn.close();
+						
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	// 5. 부서 정보 삭제
 	public void delete() {
 		
+		System.out.println("삭제가 진행됩니다.");
+		System.out.println("삭제할 부서의 번호를 입력해주세요. >> ");
+		int deptno = Integer.parseInt(sc.nextLine());
+		
+		try {
+			String dburl = "jdbc:oracle:thin:@localhost:1521:xe"; // -> 오라클
+			//String dburl = "jdbc:mysql://localhost:3307/project";  // -> MySQL
+		
+			Connection conn = DriverManager.getConnection(dburl, "scott", "tiger");
+
+			String sql = "delete from dept where deptno=?";
+			
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, deptno);
+
+			int result = pstmt.executeUpdate(); // int로 반환 된다.
+			
+			if (result>0) {
+				System.out.println("삭제 완료!!!");
+			}		
+			pstmt.close();
+			conn.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
 	}
 	
 	// 6. 종료
 	public void exit() {
-		
+		System.out.println("프로그램을 종료합니다.");
+		System.exit(0);	// 현재 메인스레드를 종료한다. => 웹에서 사용하면 톱캣 서버가 멈추므로 사용하지 말것!
 	}
 }
 

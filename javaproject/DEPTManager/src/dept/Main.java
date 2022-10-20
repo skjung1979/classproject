@@ -33,7 +33,7 @@ public class Main {
 				controller.delete();
 				break;
 			case 6:
-				System.out.println("프로그램 종료합니다. Bye~");
+				controller.exit();
 			}	
 		}
 	}
