@@ -13,10 +13,11 @@ import dept.controller.UpdateController;
 
 public class Command {
 
-	public Map<Integer, dept.controller.Controller> command;
+	public Map<Integer, Controller> command;
 	
 	public Command() {
-		Map<Integer, Controller> command = new HashMap<>();
+	
+		command = new HashMap<>();
 		command.put(1, new SelectController());
 		command.put(2, new SelectByController());
 		command.put(3, new InsertController());

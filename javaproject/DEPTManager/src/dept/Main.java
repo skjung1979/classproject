@@ -22,24 +22,26 @@ public class Main {
 
 		//Controller controller = new Controller();
 		
-		// List로 메뉴 구성하는 방법
-		List<Controller> list = new ArrayList<>();
-		list.add(null);
-		list.add(new SelectController());
-		list.add(new SelectByController());
-		list.add(new InsertController());
-		list.add(new UpdateController());
-		list.add(new DeleteController());
-		list.add(new ExitController());
+//		// List로 메뉴 구성하는 방법
+//		List<Controller> list = new ArrayList<>();
+//		list.add(null);
+//		list.add(new SelectController());
+//		list.add(new SelectByController());
+//		list.add(new InsertController());
+//		list.add(new UpdateController());
+//		list.add(new DeleteController());
+//		list.add(new ExitController());
 	
-		// Map으로 구성하는 방법
-		Map<Integer, Controller> command = new HashMap<>();
-		command.put(1, new SelectController());
-		command.put(2, new SelectByController());
-		command.put(3, new InsertController());
-		command.put(4, new UpdateController());
-		command.put(5, new DeleteController());
-		command.put(6, new ExitController());	
+//		// Map으로 구성하는 방법
+//		Map<Integer, Controller> command = new HashMap<>();
+//		command.put(1, new SelectController());
+//		command.put(2, new SelectByController());
+//		command.put(3, new InsertController());
+//		command.put(4, new UpdateController());
+//		command.put(5, new DeleteController());
+//		command.put(6, new ExitController());	
+		
+		Command command = new Command();
 		
 		while (true) {
 		
@@ -49,7 +51,7 @@ public class Main {
 			int select = Integer.parseInt(sc.nextLine());
 	
 			//list.get(select).process(); // 리스트로!
-			command.get(select).process(); // MAP으로!
+			command.command.get(select).process();
 			
 			
 // List로 수정 전 코드			
