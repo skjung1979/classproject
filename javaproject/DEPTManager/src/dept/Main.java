@@ -3,12 +3,13 @@ package dept;
 import java.util.Scanner;
 
 public class Main {
+	
+	public static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
 
-		Controller controller = new Controller();
-		Scanner sc = new Scanner(System.in);
-		
+		//Controller controller = new Controller();
+			
 		while (true) {
 		
 			menu();
@@ -18,22 +19,22 @@ public class Main {
 			
 			switch (select) {
 			case 1:
-				controller.select();
+				new SelectController().process();
 				break;
 			case 2:
-				controller.selectByDeptno();
+				new SelectByController().process();
 				break;
 			case 3:
-				controller.insert();
+				//controller.insert();
 				break;
 			case 4:
-				controller.update();
+				//controller.update();
 				break;
 			case 5:
-				controller.delete();
+				//controller.delete();
 				break;
 			case 6:
-				controller.exit();
+				//controller.exit();
 			}	
 		}
 	}
