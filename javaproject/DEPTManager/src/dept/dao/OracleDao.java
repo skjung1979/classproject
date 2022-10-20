@@ -151,3 +151,21 @@ public class OracleDao implements Dao {
 		return new Dept(rs.getInt("deptno"), rs.getString("dname"), rs.getString("loc"));
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
