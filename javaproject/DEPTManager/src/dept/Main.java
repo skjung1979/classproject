@@ -2,11 +2,11 @@ package dept;
 
 import java.util.Scanner;
 
-import controller.ExitController;
-import controller.InsertController;
-import controller.SelectByController;
-import controller.SelectController;
-import controller.UpdateController;
+import dept.controller.ExitController;
+import dept.controller.InsertController;
+import dept.controller.SelectByController;
+import dept.controller.SelectController;
+import dept.controller.UpdateController;
 
 public class Main {
 	

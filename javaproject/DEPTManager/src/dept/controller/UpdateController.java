@@ -1,4 +1,4 @@
-package controller;
+package dept.controller;
 
 import dept.Main;
 import dept.domain.Dept;

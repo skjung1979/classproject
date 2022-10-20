@@ -1,4 +1,4 @@
-package controller;
+package dept.controller;
 
 import java.sql.Connection;
 
