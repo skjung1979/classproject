@@ -15,7 +15,14 @@ public class SelectService {
 	// Controller에서 요청한 결과를 생성하고 반환
 	// 필요한 DB 작업은 Dao를 통해서 작업!
 	
-	Dao dao = new OracleDao();
+	// Dao dao = new OracleDao();	// 의존한다! -> 의존성을 줄이는 것이 좋다!!
+	
+	Dao dao;
+	
+	// 생성자: 이렇게 해야 dao의 의존성을 줄일수 있다.
+	public SelectService(Dao dao) {
+		this.dao = dao;
+	}
 	
 	public List<Dept> select() {
 		

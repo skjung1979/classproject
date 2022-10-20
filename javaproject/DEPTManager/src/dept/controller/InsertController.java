@@ -9,7 +9,7 @@ import dept.domain.Dept;
 import dept.service.InsertService;
 import dept.util.ConnectionProvider;
 
-public class InsertController {
+public class InsertController implements Controller {
 	
 	InsertService service = new InsertService();
 	

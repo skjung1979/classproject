@@ -9,7 +9,7 @@ import java.sql.Statement;
 import java.util.Scanner;
 
 // 이 컨트롤러들을 dept.controller패키지를 만들고 기능별로 세분화하였다.
-public class Controller {
+public class Controller_origin {
 
 	// 기능 클래스
 	// 사용자 요청의 실제 처리 클래스: 사용자에게 데이터를 받고, DB 처리 결과 출력
@@ -17,7 +17,7 @@ public class Controller {
 	Scanner sc;
 	
 	// 생성자
-	public Controller() {
+	public Controller_origin() {
 		
 		sc = new Scanner(System.in);
 

@@ -7,7 +7,7 @@ import dept.domain.Dept;
 import dept.service.SelectByService;
 import dept.service.SelectService;
 
-public class SelectByController {
+public class SelectByController implements Controller {
 	
 	SelectByService service = new SelectByService();
 	

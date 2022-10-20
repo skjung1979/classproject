@@ -1,6 +1,6 @@
 package dept.controller;
 
-public class ExitController {
+public class ExitController implements Controller {
 	
 	public void process() {
 		

@@ -4,7 +4,7 @@ import dept.Main;
 import dept.domain.Dept;
 import dept.service.UpdateService;
 
-public class UpdateController {
+public class UpdateController implements Controller {
 	
 	UpdateService service = new UpdateService();
 	
