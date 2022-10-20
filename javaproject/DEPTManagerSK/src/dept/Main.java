@@ -5,6 +5,7 @@ import java.util.Scanner;
 import dept.controller.SelectByController;
 import dept.controller.SelectController;
 
+//project DEPTManagerSK
 public class Main {
 		
 	public static Scanner sc = new Scanner(System.in);

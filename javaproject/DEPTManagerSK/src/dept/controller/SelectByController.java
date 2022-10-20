@@ -5,6 +5,7 @@ import dept.dao.OracleDao;
 import dept.domain.Dept;
 import dept.service.SelectByService;
 
+//project DEPTManagerSK
 public class SelectByController {
 	
 	SelectByService service = new SelectByService(new OracleDao());

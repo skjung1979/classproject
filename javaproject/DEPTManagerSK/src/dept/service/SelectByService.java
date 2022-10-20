@@ -7,6 +7,7 @@ import dept.dao.Dao;
 import dept.domain.Dept;
 import dept.util.ConnectionProvider;
 
+//project DEPTManagerSK
 public class SelectByService {
 	
 	Dao dao;

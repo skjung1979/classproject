@@ -79,7 +79,7 @@ public class OracleDao implements Dao {
 	}
 
 	@Override
-	public int udate(Connection conn, Dept dept) throws SQLException {
+	public int update(Connection conn, Dept dept) throws SQLException {
 		// TODO Auto-generated method stub
 		return 0;
 	}

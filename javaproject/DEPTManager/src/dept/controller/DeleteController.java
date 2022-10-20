@@ -1,11 +1,12 @@
 package dept.controller;
 
 import dept.Main;
+import dept.dao.OracleDao;
 import dept.service.DeleteService;
 
 public class DeleteController implements Controller {
 
-	DeleteService service = new DeleteService();
+	DeleteService service = new DeleteService(new OracleDao());
 	
 	public void process() {
 		

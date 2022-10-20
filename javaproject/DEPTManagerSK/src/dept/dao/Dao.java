@@ -15,7 +15,7 @@ public interface Dao {
 	
 	int insert(Connection conn, Dept dept) throws SQLException;
 	
-	int udate(Connection conn, Dept dept) throws SQLException;
+	int update(Connection conn, Dept dept) throws SQLException;
 	
 	int delete(Connection conn, int deptno) throws SQLException;
 

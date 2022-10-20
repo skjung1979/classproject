@@ -11,7 +11,7 @@ import dept.util.ConnectionProvider;
 
 public class InsertController implements Controller {
 	
-	InsertService service = new InsertService();
+	InsertService service = new InsertService(new OracleDao());
 	
 	// 전달자
 	public void process() {
@@ -32,9 +32,6 @@ public class InsertController implements Controller {
 			System.out.println("입력되었습니다.");
 		} else {
 			System.out.println("입력 실패!!!");
-		}
-		
-		
+		}	
 	}
-
 }

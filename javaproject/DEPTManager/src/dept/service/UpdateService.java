@@ -10,7 +10,11 @@ import dept.util.ConnectionProvider;
 
 public class UpdateService {
 	
-	Dao dao = new OracleDao();
+	Dao dao;
+	
+	public UpdateService(Dao dao) {
+		this.dao = dao;
+	}
 	
 	public int update(Dept dept) {
 	

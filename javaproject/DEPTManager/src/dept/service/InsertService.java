@@ -10,7 +10,11 @@ import dept.util.ConnectionProvider;
 
 public class InsertService {
 
-	Dao dao = new OracleDao();
+	Dao dao;
+	
+	public InsertService(Dao dao) {
+		this.dao = dao;
+	}
 	
 	public int insert(Dept dept) {
 		
@@ -18,8 +22,8 @@ public class InsertService {
 		Connection conn = null; // 예외 처리 때문에 여기에 빼서 선언한다.
 		
 		try {
-			conn = ConnectionProvider.getConnection();
 			
+			conn = ConnectionProvider.getConnection();
 			result = dao.insert(conn, dept);
 			
 		} catch (SQLException e) {

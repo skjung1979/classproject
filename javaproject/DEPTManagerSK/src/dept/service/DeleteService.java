@@ -2,11 +2,10 @@ package dept.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-
 import dept.dao.Dao;
-import dept.dao.OracleDao;
 import dept.util.ConnectionProvider;
 
+//project DEPTManagerSK
 public class DeleteService {
 	
 	Dao dao;
@@ -18,11 +17,11 @@ public class DeleteService {
 	public int delete(int deptno) {
 		
 		int result = 0;
-		Connection conn = null;
+		Connection conn;
 			
 		try {
-			conn = ConnectionProvider.getConnection();
 			
+			conn = ConnectionProvider.getConnection();
 			result = dao.delete(conn, deptno);
 			
 		} catch (SQLException e) {
