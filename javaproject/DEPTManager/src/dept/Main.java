@@ -2,6 +2,12 @@ package dept;
 
 import java.util.Scanner;
 
+import controller.ExitController;
+import controller.InsertController;
+import controller.SelectByController;
+import controller.SelectController;
+import controller.UpdateController;
+
 public class Main {
 	
 	public static Scanner sc = new Scanner(System.in);
@@ -25,16 +31,16 @@ public class Main {
 				new SelectByController().process();
 				break;
 			case 3:
-				//controller.insert();
+				new InsertController().process();
 				break;
 			case 4:
-				//controller.update();
+				new UpdateController().process();
 				break;
 			case 5:
 				//controller.delete();
 				break;
 			case 6:
-				//controller.exit();
+				new ExitController().process();
 			}	
 		}
 	}

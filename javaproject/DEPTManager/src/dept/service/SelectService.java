@@ -17,7 +17,7 @@ public class SelectService {
 	
 	Dao dao = new OracleDao();
 	
-	public List<Dept> select(){
+	public List<Dept> select() {
 		
 		List<Dept> list = null;
 		Connection conn = null;

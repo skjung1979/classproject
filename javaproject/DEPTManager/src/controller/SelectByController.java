@@ -1,7 +1,8 @@
-package dept;
+package controller;
 
 import java.util.List;
 
+import dept.Main;
 import dept.domain.Dept;
 import dept.service.SelectByService;
 import dept.service.SelectService;
@@ -23,9 +24,6 @@ public class SelectByController {
 		} else {
 			System.out.println("검색한 부서의 정보가 없습니다.");
 		}
-
-
-
-		
+	
 	}
 }

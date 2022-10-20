@@ -148,6 +148,6 @@ public class OracleDao implements Dao {
 	
 	// dept 반환 메소드
 	private Dept rowToDept(ResultSet rs) throws SQLException {
-		return new Dept(rs.getInt("deptno"), rs.getString("danme"), rs.getString("loc"));
+		return new Dept(rs.getInt("deptno"), rs.getString("dname"), rs.getString("loc"));
 	}
 }
