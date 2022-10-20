@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
+// 이 컨트롤러들을 dept.controller패키지를 만들고 기능별로 세분화하였다.
 public class Controller {
 
 	// 기능 클래스
@@ -19,34 +20,36 @@ public class Controller {
 	public Controller() {
 		
 		sc = new Scanner(System.in);
-		
+
 	}
 	
 	// 1. 전체 부서 리스트
 	public void select() {
 
+		Connection conn = null;
+		
 				try {
 			
-//					Statement stmt = conn.createStatement();
-//					
-//					String sql = "select * from dept";
-//
-//					ResultSet rs = stmt.executeQuery(sql);
-//					
-//					System.out.println("부서 리스트를 출력합니다.");
-//					System.out.println("부서 리스트");
-//					System.out.println("----------------------------------");
-//					System.out.printf("%5s %10s %10s\n", "부서번호", "부서이름", "위치");	// 화면에 필드명 출력!
-//					System.out.println("----------------------------------");
-//					
-//					while (rs.next()) {
-//						
-//						int deptno = rs.getInt("deptno");
-//						String dname = rs.getString("dname");
-//						String loc = rs.getString("loc");
-//										
-//						System.out.printf("%5d %10s %10s\n", deptno, dname, loc);	// %10 <- 10자리를 확보한다!		
-//					}
+					Statement stmt = conn.createStatement();
+					
+					String sql = "select * from dept";
+
+					ResultSet rs = stmt.executeQuery(sql);
+					
+					System.out.println("부서 리스트를 출력합니다.");
+					System.out.println("부서 리스트");
+					System.out.println("----------------------------------");
+					System.out.printf("%5s %10s %10s\n", "부서번호", "부서이름", "위치");	// 화면에 필드명 출력!
+					System.out.println("----------------------------------");
+					
+					while (rs.next()) {
+						
+						int deptno = rs.getInt("deptno");
+						String dname = rs.getString("dname");
+						String loc = rs.getString("loc");
+										
+						System.out.printf("%5d %10s %10s\n", deptno, dname, loc);	// %10 <- 10자리를 확보한다!		
+					}
 					
 					System.out.println("----------------------------------");
 					

@@ -2,6 +2,7 @@ package dept;
 
 import java.util.Scanner;
 
+import dept.controller.DeleteController;
 import dept.controller.ExitController;
 import dept.controller.InsertController;
 import dept.controller.SelectByController;
@@ -37,7 +38,7 @@ public class Main {
 				new UpdateController().process();
 				break;
 			case 5:
-				//controller.delete();
+				new DeleteController().process();
 				break;
 			case 6:
 				new ExitController().process();

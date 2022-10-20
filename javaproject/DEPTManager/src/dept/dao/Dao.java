@@ -7,7 +7,7 @@ import dept.domain.Dept;
 
 public interface Dao {
 	
-	// 컨드롤러에서 정의한 메소드들...
+	// 컨트롤러에서 정의한 메소드들...
 	List<Dept> select(Connection conn) throws SQLException;
 	Dept selectByDeptno(Connection conn, int deptno) throws SQLException;
 	
