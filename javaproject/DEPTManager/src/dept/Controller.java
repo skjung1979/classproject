@@ -26,32 +26,27 @@ public class Controller {
 	public void select() {
 
 				try {
-	
-					String dburl = "jdbc:oracle:thin:@localhost:1521:xe"; // -> 오라클
-					//String dburl = "jdbc:mysql://localhost:3307/project";  // -> MySQL
-				
-					Connection conn = DriverManager.getConnection(dburl, "scott", "tiger");
 			
-					Statement stmt = conn.createStatement();
-					
-					String sql = "select * from dept";
-
-					ResultSet rs = stmt.executeQuery(sql);
-					
-					System.out.println("부서 리스트를 출력합니다.");
-					System.out.println("부서 리스트");
-					System.out.println("----------------------------------");
-					System.out.printf("%5s %10s %10s\n", "부서번호", "부서이름", "위치");	// 화면에 필드명 출력!
-					System.out.println("----------------------------------");
-					
-					while (rs.next()) {
-						
-						int deptno = rs.getInt("deptno");
-						String dname = rs.getString("dname");
-						String loc = rs.getString("loc");
-										
-						System.out.printf("%5d %10s %10s\n", deptno, dname, loc);	// %10 <- 10자리를 확보한다!		
-					}
+//					Statement stmt = conn.createStatement();
+//					
+//					String sql = "select * from dept";
+//
+//					ResultSet rs = stmt.executeQuery(sql);
+//					
+//					System.out.println("부서 리스트를 출력합니다.");
+//					System.out.println("부서 리스트");
+//					System.out.println("----------------------------------");
+//					System.out.printf("%5s %10s %10s\n", "부서번호", "부서이름", "위치");	// 화면에 필드명 출력!
+//					System.out.println("----------------------------------");
+//					
+//					while (rs.next()) {
+//						
+//						int deptno = rs.getInt("deptno");
+//						String dname = rs.getString("dname");
+//						String loc = rs.getString("loc");
+//										
+//						System.out.printf("%5d %10s %10s\n", deptno, dname, loc);	// %10 <- 10자리를 확보한다!		
+//					}
 					
 					System.out.println("----------------------------------");
 					
