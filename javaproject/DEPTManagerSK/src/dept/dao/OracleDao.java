@@ -10,6 +10,7 @@ import java.util.List;
 
 import dept.domain.Dept;
 
+//project DEPTManagerSK
 public class OracleDao implements Dao {
 
 	@Override
@@ -74,20 +75,71 @@ public class OracleDao implements Dao {
 
 	@Override
 	public int insert(Connection conn, Dept dept) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		int result = 0;
+		
+		String sql = "insert into dept values(?, ?, ?)";
+		
+		PreparedStatement pstmt = null;
+		
+		try {
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1,  dept.getDeptno());
+		pstmt.setString(2, dept.getDname());
+		pstmt.setString(3, dept.getLoc());
+		
+		result = pstmt.executeUpdate();
+		} finally {
+			if (pstmt != null) {
+				pstmt.close();
+			} 
+		}
+		
+		return result;
 	}
 
 	@Override
 	public int update(Connection conn, Dept dept) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+
+		int result = 0;
+
+		String sql = "update dept set dname=?, loc=? where deptno=?";
+		
+		PreparedStatement pstmt = null;
+		
+		try {
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, dept.getDname());
+		pstmt.setString(2, dept.getLoc());
+		pstmt.setInt(3,  dept.getDeptno());
+		
+		result = pstmt.executeUpdate();
+		
+		} finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+		}
+		
+		return result;
 	}
 
 	@Override
 	public int delete(Connection conn, int deptno) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		int result = 0;
+		
+		String sql = "delete from dept where deptno=?";
+		
+		PreparedStatement pstmt = null;
+		
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, deptno);		
+		
+		
+		
+		
+		return result;
 	}
 	
 	// rowToDept 메소드

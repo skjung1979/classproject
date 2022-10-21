@@ -6,6 +6,7 @@ import java.util.List;
 
 import dept.domain.Dept;
 
+//project DEPTManagerSK
 public interface Dao {
 	
 	// 메소드들을 인터페이스에서 정의해서 OracleDao.java에서 상속받아 구현한다.
