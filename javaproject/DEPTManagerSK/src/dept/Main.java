@@ -2,8 +2,11 @@ package dept;
 
 import java.util.Scanner;
 
+import dept.controller.DeleteController;
+import dept.controller.InsertController;
 import dept.controller.SelectByController;
 import dept.controller.SelectController;
+import dept.controller.UpdateController;
 
 //project DEPTManagerSK
 public class Main {
@@ -26,12 +29,16 @@ public class Main {
 				new SelectByController().process();
 				break;
 			case 3:
+				new InsertController().process();
 				break;
 			case 4:
+				new UpdateController().process();
 				break;
 			case 5:
+				new DeleteController().process();
 				break;
 			case 6:
+				System.exit(select);
 				
 			}
 			

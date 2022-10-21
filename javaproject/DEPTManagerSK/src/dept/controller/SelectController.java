@@ -6,6 +6,7 @@ import dept.dao.OracleDao;
 import dept.domain.Dept;
 import dept.service.SelectService;
 
+//project DEPTManagerSK
 public class SelectController {
 	
 	SelectService service = new SelectService(new OracleDao());

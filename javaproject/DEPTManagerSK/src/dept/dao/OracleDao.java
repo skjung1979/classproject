@@ -133,12 +133,16 @@ public class OracleDao implements Dao {
 		
 		PreparedStatement pstmt = null;
 		
+		try {		
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, deptno);		
-		
-		
-		
-		
+	
+		result = pstmt.executeUpdate();
+		} finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+		}
 		return result;
 	}
 	
