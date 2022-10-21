@@ -47,11 +47,10 @@ public class OracleDao implements Dao {
 	public Dept selectByDeptno(Connection conn, int deptno) throws SQLException {
 
 		Dept dept = null;
-
-		String sql = "select * from dept where deptno=?";
-
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+
+		String sql = "select * from dept where deptno=?";
 
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -78,11 +77,10 @@ public class OracleDao implements Dao {
 	public int insert(Connection conn, Dept dept) throws SQLException {
 
 		int result = 0;
-
-		String sql = "insert into dept values(?, ?, ?)";
-
 		PreparedStatement pstmt = null;
-
+		
+		String sql = "insert into dept values(?, ?, ?)";
+		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, dept.getDeptno()); 
@@ -103,10 +101,9 @@ public class OracleDao implements Dao {
 	public int update(Connection conn, Dept dept) throws SQLException {
 
 		int result = 0;
+		PreparedStatement pstmt = null;
 
 		String sql = "update dept set dname=?, loc=? where deptno=?";
-
-		PreparedStatement pstmt = null;
 
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -127,11 +124,10 @@ public class OracleDao implements Dao {
 	public int delete(Connection conn, int deptno) throws SQLException {
 
 		int result = 0;
-
-		String sql = "delete from dept where deptno=?";
-
 		PreparedStatement pstmt = null;
 
+		String sql = "delete from dept where deptno=?";
+		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, deptno);

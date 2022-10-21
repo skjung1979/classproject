@@ -17,10 +17,10 @@ public class UpdateController implements Controller {
 		int deptno = Integer.parseInt(Main.sc.nextLine());
 		
 		System.out.println("새로운 부서 이름 >> ");
-		String dname = Main.sc.nextLine();
+		String dname = Main.sc.nextLine().trim();
 		
 		System.out.println("새로운 부서 위치 >> ");
-		String loc = Main.sc.nextLine();
+		String loc = Main.sc.nextLine().trim();
 				
 		// 수정 처리
 		int result = service.update(new Dept(deptno, dname, loc));

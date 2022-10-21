@@ -10,8 +10,12 @@ import dept.util.ConnectionProvider;
 
 public class SelectByService {
 	
-	Dao dao = new OracleDao();
+	Dao dao;
 	
+	public SelectByService(Dao dao) {
+		this.dao = dao;
+	}
+
 	
 	public Dept selectByDeptno(int deptno) {
 		

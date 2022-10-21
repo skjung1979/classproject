@@ -3,13 +3,14 @@ package dept.controller;
 import java.util.List;
 
 import dept.Main;
+import dept.dao.OracleDao;
 import dept.domain.Dept;
 import dept.service.SelectByService;
 import dept.service.SelectService;
 
 public class SelectByController implements Controller {
 	
-	SelectByService service = new SelectByService();
+	SelectByService service = new SelectByService(new OracleDao());
 	
 	public void process() {
 		
