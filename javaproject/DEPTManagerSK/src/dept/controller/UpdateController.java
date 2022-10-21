@@ -6,7 +6,7 @@ import dept.domain.Dept;
 import dept.service.UpdateService;
 
 //project DEPTManagerSK
-public class UpdateController {
+public class UpdateController implements Controller {
 	
 	UpdateService service = new UpdateService(new OracleDao());
 	

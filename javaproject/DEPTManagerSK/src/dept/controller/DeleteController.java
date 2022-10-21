@@ -5,7 +5,7 @@ import dept.dao.OracleDao;
 import dept.service.DeleteService;
 
 //project DEPTManagerSK
-public class DeleteController {
+public class DeleteController implements Controller{
 
 	DeleteService service = new DeleteService(new OracleDao());
 	

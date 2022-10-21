@@ -7,7 +7,7 @@ import dept.domain.Dept;
 import dept.service.SelectService;
 
 //project DEPTManagerSK
-public class SelectController {
+public class SelectController implements Controller{
 	
 	SelectService service = new SelectService(new OracleDao());
 	

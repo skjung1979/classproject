@@ -6,7 +6,7 @@ import dept.domain.Dept;
 import dept.service.InsertService;
 
 //project DEPTManagerSK
-public class InsertController {
+public class InsertController implements Controller{
 	
 	InsertService service = new InsertService(new OracleDao());
 	

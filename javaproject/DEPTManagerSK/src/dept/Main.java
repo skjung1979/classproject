@@ -1,8 +1,13 @@
 package dept;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
-
+import dept.controller.Controller;
 import dept.controller.DeleteController;
+import dept.controller.ExitController;
 import dept.controller.InsertController;
 import dept.controller.SelectByController;
 import dept.controller.SelectController;
@@ -15,44 +20,16 @@ public class Main {
 
 	public static void main(String[] args) {
 
+		Command command = new Command();
 		
 		while (true) {
 			menu();
 			System.out.println("--- 메뉴 번호를 입력하세요. >> ");
 			int select = Integer.parseInt(sc.nextLine());
 			
-			switch (select) {
-			case 1:
-				new SelectController().process();
-				break;
-			case 2:
-				new SelectByController().process();
-				break;
-			case 3:
-				new InsertController().process();
-				break;
-			case 4:
-				new UpdateController().process();
-				break;
-			case 5:
-				new DeleteController().process();
-				break;
-			case 6:
-				System.exit(select);
-				
-			}
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+			command.comm.get(select).process();
+					
 		}
-
 	}
 	
 	public static void menu() {

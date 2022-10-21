@@ -10,23 +10,19 @@ import dept.controller.SelectByController;
 import dept.controller.SelectController;
 import dept.controller.UpdateController;
 
+//project DEPTManagerSK
 public class Command {
 	
-	public Map<Integer, Controller> command;
+	public Map<Integer, Controller> comm;
 	
+	// 생성자
 	public Command() {
-		command = new HashMap<>();
-		command.put(1, new SelectController());
-		command.put(2, new SelectByController());
-		command.put(3, new InsertController());
-		command.put(4, new UpdateController());
-		command.put(5, new DeleteController());
-		command.put(6, new ExitController());
+		comm = new HashMap<>();
+		comm.put(1, new SelectController());
+		comm.put(2, new SelectByController());
+		comm.put(3, new InsertController());
+		comm.put(4, new UpdateController());
+		comm.put(5, new DeleteController());
+		comm.put(6, new ExitController());
 	}
 }
-
-
-
-
-
-
