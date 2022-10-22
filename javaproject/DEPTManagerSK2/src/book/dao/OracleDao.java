@@ -44,7 +44,7 @@ public class OracleDao implements Dao {
 	}
 
 	@Override
-	public List<Book> selectByBookname(Connection conn, String bookname) throws SQLException {
+	public List<Book> selectByBookname(Connection conn, String searchBookname) throws SQLException {
 		
 		List<Book> searchlist = new ArrayList<>();
 		PreparedStatement pstmt = null;
@@ -55,7 +55,7 @@ public class OracleDao implements Dao {
 			String sql = "select * from book where bookname like '%?%'";
 			
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, bookname);
+			pstmt.setString(1, searchBookname);
 	
 			rs = pstmt.executeQuery();
 		

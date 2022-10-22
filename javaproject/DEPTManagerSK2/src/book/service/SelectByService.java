@@ -21,13 +21,12 @@ public class SelectByService {
 		
 		List<Book> searchlist = null;
 		Connection conn = null;
-		String bookname = searchBookname;
 		
 		try {
 			
 			conn = ConnectionProvider.getConnection();
 			
-			searchlist = dao.selectByBookname(conn, bookname);
+			searchlist = dao.selectByBookname(conn, searchBookname);
 			
 		} catch (SQLException e) {
 			if (conn != null) {

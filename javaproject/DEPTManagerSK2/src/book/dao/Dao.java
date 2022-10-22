@@ -9,7 +9,7 @@ import book.domain.Book;
 public interface Dao {
 
 	List<Book> select(Connection conn) throws SQLException;
-	List<Book> selectByBookname(Connection conn, String bookname) throws SQLException;
+	List<Book> selectByBookname(Connection conn, String searchBookname) throws SQLException;
 	
 	int insert(Connection conn, Book book);
 	int update(Connection conn, Book book);
