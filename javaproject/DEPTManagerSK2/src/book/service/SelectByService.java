@@ -25,15 +25,15 @@ public class SelectByService {
 		try {
 			
 			conn = ConnectionProvider.getConnection();
-			
 			searchlist = dao.selectByBookname(conn, searchBookname);
 			
 		} catch (SQLException e) {
+			//
+		} finally {
 			if (conn != null) {
 				try {
 					conn.close();
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
@@ -41,7 +41,6 @@ public class SelectByService {
 		
 		return searchlist;
 	}
-	
 }
 
 

@@ -20,8 +20,6 @@ public class OracleDao implements Dao {
 		Statement stmt = null;
 		ResultSet rs = null;
 		
-		
-		
 		try {
 			
 			String sql = "select * from book";
@@ -74,10 +72,28 @@ public class OracleDao implements Dao {
 	}
 
 	@Override
-	public int insert(Connection conn, Book book) {
+	public int insert(Connection conn, Book book) throws SQLException {
+
 		int result = 0;
+		PreparedStatement pstmt = null;
 		
+		String sql = "insert into book values(?, ?, ?, ?)";
 		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, book.getBookid());
+			pstmt.setString(2, book.getBookname());
+			pstmt.setString(3, book.getPublisher());
+			pstmt.setInt(4, book.getPrice());
+			
+			result = pstmt.executeUpdate();
+			
+		} finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+		}
 		
 		return result;
 	}

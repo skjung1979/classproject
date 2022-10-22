@@ -19,10 +19,10 @@ public class SelectByController implements Controller {
 		String searchBookname = MainSK2.sc.nextLine().trim();
 		
 		List<Book> searchlist = service.selectByBookname(searchBookname);
-		
-		System.out.println("검색 결과 ======================");
-		
+			
 		if (searchlist != null && !searchlist.isEmpty()) {
+			
+			System.out.println("검색 결과 ======================");
 			
 			for (Book b : searchlist) {
 				System.out.println(b);
@@ -31,10 +31,6 @@ public class SelectByController implements Controller {
 //			System.out.println(book);
 		} else {
 			System.out.println("검색한 제목의 도서가 없습니다.");
-		}
-		
+		}	
 	}
-	
-	
-
 }

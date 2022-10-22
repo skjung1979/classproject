@@ -24,6 +24,7 @@ public class MainSK2 {
 	
 	public static void menu() {
 		
+		System.out.println("==============================");
 		System.out.println("도서 관리 프로그램");
 		System.out.println("1. 전체 도서 리스트");
 		System.out.println("2. 도서 검색");
