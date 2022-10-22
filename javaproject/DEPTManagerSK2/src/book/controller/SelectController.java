@@ -1,7 +1,6 @@
 package book.controller;
 
 import java.util.List;
-
 import book.dao.OracleDao;
 import book.domain.Book;
 import book.service.SelectService;
@@ -23,8 +22,6 @@ public class SelectController implements Controller{
 			
 		} else {
 			System.out.println("검색 결과 없습니다.");
-		}
-		
+		}	
 	}
-
 }

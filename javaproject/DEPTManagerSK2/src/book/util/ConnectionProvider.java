@@ -11,7 +11,9 @@ public class ConnectionProvider {
 		
 		String dburl = "jdbc:oracle:thin:@localhost:1521:xe";
 		
-		Connection conn = DriverManager.getConnection(dburl, "scott", "tiger");
+		Connection conn = null;
+
+		conn = DriverManager.getConnection(dburl, "scott", "tiger");
 		
 		return conn;
 		

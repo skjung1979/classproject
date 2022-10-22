@@ -9,11 +9,12 @@ import book.domain.Book;
 public interface Dao {
 
 	List<Book> select(Connection conn) throws SQLException;
-	Book selectByBookname(Connection conn, Book bookname);
+	List<Book> selectByBookname(Connection conn, String bookname) throws SQLException;
 	
 	int insert(Connection conn, Book book);
 	int update(Connection conn, Book book);
 	int delete(Connection conn, int bookid);
+
 	
 	
 }

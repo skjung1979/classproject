@@ -1,7 +1,8 @@
 package book.dao;
 
-import java.sql.DriverManager;
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -19,11 +20,13 @@ public class OracleDao implements Dao {
 		Statement stmt = null;
 		ResultSet rs = null;
 		
+		
+		
 		try {
 			
-			stmt = conn.createStatement();
-			
 			String sql = "select * from book";
+			
+			stmt = conn.createStatement();
 			
 			rs = stmt.executeQuery(sql);
 			
@@ -41,12 +44,33 @@ public class OracleDao implements Dao {
 	}
 
 	@Override
-	public Book selectByBookname(Connection conn, Book bookname) {
-		Book book = null;
+	public List<Book> selectByBookname(Connection conn, String bookname) throws SQLException {
 		
+		List<Book> searchlist = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+			
+		try {
+			
+			String sql = "select * from book where bookname like '%?%'";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, bookname);
+	
+			rs = pstmt.executeQuery();
 		
+			while (rs.next()) {
+				
+				searchlist.add(new Book(rs.getInt("bookid"), rs.getString("bookname"), rs.getString("publisher"), rs.getInt("price")));
+				
+			}
+	
+		} finally {
+			if (rs != null) rs.close();
+			if (pstmt != null) pstmt.close();
+		}
 		
-		return book;
+		return searchlist;
 	}
 
 	@Override
