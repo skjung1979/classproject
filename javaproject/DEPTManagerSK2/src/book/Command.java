@@ -25,6 +25,5 @@ public class Command {
 		comm.put(5, new DeleteController());
 		comm.put(6, new ExitController());
 			
-	}
-	
+	}	
 }

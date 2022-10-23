@@ -17,7 +17,7 @@ public class SelectByService {
 	}
 	
 
-	public List<Book> selectByBookname(String searchBookname) {
+	public List<Book> selectByBookname(Book book, int endPrice) {
 		
 		List<Book> searchlist = null;
 		Connection conn = null;
@@ -25,7 +25,7 @@ public class SelectByService {
 		try {
 			
 			conn = ConnectionProvider.getConnection();
-			searchlist = dao.selectByBookname(conn, searchBookname);
+			searchlist = dao.selectByBookname(conn, book, endPrice);
 			
 		} catch (SQLException e) {
 			//

@@ -30,7 +30,7 @@ public class OracleDao implements Dao {
 			
 			while (rs.next()) {
 				
-				list.add(new Book(rs.getInt("bookid"), rs.getString("bookname"), rs.getString("publisher"), rs.getInt("price")));
+				list.add(rowToBook(rs));
 				
 			}
 			
@@ -42,24 +42,57 @@ public class OracleDao implements Dao {
 	}
 
 	@Override
-	public List<Book> selectByBookname(Connection conn, String searchBookname) throws SQLException {
+	public List<Book> selectByBookname(Connection conn, Book book, int endPrice) throws SQLException {
 		
 		List<Book> searchlist = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-			
+		String sql = null;	
+		
+		
 		try {
 			
-			String sql = "select * from book where bookname like %?%";
+			if (book.getBookname() != null && book.getBookid() == 0 && book.getPublisher() == null && book.getPrice() == 0) {
+				
+				sql = "select * from book where bookname like ?";
+				
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, "%" + book.getBookname() + "%");
+				
+			} else if (book.getBookname() == null && book.getBookid() != 0 && book.getPublisher() == null && book.getPrice() == 0) {
+				
+				sql = "select * from book where bookid=?";
+				
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, book.getBookid());
+				
+			} else if (book.getBookname() == null && book.getBookid() == 0 && book.getPublisher() != null && book.getPrice() == 0) {
+				
+				sql = "select * from book where publisher like ?";
+				
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, "%" + book.getPublisher() + "%");
+				
+			} else if (book.getBookname() == null && book.getBookid() == 0 && book.getPublisher() == null && book.getPrice() != 0) {
 			
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, searchBookname);
+				sql = "select * from book where price between ? and ?";
+				
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, book.getPrice());
+				pstmt.setInt(2, endPrice);
+				
+			}
+			
+			//String sql = "select * from book where bookname like ?";
+			
+			//pstmt = conn.prepareStatement(sql);
+			//pstmt.setString(1, "%"+searchBookname+"%");
 	
 			rs = pstmt.executeQuery();
 		
 			while (rs.next()) {
 				
-				searchlist.add(new Book(rs.getInt("bookid"), rs.getString("bookname"), rs.getString("publisher"), rs.getInt("price")));
+				searchlist.add(rowToBook(rs));
 				
 			}
 	
@@ -146,6 +179,10 @@ public class OracleDao implements Dao {
 		}
 		
 		return result;
+	}
+	
+	public Book rowToBook(ResultSet rs) throws SQLException {
+		return new Book(rs.getInt("bookid"), rs.getString("bookname"), rs.getString("publisher"), rs.getInt("price"));
 	}
 
 }
