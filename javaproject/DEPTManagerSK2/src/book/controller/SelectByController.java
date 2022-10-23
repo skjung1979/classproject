@@ -15,7 +15,7 @@ public class SelectByController implements Controller {
 	public void process() {
 		
 		System.out.println("도서 검색을 진행합니다.");
-		System.out.println("검색할 도서명을 입력 해 주세요.");
+		System.out.println("검색할 도서명을 입력해주세요.");
 		String searchBookname = MainSK2.sc.nextLine().trim();
 		
 		List<Book> searchlist = service.selectByBookname(searchBookname);
