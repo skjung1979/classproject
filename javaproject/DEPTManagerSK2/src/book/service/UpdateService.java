@@ -2,19 +2,20 @@ package book.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+
 import book.dao.Dao;
 import book.domain.Book;
 import book.util.ConnectionProvider;
 
-public class InsertService {
+public class UpdateService {
 	
 	Dao dao;
 	
-	public InsertService(Dao dao) {
+	public UpdateService(Dao dao) {
 		this.dao = dao;
 	}
-
-	public int insert(Book book) {
+	
+	public int update(Book book) {
 		
 		int result = 0;
 		Connection conn = null;
@@ -22,7 +23,7 @@ public class InsertService {
 		try {
 			
 			conn = ConnectionProvider.getConnection();
-			result = dao.insert(conn, book);
+			result = dao.update(conn, book);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -37,7 +38,5 @@ public class InsertService {
 		}
 		
 		return result;
-		
 	}
-	
 }

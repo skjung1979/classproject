@@ -99,19 +99,51 @@ public class OracleDao implements Dao {
 	}
 
 	@Override
-	public int update(Connection conn, Book book) {
+	public int update(Connection conn, Book book) throws SQLException {
+		
 		int result = 0;
+		PreparedStatement pstmt = null;
+
+		String sql = "update book set bookname=?, publisher=?, price=? where bookid=?";
 		
-		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, book.getBookname());
+			pstmt.setString(2, book.getPublisher());
+			pstmt.setInt(3, book.getPrice());
+			pstmt.setInt(4, book.getBookid());
+			
+			result = pstmt.executeUpdate();
+			
+		} finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+		}
 		
 		return result;
 	}
 
 	@Override
-	public int delete(Connection conn, int bookid) {
+	public int delete(Connection conn, int bookid) throws SQLException {
 		int result = 0;
+		PreparedStatement pstmt = null;
 		
+		String sql = "delete from book where bookid=?";
 		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bookid);
+			
+			result = pstmt.executeUpdate();
+			
+		} finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+		}
 		
 		return result;
 	}

@@ -2,28 +2,27 @@ package book.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+
 import book.dao.Dao;
-import book.domain.Book;
 import book.util.ConnectionProvider;
 
-public class InsertService {
+public class DeleteService {
 	
 	Dao dao;
-	
-	public InsertService(Dao dao) {
+
+	public DeleteService(Dao dao) {
 		this.dao = dao;
 	}
-
-	public int insert(Book book) {
-		
+	
+	public int delete(int bookid) {
 		int result = 0;
 		Connection conn = null;
-		
+
 		try {
-			
+
 			conn = ConnectionProvider.getConnection();
-			result = dao.insert(conn, book);
-			
+			result = dao.delete(conn, bookid);
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -35,9 +34,8 @@ public class InsertService {
 				}
 			}
 		}
-		
+
 		return result;
-		
 	}
 	
 }

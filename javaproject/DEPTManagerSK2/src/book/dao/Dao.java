@@ -12,8 +12,8 @@ public interface Dao {
 	List<Book> selectByBookname(Connection conn, String searchBookname) throws SQLException;
 	
 	int insert(Connection conn, Book book) throws SQLException;
-	int update(Connection conn, Book book);
-	int delete(Connection conn, int bookid);
+	int update(Connection conn, Book book) throws SQLException;
+	int delete(Connection conn, int bookid) throws SQLException;
 
 	
 	
