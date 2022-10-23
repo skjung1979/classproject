@@ -50,7 +50,7 @@ public class OracleDao implements Dao {
 			
 		try {
 			
-			String sql = "select * from book where bookname like '%?%'";
+			String sql = "select * from book where bookname like %?%";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, searchBookname);
