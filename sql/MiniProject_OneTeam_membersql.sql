@@ -10,7 +10,7 @@ CREATE TABLE ONE.member (
 	memberName VARCHAR2(50), /* memberName */
 	memberAddres VARCHAR2(255), /* memberAddres */
 	memberPhone VARCHAR2(30), /* memberPhone */
-	memberId INTEGER, /* memberId */
+	memberId VARCHAR2(50), /* memberId */
 	memberPwd VARCHAR2(50), /* memberPwd */
 	memberGrade INTEGER /* memberGrade */
 );
