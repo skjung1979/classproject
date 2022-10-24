@@ -35,5 +35,8 @@ public class MemMain {
 		System.out.println("6. 프로그램 종료");
 		
 	}
+	
+	
+	
 
 }
