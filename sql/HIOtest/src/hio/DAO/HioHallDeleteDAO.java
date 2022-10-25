@@ -28,7 +28,7 @@ public class HioHallDeleteDAO {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				list.add(new HioMember(rs.getInt("reservNo"), rs.getString("reservDate"),	rs.getString("reservTime"), rs.getInt("hallNo")));
+				list.add(new HioMember(rs.getInt("reservNo"), rs.getString("reservDate"),	rs.getInt("reservTime"), rs.getInt("hallNo")));
 				
 			}
 		} finally {
@@ -54,7 +54,7 @@ public class HioHallDeleteDAO {
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				hm =  new HioMember(rs.getInt("reservNo"), rs.getString("reservDate"),	rs.getString("reservTime"), rs.getInt("hallNo"));
+				hm =  new HioMember(rs.getInt("reservNo"), rs.getString("reservDate"),	rs.getInt("reservTime"), rs.getInt("hallNo"));
 			}
 		} finally {
 			if (pstmt != null) {

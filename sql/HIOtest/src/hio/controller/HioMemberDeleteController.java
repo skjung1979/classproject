@@ -64,7 +64,7 @@ public class HioMemberDeleteController implements HioMemberDeleteInterface {
 							System.out.print(resultList.get(i).getMemberNo() + " | " +resultList.get(i).getMemberName() + " | " + resultList.get(i).getMemberPhone());
 							System.out.println();
 						}
-						//continue;
+						continue;
 					} else {
 						System.out.println("회원 삭제 실패!");
 					}

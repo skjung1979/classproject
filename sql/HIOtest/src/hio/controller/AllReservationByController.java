@@ -9,7 +9,7 @@ public class AllReservationByController implements HioAllReservationInterface{
 	
 	AllReservationByService service = new AllReservationByService();
 	
-	public void Allreservation() {
+	public void allreservation() {
 		
 		System.out.println("검색할 예약 번호를 입력해주세요 >> ");
 		int reservNo = Integer.parseInt(HioMain.sc.nextLine());

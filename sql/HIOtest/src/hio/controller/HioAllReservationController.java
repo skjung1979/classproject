@@ -10,7 +10,7 @@ public class HioAllReservationController implements HioAllReservationInterface {
 	
 	HioAllReservationService service = new HioAllReservationService(new MySqlDao());
 	
-	public void Allreservation() {
+	public void allreservation() {
 						
 		List<HioMember> list = service.selectList();
 		

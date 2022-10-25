@@ -3,12 +3,12 @@ package hio.controller;
 import java.util.List;
 import java.util.Scanner;
 
+import hio.HioMain;
 import hio.domain.HioMember;
 import service.HioHallDeleteService;
 
 public class HioHallDeleteController implements HioHallDeleteInterface {
 
-	Scanner sc = new Scanner(System.in);
 
 	HioHallDeleteService service = new HioHallDeleteService();
 
@@ -27,20 +27,20 @@ public class HioHallDeleteController implements HioHallDeleteInterface {
 			}
 
 			System.out.println("취소할 타석 번호를 입력해주세요. >> ");
-			String reservNo = sc.nextLine().trim();
+			int reservNo = Integer.parseInt(HioMain.sc.nextLine().trim()) ;
 
 			System.out.println(reservNo);
 
-			HioMember hioMember = service.hallSelectToDelete(Integer.parseInt(reservNo));
+//			HioMember hioMember = service.hallSelectToDelete(reservNo);
 
 			int result = 0;
-
-			if (hioMember != null) {
+			
+//			if (hioMember != null) {
 				result = new HioHallDeleteService().hallDelete(reservNo);
 
-			} else {
-				System.out.println("예약된 타석이 없음");
-			}
+//			} else {
+//				System.out.println("예약된 타석이 없음");
+//			}
 
 		}
 	}

@@ -55,14 +55,14 @@ public class HioHallDeleteService {
 		return hioMember;
 	}
 
-	public int hallDelete(String reservNo) {
+	public int hallDelete(int reservNo) {
 
 		int result =0;
 		Connection conn;
 
 		try {
 			conn = HioConnection.getConnection();
-			 result = dao.hallDelete(conn, Integer.parseInt(reservNo));
+			 result = dao.hallDelete(conn, reservNo);
 
 			
 		} catch (SQLException e) {

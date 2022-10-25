@@ -2,7 +2,9 @@ package service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.regex.Pattern;
 
+import hio.HioMain;
 import hio.DAO.HioUpdateDAO;
 import hio.DAO.UpdateDAO;
 import hio.domain.HioMember;
@@ -11,6 +13,7 @@ import util.HioConnection;
 public class HioUpdateService {
 
 	HioUpdateDAO hioupdatedao  = new HioUpdateDAO();
+	
 	
 	public int memberUpdate(HioMember hiomember) {
 		
