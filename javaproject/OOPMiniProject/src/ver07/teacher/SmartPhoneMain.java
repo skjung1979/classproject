@@ -33,23 +33,36 @@ public class SmartPhoneMain {
 			switch (choiceMenu) {
 			case 1:
 				
-				System.out.println("-------------------------------");
-				System.out.println("입력 타입을 선택해주세요. ");
-				System.out.println("1. 회사,   2. 거래처");
-				System.out.println("-------------------------------");
-				
-				try {
+				while (true) {
+					System.out.println("-------------------------------");
+					System.out.println("입력 타입을 선택해주세요. ");
+					System.out.println("1. 회사,   2. 거래처");
+					System.out.println("-------------------------------");
 
-					int select = sc.nextInt();
-					sc.nextLine();
-					sp.addContact(sp.inputContactData(select));
+					try {
 
-				} catch (InputMismatchException e) {
-					System.out.println("정수형 숫자를 입력해주세요.");
-					sc.nextLine();
-					return;
-				}
-				
+						int select = 0;
+
+						select = sc.nextInt();
+						sc.nextLine();
+
+						if (!(select == 1 || select == 2)) {
+							throw new Exception();
+						}
+
+						sp.addContact(sp.inputContactData(select));
+
+						break;
+					} catch (InputMismatchException e) {
+						System.out.println("정수형 숫자를 입력해주세요.");
+						sc.nextLine();
+						continue;
+					} catch (Exception e) {
+						System.out.println("1과 2중에 입력해주세요.");
+						e.getMessage();
+						continue;
+					}
+				}	
 				break;
 			case 2:
 				
