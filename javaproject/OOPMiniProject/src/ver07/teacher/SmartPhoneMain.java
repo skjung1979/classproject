@@ -18,29 +18,39 @@ public class SmartPhoneMain {
 			int choiceMenu = 0;
 			
 			try {
+				
 				choiceMenu = sc.nextInt();
+				
 			} catch (InputMismatchException e) {
-				System.out.println("숫자를 입력해주세요.");
-				sc.nextInt();
+				
+				System.out.println("정수형 숫자를 입력해주세요.");
+				sc.nextLine();
 				continue;
+				
 			}
-			sc.nextLine();
+			//sc.nextLine();
 			
 			switch (choiceMenu) {
 			case 1:
+				
 				System.out.println("-------------------------------");
 				System.out.println("입력 타입을 선택해주세요. ");
 				System.out.println("1. 회사,   2. 거래처");
 				System.out.println("-------------------------------");
+				
 				int select = sc.nextInt();
 				sc.nextLine();
 				sp.addContact(sp.inputContactData(select));
+				
 				break;
 			case 2:
+				
 				System.out.println("검색하고자하는 이름을 입력하세요.");
 				sp.searchContact(sc.nextLine());
+				
 				break;
 			case 3:
+				
 				System.out.println("수정하고자하는 이름을 입력하세요.");
 				String name = sc.nextLine();
 				
@@ -55,13 +65,16 @@ public class SmartPhoneMain {
 						sp.editContact(name, sp.inputContactData(2));
 					}
 				}
+				
 				break;
 			case 4:
 				System.out.println("삭제하고자하는 이름을 입력하세요.");
-				sp.deleteContactsc.nextLine();
+				sp.deleteContact(sc.nextLine());
+				
 				break;
 			case 5:
 				sp.printAllContact();
+				
 				break;
 			case 6:
 				System.out.println("프로그램을 종료합니다.");
