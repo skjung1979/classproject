@@ -14,4 +14,5 @@ ALTER TABLE RESERVATION MODIFY RESERVTIME INTEGER;
 
 desc hall;
 desc reservation;
+select * from member;
 select * from reservation;

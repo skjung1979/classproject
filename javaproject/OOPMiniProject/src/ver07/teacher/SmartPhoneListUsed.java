@@ -44,7 +44,7 @@ public class SmartPhoneListUsed {
 	}
 	
 	// 공백, 존재여부, 형식 등 체크하는 메소드
-	public String getString(String label) {
+	public String getString(String label) { // getString사용자에게 받은 매개변수 ex) "이름" 등
 		
 		String str = null;
 		
@@ -63,7 +63,7 @@ public class SmartPhoneListUsed {
 				}
 			} else if (label.equals("전화번호") && existPhoneNumber(str)) {
 				try {
-					throw new Exception("존재하는 전화번호 입력하세요.");
+					throw new Exception("중복되는 전화번호입니다!");
 				} catch (Exception e) {
 					System.out.println(e.getMessage() + ": 다시 입력해주세요.");
 					continue;
@@ -71,7 +71,7 @@ public class SmartPhoneListUsed {
 			} else if (label.equals("전화번호") && !checkPhoneNumber(str)) {
 				
 				try {
-					throw new Exception("전화번호 형식에 맞지 않습니다.");				
+					throw new Exception("전화번호 형식에 맞지 않습니다!");				
 				} catch (Exception e) {
 					System.out.println(e.getMessage() + ": 다시 입력해주세요.");
 					continue;
@@ -79,7 +79,7 @@ public class SmartPhoneListUsed {
 			} else if (label.equals("이름") && checkName(str)) {
 				
 				try {
-					throw new Exception("잘못된 이름을 입력하셨습니다.");					
+					throw new Exception("잘못된 이름을 입력하셨습니다. 영문자, 한글로만 입력 가능합니다!");					
 				} catch (Exception e) {
 					System.out.println(e.getMessage() + ": 다시 입력해주세요.");
 					continue;

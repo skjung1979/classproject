@@ -36,4 +36,30 @@ public class HioMemberInsertService {
 		return result;
 		
 	}
+	
+	public int selectMemberName(String memberId) {
+		
+		int result = 0;
+		Connection conn = null;
+
+		try {
+			conn = HioConnection.getConnection();
+			result = dao.selectMemberName(conn, memberId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				if(conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
+		
+	}
 }

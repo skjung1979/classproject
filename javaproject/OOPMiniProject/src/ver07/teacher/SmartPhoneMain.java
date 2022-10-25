@@ -28,7 +28,7 @@ public class SmartPhoneMain {
 				continue;
 				
 			}
-			//sc.nextLine();
+			sc.nextLine(); // 아래에서 입력 받는 값을 정상적으로 작동하게 하기 위한 기능???
 			
 			switch (choiceMenu) {
 			case 1:
@@ -38,31 +38,40 @@ public class SmartPhoneMain {
 				System.out.println("1. 회사,   2. 거래처");
 				System.out.println("-------------------------------");
 				
-				int select = sc.nextInt();
-				sc.nextLine();
-				sp.addContact(sp.inputContactData(select));
+				try {
+
+					int select = sc.nextInt();
+					sc.nextLine();
+					sp.addContact(sp.inputContactData(select));
+
+				} catch (InputMismatchException e) {
+					System.out.println("정수형 숫자를 입력해주세요.");
+					sc.nextLine();
+					return;
+				}
 				
 				break;
 			case 2:
 				
 				System.out.println("검색하고자하는 이름을 입력하세요.");
+		
 				sp.searchContact(sc.nextLine());
 				
 				break;
 			case 3:
 				
 				System.out.println("수정하고자하는 이름을 입력하세요.");
-				String name = sc.nextLine();
+				String editName = sc.nextLine();
 				
-				Contact contact = sp.searchContact(name);
+				Contact contact = sp.searchContact(editName);
 				
 				if (contact != null) {
 					System.out.println("데이터를 새로 입력해주세요.");
 					
 					if (contact instanceof CompanyContact) {
-						sp.editContact(name, sp.inputContactData(1));
+						sp.editContact(editName, sp.inputContactData(1));
 					} else if (contact instanceof CustomerContact) {
-						sp.editContact(name, sp.inputContactData(2));
+						sp.editContact(editName, sp.inputContactData(2));
 					}
 				}
 				

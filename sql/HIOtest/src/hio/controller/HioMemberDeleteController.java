@@ -11,10 +11,9 @@ public class HioMemberDeleteController implements HioMemberDeleteInterface {
 	Scanner sc = new Scanner(System.in);
 
 	@Override
-	public void memberDelete() {
-
-		List<HioMember> allList = new HioMemberDeleteService().memberSelectToDelete();	
-
+	public int memberDelete() {
+				
+		List<HioMember> allList = new HioMemberDeleteService().memberSelectToDelete();
 
 		System.out.println("회원 삭제를 진행합니다. ==>> ");
 		System.out.println("=============================== 현재 회원 리스트 ===============================");
@@ -34,8 +33,12 @@ public class HioMemberDeleteController implements HioMemberDeleteInterface {
 		boolean check = false;
 
 		while (true) {
-			System.out.println("위 리스트에서 삭제할 회원 이름을 입력해주세요. >> ");
+			System.out.println("위 리스트에서 삭제할 회원 이름을 입력해주세요. (0:삭제 그만) >> ");
 			String delName = sc.nextLine().trim();
+			
+			if (delName.equals("0")){
+				return 0;
+			}
 
 			for (int i=0; i<allList.size(); i++) {
 
@@ -61,7 +64,7 @@ public class HioMemberDeleteController implements HioMemberDeleteInterface {
 							System.out.print(resultList.get(i).getMemberNo() + " | " +resultList.get(i).getMemberName() + " | " + resultList.get(i).getMemberPhone());
 							System.out.println();
 						}
-						continue;
+						//continue;
 					} else {
 						System.out.println("회원 삭제 실패!");
 					}
@@ -72,6 +75,7 @@ public class HioMemberDeleteController implements HioMemberDeleteInterface {
 
 			}
 		}
+		return 0;
 	}
 	
 }

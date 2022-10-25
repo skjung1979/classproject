@@ -20,11 +20,12 @@ public class HioUpdateDAO implements UpdateDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, hioMember.getReservNo());
 			pstmt.setInt(2, hioMember.getHallNo());
-			pstmt.setString(3, hioMember.getReservTime());
+			pstmt.setInt(3, hioMember.getReservTime());
 
 			result = pstmt.executeUpdate();
 
 		} finally {
+			
 			if (pstmt != null) pstmt.close();
 		}
 

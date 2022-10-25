@@ -2,11 +2,12 @@ package hio.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import hio.domain.HioMember;
 
-public class HioMemberInsertDAO {
+public class HioMemberInsertDAO implements MemberInsertDAO {
 
 	public int memberInsert(Connection conn, HioMember hioMember) throws SQLException {
 		
@@ -33,4 +34,33 @@ public class HioMemberInsertDAO {
 		
 		return result;
 	}
+	
+	public int selectMemberName(Connection conn, String memberId) throws SQLException {
+		
+		int result = -1;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		// 입력 처리
+		String sql = "SELECT memberid FROM MEMBER WHERE memberid=?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberId);
+//			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				result = 1;
+			}
+			
+		}finally {
+			if(pstmt != null) {
+				pstmt.close();
+			}
+		}
+		
+		System.out.println("select Member Name " + result);
+		return result;
+	}
+	
 }
