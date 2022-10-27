@@ -16,7 +16,6 @@ public class HioHallAdminController implements HioHallAdminInterface{
 	@Override
 	public void hallAdmin() {
 
-		while (true) {
 		// 여기 현재 홀을 뿌려주고,
 		List<HioMember> list = new ArrayList<>();
 		
@@ -39,6 +38,43 @@ public class HioHallAdminController implements HioHallAdminInterface{
 		
 		switch (selHallMenu) {
 		case 1: // 홀 추가
+			
+			System.out.println("--------- 홀 추가를 진행합니다.----------");
+			
+			while (true) {
+			
+				int s = 1;
+				
+				System.out.print("추가할 홀 번호를 입력하세요 >> ");
+				int newHallNo = Integer.parseInt(HioMain.sc.nextLine());
+			
+				for (int i=0; i<list.size(); i++) {
+					if (newHallNo == list.get(i).getHallNo()) {
+						System.out.println("이미 존재하는 홀 번호 입니다. 다시 입력해주세요.");
+						s = 1 ;
+					} else {
+						s = 0;
+					}
+				}
+				if (s != 1) {
+					break;
+				}  
+			}
+			
+			System.out.println("추가할 홀의 예약 가능 여부를 입력해주세요. (Y or N) >> ");
+			String newHallYN = HioMain.sc.nextLine();
+			
+			System.out.println("추가할 홀의 예약 시작 시간을 입력해주세요. >> ");
+			int newHallsTime = Integer.parseInt(HioMain.sc.nextLine());
+			
+			System.out.println("추가할 홀의 예약 종료 시간을 입력해주세요. >> ");
+			int newHalleTime = Integer.parseInt(HioMain.sc.nextLine());
+			
+			
+			
+			
+			
+			
 			break;
 		case 2: // 홀 변경
 			break;
@@ -49,7 +85,7 @@ public class HioHallAdminController implements HioHallAdminInterface{
 		
 		
 		
-		}
+		
 	}
 	
 	void hallMenu() {
