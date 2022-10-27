@@ -16,3 +16,4 @@ desc hall;
 desc reservation;
 select * from member;
 select * from reservation;
+select * from hall;

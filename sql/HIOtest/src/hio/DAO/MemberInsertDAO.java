@@ -7,6 +7,6 @@ import hio.domain.HioMember;
 public interface MemberInsertDAO {
 
 	public int memberInsert(Connection conn, HioMember hioMember) throws SQLException;
-	public int selectMemberName(Connection conn, String memberId) throws SQLException;
+	public int checkId(Connection conn, String memberId) throws SQLException;
 	
 }

@@ -2,65 +2,64 @@ package hio.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import hio.domain.HioMember;
 
+//HIOtest 프로젝트
 public class HioMemberInsertDAO implements MemberInsertDAO {
 
+	@Override
 	public int memberInsert(Connection conn, HioMember hioMember) throws SQLException {
-		
+
 		int result = 0;
 		PreparedStatement pstmt = null;
-		// 입력 처리
-		String sql = "INSERT INTO MEMBER VALUES(MEMBERNO_SEQ.nextval, ?, ?, ?, ?, ?, ?)";
+		
+		String sql = "insert into member values(memberno_seq.nextval, ?, ?, ?, ?, ?, 1)";
 		
 		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, hioMember.getMemberName());
-			pstmt.setString(2, hioMember.getMemberAddress());
-			pstmt.setString(3, hioMember.getMemberPhone());
-			pstmt.setString(4, hioMember.getMemberId());
-			pstmt.setString(5, hioMember.getMemberPwd());
-			pstmt.setInt(6, 1);
-//			
-			result = pstmt.executeUpdate();
-		}finally {
-			if(pstmt != null) {
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, hioMember.getMemberName());
+		pstmt.setString(2, hioMember.getMemberAddress());
+		pstmt.setString(3, hioMember.getMemberPhone());
+		pstmt.setString(4, hioMember.getMemberId());
+		pstmt.setString(5, hioMember.getMemberPwd());
+
+		result = pstmt.executeUpdate();
+		} finally {
+			if (pstmt != null) {
 				pstmt.close();
 			}
 		}
-		
 		return result;
 	}
-	
-	public int selectMemberName(Connection conn, String memberId) throws SQLException {
+
+	@Override
+	public int checkId(Connection conn, String memberId) throws SQLException {
 		
-		int result = -1;
+		int result = 0;
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		// 입력 처리
-		String sql = "SELECT memberid FROM MEMBER WHERE memberid=?";
+		
+		String sql = "select * from member where memberid=?";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, memberId);
-//			
-			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
+
+			result = pstmt.executeUpdate();
+
+			if (result > 0 ) {
 				result = 1;
 			}
-			
-		}finally {
+		} finally {
 			if(pstmt != null) {
 				pstmt.close();
 			}
 		}
 		
-		System.out.println("select Member Name " + result);
 		return result;
 	}
+
+	
 	
 }
