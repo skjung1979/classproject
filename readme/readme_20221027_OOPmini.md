@@ -27,7 +27,7 @@
 <br><br>
 
 ## 프로젝트 PPT 
-* [Link](https://github.com/skjung1979/classproject/blob/main/ppt/%EC%9B%90%ED%8C%80%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C%2020201027.pptx)
+* [Link](https://docs.google.com/presentation/d/198-wc4FJwJjXb1vgX7rnfxAM-pQ9KGxS/edit?usp=sharing&ouid=118102209175623888333&rtpof=true&sd=true)
 <br><br>
 
 ## 개인별 구현하면서 겪었던 어려움 
