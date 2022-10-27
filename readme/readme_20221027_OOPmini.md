@@ -10,8 +10,8 @@
     * `c`
     * `d`
     * `e`
-* DBMS - `MySQL Oracle`
-    * `RDS`  
+* DBMS - 
+    [![](https://github.com/skjung1979/classproject/blob/main/images/dbdesign.png?raw=true)](https://github.com/skjung1979/classproject/blob/main/images/dbdesign.png?raw=true)
 * SQL
     * `SELECT, JOIN, SubQuery 추가`
 <br><br>
