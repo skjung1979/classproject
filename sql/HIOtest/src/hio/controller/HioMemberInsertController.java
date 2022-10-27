@@ -38,14 +38,25 @@ public class HioMemberInsertController implements HioMemberInsertInterface {
 		System.out.println("회원 주소 입력: >> ");
 		String memberAddress = HioMain.sc.nextLine();
 		
-		System.out.println("회원 전화번호 입력: >> ");
-		String memberPhone = HioMain.sc.nextLine();
 		
-		
+		while (true) {
+			
+			System.out.println("회원 전화번호 입력: >> ");
+			String memberPhone = HioMain.sc.nextLine();
+
+			int checkPhone = new HioMemberInsertService().checkPhone(memberPhone);
+			
+			if (checkPhone != 1) {
+				hioMember.setMemberPhone(memberPhone);
+				break;
+			} else {
+				System.out.println("중복 전화번호 입니다. 다시 입력해주세요.");
+			}
+		}
+			
 		hioMember.setMemberPwd(memberPwd);
 		hioMember.setMemberName(memberName);
 		hioMember.setMemberAddress(memberAddress);
-		hioMember.setMemberPhone(memberPhone);
 		
 		int result = new HioMemberInsertService().memberInsert(hioMember);
 		

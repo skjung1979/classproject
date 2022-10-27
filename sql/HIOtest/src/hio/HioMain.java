@@ -2,6 +2,8 @@ package hio;
 
 import java.util.Scanner;
 
+import hio.controller.HioAllMemberController;
+import hio.controller.HioHallAdminController;
 import hio.controller.HioMemberInsertController;
 import hio.controller.HioMemberLoginController;
 import hio.domain.HioMember;
@@ -23,7 +25,6 @@ public class HioMain {
 			hioMainMenu();
 					
 			int selectMainNo = Integer.parseInt(sc.nextLine());
-			
 			
 			switch (selectMainNo) {
 			case 1: // 1. 로그인
@@ -74,8 +75,10 @@ public class HioMain {
 
 						switch (selectAdminNo) {
 						case 1: // 회원 전체 리스트
+							new HioAllMemberController().allMemberList();
 							break;
 						case 2: // 타석 관리
+							new HioHallAdminController().hallAdmin();
 							break;
 						case 3: // 회원 삭제
 							break;

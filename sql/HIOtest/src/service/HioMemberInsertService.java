@@ -62,6 +62,31 @@ public class HioMemberInsertService {
 		}
 		return result;
 	}
+
+	public int checkPhone(String memberPhone) {
+		
+		int result = 0;
+		Connection conn = null;
+		
+		try {
+			
+			conn = HioConnection.getConnection();
+			result = dao.checkPhone(conn, memberPhone);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return result;
+	}
 }
 
 

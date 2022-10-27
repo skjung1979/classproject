@@ -60,6 +60,40 @@ public class HioMemberInsertDAO implements MemberInsertDAO {
 		return result;
 	}
 
-	
-	
+	public int checkPhone(Connection conn, String memberPhone) throws SQLException {
+
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = "select * from member where memberPhone like ?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%" + memberPhone + "%");
+
+			result = pstmt.executeUpdate();
+
+			if (result > 0) {
+				result = 1;
+			}
+		} finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+		}
+		
+		return result;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+

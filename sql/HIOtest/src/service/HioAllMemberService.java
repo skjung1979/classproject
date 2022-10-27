@@ -5,41 +5,41 @@ import java.sql.SQLException;
 import java.util.List;
 
 import hio.DAO.AllMemberDao;
+import hio.DAO.HioAllMemberDao;
 import hio.domain.HioMember;
 import util.HioConnection;
 
+//HIOtest 프로젝트
 public class HioAllMemberService {
 
-	AllMemberDao allmemberdao;
+	AllMemberDao dao = new HioAllMemberDao();
 
-	public HioAllMemberService(AllMemberDao allmemberdao) {
-		this.allmemberdao = allmemberdao;
-	}
+	public List<HioMember> allMemberList() {
 
-	public List<HioMember> memberList() {
-
-		List<HioMember> list = null;
+		List<HioMember> allMemberList = null;
 		Connection conn = null;
-
+		
 		try {
+			
 			conn = HioConnection.getConnection();
-			list = allmemberdao.memberList(conn);
-
+			allMemberList = dao.allMemberList(conn);
+			
 		} catch (SQLException e) {
-			// e.printStackTrace();
+			e.printStackTrace();
 		} finally {
 			if (conn != null) {
 				try {
 					conn.close();
 				} catch (SQLException e) {
+					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 		}
-			return list;
 
-		
-
+		return allMemberList;
 	}
+
+
 
 }
