@@ -1,7 +1,6 @@
 package hio;
 
 import java.util.Scanner;
-
 import hio.controller.HioAllMemberController;
 import hio.controller.HioHallAdminController;
 import hio.controller.HioMemberInsertController;
