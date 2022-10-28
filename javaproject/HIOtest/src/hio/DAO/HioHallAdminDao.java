@@ -1,12 +1,13 @@
 package hio.DAO;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import hio.HioMain;
+
 import hio.domain.HioMember;
 
 //HIOtest 프로젝트
@@ -51,4 +52,48 @@ public class HioHallAdminDao {
 
 		return list;
 	}
+
+	public int insertHall(Connection conn, HioMember hioMem) throws SQLException {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = "insert into hall values(?,?,?,?)";
+		
+		try {
+			
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, hioMem.getHallNo());
+		pstmt.setString(2, hioMem.getHallResvYN());
+		pstmt.setInt(3, hioMem.getHallsTime());
+		pstmt.setInt(4,  hioMem.getHalleTime());
+		
+		result = pstmt.executeUpdate();
+		
+		} finally {
+			if (pstmt != null) pstmt.close();
+		}	
+		
+		return result;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

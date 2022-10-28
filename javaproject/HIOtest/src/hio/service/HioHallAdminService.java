@@ -31,4 +31,56 @@ public class HioHallAdminService {
 		return list;
 	}
 
+	public int insertHall(HioMember hioMem) {
+		
+		int result = 0;
+		Connection conn = null;
+
+			try {
+				
+				conn = HioConnection.getConnection();
+				result = dao.insertHall(conn, hioMem);
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				if (conn != null) {
+					try {
+						conn.close();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+		
+		return result;
+	}
+
+	public int updateRervYN(HioMember hioMem) {
+		
+		int result = 0;
+		
+		
+		
+		return result;
+	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
