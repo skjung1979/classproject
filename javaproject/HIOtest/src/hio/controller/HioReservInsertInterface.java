@@ -2,5 +2,5 @@ package hio.controller;
 
 public interface HioReservInsertInterface {
 
-	public int reservInsert();
+	public int insertReserv();
 }
