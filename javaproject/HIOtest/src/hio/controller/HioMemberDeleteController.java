@@ -41,8 +41,12 @@ public class HioMemberDeleteController implements HioMemberDeleteInterface {
 			
 			int bk = 0;
 			
-			System.out.println("리스트에서 삭제할 회원ID를 입력해주세요. >> ");
+			System.out.println("리스트에서 삭제할 회원ID를 입력해주세요. (0.삭제 종료)>> ");
 			String delMem = HioMain.sc.nextLine().trim();
+			
+			if (delMem.equals("0")) {
+				break;
+			}
 
 			for (int i=0; i<allList.size(); i++) {
 				
