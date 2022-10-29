@@ -1,132 +1,133 @@
 package hio.DAO;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
 import hio.domain.HioMember;
 
+//HIOtest 프로젝트
 public class HioReservInsertDAO implements ReservInsertDAO {
+	
+	@Override
+	public int insertReserv(Connection conn, HioMember hioMember) throws SQLException {
 
-	public int reservInsert(Connection conn, HioMember hioMember) throws SQLException {
-		
 		int result = 0;
-		PreparedStatement pstmt = null;
-		// 입력 처리
-		String sql = "INSERT INTO RESERVATION VALUES(RESERVNO_SEQ.nextval, ?, ?, SYSDATE, ?)";
 		
-		
-		System.out.println(hioMember.getHallNo());
-		System.out.println(hioMember.getReservTime());
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, hioMember.getMemberNo());
-			pstmt.setInt(2, hioMember.getHallNo());
-			pstmt.setInt(3, hioMember.getReservTime());
-//			
-			result = pstmt.executeUpdate();
-		}finally {
-			if(pstmt != null) {
-				pstmt.close();
-			}
-		}
-		
-		System.out.println(result);
 		return result;
 	}
-	
-	public List<HioMember> selectHallList(Connection conn) throws SQLException {
 
+	public List<HioMember> possReservListHall(Connection conn) throws SQLException {
+
+		List<HioMember> possReservListHall = new ArrayList<>();
 		Statement stmt = null;
 		ResultSet rs = null;
 		
-		List<HioMember> list = new ArrayList<>();
-		
 		String sql = "SELECT * FROM HALL WHERE hallresvyn = 'Y' ORDER BY hallno";
+
 		try {
 			stmt = conn.createStatement();
-			
+
 			rs = stmt.executeQuery(sql);
-			
-			while(rs.next()){
-				HioMember hioMember = new HioMember();
-				hioMember.setHallNo(rs.getInt("hallno"));
-				list.add(hioMember);
+
+			while (rs.next()) {
+
+				HioMember hioMem = new HioMember();
+
+				hioMem.setHallNo(rs.getInt("hallno"));
+				hioMem.setHallResvYN(rs.getString("HALLRESVYN"));
+				hioMem.setHallsTime(rs.getInt("HALLSTIME"));
+				hioMem.setHalleTime(rs.getInt("HALLETIME"));
+
+				possReservListHall.add(hioMem); 
+
 			}
-		}finally {
-			if(rs != null){
-				rs.close();
-			}
-			if(stmt != null){
+		} finally {
+			if (stmt != null) {
 				stmt.close();
 			}
-		}
-		
-		return list;
-	}
-
-	public HioMember selectHallTime(Connection conn, HioMember hioMember, int hallno) throws SQLException {
-
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		String sql = "SELECT hallstime, halletime FROM HALL WHERE hallno=?";
-		try {
-			
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, hallno);
-			rs = pstmt.executeQuery();
-			
-			if(rs.next()){
-				hioMember.setHallsTime(rs.getInt("hallstime"));
-				hioMember.setHalleTime(rs.getInt("halletime"));
-			}
-		}finally {
-			if(rs != null){
+			if (rs != null) {
 				rs.close();
 			}
-			if(pstmt != null){
-				pstmt.close();
+		}
+		
+		return possReservListHall;
+	}
+
+
+	public List<HioMember> possReservListReserv(Connection conn) throws SQLException {
+
+		List<HioMember> possReservListReserv = new ArrayList<>();
+		Statement stmt = null;
+		ResultSet rs = null;
+		
+		String sql = "select * from reservation";
+		
+		try {
+			
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			
+			while (rs.next()) {
+				
+				HioMember hioMem = new HioMember();
+				
+				possReservListReserv.add(hioMem);
+				
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (stmt != null) {
+				stmt.close();
+			}
+			if (rs != null) {
+				rs.close();
 			}
 		}
 		
-		return hioMember;
+		return possReservListReserv;
 	}
+
+	public List<HioMember> possReservListMem(Connection conn) throws SQLException {
+
+		List<HioMember> possReservListMem = new ArrayList<>();
+		Statement stmt = null;
+		ResultSet rs = null;
+		
+		String sql = "select * from member";
+		
+		stmt = conn.createStatement();
+		rs = stmt.executeQuery(sql);
+		
+		while (rs.next()) {
+			
+			HioMember hioMem = new HioMember();
+			
+			hioMem.setMemberNo(rs.getInt("MEMBERNO"));
+			hioMem.setMemberName(rs.getString("MEMBERNAME"));
+			hioMem.setMemberAddress(rs.getString("MEMBERADDRES"));
+			hioMem.setMemberPhone(rs.getString("MEMBERPHONE"));
+			hioMem.setMemberId(rs.getString("MEMBERID"));
+			hioMem.setMemberPwd(rs.getString("MEMBERPWD"));
+			hioMem.setMemberGrade(rs.getInt("MEMBERGRADE"));
+			
+			possReservListMem.add(hioMem);
+			
+		}
 	
-	public List<HioMember> selectResvTimeList(Connection conn, int hallno) throws SQLException {
-
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		List<HioMember> list = new ArrayList<>();
-		
-		String sql = "SELECT * FROM RESERVATION WHERE hallno = ?";
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, hallno);
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()){
-				HioMember hioMember = new HioMember();
-				hioMember.setHallNo(rs.getInt("hallno"));
-				hioMember.setReservTime(rs.getInt("reservtime"));
-				list.add(hioMember);
-			}
-		}finally {
-			if(rs != null){
-				rs.close();
-			}
-			if(pstmt != null){
-				pstmt.close();
-			}
-		}
-		
-		return list;
+		return possReservListMem;
 	}
+
+	
+
+
+	
+
+	
 
 }
