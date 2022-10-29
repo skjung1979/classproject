@@ -2,10 +2,9 @@ package hio.controller;
 
 import java.util.List;
 import java.util.Scanner;
-
 import hio.HioMain;
 import hio.domain.HioMember;
-import service.HioHallDeleteService;
+import hio.service.HioHallDeleteService;
 
 public class HioHallDeleteController implements HioHallDeleteInterface {
 

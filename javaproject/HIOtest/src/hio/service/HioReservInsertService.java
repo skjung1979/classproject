@@ -1,4 +1,4 @@
-package service;
+package hio.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;

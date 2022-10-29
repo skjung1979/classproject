@@ -3,6 +3,7 @@ package hio;
 import java.util.Scanner;
 import hio.controller.HioAllMemberController;
 import hio.controller.HioHallAdminController;
+import hio.controller.HioMemberDeleteController;
 import hio.controller.HioMemberInsertController;
 import hio.controller.HioMemberLoginController;
 import hio.domain.HioMember;
@@ -80,6 +81,7 @@ public class HioMain {
 							new HioHallAdminController().hallAdmin();
 							break;
 						case 3: // 회원 삭제
+							new HioMemberDeleteController().memberDelete();
 							break;
 						case 4: // 로그아웃
 							result = -1;

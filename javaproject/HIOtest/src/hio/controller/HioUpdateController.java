@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 
 import hio.HioMain;
 import hio.domain.HioMember;
-import service.HioUpdateService;
+import hio.service.HioUpdateService;
 
 public class HioUpdateController implements HioUpdateInterface {
 

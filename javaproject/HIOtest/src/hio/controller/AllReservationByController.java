@@ -2,7 +2,7 @@ package hio.controller;
 
 import hio.HioMain;
 import hio.domain.HioMember;
-import service.AllReservationByService;
+import hio.service.AllReservationByService;
 
 public class AllReservationByController implements HioAllReservationInterface{
 

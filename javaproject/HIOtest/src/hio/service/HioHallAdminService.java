@@ -61,8 +61,135 @@ public class HioHallAdminService {
 	public int updateRervYN(HioMember hioMem) {
 		
 		int result = 0;
+		Connection conn = null;
 		
+		try {
+			
+			conn = HioConnection.getConnection();
+			result = dao.updateRervYN(conn, hioMem);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
 		
+		return result;
+	}
+
+	public int updateHallsTime(HioMember hioMem) {
+
+		int result = 0;
+		Connection conn = null;
+		
+		try {
+			
+			conn = HioConnection.getConnection();
+			result = dao.updateHallsTime(conn, hioMem);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return result;
+		
+	}
+
+	public int updateHalleTime(HioMember hioMem) {
+		
+		int result = 0;
+		Connection conn = null;
+		
+		try {
+			
+			conn = HioConnection.getConnection();
+			result = dao.updateHalleTime(conn, hioMem);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return result;
+	}
+
+	public List<HioMember> reservNoList(HioMember hioMem) {
+
+		List<HioMember> reservNoList = new ArrayList<>();
+		Connection conn = null;
+		
+		try {
+			
+			conn = HioConnection.getConnection();
+			reservNoList = dao.reservNoList(conn, hioMem);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return reservNoList;
+	}
+
+	public int delHallNo(HioMember hioMem) {
+		
+		int result = 0;
+		Connection conn = null;
+		
+		try {
+			
+			conn = HioConnection.getConnection();
+			result = dao.delHallNo(conn, hioMem);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
 		
 		return result;
 	}

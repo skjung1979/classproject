@@ -2,13 +2,13 @@ package hio.controller;
 
 import hio.HioMain;
 import hio.domain.HioMember;
-import service.AllMemberByService;
+import hio.service.AllMemberByService;
 
 public class AllMemberByController implements HioAllMemberInterface{
 	
 	AllMemberByService service = new AllMemberByService();
 	
-	public void allmember() {
+	public void allMemberList() {
 		
 		System.out.println("검색할 회원 번호를 입력해주세요 >> ");
 		int memberNo = Integer.parseInt(HioMain.sc.nextLine());
@@ -25,5 +25,6 @@ public class AllMemberByController implements HioAllMemberInterface{
 		
 		
 	}
+
 
 }

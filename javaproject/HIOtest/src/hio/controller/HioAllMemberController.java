@@ -5,7 +5,7 @@ import java.util.List;
 import hio.HioMain;
 import hio.DAO.MySqlDao;
 import hio.domain.HioMember;
-import service.HioAllMemberService;
+import hio.service.HioAllMemberService;
 
 //HIOtest 프로젝트
 public class HioAllMemberController implements HioAllMemberInterface{

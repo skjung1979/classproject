@@ -2,7 +2,7 @@ package hio.controller;
 
 import hio.HioMain;
 import hio.domain.HioMember;
-import service.HioMemberLoginService;
+import hio.service.HioMemberLoginService;
 
 //HIOtest 프로젝트
 public class HioMemberLoginController implements HioMemberLoginInterface{

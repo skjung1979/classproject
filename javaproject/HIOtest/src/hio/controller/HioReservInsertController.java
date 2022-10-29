@@ -2,11 +2,10 @@ package hio.controller;
 
 import java.util.List;
 import java.util.Scanner;
-
 import hio.HioMain;
 import hio.domain.HioMember;
-import service.HioMemberInsertService;
-import service.HioReservInsertService;
+import hio.service.HioMemberInsertService;
+import hio.service.HioReservInsertService;
 
 public class HioReservInsertController implements HioReservInsertInterface{
 

@@ -2,7 +2,7 @@ package hio.controller;
 
 import hio.HioMain;
 import hio.domain.HioMember;
-import service.HioMemberInsertService;
+import hio.service.HioMemberInsertService;
 
 //HIOtest 프로젝트
 public class HioMemberInsertController implements HioMemberInsertInterface {
