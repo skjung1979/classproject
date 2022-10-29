@@ -8,8 +8,8 @@ import hio.domain.HioMember;
 
 public interface ReservInsertDAO {
 
-	public int reservInsert(Connection conn, HioMember hioMember) throws SQLException;
-	public List<HioMember> selectHallList(Connection conn) throws SQLException;
-	public HioMember selectHallTime(Connection conn, HioMember hioMember, int hallno) throws SQLException;
+	public int insertReserv(Connection conn, HioMember hioMember) throws SQLException;
+	public List<HioMember> possReservListHall(Connection conn) throws SQLException;
+	public List<HioMember> possReservListReserv(Connection conn) throws SQLException;
 	
 }
