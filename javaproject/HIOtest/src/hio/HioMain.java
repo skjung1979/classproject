@@ -1,11 +1,13 @@
 package hio;
 
 import java.util.Scanner;
+
 import hio.controller.HioAllMemberController;
 import hio.controller.HioHallAdminController;
 import hio.controller.HioMemberDeleteController;
 import hio.controller.HioMemberInsertController;
 import hio.controller.HioMemberLoginController;
+import hio.controller.HioReservInsertController;
 import hio.domain.HioMember;
 
 // HIOtest 프로젝트
@@ -49,6 +51,7 @@ public class HioMain {
 						case 1: // 예약 가능 여부 확인
 							break;
 						case 2: // 예약
+							//new HioReservInsertController().insertReserv();
 							break;
 						case 3: // 예약 변경
 							break;
