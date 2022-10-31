@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .input {
+            color: red;
+        }
+
+    </style>
+
+
+</head>
+<body>
+
+    <!-- action =>  #은 자기 자신을 나타냄, action속성을 생략해도 자기 자신으로 전송함 -->
+    <!-- method => GET or POST => 특정페이지를 요청할때는 get방식으로 / 폼으로 보내는 것은 무조건 post방식으로!!! -->
+    <form action="#" method="post"> 
+
+        <!-- name속성 => 전송할때 파라미터의 이름 / 사용자가 입력한 값을 name에 담아서 전송하게 된다.-->
+        <!-- id속성 => 문서 내에서의 식별자 / 문서내에서 겹치지 않도록 한다. -->
+        <!-- value속성 => 표시되는 값, 단순 표시?? -->
+        <!-- readonly속성 => 보여주기는 하지만 수정되면 안되는 경우 / 값을 입력할수 없음 -->
+        <!-- disabled속성 => 사용불가되어 회색으로 바뀜 -->
+        <!-- class속성 => 스타일 속성을 적용할 수 있다.-->
+        type = text : <input type="text" name="username" id="username" value="이름을 입력하세요." class="input">
+        <hr>
+        type = password: <input type="password" name="pw" id="pw" class="input">
+        <hr>
+        type = checkbox: <input type="checkbox"> 개인정보 활용 동의
+        <hr>
+        <!-- 같은 이름(name="lang"으로 values가 여러개 들어올때 배열로 받아서 값을 처리한다. -->
+        <!-- checked속성 => 기본적으로 선택되는 항목, 멀티 셀렉 가능 -->
+        type = checkbox <input type="checkbox" name="lang" value="JAVA" checked> JAVA
+        <input type="checkbox" name="lang" value="mysql" checked> MySql
+        <input type="checkbox" name="lang" value="html5"> HTML5
+        <hr>
+        <!-- checked속성 => 기본적으로 선택되는 항목, 멀티 셀렉 불가능!! -->
+        type = radio: <input type="radio" name="like" value="music"> 음악
+        <input type="radio" name="like" value="book" checked> 독서
+        <input type="radio" name="like" value="coo"> 요리
+        <hr>
+        type = date: <input type="date" name="date">
+        <hr>
+        type = time: <input type="time" name="time">
+        <hr>
+        type = datetime-local: <input type="datetime-local" name="datetime-local">
+        <hr>
+        type = month & week: <input type="month"> <input type="week">
+        <hr>
+        type = file: <input type="file">
+        <hr>
+        <!-- 유저아이디와 해당하는 값들을 보이지 않게 담아서 전송하려고 할때!!! -->
+        type = hidden: <input type="hidden" name="userid" value="cool"> 아무것도 보이지 않음
+        <hr>
+        <!-- value속성 => 화면에 보이는 텍스트 -->
+        type = submit: <input type="submit" value="가입">
+        type = reset: <input type="reset" value="다시 쓰기">
+        <hr>
+        <!-- submit의 기능은 없는 단순한 버튼이다!!! -->
+        type = button(전송기능X): <input type="button" value="버튼">
+        <hr>
+        <!-- 태그로 버튼 표시 가능! submit의 기능을 한다-->
+        button태그(전송기능O): <button>전송하기버튼</button>
+
+    </form>
+    
+</body>
+</html>

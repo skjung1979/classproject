@@ -4,34 +4,24 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import hio.DAO.HioReservInsertDAO;
+import hio.DAO.HioResvUpdateDAO;
 import hio.domain.HioMember;
 import util.HioConnection;
 
 //HIOtest 프로젝트
-public class HioReservInsertService {
+public class HioResvUpdateService {
 	
-	HioReservInsertDAO dao = new HioReservInsertDAO();
+	HioResvUpdateDAO dao = new HioResvUpdateDAO();
 
-	public List<HioMember> insertReserv(String reservDate) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public List<HioMember> reservList() {
 
-
-
-
-
-	public List<HioMember> possReservListMem() {
-		
-		List<HioMember> possReservListMem = new ArrayList<>();
+		List<HioMember> list = new ArrayList<>();
 		Connection conn = null;
 		
 		try {
 			
 			conn = HioConnection.getConnection();
-			possReservListMem = dao.possReservListMem(conn);
+			list = dao.reservList(conn);
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -47,20 +37,19 @@ public class HioReservInsertService {
 			}
 		}
 		
-
-		
-		return possReservListMem;
+		return list;
 	}
 
-	public HioMember selectHallTime(HioMember hioMember, int hallNo) {
-
-		List<HioMember> list = null;
+	public List<HioMember> hallList(int hallNo) {
+		
+		List<HioMember> list = new ArrayList<>();
 		Connection conn = null;
 		
 		try {
 			
 			conn = HioConnection.getConnection();
-			hioMember = dao.selectHallTime(conn, hioMember, hallNo);
+			list = dao.hallList(conn, hallNo);
+			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -76,39 +65,40 @@ public class HioReservInsertService {
 			}
 		}
 		
-		
-		return hioMember;
-	}
-
-	public List<HioMember> selectResvTimeList(int hallNo) {
-
-		List<HioMember> list = null;
-		Connection conn = null;
-		
-		try {
-			
-			conn = HioConnection.getConnection();
-			list = dao.selectResvTimeList(conn, hallNo);
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			if (conn != null) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		}
 		
 		
 		return list;
 	}
 
-	public int insertReserv(HioMember hioMember) {
+	public List<HioMember> curResvList(int hallNo, int reTime) {
+
+		List<HioMember> list = new ArrayList<>();
+		Connection conn = null;
+		
+		try {
+			
+			conn = HioConnection.getConnection();
+			list = dao.curResvList(conn, hallNo, reTime);	
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+
+		
+		return list;
+	}
+
+	public int updateResevtime(int upReservNo, int upReservTime) {
 		
 		int result = 0;
 		Connection conn = null;
@@ -116,7 +106,7 @@ public class HioReservInsertService {
 		try {
 			
 			conn = HioConnection.getConnection();
-			result = dao.insertReserv(conn, hioMember);
+			result = dao.updateReserv(conn, upReservNo, upReservTime);
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -131,63 +121,21 @@ public class HioReservInsertService {
 				}
 			}
 		}
+		
 		
 		return result;
 	}
 
-	public List<HioMember> selectResNo(HioMember hioMember) {
-		
-		List<HioMember> list = new ArrayList<>();
-		Connection conn = null;
-		
-		try {
-			
-			conn = HioConnection.getConnection();
-			list = dao.selectResNo(conn, hioMember);
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			if (conn != null) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		}
-		
-		
-		
-		
-		return list;
-	}
-
-
-
-
-
-	public List<HioMember> selectPossHall() {
-
-		List<HioMember> list = new ArrayList<>();
-		Connection conn = null;
-		
-		try {
-			
-			conn = HioConnection.getConnection();
-			list = dao.selectPossHall(conn);
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return list;
-	}
-	
 }
+
+
+
+
+
+
+
+
+
 
 
 
