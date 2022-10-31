@@ -29,7 +29,8 @@
         <!-- class속성 => 스타일 속성을 적용할 수 있다.-->
         type = text : <input type="text" name="username" id="username" value="이름을 입력하세요." class="input">
         <hr>
-        type = password: <input type="password" name="pw" id="pw" class="input">
+        <!-- required속성 => 필수 입력 -->
+        type = password: <input type="password" name="pw" id="pw" class="input" required>
         <hr>
         type = checkbox: <input type="checkbox"> 개인정보 활용 동의
         <hr>
@@ -53,6 +54,32 @@
         type = month & week: <input type="month"> <input type="week">
         <hr>
         type = file: <input type="file">
+        <hr>
+        <!-- 숫자값으로만 입력 받을 수 있다. -->
+        type = number: 나이 <input type="number" name="age">
+        <hr>
+        <!-- @가 없으면 형식에 맞춰 넣으라고 표시됨. 하지만, .com을 체크못함!!! -->
+        type = email: 이메일 <input type="email" name="email">
+        <hr>
+        type = tel: 전화번호 <input type="tel" name="tel">
+        <hr>
+        <!-- 프로토콜(http) 유무만 체크함 -->
+        type = url: url <input type="url" name="url">
+        <hr>
+        type = image: <input type="image" src="../images/mini01.jpg" width="100">
+        <hr>
+        type = range: 볼륨 <input type="range" name="volume" min="0" max="100">
+        <hr>
+        type = select-option: 년도
+        <select name="year">
+            <option value="2022">2022</option>
+            <option value="2021">2021</option>
+            <option value="2020">2020</option>
+            <option value="2019">2019</option>
+        </select>
+        <hr>
+        type = textarea:
+        <textarea name="" id="" cols="30" rows="5">내용을 입력하세요.</textarea>
         <hr>
         <!-- 유저아이디와 해당하는 값들을 보이지 않게 담아서 전송하려고 할때!!! -->
         type = hidden: <input type="hidden" name="userid" value="cool"> 아무것도 보이지 않음

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        /*
+        선택자 { 속성이름 : 속성값; 여러개... }
+        */
+
+        /* 전체 선택자 */
+        * {
+            color: coral;
+        }
+
+        /* 태그 선택자 */
+        h1 {
+            background-color: rgb(217, 217, 217);
+        }
+
+        p {
+            color: dimgrey;
+            background-color: rgb(250, 239, 234);
+        }
+
+        /* 여러 선택자 중복 선택해서 같은 속성으로 적용해야하는 경우 */
+        body, h1, p {
+            font-size: 24px;
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            border: 1px solid #000000;
+            margin: 10px; /* div끼리 간격을 띄움 */
+        }
+
+        /* 아이디 선택자 */
+        #header {
+            background-color: rgb(244, 230, 206);
+            padding: 10px;
+        }
+
+        #aside {
+            background-color: gold;
+            color: rgb(102, 75, 8);
+            width: 100px;
+            height: 100px;
+        }
+
+        #content {
+            background-color: rgb(30, 155, 172);
+            color: rgb(191, 237, 237);
+        }
+
+        #footer {
+            background-color: dimgrey;
+            color: rgb(222, 183, 241);
+           /*  font-size: 18px; */
+            text-align: center;
+        }
+
+        /* 클래스 선택자 */
+        /* 태그에 클래스를 여러개 넣을 수 있다. */
+        .font_bold {
+            font-weight: bold;
+        }
+
+        .font_italic {
+            font-style: italic;
+        }
+
+        .font_size32 {
+            font-size: 32px;
+        }
+
+        /* 속성 선택자 */
+        input[type] {
+            padding: 5px;
+            font-size: 20px;
+        }
+
+        input[type=text] {
+            background-color: beige;
+        }
+
+        input[type=password] {
+            background-color: rgb(251, 235, 215);
+        }
+
+        img[src] {
+            margin: 10px;
+        }
+
+        img[src$=jpg] {
+            border: 5px solid rgb(224, 173, 173);
+
+        }
+
+        img[src$=png] {
+            border: 5px solid blue;
+        }
+
+        /* 범위 지정해서 선택하는 자손/후손 선택자 */
+        /* 자손 선택자(선택한 부모의 바로 밑에 있는 것) */
+        #div1 > h1 { /* 형식: 앞이 부모 > 뒤가 자손 */
+            color: red;
+        }
+
+        /* 후손 선택자(선택한 부모의 모든 태그) */
+        #div1 h1 { /* 형식: 앞이 부모 뒤가 후손 */
+            background-color: aqua;
+        }
+        /*
+        #div1 > h1, h2 이것과 #div1 > h1, #div1 > h2 이것은 다르다!!!
+        */
+
+        /* 동위 선택자 */
+
+    </style>
+
+
+
+</head>
+<body>
+
+    <div id="div1">
+        <h1>div - heading 1</h1>
+        <h2>div - heading 2</h2>
+        <ul>
+            <li><h1>li - heading 1</h1></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <img src="../images/mini01.jpg" height="100">
+    <img src="../images/mini02.jpg" height="100">
+    
+    <hr>
+
+    <input type="text"> <input type="password">
+   
+    <hr>
+
+    <div id="header" class="font_bold font_italic font_size32">header</div>
+    <div id="aside" class="font_size32">aside</div>
+    <div id="content" class="font_italic">content</div>
+    <div id="footer" class="font_bold font_italic font_size32">footer</div>
+
+    <h1>‘운동은 장비빨’ 유혹하는 애플워치 울트라</h1>
+    <p>
+        지난 9월 7일 애플은 익스트림(극한) 스포츠 전문가를 위한 스마트워치 ‘애플워치 울트라’를 소개하면서 극지 마라토너 겸 모험가 ‘레이 자하브’의 사연을 소개했다. 그는 2007년 111일간 6400㎞를 달려 사하라 사막을 횡단한 인물이다. 하루에 2번씩 마라톤 수준 장거리 달리기를 한 것이다. 이 사연은 ‘러닝 더 사하라’라는 다큐멘터리 영화로도 제작됐다. 그는 2009년에도 총 1130km의 남극 대륙을 33일 23시간 30분 만에 도보와 스키로 건너 최단기간 남극 횡단 세계 신기록을 세웠다.
+    </p>
+    
+</body>
+</html>
