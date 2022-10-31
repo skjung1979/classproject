@@ -119,13 +119,175 @@
         */
 
         /* 동위 선택자 */
+        /* 동일한 위치(뎁스)에서 태그를 선택: 동위 선택자 */
+        #div2 > h1 + h2 { /* 특정 태그를 기준으로 바로 밑에 줄(?)에 있는 태그에만 적용 */
+            color: blueviolet;
+        }
+
+        #div2 > h1 ~ h2 {
+            background-color: darkblue;
+        }
+
+        /* 반응 선택자 */
+        h3 {
+            border: 3px solid #000;
+        }
+
+        h3:hover { /* 마우스를 위에 올리면 적용 */
+            color: brown;
+            padding: 20px;
+            font-size: 32px;
+        }
+
+        h3:active { /* 클릭 누른 상태에 적용*/
+            font-size: 40px;
+        }
+
+        /* 상태 선택자 */
+        /* type에 줘도 되고, id에 줘도 된다. */
+        #uname {
+            outline: 0;
+        }
+        #uname:focus { /*커서가 들어가면 적용됨 */  
+            border: 10px solid pink;
+        }
+
+        #chk:checked {
+            border: 10px solid pink; 
+            width: 50px;
+            height: 50px;
+        }
+
+        #uname:disabled {
+            background-color: gray;
+        }
+
+        #menuCheck {
+            display: none;
+        }
+
+        #menulabel:hover {
+            background-color: beige;
+            cursor: pointer; /* 마우스 포인터가 손가락으로 바뀜*/
+        }
+
+        #menuCheck + div {
+            display: none; /* 안보이게 함 */
+            width: 500px;
+            background-color: bisque;
+            overflow: hidden;
+        }
+
+        #menuCheck:checked + div {
+            width: 500px;
+            background-color: bisque;
+            display: block;         
+        }
+
+        #menuList {
+            list-style: none;
+            overflow: hidden; /*넘어가는 것은 숨겨라*/
+        }
+
+        #menuList > li {
+            float: left; /* 이것을 사용하면 수직을 수평으로 나열한다.*/
+            padding: 10px 40px;
+           /*  border: 1px solid gray; */
+            background-color: silver;
+        }
+
+        #menuList>li:first-child { /*첫번째 자손만 적용*/
+            /* background-color: aqua; */
+            /* border-radius: 좌상단, 우상단, 우하단, 좌하단 */
+            border-radius: 10px 0px 0px 10px;
+        }
+
+        #menuList>li:last-child { /*마지막 자손만 적용*/
+           /*  background-color: aqua; */
+            border-radius: 0px 10px 10px 0px;
+        }
+
+        #menuList>li:nth-child(2n) { /* 2n번째 자손만 적용*/
+           /*  background-color: rgb(40, 117, 143); */
+        }
+
+        #menuList>li:nth-child(2n+1) { /* 2n+1번째 자손만 적용*/
+           /*  background-color: rgb(23, 227, 213); */
+        }
+
+        a {
+            color: black;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: brown;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        a:visited {
+            color: darkgreen;
+        }
+
+        a:active {
+            color: crimson;
+        }
 
     </style>
 
-
-
 </head>
 <body>
+
+    <ul id="menuList">
+        <li><a href="#">HOME</a></li>
+        <li><a href="http://www.naver.com">NAVER</a></li>
+        <li><a href="http://www.labible.co.kr">라비블</a></li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+    </ul>
+
+    <ul id="menuList2">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+    </ul>
+
+    <hr>
+
+    <label for="menuCheck" id="menulabel">check</label> <input type="checkbox" id="menuCheck">
+    <div>
+        <h4>게임 타이틀</h4>
+        <p>요즘 제일 핫한 게임은 탕탕 특공대</p>
+    </div>
+
+    <hr>
+
+    <input type="text" id="uname" disabled>
+    <br>
+    <input type="checkbox" id="chk">
+
+    <hr>
+
+    <h3>Action</h3>
+
+    <hr>
+
+    <div id="div2">
+        <h1>div - heading 1</h1>
+        <h2>div - heading 2</h2>
+        <h2>div - heading 2</h2>
+        <h2>div - heading 2</h2>
+        <h2>div - heading 2</h2>
+    </div>
+
+    <hr>
 
     <div id="div1">
         <h1>div - heading 1</h1>
