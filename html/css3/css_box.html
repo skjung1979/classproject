@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            width: 250px;
+            height: 250px;
+            background-color: red;
+            
+            /* margin: 50px; */
+
+            /* margin-top: 10px;
+            margin-bottom: 10px;
+            margin-left: 50px;
+            margin-right: 50px; */
+
+            margin: 10px 50px; /*앞:상하 / 뒤:좌우*/
+
+            padding: 50px;
+
+            /* border: 15px solid #000; */
+            border-top: 20px solid #000;
+            border-bottom: 20px solid #555;
+        }
+
+        hr {
+            margin: 20px 5px; /* 상하px 좌우px */
+        }
+
+        #box1 {
+            width: 250px;
+            height: 250px;
+            margin: 20px;
+            
+            border: 10px solid #000;
+            /* border-radius: 40px; */
+            border-radius: 30px 15px; /* 왼쪽상단+오른쪽하단px 왼쪽하단+오른쪽상단 */
+            border-radius: 10px 20px 30px 40px; /* 왼쪽상단부터 4개*/
+            border-radius: 50%; /* 원이 만들어짐*/
+            background-image: url(../images/mini01.jpg);
+
+            background-size: 100%;
+
+        }
+
+
+
+
+    </style>
+
+
+</head>
+<body>
+    
+    <div id="box1">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+    </div>
+
+    <hr>
+
+    <div id="box">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+    </div>
+
+</body>
+</html>

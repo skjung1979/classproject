@@ -12,13 +12,11 @@ public class MaxFrequentNum {
 
         int[] inputNum = new int[10];
 
-        // for (int i=0; i<10; i++){
+        for (int i=0; i<10; i++){
 
-        //     inputNum[i] = Integer.parseInt(sc.nextLine());
+            inputNum[i] = Integer.parseInt(sc.nextLine());
 
-        // }
-
-        inputNum = {1, 1, 2, 3, 1, 4, 2, 4, 1, 5};
+        }
 
         int[] mode = new int[10];
 

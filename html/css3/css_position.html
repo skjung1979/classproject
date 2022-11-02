@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            position: absolute; /*요소의 좌측상단 꼭지점을 절대좌표0,0기준으로 모이게 하는 것!*/
+        }
+
+        #box1 {
+            background-color: red;
+            left: 50px; /* left 기준 */
+            top: 50px; /* top 기준 */
+
+            z-index: 10000;
+        }
+
+        #box2 {
+            background-color: green;
+            left: 100px; /* left 기준 */
+            top: 100px; /* top 기준 */
+
+            z-index: 10;
+        }
+
+        #box3 {
+            background-color: blue;
+            left: 120px; /*left 기준*/
+            top: 120px; /*top 기준*/
+
+            z-index: 1000;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <div class="box" id="box1"></div>
+    <div class="box" id="box2"></div>
+    <div class="box" id="box3"></div>
+    
+</body>
+</html>

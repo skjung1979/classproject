@@ -1,0 +1,161 @@
+/*폰트 임포트*/
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Noto+Serif+KR&display=swap');
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    font-family: 'Noto Serif KR', serif;
+    width: 780px;
+    background-color: #fff;
+    border: 1px solid #aaa;
+
+    margin: 10px auto; /* 위아래px 좌우*/
+    border-radius: 8px;
+    box-shadow: 3px 3px 15px rgb(103, 103, 103);
+
+    padding: 10px;
+}
+
+/* header */
+header {
+    /* width는 body를 따라가니 설정 안함 */
+    /* height: 100px; */
+    /*background-color: #F6F6C9;*/
+    padding: 30px;
+
+}
+
+.title {
+    font-family: 'Gowun Batang', serif;
+}
+
+header > p {
+    color: rgb(96, 96, 97);
+    margin-top: 5px;
+}
+
+nav {
+    height: 40px;
+    /*background-color: #BAD1C2;*/
+    border-top: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;
+    overflow: hidden;
+}
+
+nav > ul {
+    width: 450px;
+    float: left;
+    overflow: hidden;
+    list-style: none;
+}
+
+nav > ul > li {
+    float: left;
+
+    width: 120px;
+    text-align: center;
+    line-height: 38px; /* 글자 middle정렬효과*/
+    
+}
+
+nav > div {
+    width: 330px;
+    float: right;
+    text-align: right;
+    line-height: 35px;
+
+
+
+}
+
+nav > div > input[type=text] {
+    height: 22px;
+    width: 150px;
+    border-radius: 10px 0 0 10px;
+    padding-left: 10px;
+    border: 1px solid #aaa;
+    vertical-align: middle;
+    outline: 0;
+    
+}
+
+nav > div > input[type=text]:focus {
+    background-color: rgb(229, 224, 224);
+    outline: none;
+
+}
+
+nav > div > input[type=button] {
+    height: 24px;
+    width: 50px;
+    border-radius: 0 10px 10px 0;
+
+    border: 1px solid #aaa;
+    margin-left: -6px;
+    vertical-align: middle;
+    outline: 0;
+}
+
+#wrap {
+    overflow: hidden;
+}
+
+section {
+    width: 590px;
+    /*height: 500px;*/
+    /*background-color: #4FA095;*/
+
+    float: left;
+}
+
+article {
+    padding: 10px;
+    border-bottom: 1px solid #aaa;
+}
+
+article > h2 {
+    color: #666;
+    margin: 10px 0;
+}
+
+article > h2 + p {
+    font-size: samll;
+}
+
+article > img {
+    width: 80%;
+    margin: 20px 0;
+}
+
+.lh-180 {
+    line-height: 180%;
+}
+
+aside {
+    width: 190px;
+    height: 250px;
+    /*background-color: #8ce4d8;*/
+    float: right;
+
+}
+
+aside > h4 {
+    margin-top: 20px;
+}
+
+aside > ul {
+    list-style-type: none;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+footer {
+    height: 60px;
+    /*background-color: #153462;*/
+    text-align: center;
+    line-height: 60px;
+  
+}
