@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+
+        let url = {
+            name : '네이버',
+            address : 'https://www.naver.com'
+        }
+
+        console.log(url, typeof url)
+
+        // object -> JSON (문자열) 변환
+        let jsonStr = JSON.stringify(url)
+        console.log(jsonStr, typeof url)
+
+        // 객체를 가지고 있는 배열 선언
+        let urls = [
+        {
+            name : '네이버',
+            address : 'https://www.naver.com',
+            no : 1
+        },
+        {
+            name : '구글',
+            address : 'https://www.google.com',
+            no : 2
+        },
+        {
+            name : '카카오',
+            address : 'https://www.kakao.com',
+            no : 3
+        }
+        ]
+
+        let urlsStr = JSON.stringify(urls)
+        console.log(urlsStr, typeof urlsStr)
+
+        let urlList = {
+            title : '즐겨찾기 리스트',
+            count : 3,
+            urls : [
+        {
+            name : '네이버',
+            address : 'https://www.naver.com',
+            no : 1
+        },
+        {
+            name : '구글',
+            address : 'https://www.google.com',
+            no : 2
+        },
+        {
+            name : '카카오',
+            address : 'https://www.kakao.com',
+            no : 3
+        }
+        ]
+        }
+
+        let urlListStr = JSON.stringify(urlList)
+        console.log(urlListStr)
+
+        // JSON(문자열) -> object로 변환
+        let newObjUrlList = JSON.parse(urlListStr)
+        console.log(newObjUrlList)
+
+        console.log('')
+
+        console.log(newObjUrlList.title)
+        console.log('리스트의 개수: ', newObjUrlList.count)
+        console.log(newObjUrlList.urls)
+
+    </script>
+
+
+</head>
+<body>
+    
+</body>
+</html>

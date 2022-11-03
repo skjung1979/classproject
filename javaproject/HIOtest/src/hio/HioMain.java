@@ -9,6 +9,7 @@ import hio.controller.HioMemberInsertController;
 import hio.controller.HioMemberLoginController;
 import hio.controller.HioPossResvCheckController;
 import hio.controller.HioReservInsertController;
+import hio.controller.HioReservationDeleteController;
 import hio.controller.HioResvUpdateController;
 import hio.domain.HioMember;
 
@@ -60,6 +61,7 @@ public class HioMain {
 							new HioResvUpdateController().upateReserv();
 							break;
 						case 4: // 예약 취소
+							new HioReservationDeleteController().deleteReserv(hioMember);
 							break;
 						case 5: // 로그아웃
 							result = -1;

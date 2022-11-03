@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+
+        let arr = [1,2,3,4,5]
+
+        arr.forEach(function(val){
+            console.log(val)
+        });
+
+        console.log('');
+
+        arr.forEach((val,index) => {
+            console.log(val, index)
+        });
+
+        console.log('');
+
+        arr.filter(val => val%2 == 1)
+            .map(val => val*val)
+            .forEach(console.log);
+
+        console.log('');
+
+        function callbackFn(num1, num2, callback){
+            return callback(num1, num2)
+        };
+
+        // let result = callbackFn(10, 20, function(n1, n2){
+        //     // 더하기 연산 후 결과 값을 반환
+        //     return n1+n2;
+        // });
+
+        // 위 주석을 간소화 한 것!!!
+        let result = callbackFn(10, 20, (n1, n2) => n1+n2);
+
+        console.log('result', result);
+
+        console.log('');
+
+        // setTimeout
+        // setTimeout(function(){console.log('setTimeout')}, 3000); // 3초후 'setTimeout' 실행함
+        // 간소화
+        let id1 = setTimeout(() => console.log('setTimeout'), 3000); // 3초후 'setTimeout' 실행함
+
+        clearTimeout(id1); // id1을 실행시키지 않음
+
+        let n = 1;
+        let id2 = setInterval(function(){
+            console.log('1.5초마다 출력', n)
+
+            if (n === 3){
+                console.log('3번 출력되어서 반복을 멈춥니다.')
+                clearInterval(id2)
+            }
+            n++
+
+        }, 1500);
+
+        console.log('');
+
+        let willEval = 'var num = 10;';
+        willEval += 'alert(num);';
+
+        eval(willEval);
+
+
+    </script>
+
+</head>
+<body>
+    fff
+</body>
+</html>
