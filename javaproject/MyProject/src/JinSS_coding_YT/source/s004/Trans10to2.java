@@ -16,19 +16,34 @@ public class Trans10to2 {
         System.out.println("10진수를 입력해주세요. >> ");
         int inputNum = sc.nextInt();
 
-        int arr[] = new int[10];
+        int arr[] = new int[100];
 
-        for (int i=0; i<10; i++){
-            arr[i] = inputNum % 2;
-            inputNum /= 2;
-            if(inputNum < 0){
-                break;
-            }
+//        for (int i=0; i<10; i++){
+//            arr[i] = inputNum % 2;
+//            inputNum /= 2;
+//            if(inputNum < 0){
+//                break;
+//            }
+//        }
+//
+//        for (int i=9; i>0; i--){
+//            System.out.print(arr[i]);
+//        }
+        
+        int i = 0;
+        int mok = inputNum;
+        
+        while (mok > 0) {
+        	arr[i] = mok % 2;
+        	mok /= 2;
+        	i++;
         }
-
-        for (int i=9; i>0; i--){
-            System.out.print(arr[i]);
+        
+        i--;
+        for (; i>=0; i--) {
+        	System.out.print(arr[i]);
         }
+        
 
 
     }
