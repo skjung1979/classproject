@@ -2,6 +2,10 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=java,eclipse
 
 ### Eclipse ###
+
+### 추가 2022.11.07: 서버 항목들
+Servers
+
 .metadata
 bin/
 tmp/

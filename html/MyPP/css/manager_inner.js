@@ -53,6 +53,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const inputAll = [inputId.value, inputPw.value, inputRepw.value, inputUsername.value];
 
+        const inputAllobj = {
+
+            id: inputId.value,
+            pw: inputPw.value,
+            username: inputUsername.value
+
+        }
+
+        //console.log(JSON.stringify(inputAllobj));
+
+        localStorage.setItem('id', JSON.stringify(inputAllobj.id))
+        localStorage.setItem('pw', JSON.stringify(inputAllobj.pw))
+        localStorage.setItem('username', JSON.stringify(inputAllobj.username))
+
+        console.log(localStorage.getItem('id'))
+        console.log(localStorage.getItem('pw'))
+        console.log(localStorage.getItem('username'))
+
+        
+
+
+
         // 값이 없으면 정보를 입력하라는 알림창
         if (inputId.value.trim() === '' || inputPw.value.trim() === '' || inputUsername.value.trim() === '') {
             alert('입력하지 않은 항목이 있으니 입력해 주세요.')
@@ -81,6 +103,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         delBtn.addEventListener('click', () => {
             delList(key)
+
+            localStorage.removeItem('id')
+            localStorage.removeItem('pw')
+            localStorage.removeItem('username')
+
         });
 
         inputId.value = '';

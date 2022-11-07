@@ -62,6 +62,8 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('입력하지 않은 항목이 있으니 입력해 주세요.')
         };
 
+        const inputAlljson = JSON.stringify(inputAll)
+        
         console.log(inputAll);
 
         // 동적 추가 엘리먼트 생성
