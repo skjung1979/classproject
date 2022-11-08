@@ -12,7 +12,7 @@ public class HioAllReservationService {
 
 	AllReservationDao allreservationdao;
 
-	public HioAllReservationService(AllReservationDao allreservationdao) {
+	public HioAllReservationService() {
 		this.allreservationdao = allreservationdao;
 	}
 

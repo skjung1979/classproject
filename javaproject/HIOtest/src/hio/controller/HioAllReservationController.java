@@ -1,13 +1,12 @@
 package hio.controller;
 
 import java.util.List;
-import hio.DAO.MySqlDao;
 import hio.domain.HioMember;
 import hio.service.HioAllReservationService;
 
 public class HioAllReservationController implements HioAllReservationInterface {
 	
-	HioAllReservationService service = new HioAllReservationService(new MySqlDao());
+	HioAllReservationService service = new HioAllReservationService();
 	
 	public void allreservation() {
 						

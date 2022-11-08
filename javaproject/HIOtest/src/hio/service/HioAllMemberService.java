@@ -12,7 +12,7 @@ import util.HioConnection;
 //HIOtest 프로젝트
 public class HioAllMemberService {
 
-	AllMemberDao dao = new HioAllMemberDao();
+	HioAllMemberDao dao = new HioAllMemberDao();
 
 	public List<HioMember> allMemberList() {
 
@@ -22,7 +22,7 @@ public class HioAllMemberService {
 		try {
 			
 			conn = HioConnection.getConnection();
-			allMemberList = dao.allMemberList(conn);
+			allMemberList = dao.memberList(conn);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

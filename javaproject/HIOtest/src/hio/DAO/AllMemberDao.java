@@ -8,8 +8,8 @@ import hio.domain.HioMember;
 
 public interface AllMemberDao {
 
-	List<HioMember> allMemberList(Connection conn) throws SQLException;
+	List<HioMember> memberList(Connection conn) throws SQLException;
 
-	//HioMember selectBymemberNo(Connection conn, int memberNo) throws SQLException;
+	HioMember selectBymemberNo(Connection conn, int memberNo) throws SQLException;
 
 }

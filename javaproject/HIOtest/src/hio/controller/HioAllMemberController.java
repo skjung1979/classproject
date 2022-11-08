@@ -2,8 +2,6 @@ package hio.controller;
 
 import java.util.List;
 
-import hio.HioMain;
-import hio.DAO.MySqlDao;
 import hio.domain.HioMember;
 import hio.service.HioAllMemberService;
 
