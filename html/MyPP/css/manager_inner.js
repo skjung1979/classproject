@@ -63,6 +63,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         //console.log(JSON.stringify(inputAllobj));
 
+        const arr[][] = [][];
+
         localStorage.setItem('id', JSON.stringify(inputAllobj.id))
         localStorage.setItem('pw', JSON.stringify(inputAllobj.pw))
         localStorage.setItem('username', JSON.stringify(inputAllobj.username))
@@ -70,10 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(localStorage.getItem('id'))
         console.log(localStorage.getItem('pw'))
         console.log(localStorage.getItem('username'))
-
-        
-
-
 
         // 값이 없으면 정보를 입력하라는 알림창
         if (inputId.value.trim() === '' || inputPw.value.trim() === '' || inputUsername.value.trim() === '') {
