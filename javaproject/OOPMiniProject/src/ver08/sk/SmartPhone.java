@@ -1,5 +1,7 @@
 package ver08.sk;
 
+import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
@@ -15,7 +17,19 @@ public class SmartPhone {
 	private SmartPhone(int size) {
 		// contacts = new ContactSK[size];
 		// numOfContact = 0;
+		//contacts = new ArrayList<>();
 		sc = new Scanner(System.in);
+
+		// 직렬화 파일 처리에 바로 로딩하기!
+		// 파일 있으면 로딩하고,
+		File file = new File("d:\\contacts_sk.ser");
+		if (file.exists()){
+			loadFile();
+		} else {
+			// 파일 없으면 리스트 객체를 생성한다.
+			contacts = new ArrayList<>();
+		}
+
 	}
 
 	private static SmartPhone sp = new SmartPhone(10); // 10개까지 입력 가능
@@ -395,5 +409,53 @@ public class SmartPhone {
 			}
 		}
 		return phoneNumber;
+	}
+
+    public void saveFile() {
+
+		ObjectOutputStream os = null;
+		FileOutputStream fos = null;
+
+		try {
+			fos = new FileOutputStream("d:\\contacts_sk.ser");
+			os = new ObjectOutputStream(fos);
+			os.writeObject(contacts);
+		} catch (FileNotFoundException e) {
+			throw new RuntimeException(e);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+		System.out.println("저장되었습니다.");
+    }
+
+	public void loadFile() {
+
+		// 파일 객체를 생성
+		File file = new File("d:\\contacts_sk.ser");
+
+		// 해당 파일이 존재하는지 체크하여 분기한다.
+		if (file.exists()){
+
+			ObjectInputStream is = null;
+			FileInputStream fis = null;
+
+			try {
+				fis = new FileInputStream(file);
+				is = new ObjectInputStream(fis);
+
+				// 파일이 있다면 해당 파일의 내용을 contacts 변수에 입력한다.
+				contacts = (List<Contact>)is.readObject();
+
+			} catch (FileNotFoundException e) {
+				throw new RuntimeException(e);
+			} catch (IOException e) {
+				throw new RuntimeException(e);
+			} catch (ClassNotFoundException e) {
+				throw new RuntimeException(e);
+			}
+
+		} else {
+			System.out.println("파일이 존재하지 않습니다.");
+		}
 	}
 }

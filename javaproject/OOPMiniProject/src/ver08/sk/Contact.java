@@ -8,8 +8,11 @@ package ver08.sk;
 
 import ver07.ShowData;
 
+import java.io.Serializable;
+
 //public 지우면 패키지에서만 사용됨
-abstract class Contact implements ShowData {
+// 직렬화를 위해 Serrializable 인터페이스를 상속 받았다.
+abstract class Contact implements ShowData, Serializable {
 
 	/*
 		저장 정보

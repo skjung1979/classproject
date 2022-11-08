@@ -53,25 +53,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const inputAll = [inputId.value, inputPw.value, inputRepw.value, inputUsername.value];
 
-        const inputAllobj = {
+        const arrInput = [inputAll];
 
-            id: inputId.value,
-            pw: inputPw.value,
-            username: inputUsername.value
-
-        }
+        localStorage.setItem(idx, JSON.stringify(arrInput)) 
 
         //console.log(JSON.stringify(inputAllobj));
-
-        const arr[][] = [][];
-
-        localStorage.setItem('id', JSON.stringify(inputAllobj.id))
-        localStorage.setItem('pw', JSON.stringify(inputAllobj.pw))
-        localStorage.setItem('username', JSON.stringify(inputAllobj.username))
-
-        console.log(localStorage.getItem('id'))
-        console.log(localStorage.getItem('pw'))
-        console.log(localStorage.getItem('username'))
+        // localStorage.setItem('id', JSON.stringify(inputAllobj.id))
+        // localStorage.setItem('pw', JSON.stringify(inputAllobj.pw))
+        // localStorage.setItem('username', JSON.stringify(inputAllobj.username))
 
         // 값이 없으면 정보를 입력하라는 알림창
         if (inputId.value.trim() === '' || inputPw.value.trim() === '' || inputUsername.value.trim() === '') {
@@ -79,19 +68,23 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         const newTr = document.createElement('tr')
-        const btn = document.createElement('button')
+        //const btn = document.createElement('button')
 
         const key = idx++;
         newTr.setAttribute('data-key', key)
 
-        btn.textContent = '삭제';
+        ///btn.textContent = '삭제';
+
+        // console.log(JSON.parse(localStorage.getItem(key)))
+
+        // const a = JSON.parse(localStorage.getItem(key));
 
         let inner = `<tr data-key="${key}">
                         <td><span>${key}</span></td>
                         <td><span>${inputId.value}</span></td>
                         <td><span>${inputPw.value}</span></td>
                         <td><span>${inputUsername.value}</span></td>
-                        <td><button id="del_${key}">${btn.textContent}</button></td>
+                        <td><button id="del_${key}">삭제</button></td>
                     </tr>`;
         newTr.innerHTML = inner;
                     
@@ -100,18 +93,17 @@ document.addEventListener('DOMContentLoaded', () => {
         let delBtn = document.querySelector(`#del_${key}`)
 
         delBtn.addEventListener('click', () => {
+            
             delList(key)
 
-            localStorage.removeItem('id')
-            localStorage.removeItem('pw')
-            localStorage.removeItem('username')
-
+            localStorage.removeItem(key)
+  
         });
 
-        inputId.value = '';
-        inputPw.value = '';
-        inputRepw.value = '';
-        inputUsername.value = '';
+        // inputId.value = '';
+        // inputPw.value = '';
+        // inputRepw.value = '';
+        // inputUsername.value = '';
 
     }
 
