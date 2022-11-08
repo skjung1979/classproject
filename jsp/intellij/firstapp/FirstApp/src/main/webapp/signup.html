@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>signup</title>
+</head>
+<body>
+<h1>회원가입</h1>
+
+<form action="signup" method="post">
+
+    ID: <input type="text" name="userid" id="uid"> <br>
+    PW: <input type="text" name="userpw" id="upw"><br>
+    Name: <input type="text" name="username" id="uname"><br>
+    소개글<textarea name="memo" cols="30" rows="5">간단한 메모를 입력하세요.</textarea><br>
+    성별: 남자<input type="radio" name="gender" value="남자"> 여자<input type="radio" name="gender" value="여자"><br>
+    좋아하는 언어 선택:
+    JAVA <input type="checkbox" name="lang" value="java">
+    HTM5 <input type="checkbox" name="lang" value="html5">
+    JSP <input type="checkbox" name="lang" value="jsp"><br>
+    <select name="year">
+        <option value="2023">2023</option>
+        <option value="2022">2022</option>
+    </select><br>
+    <button>전송</button>
+
+
+</form>
+
+</body>
+</html>

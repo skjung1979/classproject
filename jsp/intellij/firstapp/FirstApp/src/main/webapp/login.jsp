@@ -1,4 +1,5 @@
-<%--
+<%@ page import="java.time.LocalDate" %>
+<%@ page import="java.time.LocalTime" %><%--
   Created by IntelliJ IDEA.
   User: skjung_gram
   Date: 2022-11-07
@@ -12,5 +13,25 @@
 </head>
 <body>
     <h1>로그인 페이지</h1>
+        <%
+
+            String userid = request.getParameter("userid");
+            String pw = request.getParameter("pw");
+
+            if (userid.equals(pw)){
+                session.setAttribute("loginId", userid);
+                response.sendRedirect("mypage.jsp");
+            } else {
+                response.sendRedirect("login.html");
+            }
+
+            LocalDate now = LocalDate.now();
+            LocalTime time = LocalTime.now();
+
+        %>
+
+    <%=now%> <%=time%>
+
+
 </body>
 </html>

@@ -41,6 +41,10 @@ public class Fibonacci {
 
             System.out.print(arr[i]+"\t");
 
+            if (i % 5 == 0) {
+                System.out.println();
+            }
+
         }
         
 
