@@ -18,6 +18,7 @@
             String userid = request.getParameter("userid");
             String pw = request.getParameter("pw");
 
+            // 테스트를 위해 아이디와 패스워드가 같으면 로그인되는 것으로 설정함
             if (userid.equals(pw)){
                 session.setAttribute("loginId", userid);
                 response.sendRedirect("mypage.jsp");

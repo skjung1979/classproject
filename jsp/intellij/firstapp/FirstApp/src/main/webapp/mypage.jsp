@@ -1,3 +1,5 @@
+<%@ page import="java.time.LocalDate" %>
+<%@ page import="java.time.LocalTime" %>
 <%--
   Created by IntelliJ IDEA.
   User: skjung_gram
@@ -13,6 +15,9 @@
 <body>
 
 <%
+    LocalDate now = LocalDate.now();
+    LocalTime time = LocalTime.now();
+
     String loginId = (String) session.getAttribute("loginId");
 
     if (loginId == null){
@@ -21,8 +26,10 @@
 
 %>
 
-<h1>로그인 후 보여지는 페이지: 아이디=> <%= loginId %></h1>
+<h1>로그인 후 보여지는 페이지: 아이디 => <%= loginId %></h1>
 <a href="logout.jsp">로그아웃</a>
+<br><br>
+<%= now %> <%= time %>
 
 
 </body>

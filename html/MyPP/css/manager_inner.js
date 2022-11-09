@@ -10,6 +10,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const tbodyId = document.querySelector('#list')
     const editForm = document.querySelector('#editFormArea')
 
+    if (localStorage.length != 0){
+
+
+        for (let i = 0; i < localStorage.length; i++) {
+
+            const key = idx++;
+            newTr.setAttribute('data-key', key)
+            const receiveData = JSON.parse(localStorage.getItem(key))
+
+            const newTr = document.createElement('tr')
+
+            let inner = `<tr data-key="${i}">
+                    <td><span>${i}</span></td>
+                    <td><span>${receiveData[0]}</span></td>
+                    <td><span>${receiveData[1]}</span></td>
+                    <td><span>${receiveData[3]}</span></td>
+                    <td><button id="del_${i}">삭제</button></td>
+                </tr>`;
+            newTr.innerHTML = inner;
+
+            tbodyId.append(newTr);
+
+        };
+
+    };
+
+
     // 아이디 형식 체크
     inputId.addEventListener('focusout', () => {
         if (!(/[a-zA-Z0-9]/.test(inputId.value))) {
@@ -44,6 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let idx = 0;
 
+    // submit 버튼 기능 없애기
     inputForm.addEventListener('submit', (event) => {
         event.preventDefault();
     });
@@ -55,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const arrInput = [inputAll];
 
-        localStorage.setItem(idx, JSON.stringify(arrInput)) 
+        localStorage.setItem(idx, JSON.stringify(inputAll)) 
 
         //console.log(JSON.stringify(inputAllobj));
         // localStorage.setItem('id', JSON.stringify(inputAllobj.id))
@@ -79,13 +107,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // const a = JSON.parse(localStorage.getItem(key));
 
+        const receiveData = JSON.parse(localStorage.getItem(key))
+
+    
+        console.log(receiveData[0]);
+        console.log(receiveData[1]);
+        console.log(receiveData[3]);
+
+
+        // let inner = `<tr data-key="${key}">
+        //                 <td><span>${key}</span></td>
+        //                 <td><span>${inputId.value}</span></td>
+        //                 <td><span>${inputPw.value}</span></td>
+        //                 <td><span>${inputUsername.value}</span></td>
+        //                 <td><button id="del_${key}">삭제</button></td>
+        //             </tr>`;
+
         let inner = `<tr data-key="${key}">
-                        <td><span>${key}</span></td>
-                        <td><span>${inputId.value}</span></td>
-                        <td><span>${inputPw.value}</span></td>
-                        <td><span>${inputUsername.value}</span></td>
-                        <td><button id="del_${key}">삭제</button></td>
-                    </tr>`;
+                    <td><span>${key}</span></td>
+                    <td><span>${receiveData[0]}</span></td>
+                    <td><span>${receiveData[1]}</span></td>
+                    <td><span>${receiveData[3]}</span></td>
+                    <td><button id="del_${key}">삭제</button></td>
+                </tr>`;
+
         newTr.innerHTML = inner;
                     
         tbodyId.append(newTr)
