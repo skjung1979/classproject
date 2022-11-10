@@ -15,6 +15,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (localStorage.length != 0) {
         let seq = 0;
+        // 시작이 1이 아니고 localstorage의 첫번째 키값부터 해야한다!!!
+        for (let i=0; i<localStorage.length; i++){
+            if(localStorage.getItem(key) == i){
+                console.log(i)
+            }
+        }
+
         for (let i = 1; i < localStorage.length + 1; i++) {
 
             const key = i
