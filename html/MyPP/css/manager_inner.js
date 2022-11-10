@@ -11,18 +11,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const editForm = document.querySelector('#editFormArea')
 
 
-    console.log(localStorage.length)
-
+   
+console.log('localStorage.lenth: ', localStorage.length)
     if (localStorage.length != 0) {
         let seq = 0;
         // 시작이 1이 아니고 localstorage의 첫번째 키값부터 해야한다!!!
+        let a = 0
         for (let i=0; i<localStorage.length; i++){
-            if(localStorage.getItem(key) == i){
-                console.log(i)
+            if(localStorage.getItem(i) == null){
+                // 널이면
+                a = i; 
+                console.log('i:', i)
             }
         }
+        console.log('a:',a)
 
-        for (let i = 1; i < localStorage.length + 1; i++) {
+        for (let i = a; i < localStorage.length+1; i++) {
 
             const key = i
             const newTr = document.createElement('tr')

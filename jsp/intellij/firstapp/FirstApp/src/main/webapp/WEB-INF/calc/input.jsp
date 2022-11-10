@@ -8,15 +8,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>input.jsp</title>
+    <title>${title}</title>
 </head>
 <body>
-
-<form method="post" action="makeResult">
+<h1>${title}</h1>
+<form method="post">
 
   <input type="number" name="num1" id="num1">
   <input type="number" name="num2" id="num2">
-  <button>전송</button>
+  <button>전송전송</button>
 
 </form>
 
