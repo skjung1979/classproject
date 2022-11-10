@@ -2,12 +2,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>JSP - Hello World</title>
+    <title>JSP 게시판 웹사이트</title>
 </head>
 <body>
-<h1><%= "Hello World!" %>
-</h1>
-<br/>
-<a href="hello-servlet">Hello Servlet</a>
+    <script>
+        // 사이트를 젒속하면 맨 처음 바로 로그인 페이지로 이동하도록 함
+        location.href = 'login.jsp';
+    </script>
+
 </body>
 </html>
