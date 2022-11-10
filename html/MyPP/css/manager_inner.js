@@ -10,16 +10,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const tbodyId = document.querySelector('#list')
     const editForm = document.querySelector('#editFormArea')
 
-    if (localStorage.length != 0){
 
+    console.log(localStorage.length)
 
-        for (let i = 0; i < localStorage.length; i++) {
+    if (localStorage.length != 0) {
+        let seq = 0;
+        for (let i = 1; i < localStorage.length + 1; i++) {
 
-            const key = idx++;
-            newTr.setAttribute('data-key', key)
-            const receiveData = JSON.parse(localStorage.getItem(key))
-
+            const key = i
             const newTr = document.createElement('tr')
+
+            newTr.setAttribute('data-key', i)
+
+            const receiveData = JSON.parse(localStorage.getItem(i))
+
+            console.log(receiveData)
 
             let inner = `<tr data-key="${i}">
                     <td><span>${i}</span></td>
@@ -31,6 +36,17 @@ document.addEventListener('DOMContentLoaded', () => {
             newTr.innerHTML = inner;
 
             tbodyId.append(newTr);
+            seq = i;
+
+            let delBtn = document.querySelector(`#del_${i}`)
+
+            delBtn.addEventListener('click', () => {
+
+                delList(i)
+
+                localStorage.removeItem(i)
+
+            });
 
         };
 
@@ -69,7 +85,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    let idx = 0;
+    let idx = localStorage.length + 1;
+
+    // if (seq != 0) {
+    //     let idx = ++seq;
+    // } else if (seq == 0){
+    //     let idx = 0;
+    // }
 
     // submit 버튼 기능 없애기
     inputForm.addEventListener('submit', (event) => {
@@ -83,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const arrInput = [inputAll];
 
-        localStorage.setItem(idx, JSON.stringify(inputAll)) 
+        localStorage.setItem(idx, JSON.stringify(inputAll))
 
         //console.log(JSON.stringify(inputAllobj));
         // localStorage.setItem('id', JSON.stringify(inputAllobj.id))
@@ -109,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const receiveData = JSON.parse(localStorage.getItem(key))
 
-    
+
         console.log(receiveData[0]);
         console.log(receiveData[1]);
         console.log(receiveData[3]);
@@ -132,17 +154,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 </tr>`;
 
         newTr.innerHTML = inner;
-                    
+
         tbodyId.append(newTr)
-        
+
         let delBtn = document.querySelector(`#del_${key}`)
 
         delBtn.addEventListener('click', () => {
-            
+
             delList(key)
 
             localStorage.removeItem(key)
-  
+
         });
 
         // inputId.value = '';

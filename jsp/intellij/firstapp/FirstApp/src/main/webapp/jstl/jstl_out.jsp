@@ -24,8 +24,8 @@ ${members}
 ${members[0]} <br>
 ${members[1]} / ${members[1].name} <br><br>
 
-<c:out value="${members[0].name}">
-    <span class="red">입력정보 없음</span>
+<c:out value="${members[0].name}"> <%--값이 있으면 정상 출력 되고--%>
+    <span class="red">입력정보 없음</span> <%--없으면 이곳이 출력된다.--%>
 </c:out>
 
 <br>
