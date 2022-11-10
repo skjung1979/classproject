@@ -10,8 +10,6 @@ public class TodoModifyController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
-
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/todo/modify.jsp");
 
         dispatcher.forward(request, response);
@@ -20,7 +18,6 @@ public class TodoModifyController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 
         response.sendRedirect("/TodoList");
 

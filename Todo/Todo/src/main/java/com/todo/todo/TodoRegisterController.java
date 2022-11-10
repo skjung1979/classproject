@@ -5,6 +5,8 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
+import static java.lang.Integer.parseInt;
+
 @WebServlet(name = "TodoRegisterController", value = "/TodoRegister")
 public class TodoRegisterController extends HttpServlet {
     @Override
@@ -17,6 +19,7 @@ public class TodoRegisterController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
 
         String todo = request.getParameter("todo");
         String inDate = request.getParameter("inDate");
