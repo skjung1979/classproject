@@ -8,12 +8,31 @@
     <meta name="viewport" content="width-device-width", initial-scale="1">
     <title>JSP 게시판 웹사이트</title>
     <style>
-        #navbar > li {
-            width: 790px;
+
+        nav > ul {
+            /*float: left;*/
+            overflow: hidden;
             list-style: none;
-            background-color: red;
+
         }
 
+        nav > ul > li {
+            float: left;
+
+            /*width: 120px;*/
+            text-align: center;
+            line-height: 38px; /* 글자 middle정렬효과*/
+
+        }
+
+       /* nav > ul > li {
+            float: left;
+
+            width: 120px;
+            text-align: center;
+            line-height: 38px; !* 글자 middle정렬효과*!
+
+        }*/
 
     </style>
 </head>
@@ -24,7 +43,7 @@
         <%--    brand는 로고 같은 것을 의미한다.--%>
         <a  href="main.jsp">JSP 게시판 웹사이트</a>
     </div>
-    <div>
+    <nav>
         <ul id="navbar">
             <li><a href="main.jsp">메인</a></li>
             <li><a href="bbs.jsp">게시판</a></li>
@@ -32,7 +51,7 @@
             <li><a href="login.jsp">로그인</a></li>
             <li><a href="join.jsp">회원가입</a></li>
         </ul>
-    </div>
+    </nav>
 </nav>
 <div class="container">
     <form method="post" action="loginAction.jsp">

@@ -1,5 +1,7 @@
 package com.firstcoding.firstapp.dept;
 
+import lombok.Cleanup;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,32 +13,15 @@ public class DeptDao {
 
     public List<Dept> selectAll(Connection conn) throws Exception {
 
+        List<Dept> result = new ArrayList<>();
         String sql = "select * from dept";
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
-        List<Dept> result = null;
+        @Cleanup PreparedStatement pstmt = conn.prepareStatement(sql);
+        @Cleanup ResultSet rs = pstmt.executeQuery();
 
-        try {
-            pstmt = conn.prepareStatement(sql);
-            rs = pstmt.executeQuery();
+        while (rs.next()){
 
-            result = new ArrayList<>();
+            result.add(new Dept(rs.getInt(1), rs.getString(2), rs.getString(3)));
 
-            while (rs.next()){
-
-                result.add(new Dept(rs.getInt(1), rs.getString(2), rs.getString(3)));
-
-            }
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } finally {
-            if (pstmt != null){
-                pstmt.close();
-            }
-            if (rs != null){
-                rs.close();
-            }
         }
 
         return result;
