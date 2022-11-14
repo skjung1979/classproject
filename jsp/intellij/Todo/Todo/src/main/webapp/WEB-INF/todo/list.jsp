@@ -28,15 +28,16 @@ To change this template use File | Settings | File Templates.
 <hr>
 <table>
     <tr>
-        <th>번호</th>
+        <th>순번</th>
+        <th>코드</th>
         <th>제목</th>
         <th>마감일자</th>
         <th>완료여부</th>
     </tr>
 
-    <c:forEach var="todo" items="${list}"> <%--리스트 서블릿에서 불러옴 <- 먼저 service에서 처리한 내용을 리스트 서블릿에서 setAttribute --%>
+    <c:forEach var="todo" items="${list}" varStatus="stat"> <%--리스트 서블릿에서 불러옴 <- 먼저 service에서 처리한 내용을 리스트 서블릿에서 setAttribute --%>
         <tr>
-                <%--            제목을 클릭했을 때 상세페이지(read)페이지에 들어가도록 구현함--%>
+            <td>${stat.index+1}</td>
             <td>${todo.tno}</td>
             <td>${todo.todo}</a></td>
             <td>${todo.dueDate}</td>
