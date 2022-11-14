@@ -25,6 +25,7 @@ To change this template use File | Settings | File Templates.
 </head>
 <body>
 <h1>${title}</h1> <%--리스트 서블릿에서 불어왔음--%>
+<hr>
 <table>
     <tr>
         <th>번호</th>
@@ -33,14 +34,14 @@ To change this template use File | Settings | File Templates.
         <th>완료여부</th>
     </tr>
 
-    <c:forEach var="todo" items="${todoList}"> <%--리스트 서블릿에서 불러옴 <- 먼저 service에서 처리한 내용을 리스트 서블릿에서 setAttribute --%>
+    <c:forEach var="todo" items="${list}"> <%--리스트 서블릿에서 불러옴 <- 먼저 service에서 처리한 내용을 리스트 서블릿에서 setAttribute --%>
         <tr>
                 <%--            제목을 클릭했을 때 상세페이지(read)페이지에 들어가도록 구현함--%>
             <td>${todo.tno}</td>
-            <td><a href="/todo/TodoRead?tno=${todo.tno}">${todo.todo}</a></td>
+            <td>${todo.todo}</a></td>
             <td>${todo.dueDate}</td>
             <td>${todo.finished ? '완료' : '진행중'}</td>
-            <td><button>보기</button></td>
+            <td><a href="/todo/TodoRead?tno=${todo.tno}"><button>보기</button></td>
         </tr>
     </c:forEach>
 

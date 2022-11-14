@@ -13,7 +13,7 @@
 </head>
 <body>
 <h1>Todo Register</h1>
-
+<hr>
 <form method="post">
 
   <table>
