@@ -2,6 +2,7 @@ package com.todo.todo.controller;
 
 import com.todo.todo.domain.TodoDTO;
 import com.todo.todo.service.TodoService;
+import lombok.extern.log4j.Log4j2;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,13 +15,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "TodoListController", value = "/todo/TodoList")
+@Log4j2
 public class TodoListController extends HttpServlet {
 
     TodoService service = new TodoService();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        System.out.println("todo list 들어옴");
+        log.info("todo list 들어옴");
 
         // list.jsp에 ${title}로 사용함
         request.setAttribute("title", "Todo List");

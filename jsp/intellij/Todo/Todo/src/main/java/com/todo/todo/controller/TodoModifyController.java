@@ -2,6 +2,7 @@ package com.todo.todo.controller;
 
 import com.todo.todo.domain.TodoDTO;
 import com.todo.todo.service.TodoService;
+import lombok.extern.log4j.Log4j2;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -9,6 +10,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 
 @WebServlet(name = "TodoEditController", value = "/todo/TodoModify")
+@Log4j2
 public class TodoModifyController extends HttpServlet {
 
     TodoService service = new TodoService();
@@ -25,7 +27,7 @@ public class TodoModifyController extends HttpServlet {
         //TodoDTO todo = new TodoDTO(1, "공부하기", "열심히 공부하기", "2022-11-26", false); // 받아왔다 치고 임시로 이 로직 삽입.
 
         int tno = Integer.parseInt(request.getParameter("tno"));
-        System.out.println("요청 번호: " + tno);
+        log.info("요청 번호: " + tno);
 
         TodoDTO result = new TodoDTO();
 
@@ -44,7 +46,7 @@ public class TodoModifyController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        System.out.println("modify post 들어옴");
+        log.info("modify post 들어옴");
 
         // 사용자가 수정한 데이터를 업데이트 처리
         request.setCharacterEncoding("utf-8");
@@ -54,11 +56,11 @@ public class TodoModifyController extends HttpServlet {
         String dueDate = request.getParameter("dueDate");
         String finished = request.getParameter("finished");
 
-        System.out.println("수정 요청 받은 번호: " + tno);
-        System.out.println("수정 요청 받은 할일: " + todo);
-        System.out.println("수정 요청 받은 설명: " + memo);
-        System.out.println("수정 요청 받은 기한: " + dueDate);
-        System.out.println("수정 요청 받은 완료여부: " + finished);
+        log.info("수정 요청 받은 번호: " + tno);
+        log.info("수정 요청 받은 할일: " + todo);
+        log.info("수정 요청 받은 설명: " + memo);
+        log.info("수정 요청 받은 기한: " + dueDate);
+        log.info("수정 요청 받은 완료여부: " + finished);
 
         // Service로 보낼 DTO 생성 <- 사용자가 입력한 수정값으로 DTO객체를 생성해서 서비스로 보내는 것이다.
         TodoDTO dto = new TodoDTO(Long.parseLong(tno), todo, memo, dueDate, finished == null ? false : true);

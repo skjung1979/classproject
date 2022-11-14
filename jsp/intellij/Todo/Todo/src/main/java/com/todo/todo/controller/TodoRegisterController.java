@@ -56,6 +56,5 @@ public class TodoRegisterController extends HttpServlet {
 
         response.sendRedirect("/todo/TodoList");
 
-
     }
 }
