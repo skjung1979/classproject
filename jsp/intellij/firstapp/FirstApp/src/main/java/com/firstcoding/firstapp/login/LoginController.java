@@ -54,5 +54,18 @@ public class LoginController extends HttpServlet {
             response.addCookie(c);
         }
 
+        // 현재 세션으로 객체 생성한다. <- 로그인 처리를 위한 기본 작업
+        HttpSession session = request.getSession();
+
+        // 로그인 처리
+        // 아이디와 패스워드 비교 -> 실제로는... db에 저장되어 있는 회원 정보에서 id, pw가 일치하는지
+        // 지금은 임시로 id, pw가 같으면 로그인 처리를 한다. -> session 속성에 회원의 정보를 저장
+        if (userid.equals(pw)){
+            session.setAttribute("loginInfo", "로그인 되었음!"); // 로그인 후 보여줄 메시지 속성을 세팅함
+            response.sendRedirect("/app/index.jsp"); // 로그인 정보가 일치하면 메인 페이지로 이동함!
+        } else {
+            response.sendRedirect("/app/login"); // 로그인 정보 일치하지 않으면 다시 로그인 화면으로!
+        }
+
     }
 }

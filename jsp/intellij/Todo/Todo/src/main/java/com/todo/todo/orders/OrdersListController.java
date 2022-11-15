@@ -32,6 +32,7 @@ public class OrdersListController extends HttpServlet {
 
             list = service.ordersSelectAll();
             custList = service2.custSelectAll();
+            request.setAttribute("cId", 0);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -65,8 +66,10 @@ public class OrdersListController extends HttpServlet {
 
             if (ord.getCustid() == 0){
                 list = service.ordersSelectAll();
+                request.setAttribute("cId", 0);
             } else {
                 list = service.ordersSelectBy(ord.getCustid());
+                request.setAttribute("cId", ord.getCustid());
             }
             custList = service2.custSelectAll();
 

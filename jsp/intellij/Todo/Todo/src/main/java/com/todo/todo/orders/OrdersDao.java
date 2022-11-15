@@ -16,14 +16,20 @@ public class OrdersDao {
 
         String sql = "select a.orderid, a.custid, c.name, a.bookid, b.bookname, b.price, a.saleprice, a.orderdate  from orders a, book b, customer c where a.bookid=b.bookid and a.custid=c.custid";
 
-        String sqls= "select a.orderid, a.custid, c.name, a.bookid, b.bookname, b.price, a.saleprice, a.orderdate, d.hap from \n" +
+        String sql2= "select a.orderid, a.custid, c.name, a.bookid, b.bookname, b.price, a.saleprice, a.orderdate, d.hap from \n" +
                 "orders a, \n" +
                 "book b, \n" +
                 "customer c, \n" +
                 "(select a.custid custid, sum(saleprice) hap from orders a, book b, customer c where a.bookid=b.bookid and a.custid=c.custid group by a.custid) d \n" +
                 "where a.bookid=b.bookid and a.custid=c.custid and a.custid=d.custid";
 
-        @Cleanup PreparedStatement pstmt = conn.prepareStatement(sqls);
+        String sql3 = "select a.orderid, a.custid, c.name, a.bookid, b.bookname, b.price, a.saleprice, a.orderdate, d.hap, e.total\n" +
+                "from orders a, book b, customer c, \n" +
+                "(select a.custid as custid, sum(saleprice) as hap from orders a, book b, customer c where a.bookid=b.bookid and a.custid=c.custid group by a.custid) d,\n" +
+                "(select sum(saleprice) as total from orders) e \n" +
+                "where a.bookid=b.bookid and a.custid=c.custid and a.custid=d.custid order by a.orderid";
+
+        @Cleanup PreparedStatement pstmt = conn.prepareStatement(sql3);
         @Cleanup ResultSet rs = pstmt.executeQuery();
 
         while (rs.next()){
@@ -38,6 +44,7 @@ public class OrdersDao {
             ord.setSaleprice(rs.getInt(7));
             ord.setOrderdate(rs.getString(8));
             ord.setSumprice(rs.getString(9));
+            ord.setTotal(rs.getString(10));
 
             list.add(ord);
 
@@ -51,14 +58,20 @@ public class OrdersDao {
         List<Orders> list = new ArrayList<>();
         String sql = "select a.orderid, a.custid, c.name, a.bookid, b.bookname, b.price, a.saleprice, a.orderdate  from orders a, book b, customer c where a.bookid=b.bookid and a.custid=c.custid and c.custid=?";
 
-        String sqls= "select a.orderid, a.custid, c.name, a.bookid, b.bookname, b.price, a.saleprice, a.orderdate, d.hap from \n" +
+        String sql2= "select a.orderid, a.custid, c.name, a.bookid, b.bookname, b.price, a.saleprice, a.orderdate, d.hap from \n" +
                 "orders a, \n" +
                 "book b, \n" +
                 "customer c, \n" +
                 "(select a.custid custid, sum(saleprice) hap  from orders a, book b, customer c where a.bookid=b.bookid and a.custid=c.custid group by a.custid) d \n" +
                 "where a.bookid=b.bookid and a.custid=c.custid and a.custid=d.custid and a.custid=?";
 
-        @Cleanup PreparedStatement pstmt = conn.prepareStatement(sqls);
+        String sql3 = "select a.orderid, a.custid, c.name, a.bookid, b.bookname, b.price, a.saleprice, a.orderdate, d.hap, e.total\n" +
+                "from orders a, book b, customer c, \n" +
+                "(select a.custid as custid, sum(saleprice) as hap from orders a, book b, customer c where a.bookid=b.bookid and a.custid=c.custid group by a.custid) d,\n" +
+                "(select sum(saleprice) as total from orders) e \n" +
+                "where a.bookid=b.bookid and a.custid=c.custid and a.custid=d.custid and a.custid=? order by a.orderid ";
+
+        @Cleanup PreparedStatement pstmt = conn.prepareStatement(sql3);
         pstmt.setInt(1, custid);
         @Cleanup ResultSet rs = pstmt.executeQuery();
 

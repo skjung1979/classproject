@@ -41,6 +41,7 @@
     <c:if test="${reSelectList != null}">
 
         <c:forEach var="order" items="${reSelectList}" varStatus="stat">
+
             <tr>
                 <td>${stat.count}</td>
                 <td>${order.orderid}</td>
@@ -52,13 +53,18 @@
                 <td>${order.saleprice}</td>
                 <td>${order.orderdate}</td>
                 <c:if test="${stat.count == 1}">
-                    <td rowspan="50">${order.sumprice}</td>
+                    <c:if test="${cId == 0}">
+                        <td rowspan="50">${order.total}</td>
+                    </c:if>
+                    <c:if test="${cId != 0}">
+                        <td rowspan="50">${order.sumprice}</td>
+                    </c:if>
+
                 </c:if>
             </tr>
         </c:forEach>
 
     </c:if>
-
     <c:if test="${custList == null}">
         <c:forEach var="order" items="${ordersList}" varStatus="stat">
             <tr>
@@ -72,7 +78,13 @@
                 <td>${order.saleprice}</td>
                 <td>${order.orderdate}</td>
                 <c:if test="${stat.count == 1}">
-                    <td rowspan="50">${order.sumprice}</td>
+                    <c:if test="${cId == 0}">
+                        <td rowspan="50">${order.total}</td>
+                    </c:if>
+                    <c:if test="${cId != 0}">
+                        <td rowspan="50">${order.sumprice}</td>
+                    </c:if>
+
                 </c:if>
             </tr>
         </c:forEach>
