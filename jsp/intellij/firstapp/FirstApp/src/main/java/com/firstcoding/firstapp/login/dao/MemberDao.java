@@ -11,7 +11,8 @@ public interface MemberDao {
     int insertMember(Connection conn, Member member) throws SQLException;
 
     // 회원 존재 여부 확인
-    Member selectByUidPw(Connection conn, String uid, String pw);
+    Member selectByUidPw(Connection conn, String uid, String pw) throws SQLException;
 
+    int updateUUID(Connection conn, int idx, String uuid) throws SQLException;
 
 }

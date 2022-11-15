@@ -7,6 +7,7 @@ import com.firstcoding.firstapp.util.ConnectionUtil;
 import lombok.Cleanup;
 import lombok.extern.log4j.Log4j2;
 
+import java.rmi.ConnectIOException;
 import java.sql.Connection;
 
 @Log4j2
@@ -37,6 +38,24 @@ public class MemberService {
         @Cleanup Connection conn = ConnectionUtil.getInstance().getConnection();
 
         int result = dao.insertMember(conn, member);
+
+        return result;
+    }
+
+    public Member login(String uid, String pw) throws Exception {
+
+        @Cleanup Connection conn = ConnectionUtil.getInstance().getConnection();
+
+        Member member = dao.selectByUidPw(conn, uid, pw);
+
+        return member;
+    }
+
+    public int updateUUID(int idx, String uuid) throws Exception {
+
+        @Cleanup Connection conn = ConnectionUtil.getInstance().getConnection();
+
+        int result = dao.updateUUID(conn, idx, uuid);
 
         return result;
     }

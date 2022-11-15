@@ -17,7 +17,6 @@ public class MemberRegController extends HttpServlet {
 
         log.info("회원 가입 폼 진입...");
 
-
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/member/regform.jsp");
         dispatcher.forward(request, response);
 
@@ -54,7 +53,7 @@ public class MemberRegController extends HttpServlet {
             log.info("회원 가입 처리 성공!!");
         }
 
-        response.sendRedirect("/index.jsp"); // 임시로 인덱스로 보냄.
+        response.sendRedirect("/app/index.jsp"); // 임시로 인덱스로 보냄.
 
     }
 }
