@@ -13,6 +13,9 @@ public interface MemberDao {
     // 회원 존재 여부 확인
     Member selectByUidPw(Connection conn, String uid, String pw) throws SQLException;
 
+    // 로그인 컨트롤러 포스트에서
     int updateUUID(Connection conn, int idx, String uuid) throws SQLException;
+
+    Member selectByUUID(Connection conn, String uuid) throws SQLException;
 
 }

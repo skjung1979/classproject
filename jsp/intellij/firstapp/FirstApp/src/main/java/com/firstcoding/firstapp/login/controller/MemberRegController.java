@@ -41,9 +41,7 @@ public class MemberRegController extends HttpServlet {
         int result = 0;
 
         try {
-
             result = MemberService.getInstance().insertMember(member); // service가 싱글톤이라 이렇게 호출함
-
         } catch (Exception e) {
             //throw new RuntimeException(e);
             e.printStackTrace();

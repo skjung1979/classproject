@@ -52,4 +52,27 @@ public class MemberDaoImpl implements MemberDao {
 
         return result;
     }
+
+    @Override
+    public Member selectByUUID(Connection conn, String uuid) throws SQLException {
+
+        String sql = "select * from member where uuid=?";
+        @Cleanup PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1, uuid);
+        @Cleanup ResultSet rs = pstmt.executeQuery();
+
+        Member member = null;
+
+        if (rs.next()){
+            // 빌더 패턴 이용하여 member 생성
+            member = Member.builder()
+                    .idx(rs.getInt(1))
+                    .uuid(rs.getString(2))
+                    .pw(rs.getString(3))
+                    .uuid(rs.getString(4))
+                    .build();
+        }
+        
+        return member;
+    }
 }

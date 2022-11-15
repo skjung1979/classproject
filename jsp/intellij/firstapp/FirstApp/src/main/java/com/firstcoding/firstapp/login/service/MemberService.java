@@ -60,4 +60,24 @@ public class MemberService {
         return result;
     }
 
+    // uuid를 가지고 Member객체를 가져오는 메소드
+    public Member selectByUUID(String uuid) throws Exception {
+
+        Member member = new Member();
+        @Cleanup Connection conn = ConnectionUtil.getInstance().getConnection();
+        member = dao.selectByUUID(conn, uuid);
+
+        return member;
+    }
+
 }
+
+
+
+
+
+
+
+
+
+

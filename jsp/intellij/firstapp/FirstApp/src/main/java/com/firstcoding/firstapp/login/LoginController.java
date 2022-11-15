@@ -45,6 +45,7 @@ public class LoginController extends HttpServlet {
             // idremember를 위한 쿠키 생성
             Cookie c = new Cookie("reId", userid);
             c.setMaxAge(60 * 60 * 24 * 180); // 사용기간 설정 ex) 6개월
+            c.setPath("/");
             response.addCookie(c); // 생성한 쿠키 객체를 저장한다.
         } else {
             // 아이디 저장 체크를 해제하는 경우
