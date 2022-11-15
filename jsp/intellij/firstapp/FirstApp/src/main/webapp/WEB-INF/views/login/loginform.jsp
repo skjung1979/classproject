@@ -17,7 +17,7 @@
   <table>
     <tr>
       <td>ID</td>
-      <td><input type="text" name="userid"></td>
+      <td><input type="text" name="userid" value="${cookie.reId.value}"></td>
     </tr>
     <tr>
       <td>PW</td>
@@ -25,7 +25,7 @@
     </tr>
     <tr>
       <td></td>
-      <td>아이디 저장하기 <input type="checkbox" name="idremember"></td>
+      <td>아이디 저장하기 <input type="checkbox" name="idremember" ${cookie.reId.value ne vull ? 'checked' : ''}></td>
     </tr>
     <tr>
       <td></td>
