@@ -15,21 +15,22 @@ public class MyPageController extends HttpServlet {
 
         log.info("Mypage 진입");
 
+        // 필터 처리 했으므로 모두 주석 처리함
         // 현재 로그인 상태인지 확인해야 함
-        HttpSession session = request.getSession();
+       /* HttpSession session = request.getSession();
+*/
+     /*   if (session.isNew()){ // 세션이 새로 생성되었다면
+            log.info("비 로그인 상태 ...");
+            response.sendRedirect("/app/login");
+            return; // 아래 dispatcher로 접근하지 않도록 함.
+        }*/
 
-        if (session.isNew()){ // 세션이 새로 생성되었다면
+       /* if (session.getAttribute("loginInfo") == null){
             log.info("비 로그인 상태 ...");
             response.sendRedirect("/app/login");
             return; // 아래 dispatcher로 접근하지 않도록 함.
         }
-
-        if (session.getAttribute("loginInfo") == null){
-            log.info("비 로그인 상태 ...");
-            response.sendRedirect("/app/login");
-            return; // 아래 dispatcher로 접근하지 않도록 함.
-        }
-
+*/
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/mypage/mypage.jsp");
         dispatcher.forward(request, response);
