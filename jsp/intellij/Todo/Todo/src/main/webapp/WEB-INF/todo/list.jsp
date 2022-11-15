@@ -24,7 +24,7 @@ To change this template use File | Settings | File Templates.
     </style>
 </head>
 <body>
-<h1>${title}</h1> <%--리스트 서블릿에서 불어왔음--%>
+<h1>${title} &lt;<a href="/">HOME</a>&gt;</h1> <%--리스트 서블릿에서 불어왔음--%>
 <hr>
 <table>
     <tr>

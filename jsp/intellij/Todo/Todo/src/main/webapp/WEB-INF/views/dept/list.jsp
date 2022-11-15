@@ -12,7 +12,7 @@
     <title>부서리스트</title>
 </head>
 <body>
-<h1>부서리스트</h1>
+<h1>부서리스트 &lt;<a href="/">HOME</a>&gt;</h1>
 <hr>
 <table>
   <tr>

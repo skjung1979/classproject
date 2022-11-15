@@ -1,5 +1,7 @@
 package com.todo.todo.book;
 
+import com.todo.todo.customer.Customer;
+import com.todo.todo.orders.Orders;
 import com.todo.todo.util.ConnectionUtil;
 import lombok.Cleanup;
 
@@ -51,6 +53,37 @@ public class BookDao {
         pstmt.setString(2, book.getPublisher());
         pstmt.setInt(3, book.getPrice());
         pstmt.setInt(4, book.getBookId());
+
+        result = pstmt.executeUpdate();
+
+        return result;
+    }
+
+    public List<Customer> custSelectAll(Connection conn) throws SQLException {
+
+        List<Customer> list = new ArrayList<>();
+        String sql = "select * from customer";
+        @Cleanup PreparedStatement pstmt = conn.prepareStatement(sql);
+        @Cleanup ResultSet rs = pstmt.executeQuery();
+
+        while (rs.next()){
+
+            list.add(new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+        }
+        return list;
+    }
+
+    public int ordersInsert(Connection conn, Orders ord) throws SQLException {
+
+        System.out.println("BookDao에서 ord.getSaleprice "+ ord.getSaleprice());
+
+        int result = 0;
+        String sql = "insert into orders (custid, bookid, saleprice, orderdate) values (?, ?, ?, ?)";
+        @Cleanup PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setInt(1,ord.getCustid());
+        pstmt.setInt(2,ord.getBookid());
+        pstmt.setInt(3, ord.getSaleprice());
+        pstmt.setString(4,ord.getOrderdate());
 
         result = pstmt.executeUpdate();
 

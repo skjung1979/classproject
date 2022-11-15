@@ -27,7 +27,7 @@
   </style>
 </head>
 <body>
-<h1>Book List</h1>
+<h1>Book List &lt;<a href="/">HOME</a>&gt;</h1>
 <hr>
 <table>
   <tr>
@@ -35,6 +35,7 @@
     <th>도서명</th>
     <th>출판사명</th>
     <th>가격</th>
+    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
   </tr>
 <c:forEach var="book" items="${list}">
   <tr>
@@ -42,6 +43,19 @@
     <td><a href="/book/modify?bookId=${book.bookId}">${book.bookName}</a></td>
     <td>${book.publisher}</td>
     <td>${book.price}</td>
+   <td>
+      <form method="post" style="display: inline">
+        구매자:
+      <select style="display: inline" name="custId">
+        <c:forEach var="cust" items="${custList}">
+        <option value="${cust.custId}">${cust.custnm}</option>
+        </c:forEach>
+      </select>
+      <input type="hidden" name="bookId" value="${book.bookId}">
+      <input type="hidden" name="price" value="${book.price}">
+          <input type="submit" value="구매하기">
+      </form>
+    </td>
   </tr>
 </c:forEach>
 
