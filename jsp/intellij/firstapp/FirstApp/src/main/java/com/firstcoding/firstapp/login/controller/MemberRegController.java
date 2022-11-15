@@ -27,11 +27,11 @@ public class MemberRegController extends HttpServlet {
 
         log.info("회원 가입 처리 doPost() 진입");
 
-        // 사용자 입력 데이터 받기
+        // 사용자 입력 데이터 받고,
         String uid = request.getParameter("uid");
         String pw = request.getParameter("pw");
 
-        // uid외 pw만 갖는 객체를 생성한다. DTO에서 @Builder 롬복을 추가했기 때문!
+        // 입력받은 uid와 pw만 갖는 객체를 생성한다. 빌더 패턴을 이용해도 좋고, 세터를 이용해도 좋다.
         Member member = Member.builder()
                 .uid(uid)
                 .pw(pw)
@@ -41,7 +41,8 @@ public class MemberRegController extends HttpServlet {
         int result = 0;
 
         try {
-            result = MemberService.getInstance().insertMember(member); // service가 싱글톤이라 이렇게 호출함
+            // 입력받은 uid와 pw가 담긴 member를 전달하며 MemberService의 insert()메소드를 호출한다. 싱글톤이라 객체는 생성하지 않고, getInstance()로 호출함
+            result = MemberService.getInstance().insertMember(member);
         } catch (Exception e) {
             //throw new RuntimeException(e);
             e.printStackTrace();
@@ -51,7 +52,7 @@ public class MemberRegController extends HttpServlet {
             log.info("회원 가입 처리 성공!!");
         }
 
-        response.sendRedirect("/app/index.jsp"); // 임시로 인덱스로 보냄.
+        response.sendRedirect("/app/index.jsp"); // 회원 가입 성공 후 index.jsp화면으로 이동.
 
     }
 }

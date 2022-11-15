@@ -28,8 +28,7 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        // 입력 받은 데이터 처리
-
+        // 입력 받은 데이터를 변수에 담는다.
         String userid = request.getParameter("userid");
         String pw = request.getParameter("pw");
         String idremember = request.getParameter("idremember");
@@ -40,54 +39,45 @@ public class LoginController extends HttpServlet {
         log.info("idremember: " + idremember); // on 또는 null로 값이 넘어옴
         log.info("rememberme: " + rememberMe); // on 또는 null로 값이 넘어옴
 
-        // idremember가 null이 아니면 userid를 쿠키에 저장
-        if (idremember != null) {
-            // idremember를 위한 쿠키 생성
-            Cookie c = new Cookie("reId", userid);
-            c.setMaxAge(60 * 60 * 24 * 180); // 사용기간 설정 ex) 6개월
-            c.setPath("/");
-            response.addCookie(c); // 생성한 쿠키 객체를 저장한다.
-        } else {
+        // idremember(아이디저장)가 null이 아니면 userid를 쿠키에 저장
+        if (idremember != null) { // 아이디 저장이 체크 되었다면,
+            Cookie c = new Cookie("reId", userid); // 아이디 저장을 위한 쿠키 객체 생성
+            c.setMaxAge(60 * 60 * 24 * 180); // 사용기간 6개월로 설정
+            c.setPath("/"); // 경로 세팅
+            response.addCookie(c); // 생성한 쿠키 객체를 브라우저의 쿠키에 추가한다.
+            log.info("아이디 저장 체크 상태 : " + c.getValue());
+        } else if (idremember == null){ // 아이디 저장을 체크하지 않았다면,
             // 아이디 저장 체크를 해제하는 경우
-            Cookie c = new Cookie("reId", userid);
-            c.setMaxAge(0); // 사용기간을 0으로 하면 쿠키를 삭제하는 것이므로.
+            Cookie c = new Cookie("reId", userid); // 아이디 저장 체크 되지 않은 상태라도 쿠키 객체를 생성
+            c.setMaxAge(0); // 사용기간을 0으로 하면 쿠키를 삭제하는 효과가 나타남
+            c.setValue("");
             response.addCookie(c);
+            log.info("아이디 저장 체크 해제 상태 : " + c.getValue());
         }
 
-
         // 현재 세션으로 객체 생성한다. <- 로그인 처리를 위한 기본 작업
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(); // 로그인 처리를 위해 현재 세션 객체 생성
 
-        // 아이디와 패스워드 비교 -> 실제로는... db에 저장되어 있는 회원 정보에서 id, pw가 일치하는지
-        // 지금은 임시로 id, pw가 같으면 로그인 처리를 한다. -> session 속성에 회원의 정보를 저장
-//        if (userid.equals(pw)){
-//            session.setAttribute("loginInfo", "로그인 되었음!"); // 로그인 후 보여줄 메시지 속성을 세팅함
-//            response.sendRedirect("/app/index.jsp"); // 로그인 정보가 일치하면 메인 페이지로 이동함!
-//        } else {
-//            response.sendRedirect("/app/login"); // 로그인 정보 일치하지 않으면 다시 로그인 화면으로!
-//        }
-
-        // 실제 DB data와 비교하여 로그인 처리를 한다.
+        // 아이디와 패스워드 비교 -> db에 저장되어 있는 회원 정보에서 id, pw가 일치하는지 -> 일치하면 로그인 성공
         try {
-            Member member = MemberService.getInstance().login(userid, pw);
+            Member member = MemberService.getInstance().login(userid, pw); // 입력 받은 userid와 pw로 로그인 진행
 
-            if (member == null) {
-                response.sendRedirect("/app/login?error=nf");
+            if (member == null) { // 만약 로그인 진행 결과 반환값이 null이면 아이디와 패스워드가 일치하는 정보가 없는 것
+                response.sendRedirect("/app/login?error=nf"); // 파라미터를 로그인창으로 보내서 로그인창에서 아이디,패스워드 경고창이 뜨도록 작성한다.
                 return;
             }
-            // 로그인이 성공적으로 되면,
-            // rememberme 값이 on이면 -> 회원 DB의 uuid에 난수 발생시켜 업데이트함!!! 단, 로그인 되었을때!!!
-            if (rememberMe != null && rememberMe.equals("on")) {
-
+            // 로그인이 성공적으로 된 상태인 이곳에서
+            // 로그인 유지를 체크(rememberme 값이 on)하면 -> member테이블의 uuid 컬럼에 난수 발생시킨 uuid를 업데이트한다.
+            if (rememberMe != null && rememberMe.equals("on")) { // 로그인 유지 체크(rememberMe 체크가 null이 아니거나 on인 상태)했다면
 
                 // Cookie에 저장, DB 업데이트
-                UUID uuid = UUID.randomUUID(); // 난수 발생
-                Cookie c = new Cookie("uuid", uuid.toString()); // 난수 변수를 담은 쿠키 객체 생성
-                c.setMaxAge(60 * 60 * 24 * 30); // 한달
-                response.addCookie(c); // 쿠키 객체를 쿠키에 추가
+                UUID uuid = UUID.randomUUID(); // uuid난수를 발생하여 uuid 변수에 담고,
+                Cookie c1 = new Cookie("uuid", uuid.toString()); // 난수uudid의 스트링 값을 uuid에 담아  쿠키 객체를 생성한다.
+                c1.setMaxAge(60 * 60 * 24 * 30); // 한달
+                response.addCookie(c1); // 쿠키 객체를 쿠키에 추가
 
                 // 로그인한 사용자의 정보로 uuid 업데이트 진행!!!
-                MemberService.getInstance().updateUUID(member.getIdx(), uuid.toString());
+                MemberService.getInstance().updateUUID(member.getIdx(), uuid.toString()); // 그리고 idx와 uuid를 매개 변수로 넘겨 member테이블의 uuid컬럼을 업데이트한다.
             }
 
             // 아이디와 비번이 일치하는 회원이 존재 -> 로그인 처리

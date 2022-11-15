@@ -26,7 +26,7 @@
     </tr>
     <tr>
       <td></td>
-      <td>아이디 저장하기 <input type="checkbox" name="idremember" ${cookie.reId.value ne vull ? 'checked' : ''}></td>
+      <td>아이디 저장하기 <input type="checkbox" name="idremember" ${cookie.reId.value ne null ? 'checked' : ''}></td>
     </tr>
     <tr>
       <td></td>

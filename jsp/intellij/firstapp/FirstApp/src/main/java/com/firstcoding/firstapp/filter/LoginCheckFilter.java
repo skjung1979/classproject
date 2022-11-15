@@ -35,24 +35,24 @@ public class LoginCheckFilter implements Filter {
         // 현재 세션 구하기
         HttpSession session = req.getSession();
 
-        if (session.getAttribute("loginInfo") == null){
+        if (session.getAttribute("loginInfo") == null){ // 현재 세션에서 loginInfo 값이 null이면,
 
             // 쿠키 체크: uuid . 생성한 findCookie메소드 이용
-            Cookie cookie = findCookie(req.getCookies(), "uuid");
+            Cookie cookie = findCookie(req.getCookies(), "uuid"); // 쿠키를 체크해서 uuid가 있는지 찾아 그 결과를 cookie에 담는다.
 
-            if (cookie != null) {
-                String uuid = cookie.getValue();
+            if (cookie != null) { // 찾은 cookie가 null이 아니면,
+                String uuid = cookie.getValue(); // 찾은 cookie의 value를 uuid에 담는다.
 
                 log.info("uuid Cookie에 존재");
 
                 // DB에서 uuide값(자동로그인을 위한 값)을 가지는 회원 데이터를 찾는다.
                 try {
-                    Member member = MemberService.getInstance().selectByUUID(uuid);
+                    Member member = MemberService.getInstance().selectByUUID(uuid); // DB로 담겨진 uuid를 넘겨서 member 테이블의 uuid 컬럼 중에 일치하는 것이 있는지 확인한다.
 
                     // 찾은 결과 member가 널이 아니면... 세션 loginInfo에 member.getUid()를 담는다.
-                    if (member != null){
+                    if (member != null){ // DB 검색 반환 값인 member가 null이 아니면,
                         log.info("uuid 값을 가지고 있는 회원의 정보로 로그인 처리");
-                        session.setAttribute("loginInfo", member.getUid());
+                        session.setAttribute("loginInfo", member.getUid()); // 세션의 loginInfo에 member.getUid()를 담는다.
                     }
 
                 } catch (Exception e) {
@@ -60,14 +60,14 @@ public class LoginCheckFilter implements Filter {
                     e.printStackTrace();
                 }
 
-                // 여기까지 잘 오면, 아래는 가지 않고, 빠져 나가야한다.
+                // 여기까지 잘 오면, 아래(로그인페이지로 이동시키는 곳)까지 가지 않고, 빠져 나가야한다.
                 chain.doFilter(request, response);
                 return;
 
             }
 
             log.info("비 로그인 상태 -> 로그인 페이지로 이동");
-            res.sendRedirect("/app/login");
+            res.sendRedirect("/app/login"); // 위 작업을 모두 거쳤는데, 모두 null이라면 로그인 페이지로 이동해라!
             return;
         }
 
