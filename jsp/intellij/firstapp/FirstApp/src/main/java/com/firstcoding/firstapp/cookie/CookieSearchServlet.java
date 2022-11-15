@@ -17,7 +17,7 @@ public class CookieSearchServlet extends HttpServlet {
         Cookie[] cookies = request.getCookies();
         for (int i=0; i<cookies.length; i++){
             Cookie c = cookies[i];
-            if (cookieName.equals(c.getName())){
+            if (cookieName.equals(c.getValue())){
                 value = c.getValue();
                 break;
             }
