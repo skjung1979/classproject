@@ -4,8 +4,11 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import jdk.jfr.Registered;
 import org.example.di.domain.Member;
+import org.springframework.stereotype.Repository;
 
+@Repository // -> memberDao라는 이름으로 등록이 된다.
 public class MemberDao implements Dao {
 	
 	private static long nextId = 0;

@@ -3,7 +3,7 @@ package org.example.di.dao;
 
 import org.example.di.domain.Member;
 
-public interface Dao {
+public interface Dao  {
 
     Member selectByEmail(String email);
 

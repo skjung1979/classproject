@@ -7,22 +7,23 @@ import org.example.di.exception.IdPasswordNotMatchingException;
 import org.example.di.exception.MemberNotFoundException;
 import org.example.di.service.ChangePasswordService;
 import org.example.di.service.MemberRegisterService;
+import org.example.di.service.MemberRegisterService2;
+import org.springframework.context.support.GenericXmlApplicationContext;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class MainForAssembler {
+public class MainForSpring {
 
     private static Assembler assembler = new Assembler();
 
-    /*
-     * private static MemberRegisterService registerService =
-     *
-     * assembler.getRegistService();
-     */
+    private static GenericXmlApplicationContext ctx = null; // 스프링의 DI설정 - IOC/DI 작업을 위한 필수 클래스 선언
 
     public static void main(String[] args) throws IOException {
+
+        // ctx = new GenericXmlApplicationContext("classpath:appCtx.xml"); // 스프링의 DI설정 - IOC/DI 작업 클래스 생성 (xml파일 경로 갖고!)
+        ctx = new GenericXmlApplicationContext("classpath:appCtx1.xml"); // 스프링의 DI설정 - 프로퍼티 방식 생성
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
@@ -60,8 +61,9 @@ public class MainForAssembler {
 
         // 원래는 MemberRegisterService service = new MemberRegisterService(); 이렇게 해야하지만,
         // 아래와 같이 조립기를 통해서 주입을 받는다.
-        // 이 역할을 컨테이너가 하게 되는 것이다.
-        MemberRegisterService service = assembler.getMemberRegisterService();
+        //MemberRegisterService service = assembler.getMemberRegisterService();
+        // 위 역할을 이제 컨테이너가 하게 되는 것이다.
+        MemberRegisterService2 service = ctx.getBean("memberregSvc", MemberRegisterService2.class);
 
         RegisterRequest request = new RegisterRequest();
         request.setEmail(args[1]);
@@ -94,7 +96,9 @@ public class MainForAssembler {
         }
 
 
-        ChangePasswordService service = assembler.getChangePasswordService();
+        //ChangePasswordService service = assembler.getChangePasswordService();
+        // 위 역할을 이제 컨테이너가 하게 되는 것이다.
+        ChangePasswordService service = ctx.getBean("memberPwSvc", ChangePasswordService.class);
 
         try {
             service.changePassword(args[1], args[2], args[3]);
