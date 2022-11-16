@@ -73,6 +73,7 @@ public class LoginController extends HttpServlet {
                 UUID uuid = UUID.randomUUID(); // uuid난수를 발생하여 uuid 변수에 담고,
                 Cookie c1 = new Cookie("uuid", uuid.toString()); // 난수uudid의 스트링 값을 uuid에 담아  쿠키 객체를 생성한다.
                 c1.setMaxAge(60 * 60 * 24 * 30); // 한달
+                c1.setPath("/app");
                 response.addCookie(c1); // 쿠키 객체를 쿠키에 추가
 
                 // 로그인한 사용자의 정보로 uuid 업데이트 진행!!!
