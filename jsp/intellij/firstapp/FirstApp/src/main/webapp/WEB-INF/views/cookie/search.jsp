@@ -14,7 +14,7 @@
 
 검색 쿠키 이름: ${param.cname}
 <br>
-쿠키 검색 결과: ${searchResult}
+쿠키 검색 결과: ${result}
 <br>
 <a href="/app/cookie/create">쿠키 생성</a> <%--절대경로--%>
 <br>

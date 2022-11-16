@@ -43,14 +43,13 @@ public class LoginController extends HttpServlet {
         if (idremember != null) { // 아이디 저장이 체크 되었다면,
             Cookie c = new Cookie("reId", userid); // 아이디 저장을 위한 쿠키 객체 생성
             c.setMaxAge(60 * 60 * 24 * 180); // 사용기간 6개월로 설정
-            c.setPath("/"); // 경로 세팅
+            c.setPath("/app"); // contextPath를 별도로 설정했다면 경로 세팅해야 한다.
             response.addCookie(c); // 생성한 쿠키 객체를 브라우저의 쿠키에 추가한다.
             log.info("아이디 저장 체크 상태 : " + c.getValue());
-        } else if (idremember == null){ // 아이디 저장을 체크하지 않았다면,
-            // 아이디 저장 체크를 해제하는 경우
+        } else { // 아이디 저장을 체크하지 않았다면,
             Cookie c = new Cookie("reId", userid); // 아이디 저장 체크 되지 않은 상태라도 쿠키 객체를 생성
             c.setMaxAge(0); // 사용기간을 0으로 하면 쿠키를 삭제하는 효과가 나타남
-            c.setValue("");
+            c.setPath("/app"); // contextPath를 별도로 설정했다면 경로 세팅해야 한다.
             response.addCookie(c);
             log.info("아이디 저장 체크 해제 상태 : " + c.getValue());
         }
