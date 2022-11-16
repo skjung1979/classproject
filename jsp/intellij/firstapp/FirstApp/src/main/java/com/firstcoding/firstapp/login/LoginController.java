@@ -62,7 +62,7 @@ public class LoginController extends HttpServlet {
             Member member = MemberService.getInstance().login(userid, pw); // 입력 받은 userid와 pw로 로그인 진행
 
             if (member == null) { // 만약 로그인 진행 결과 반환값이 null이면 아이디와 패스워드가 일치하는 정보가 없는 것
-                response.sendRedirect("/app/login?error=nf"); // 파라미터를 로그인창으로 보내서 로그인창에서 아이디,패스워드 경고창이 뜨도록 작성한다.
+                response.sendRedirect("/app/login?error=nf"); // 파라미터를 login.jspt로 보내서 아이디,패스워드 경고창이 뜨도록 작성한다.
                 return;
             }
             // 로그인이 성공적으로 된 상태인 이곳에서
