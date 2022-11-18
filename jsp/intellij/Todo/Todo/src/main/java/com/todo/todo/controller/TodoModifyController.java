@@ -3,20 +3,32 @@ package com.todo.todo.controller;
 import com.todo.todo.domain.TodoDTO;
 import com.todo.todo.service.TodoService;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "TodoEditController", value = "/todo/TodoModify")
+@Controller
+@RequestMapping("/todo/TodoModify")
 @Log4j2
-public class TodoModifyController extends HttpServlet {
+public class TodoModifyController {
 
-    TodoService service = new TodoService();
+    private final TodoService service;
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public TodoModifyController(TodoService service) {
+        this.service = service;
+    }
+
+    @GetMapping
+    public String putModify(
+            HttpServletRequest request,
+            HttpServletResponse response
+    ) {
 
         System.out.println("modify get 들어옴");
 
@@ -39,17 +51,20 @@ public class TodoModifyController extends HttpServlet {
 
         request.setAttribute("todo", result);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/todo/modify.jsp");
-        dispatcher.forward(request, response);
+        return "todo/modify";
+
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    @PostMapping
+    public String postModify(
+            HttpServletRequest request,
+            HttpServletResponse response
+    ) {
 
         log.info("modify post 들어옴");
 
         // 사용자가 수정한 데이터를 업데이트 처리
-        request.setCharacterEncoding("utf-8");
         String tno = request.getParameter("tno");
         String todo = request.getParameter("todo");
         String memo = request.getParameter("memo");
@@ -75,15 +90,11 @@ public class TodoModifyController extends HttpServlet {
             throw new RuntimeException(e);
         }
 
-        if (result > 0){
+        if (result > 0) {
             System.out.println("도서 변경 완료!!!!");
         }
 
-
-        // Service로 전송하면 응답은 int로 온다. (insert, update, delete의 결과는 int로 오므로)
-
-        // 수정되면 리스트로 보내야 중복 수정이 안된다.
-        response.sendRedirect("/todo/TodoList");
-
+        // 수정되면 리스트로 보낸다.
+        return "/todo/TodoList";
     }
 }

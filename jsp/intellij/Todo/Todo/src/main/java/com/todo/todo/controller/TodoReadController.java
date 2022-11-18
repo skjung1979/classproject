@@ -4,20 +4,30 @@ import com.sun.tools.javac.comp.Todo;
 import com.todo.todo.domain.TodoDTO;
 import com.todo.todo.service.TodoService;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "TodoReadController", value = "/todo/TodoRead")
+@Controller
+@RequestMapping("/todo/TodoModify")
 @Log4j2
-public class TodoReadController extends HttpServlet {
+public class TodoReadController {
 
-    TodoService service = new TodoService();
-    
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private final TodoService service;
+    public TodoReadController(TodoService service){
+        this.service = service;
+    }
+
+    @GetMapping
+    public String getRead(
+            HttpServletRequest request,
+            HttpServletResponse response
+    ){
 
         log.info("todo read 들어옴");
 
@@ -41,9 +51,9 @@ public class TodoReadController extends HttpServlet {
 
         request.setAttribute("todo", result);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/todo/read.jsp");
-        dispatcher.forward(request, response);
-
+        return "todo/read";
     }
+    
+
 
 }

@@ -3,24 +3,37 @@ package com.todo.todo.controller;
 import com.todo.todo.domain.TodoDTO;
 import com.todo.todo.service.TodoService;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "TodoListController", value = "/todo/TodoList")
-@Log4j2
-public class TodoListController extends HttpServlet {
 
-    TodoService service = new TodoService();
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+@Controller
+@RequestMapping("/todo/TodoList")
+@Log4j2
+public class TodoListController{
+
+    private final TodoService service;
+
+    public TodoListController (TodoService service){
+        this.service = service;
+    }
+
+    @GetMapping
+    public String getTodoList(
+            HttpServletRequest request,
+            HttpServletResponse response
+    ){
+
+
+
+
 
         log.info("todo list 들어옴");
 
@@ -31,17 +44,14 @@ public class TodoListController extends HttpServlet {
         List<TodoDTO> list = new ArrayList<>();
 
         try {
-            list = service.selectAll();
+           // 여기를 어떻게?? list = TodoService.selectAll(dao);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
         request.setAttribute("list", list);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/todo/list.jsp");
-
-        dispatcher.forward(request, response);
-
+        return "todo/list";
     }
 
 }
