@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
@@ -15,25 +14,20 @@ import java.util.List;
 
 
 @Controller
-@RequestMapping("/todo/TodoList")
 @Log4j2
 public class TodoListController{
 
-    private final TodoService service;
+    private final TodoService todoService;
 
-    public TodoListController (TodoService service){
-        this.service = service;
+    public TodoListController(TodoService todoService) {
+        this.todoService = todoService;
     }
 
-    @GetMapping
+    @GetMapping("/todo/TodoList")
     public String getTodoList(
             HttpServletRequest request,
             HttpServletResponse response
     ){
-
-
-
-
 
         log.info("todo list 들어옴");
 
@@ -44,9 +38,10 @@ public class TodoListController{
         List<TodoDTO> list = new ArrayList<>();
 
         try {
-           // 여기를 어떻게?? list = TodoService.selectAll(dao);
+           list = todoService.selectAll();
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            //throw new RuntimeException(e);
+            e.printStackTrace();
         }
 
         request.setAttribute("list", list);
