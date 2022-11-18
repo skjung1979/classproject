@@ -1,31 +1,45 @@
 package com.todo.todospring.util;
 
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
+
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 
 public class ConnectionProvider {
 
-/*
-    private Connection conn;
-    private ConnectionProvider instance = new ConnectionProvider();
-    private ConnectionProvider(){}
+    private HikariDataSource ds;
 
-    public ConnectionProvider getInstance(){
+    private static ConnectionProvider instance = new ConnectionProvider();
+
+    private ConnectionProvider(){
+
+        HikariConfig config = new HikariConfig();
+        config.setDriverClassName("com.mysql.cj.jdbc.Driver");
+        config.setJdbcUrl("jdbc:mysql://localhost:3307/project");
+        config.setUsername("scott");
+        config.setPassword("tiger");
+        // 2022.11.14 추가설정
+        config.setConnectionTimeout(30000); // client app에서 connection 을 받기까지 기다리는 최대 시간 설정
+        config.setMaximumPoolSize(20);      // pool 이 가지는 최대 connection 수 설정 : 기본값은 10
+        config.setMaxLifetime(1800000);     // connection 최대 유지 시간 설정
+
+        config.addDataSourceProperty("cachePrepStmts", true);
+        config.addDataSourceProperty("prepStmtCacheSize", 250);
+        config.addDataSourceProperty("prepStmtCacheSqlLimit", 2048);
+
+        ds = new HikariDataSource(config);
+
+    }
+
+    public static ConnectionProvider getInstance(){
         return instance;
     }
-*/
 
-    public static Connection getConnection() throws ClassNotFoundException, SQLException {
 
-        // 예외 처리를 여기서 하지 않고, 메소드를 호출한 곳에서 처리하도록 던진다.
-        Class.forName("com.mysql.cj.jdbc.Driver"); // 이 라인은 생략해도 된다.
-
-        // 예외 처리를 여기서 하지 않고, 메소드를 호출한 곳에서 처리하도록 던진다.
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/project", "scott", "tiger");
-
-        return conn;
+    public Connection getConnection() throws Exception{
+        return ds.getConnection();
     }
+
 }
 
 

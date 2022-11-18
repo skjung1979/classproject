@@ -2,85 +2,113 @@ package com.todo.todospring.dao;
 
 import com.todo.todospring.domain.TodoDTO;
 import lombok.Cleanup;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Repository;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Repository(value = "todoDao")
+@Log4j2
 public class TodoDaoImpl implements TodoDao {
 
+    @Override
+    public List<TodoDTO> selectAll(Connection conn) throws SQLException {
 
-    public int insertTodo(Connection conn, String todo, String dueDate, boolean finished) throws SQLException {
+        List<TodoDTO> result = null;
+
+        @Cleanup PreparedStatement pstmt = conn.prepareStatement("Select * from tododto");
+        @Cleanup ResultSet rs = pstmt.executeQuery();
+
+        // 결과 row 체크 후 반복 여부 진행
+        if (rs.next()){
+            result = new ArrayList<>();
+            do {
+                result.add(toTodoDto(rs));
+            } while (rs.next());
+        } else {
+            // 비어 있는 리스트 생성 : null 값으로 반화할 경우 상황에 따라 null 비교하는 구문이 필요!!
+            result = Collections.emptyList();;
+        }
+
+        return result;
+    }
+
+    private TodoDTO toTodoDto(ResultSet rs) throws SQLException {
+
+        TodoDTO dto = new TodoDTO(
+                rs.getLong(1),
+                rs.getString(2),
+                rs.getDate(4).toLocalDate(),
+                rs.getBoolean(5));
+
+        /*
+        TodoDTO dto = TodoDTO.builder()
+            .tno(rs.getLong(1))
+            .todo(rs.getString(2))
+            .dueDate(rs.getDate(3).toLocalDate())
+            .finished(rs.getBoolean(4))
+            .build();
+        */
+
+        return dto;
+
+    }
+
+    @Override
+    public TodoDTO selectByTno(Connection conn, long tno) throws SQLException {
+
+        TodoDTO todoDTO = null;
+
+        @Cleanup PreparedStatement pstmt = conn.prepareStatement("Select * from tododto where tno=?");
+        pstmt.setLong(1, tno);
+        @Cleanup ResultSet rs = pstmt.executeQuery();
+
+        if(rs.next()){
+            todoDTO = toTodoDto(rs);
+        }
+
+        return todoDTO;
+    }
+
+    @Override
+    public int insertToDo(Connection conn, TodoDTO dto) throws SQLException {
 
         int result = 0;
-        String sql = "insert into tododto (todo, dueDates, finished) values(?, ?, ?)";
+        String sql = "insert into tododto (todo, dueDates) values (?, ?)";
         @Cleanup PreparedStatement pstmt = conn.prepareStatement(sql);
-        pstmt.setString(1, todo);
-        pstmt.setString(2, dueDate);
-        pstmt.setBoolean(3, finished);
+        pstmt.setString(1, dto.getTodo());
+        pstmt.setDate(2, Date.valueOf(dto.getDueDate()));
         result = pstmt.executeUpdate();
 
         return result;
     }
 
-    public List<TodoDTO> selectAll(Connection conn) throws SQLException {
-
-        List<TodoDTO> list = new ArrayList<>();
-        String sql = "select tno, todo, duDates, finished from tododto;";
-        @Cleanup PreparedStatement pstmt = conn.prepareStatement(sql);
-        @Cleanup ResultSet rs = pstmt.executeQuery();
-
-        while (rs.next()){
-            list.add(new TodoDTO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getBoolean(4)));
-        }
-    return list;
-    }
-
-    public TodoDTO selectBy(Connection conn, int tno) throws SQLException {
-        TodoDTO tododto = null;
-        String sql = "select tno, todo, duDates, finished from tododto where tno=?";
-        @Cleanup PreparedStatement pstmt = conn.prepareStatement(sql);
-        pstmt.setInt(1, tno);
-        @Cleanup ResultSet rs = pstmt.executeQuery();
-
-//        tno	int
-//        todo	varchar(20)
-//        memo	varchar(50)
-//        dueDates	varchar(20)
-//        finished	tinyint(1)
-
-        while (rs.next()){
-            tododto = new TodoDTO(rs.getInt("tno"), rs.getString("todo"), rs.getString("duDates"), rs.getBoolean("finished"));
-        }
-
-        return tododto;
-    }
-
+    @Override
     public int updateTodo(Connection conn, TodoDTO dto) throws SQLException {
+
+        log.info("TodoDaoImpl.updateTodo()까지 넘어온 todoDTO => " + dto);
+
         int result = 0;
         String sql = "update tododto set todo=?, duedates=?, finished=? where tno=?";
         @Cleanup PreparedStatement pstmt = conn.prepareStatement(sql);
-        pstmt.setString(1,dto.getTodo());
-        pstmt.setString(3,dto.getDueDate());
-        pstmt.setBoolean(4,dto.isFinished());
-        pstmt.setLong(5,dto.getTno());
-
+        pstmt.setString(1, dto.getTodo());
+        pstmt.setDate(2, Date.valueOf(dto.getDueDate()));
+        pstmt.setBoolean(3, dto.isFinished());
+        pstmt.setLong(4, dto.getTno());
         result = pstmt.executeUpdate();
 
         return result;
     }
 
-    public int deleteTodo(Connection conn, int tno) throws SQLException {
+    @Override
+    public int deleteTodo(Connection conn, long dto) throws SQLException {
 
         int result = 0;
         String sql = "delete from tododto where tno=?";
         @Cleanup PreparedStatement pstmt = conn.prepareStatement(sql);
-        pstmt.setInt(1, tno);
-
+        pstmt.setLong(1, dto);
         result = pstmt.executeUpdate();
 
         return result;

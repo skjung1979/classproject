@@ -2,6 +2,8 @@ package com.todo.todospring.domain;
 
 import lombok.*;
 
+import java.time.LocalDate;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -12,7 +14,7 @@ public class TodoDTO {
 
     private long tno;
     private String todo;
-    private String dueDate;
+    private LocalDate dueDate;
     private boolean finished;
 
 }
