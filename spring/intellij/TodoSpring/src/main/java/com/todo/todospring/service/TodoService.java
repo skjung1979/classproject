@@ -1,6 +1,6 @@
 package com.todo.todospring.service;
 
-import com.todo.todospring.dao.Dao;
+import com.todo.todospring.dao.TodoDao;
 import com.todo.todospring.domain.TodoDTO;
 import com.todo.todospring.util.ConnectionUtil;
 import lombok.Cleanup;
@@ -14,7 +14,7 @@ import java.util.List;
 public class TodoService {
 
     @Autowired
-    private Dao dao;
+    private TodoDao dao;
 
     public List<TodoDTO> getTodoList(){
 
