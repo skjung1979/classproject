@@ -24,6 +24,7 @@
   <input type="reset">
   <input type="submit" value="수정">
 </form>
+<%--삭제 버튼은 따로 Form으로 묶는다.--%>
 <form action="/todo/TodoRemove" method="post" style="display:inline;">
   <input type="hidden" name="tno" value="${todo.tno}">
   <input type="submit" value="삭제">

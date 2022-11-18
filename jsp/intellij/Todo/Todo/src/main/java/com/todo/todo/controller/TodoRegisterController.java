@@ -4,6 +4,8 @@ import com.todo.todo.domain.TodoDTO;
 import com.todo.todo.service.TodoService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.*;
@@ -22,6 +24,7 @@ public class TodoRegisterController {
         this.service = service;
     }
 
+    @GetMapping
     public String getReg(
             HttpServletRequest request,
             HttpServletResponse response
@@ -33,6 +36,7 @@ public class TodoRegisterController {
 
     }
 
+    @PostMapping
     public String postReg(
             HttpServletRequest request,
             HttpServletResponse response
@@ -54,7 +58,7 @@ public class TodoRegisterController {
             throw new RuntimeException(e);
         }
 
-        return "/todo/TodoList";
+        return "redirect:/todo/TodoList";
 
     }
 

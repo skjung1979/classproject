@@ -95,6 +95,6 @@ public class TodoModifyController {
         }
 
         // 수정되면 리스트로 보낸다.
-        return "/todo/TodoList";
+        return "redirect:/todo/TodoList";
     }
 }

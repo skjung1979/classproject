@@ -14,7 +14,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 
 @Controller
-@RequestMapping("/todo/TodoModify")
+@RequestMapping("/todo/TodoRead")
 @Log4j2
 public class TodoReadController {
 

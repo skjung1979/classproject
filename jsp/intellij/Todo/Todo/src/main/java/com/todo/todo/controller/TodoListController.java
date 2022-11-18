@@ -24,10 +24,7 @@ public class TodoListController{
     }
 
     @GetMapping("/todo/TodoList")
-    public String getTodoList(
-            HttpServletRequest request,
-            HttpServletResponse response
-    ){
+    public String getTodoList(HttpServletRequest request){
 
         log.info("todo list 들어옴");
 

@@ -3,6 +3,7 @@ package com.todo.todo.controller;
 import com.todo.todo.service.TodoService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -22,6 +23,7 @@ public class TodoRemoveController {
         this.todoService = todoService;
     }
 
+    @PostMapping
     public String removedTodo(
             @RequestParam("tno") int tno
     ){
@@ -44,7 +46,7 @@ public class TodoRemoveController {
         log.info("도서 삭제 완료!!!");
 
         // 삭제후 로직이 중복으로 작동하지 않도록 redirect로 리스트 페이지로 이동시킨다.
-        return "redirect: /todo/TodoList";
+        return "redirect:/todo/TodoList";
     }
 
 
