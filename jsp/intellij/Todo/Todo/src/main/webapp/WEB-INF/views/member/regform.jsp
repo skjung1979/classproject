@@ -10,11 +10,19 @@
 <html>
 <head>
     <title>회원 가입 페이지</title>
+  <style>
+    table {
+      padding: 5px;
+    }
+    td{
+      padding: 5px;
+    }
+  </style>
 </head>
 <body>
-<h1>회원 가입 페이지</h1>
+<h1>Todo 회원 가입 페이지</h1>
 <hr>
-<form>
+<form method="post">
 
   <table>
     <tr>
@@ -37,14 +45,9 @@
       <td>이메일: </td>
       <td><input type="email" placeholder="이메일을 입력하세요." name="useremail" id="useremail"></td>
     </tr>
-    <tr>
-      <td colspan="2"><input type="checkbox" name="idremember" id="idremember"></td>
-    </tr>
-    <tr>
-      <td colspan="2"><input type="email" name="keeplogin" id="keeplogin"></td>
-    </tr>
-    <tr>
-      <td colspan="2"><input type="email"  name="useremail" id="useremail"></td>
+    <tr id="regform">
+      <Td></Td>
+      <td><input type="submit" value="회원가입" ></td>
     </tr>
   </table>
 

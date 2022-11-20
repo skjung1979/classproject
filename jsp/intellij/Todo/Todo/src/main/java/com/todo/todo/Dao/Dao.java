@@ -1,6 +1,7 @@
 package com.todo.todo.Dao;
 
 import com.todo.todo.domain.TodoDTO;
+import com.todo.todo.member.Member;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -18,6 +19,5 @@ public interface Dao {
 
     public int deleteTodo(Connection conn, int tno) throws SQLException;
 
-
-
+    int insertTodoMember(Connection conn, Member member) throws SQLException;
 }

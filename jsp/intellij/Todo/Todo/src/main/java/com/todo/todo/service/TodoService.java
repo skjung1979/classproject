@@ -3,11 +3,11 @@ package com.todo.todo.service;
 import com.todo.todo.Dao.Dao;
 import com.todo.todo.Dao.TodoDao;
 import com.todo.todo.domain.TodoDTO;
+import com.todo.todo.member.Member;
 import com.todo.todo.util.ConnectionUtil;
 import lombok.Cleanup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
@@ -85,5 +85,16 @@ public class TodoService {
         result = dao.deleteTodo(conn, tno);
 
         return result;
+    }
+
+    public int insertTodoMember(Member member) throws Exception {
+
+        int result = 0;
+
+        @Cleanup Connection conn = ConnectionUtil.getInstance().getConnection();
+
+        result = dao.insertTodoMember(conn, member);
+
+        return 0;
     }
 }

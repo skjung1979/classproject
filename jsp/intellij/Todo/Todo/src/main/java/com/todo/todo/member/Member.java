@@ -7,6 +7,7 @@ import lombok.*;
 @Getter
 @Setter
 @Builder
+@ToString
 public class Member {
 
 /*    seq	int	NO	PRI		auto_increment

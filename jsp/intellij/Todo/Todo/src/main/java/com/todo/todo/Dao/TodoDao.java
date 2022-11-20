@@ -1,6 +1,8 @@
 package com.todo.todo.Dao;
 
 import com.todo.todo.domain.TodoDTO;
+import com.todo.todo.member.Member;
+import lombok.AllArgsConstructor;
 import lombok.Cleanup;
 import lombok.experimental.UtilityClass;
 import org.springframework.stereotype.Repository;
@@ -79,6 +81,22 @@ public class TodoDao implements Dao {
         pstmt.setInt(1, tno);
 
         result = pstmt.executeUpdate();
+
+        return result;
+    }
+
+    @Override
+    public int insertTodoMember(Connection conn, Member member) throws SQLException {
+
+        String sql = "insert into member_td (membernm, memberid, memberpw, memberphone, memberemail) values (?,?,?,?,?)";
+        @Cleanup PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1, member.getMembernm());
+        pstmt.setString(2, member.getMemberid());
+        pstmt.setString(3, member.getMemberpw());
+        pstmt.setString(4, member.getMemberphone());
+        pstmt.setString(5, member.getMemberemail());
+
+        int result = pstmt.executeUpdate();
 
         return result;
     }
