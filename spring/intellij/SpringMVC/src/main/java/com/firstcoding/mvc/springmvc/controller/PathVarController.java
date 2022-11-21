@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Log4j2
 public class PathVarController {
 
-    // 경로의 일부를 변수처럼 사용한다. 특정 위치에 있는 자원을 가져온다!!
+    // 경로의 일부를 변수처럼 사용한다. 특정 위치에 있는 경로 자원을 가져온다!!
 
     // http://localhost:8080/member/1 <== 뒷 숫자는 변수(idx)처럼 사용하려고 한다.
     // http://localhost:8080/member/11 <== 뒷 숫자는 변수처럼 사용하려고 한다.
