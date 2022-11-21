@@ -18,6 +18,8 @@
 <br>
 <A href="/orders/list">orders list</A>
 <br>
-<A href="/member/order">register for todo member</A>
+<A href="/member/regTodoMember">register for todo member</A>
+<br>
+<A href="/member/loginTodoMember">login for todo member</A>
 </body>
 </html>
