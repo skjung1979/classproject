@@ -1,4 +1,4 @@
-package com.firstcoding.firstapp.login;
+package com.firstcoding.firstapp.login.controller;
 
 import javax.servlet.*;
 import javax.servlet.http.*;

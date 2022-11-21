@@ -1,4 +1,4 @@
-package com.firstcoding.firstapp.login;
+package com.firstcoding.firstapp.login.controller;
 
 import com.firstcoding.firstapp.login.domain.Member;
 import com.firstcoding.firstapp.login.service.MemberService;
