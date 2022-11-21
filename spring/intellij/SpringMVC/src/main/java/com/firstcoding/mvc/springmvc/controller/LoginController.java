@@ -52,7 +52,11 @@ public class LoginController {
         log.info("loginRequest => " + loginRequest);
         log.info("paraMap => " + paraMap);
 
-        return "login/login"; // redirect:/index 이렇게 하면 sendRedirect() 효과가 있다.
+
+        request.getSession().setAttribute("loginInfo", uid); // 로그인 됐다는 설정을 세션에 해 주었음
+
+        //return "login/login"; // redirect:/index 이렇게 하면 sendRedirect() 효과가 있다.
+        return "redirect:/mypage/mypage1";
     }
 
     @GetMapping("/info") // http://localhost:8080/login/info
