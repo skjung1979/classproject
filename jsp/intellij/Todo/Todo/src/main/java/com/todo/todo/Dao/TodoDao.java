@@ -100,4 +100,28 @@ public class TodoDao implements Dao {
 
         return result;
     }
+
+    @Override
+    public Member selectByUidPw(Connection conn, String userid, String userpw) throws SQLException {
+
+        String sql = "select * from member_td where memberid=? and memberpw=?";
+        @Cleanup PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1, userid);
+        pstmt.setString(2, userpw);
+        @Cleanup ResultSet rs = pstmt.executeQuery();
+
+        Member member = null;
+
+        if (rs.next()){
+            member = Member.builder()
+                    .membernm(rs.getString("membernm"))
+                    .memberid(rs.getString("memberid"))
+                    .memberpw(rs.getString("memberpw"))
+                    .memberphone(rs.getString("memberphone"))
+                    .memberemail(rs.getString("memberemail"))
+                    .build();
+        }
+
+        return member;
+    }
 }

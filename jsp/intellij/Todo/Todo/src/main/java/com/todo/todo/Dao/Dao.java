@@ -20,4 +20,6 @@ public interface Dao {
     public int deleteTodo(Connection conn, int tno) throws SQLException;
 
     int insertTodoMember(Connection conn, Member member) throws SQLException;
+
+    Member selectByUidPw(Connection conn, String userid, String userpw) throws SQLException;
 }

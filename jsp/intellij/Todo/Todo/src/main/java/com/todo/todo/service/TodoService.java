@@ -97,4 +97,15 @@ public class TodoService {
 
         return 0;
     }
+
+    public Member login(String userid, String userpw) throws Exception {
+
+        Member member = null;
+
+        @Cleanup Connection conn = ConnectionUtil.getInstance().getConnection();
+
+        Member member = dao.selectByUidPw(conn, userid, userpw);
+
+        return member;
+    }
 }
