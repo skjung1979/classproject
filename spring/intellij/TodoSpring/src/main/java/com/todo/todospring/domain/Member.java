@@ -18,5 +18,13 @@ public class Member {
     private String uname;
     private String uphoto;
 
+    public LoginInfo toLoginInfo(){
+        return LoginInfo.builder()
+                .uid(this.uid)
+                .uname(this.uname)
+                .uphoto(this.uphoto)
+                .build();
+    }
+
 
 }

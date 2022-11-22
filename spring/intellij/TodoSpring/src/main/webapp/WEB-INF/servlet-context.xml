@@ -17,6 +17,7 @@
     <mvc:resources mapping="/css/**" location="/css/"></mvc:resources>
     <mvc:resources mapping="/js/**" location="/js/"></mvc:resources>
     <mvc:resources mapping="/image/**" location="/image/"></mvc:resources>
+    <mvc:resources mapping="/uploadfile/**" location="/uploadfile/"></mvc:resources>
 
     <!-- 뷰에 대한 경로 설정 / prefix는 바꿔도 된다.-->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

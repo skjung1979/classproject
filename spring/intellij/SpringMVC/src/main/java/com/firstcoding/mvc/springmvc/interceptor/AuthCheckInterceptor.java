@@ -11,7 +11,10 @@ import javax.servlet.http.HttpSession;
 public class AuthCheckInterceptor implements HandlerInterceptor {
 
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    public boolean preHandle(
+            HttpServletRequest request,
+            HttpServletResponse response,
+            Object handler) throws Exception {
 
         log.info(">>> 회원 로그인 여부 체크 >>>");
 
