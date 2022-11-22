@@ -78,6 +78,7 @@ public class TodoMemberLoginController {
                 response.addCookie(c1);
 
                 todoService.updateUUID(member.getSeq(), uuid.toString());
+                member.setUuid(uuid.toString());
             }
 
             session.setAttribute("loginInfo", member);

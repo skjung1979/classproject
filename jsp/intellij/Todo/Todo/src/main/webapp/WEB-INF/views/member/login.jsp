@@ -39,14 +39,13 @@
     </tr>
     <tr>
       <td></td>
-      <td><input type="checkbox" name="keeplogin" id="keeplogin"> 로그인 유지</td>
+      <td><input type="checkbox" name="keeplogin" id="keeplogin" ${cookie.uuid.value eq loginInfo.uuid ? 'checked' : ''}> 로그인 유지</td>
     </tr>
     <tr id="loginTdo">
       <Td></Td>
       <td><input type="submit" value="로그인" ></td>
     </tr>
   </table>
-
 </form>
 
 <c:if test="${param.error eq 'e'}">
