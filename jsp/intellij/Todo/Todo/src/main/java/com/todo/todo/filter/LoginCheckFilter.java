@@ -1,5 +1,6 @@
 package com.todo.todo.filter;
 
+import com.sun.tools.javac.comp.Todo;
 import com.todo.todo.member.Member;
 import com.todo.todo.service.TodoService;
 import lombok.extern.log4j.Log4j2;
@@ -12,17 +13,21 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(filterName = "LoginCheckFilter", urlPatterns = "/todo/*")
+@WebFilter(filterName = "LoginCheckFilter", urlPatterns = {"/todo/*"})
 @Log4j2
 public class LoginCheckFilter implements Filter {
 
-    private final TodoService todoService;
+    //
+//    private final TodoService todoService;
+//
+//    public LoginCheckFilter(TodoService todoService) {
+//        this.todoService = todoService;
+//    }
 
-    public LoginCheckFilter(TodoService todoService) {
-        this.todoService = todoService;
-    }
+    //private TodoService service = new TodoService();
 
     public void init(FilterConfig config) throws ServletException {
+
     }
 
     public void destroy() {
@@ -43,7 +48,7 @@ public class LoginCheckFilter implements Filter {
                 String uuid = cookie.getValue();
 
                 try {
-                    Member member = todoService.selectByUUID(uuid);
+                    Member member = TodoService.selectByUUID(uuid);
 
                     if (member != null) {
                         log.info("uuid 값을 가지고 있는 회원의 정보롤 로그인 처리");

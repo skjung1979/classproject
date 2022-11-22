@@ -1,12 +1,10 @@
 package com.todo.todo.service;
 
 import com.todo.todo.Dao.Dao;
-import com.todo.todo.Dao.TodoDao;
 import com.todo.todo.domain.TodoDTO;
 import com.todo.todo.member.Member;
 import com.todo.todo.util.ConnectionUtil;
 import lombok.Cleanup;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -21,6 +19,7 @@ public class TodoService {
         this.dao = dao;
     }
 
+    //public TodoService(){}
 
     public List<TodoDTO> getTodoList(){
 
