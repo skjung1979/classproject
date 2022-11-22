@@ -27,7 +27,7 @@ public class BookListController {
     @GetMapping
     public String getBooklist(HttpServletRequest request, HttpServletResponse response){
 
-        //log.info("booklistcontroller 로그 테스트");
+        log.info("booklistcontroller 로그 테스트");
 
         List<Book> list = new ArrayList<>();
 
@@ -49,7 +49,7 @@ public class BookListController {
     }
 
     @PostMapping
-    public String postBookList(HttpServletRequest request, HttpServletResponse respons){
+    public String postBookList(HttpServletRequest request, HttpServletResponse response){
 
         log.info("BookListController.java doPost()진입 / 구매하기 처리");
 

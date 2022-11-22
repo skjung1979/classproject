@@ -40,7 +40,7 @@
         <property name="defaultEncoding" value="UTF-8"/>
     </bean>
 
-    <bean id="authCheckInterceptor" class="com.todo.todo.interceptor.AuthCheckInterceptor"/>
+<!--    <bean id="authCheckInterceptor" class="com.todo.todo.interceptor.AuthCheckInterceptor"/>-->
 
     <!--    회원 로그인 여부 체크 interceptor 등록 설정-->
     <!--적용해야하는 경로를 추가해야 한다면 아래를 통으로 복사해서 경로를 수정하면 된다.-->
@@ -54,6 +54,5 @@
             <bean class="com.todo.todo.interceptor.AuthCheckInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
-
 
 </beans>
