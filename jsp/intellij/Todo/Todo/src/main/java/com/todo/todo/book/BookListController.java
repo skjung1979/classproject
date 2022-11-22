@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import javax.servlet.http.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -30,7 +29,6 @@ public class BookListController {
         log.info("booklistcontroller 로그 테스트");
 
         List<Book> list = new ArrayList<>();
-
         List<Customer> custList = new ArrayList<>();
 
         try {

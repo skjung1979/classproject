@@ -24,9 +24,7 @@ public class BookService {
 
         @Cleanup Connection conn = ConnectionUtil.getInstance().getConnection();
 
-        list = dao.selectAll(conn);
-
-        return list;
+        return dao.selectAll(conn);
     }
 
     public Book selectBy(int bookId) throws Exception {
@@ -35,9 +33,7 @@ public class BookService {
 
         @Cleanup Connection conn = ConnectionUtil.getInstance().getConnection();
 
-        result = dao.selectBy(conn, bookId);
-
-        return result;
+        return dao.selectBy(conn, bookId);
     }
 
     public int updateBook(Book book) throws Exception {
@@ -46,9 +42,7 @@ public class BookService {
 
         @Cleanup Connection conn = ConnectionUtil.getInstance().getConnection();
 
-        result = dao.updateBook(conn, book);
-
-        return result;
+        return dao.updateBook(conn, book);
     }
 
     public List<Customer> custSelectAll() throws Exception {
@@ -57,9 +51,8 @@ public class BookService {
 
         @Cleanup Connection conn = ConnectionUtil.getInstance().getConnection();
 
-        clist = dao.custSelectAll(conn);
 
-        return clist;
+        return dao.custSelectAll(conn);
     }
 
     public int ordersInsert(Orders ord) throws Exception {
@@ -70,8 +63,6 @@ public class BookService {
 
         System.out.println("BookService에서 ord.getSaleprice : " + ord.getSaleprice());
 
-        result = dao.ordersInsert(conn, ord);
-
-        return result;
+        return dao.ordersInsert(conn, ord);
     }
 }
