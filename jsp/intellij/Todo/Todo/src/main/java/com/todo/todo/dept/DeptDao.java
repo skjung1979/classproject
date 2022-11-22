@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
+@Repository
 public class DeptDao implements Dao {
 
     public List<Dept> selectAll(Connection conn) throws SQLException {

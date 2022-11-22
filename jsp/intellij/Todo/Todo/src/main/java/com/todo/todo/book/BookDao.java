@@ -3,6 +3,8 @@ package com.todo.todo.book;
 import com.todo.todo.customer.Customer;
 import com.todo.todo.orders.Orders;
 import lombok.Cleanup;
+import org.springframework.stereotype.Repository;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,6 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class BookDao implements Dao {
     public List<Book> selectAll(Connection conn) throws SQLException {
 
