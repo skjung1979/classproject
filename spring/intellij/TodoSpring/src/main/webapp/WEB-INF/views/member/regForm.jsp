@@ -14,7 +14,7 @@
 
 <h1>회원가입</h1>
 <hr>
-<form method="post">
+<form method="post" enctype="multipart/form-data">
 
     <table>
         <tr>

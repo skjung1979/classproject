@@ -1,7 +1,9 @@
 package com.todo.todospring.controller;
 
 import com.todo.todospring.domain.MemberRegRequest;
+import com.todo.todospring.service.MemberRegService;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/member/register")
 public class MemberRegController {
 
+    @Autowired
+    private MemberRegService regService;
+
     @GetMapping
     public String getRegForm(){
         return "member/regForm";
@@ -23,11 +28,12 @@ public class MemberRegController {
     public String reg(
             MemberRegRequest regRequest,
             HttpServletRequest request // 실제 저장 경로를 찾기 위해
-    ){
+    ) throws Exception {
 
         log.info(regRequest);
-        log.info(regRequest.toMember());
+        regService.memberReg(regRequest, request);
 
+        //log.info(regRequest.toMember());
 
         return "redirect:/index.jsp";
     }
