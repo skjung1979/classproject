@@ -11,6 +11,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.UUID;
 
 @Controller
 @Log4j2
@@ -33,14 +34,19 @@ public class TodoMemberLoginController {
     public String postLoginTodoMember (
             HttpServletRequest request,
             HttpServletResponse response
-    ){
+    ) {
         String userid = request.getParameter("userid");
         String userpw = request.getParameter("userpw");
-        String idmember = request.getParameter("idremember");
+        String idremember = request.getParameter("idremember");
         String keeplogin = request.getParameter("keeplogin");
 
+        log.info("userid: " + userid);
+        log.info("pw: " + userpw);
+        log.info("idremember: " + idremember); // on 또는 null로 값이 넘어옴
+        log.info("keeklogin: " + keeplogin); // on 또는 null로 값이 넘어옴
+
         // 아이디 저장에 대한 처리: 체크하면 reId 쿠키 생성 아니면 소멸
-        if (idmember != null){
+        if (idremember != null){
             Cookie c = new Cookie("reId", userid);
             c.setMaxAge(60*60*24*180);
             c.setPath("/");
@@ -56,15 +62,31 @@ public class TodoMemberLoginController {
         HttpSession session = request.getSession(); // 로그인 처리를 위해 현재 세션 객체 생성
 
         // 입력받은 아이디와, 패스워드를 DTO에 저장한다.
-        Member member = todoService.login(userid, userpw);
+        try {
+            Member member = todoService.login(userid, userpw);
 
+            if (member == null){
+                return "redirect:/login?error=nf";
+            }
 
+            if (keeplogin != null && keeplogin.equals("on")){
 
+                UUID uuid = UUID.randomUUID();
+                Cookie c1 = new Cookie("uuid", uuid.toString());
+                c1.setMaxAge(60*60*24*30);
+                c1.setPath("/");
+                response.addCookie(c1);
 
+                todoService.updateUUID(member.getSeq(), uuid.toString());
+            }
 
+            session.setAttribute("loginInfo", member.getMemberid());
 
+            return "redirect:/";
 
-        return null;
+        } catch (Exception e) {
+            //throw new RuntimeException(e);
+            return "redirect:/login?error=e";
+        }
     }
-
 }

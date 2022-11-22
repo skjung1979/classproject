@@ -27,7 +27,7 @@
   <table>
     <tr>
       <td>ID: </td>
-      <td><input type="text" placeholder="아이디를 입력하세요." name="userid" id="userid"></td>
+      <td><input type="text" placeholder="아이디를 입력하세요." name="userid" id="userid" value="${cookie.reId.value}"></td>
     </tr>
     <tr>
       <td>PW: </td>
@@ -35,11 +35,11 @@
     </tr>
     <tr>
       <td></td>
-      <td><input type="checkbox" name="idrememeber" id="idremember"> 아이디 저장</td>
+      <td><input type="checkbox" name="idrememeber" id="idremember" ${cookie.reId.value ne null ? 'checked' : ''}> 아이디 저장</td>
     </tr>
     <tr>
       <td></td>
-      <td><input type="checkbox" name="keeplogin" id="keepligin"> 로그인 유지</td>
+      <td><input type="checkbox" name="keeplogin" id="keeplogin"> 로그인 유지</td>
     </tr>
     <tr id="loginTdo">
       <Td></Td>
@@ -48,6 +48,18 @@
   </table>
 
 </form>
+
+<c:if test="${param.error eq 'e'}">
+  <script>
+    alert('오류발생!!');
+  </script>
+</c:if>
+
+<c:if test="${param.error eq 'nf'}">
+  <script>
+    alert('아이디 또는 비밀번호가 틀립니다.');
+  </script>
+</c:if>
 
 </body>
 </html>

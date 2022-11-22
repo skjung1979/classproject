@@ -100,11 +100,27 @@ public class TodoService {
 
     public Member login(String userid, String userpw) throws Exception {
 
-        Member member = null;
-
         @Cleanup Connection conn = ConnectionUtil.getInstance().getConnection();
 
         Member member = dao.selectByUidPw(conn, userid, userpw);
+
+        return member;
+    }
+
+    public int updateUUID(int seq, String toString) throws Exception {
+
+        @Cleanup Connection conn = ConnectionUtil.getInstance().getConnection();
+
+        int result = dao.updateUUID(conn, seq, toString);
+
+        return result;
+    }
+
+    public Member selectByUUID(String uuid) throws Exception {
+
+        Member member = new Member();
+        @Cleanup Connection conn = ConnectionUtil.getInstance().getConnection();
+        member = dao.selectByUUID(conn, uuid);
 
         return member;
     }

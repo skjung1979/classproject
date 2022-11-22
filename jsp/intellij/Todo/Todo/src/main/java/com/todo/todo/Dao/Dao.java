@@ -22,4 +22,8 @@ public interface Dao {
     int insertTodoMember(Connection conn, Member member) throws SQLException;
 
     Member selectByUidPw(Connection conn, String userid, String userpw) throws SQLException;
+
+    int updateUUID(Connection conn, int seq, String toString) throws SQLException;
+
+    Member selectByUUID(Connection conn, String uuid) throws SQLException;
 }
