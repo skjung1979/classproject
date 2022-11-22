@@ -30,5 +30,12 @@
         <property name="defaultEncoding" value="UTF-8"/>
     </bean>
 
+<!--    로그인 체크하는 인터셉터 등록-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/todo/**"/>
+            <bean class="com.todo.todospring.interceptor.AuthCheckInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 
 </beans>
