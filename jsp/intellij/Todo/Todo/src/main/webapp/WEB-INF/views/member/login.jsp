@@ -35,7 +35,7 @@
     </tr>
     <tr>
       <td></td>
-      <td><input type="checkbox" name="idrememeber" id="idremember" ${cookie.reId.value ne null ? 'checked' : ''}> 아이디 저장</td>
+      <td><input type="checkbox" name="idremember" id="idremember" ${cookie.reId.value ne null ? 'checked' : ''}> 아이디 저장</td>
     </tr>
     <tr>
       <td></td>

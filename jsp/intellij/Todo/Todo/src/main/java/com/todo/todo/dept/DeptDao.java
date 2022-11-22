@@ -1,6 +1,7 @@
 package com.todo.todo.dept;
 
 import lombok.Cleanup;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DeptDao {
+public class DeptDao implements Dao {
 
     public List<Dept> selectAll(Connection conn) throws SQLException {
 
@@ -24,5 +25,4 @@ public class DeptDao {
 
         return result;
     }
-
 }

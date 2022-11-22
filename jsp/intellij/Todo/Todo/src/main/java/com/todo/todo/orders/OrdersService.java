@@ -2,14 +2,21 @@ package com.todo.todo.orders;
 
 import com.todo.todo.util.ConnectionUtil;
 import lombok.Cleanup;
+import org.springframework.stereotype.Service;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class OrdersService {
 
-    OrdersDao dao = new OrdersDao();
+    private final Dao dao;
+
+    public OrdersService(Dao dao) {
+        this.dao = dao;
+    }
+
     public List<Orders> ordersSelectAll() throws Exception {
 
         List<Orders> list =  new ArrayList<>();

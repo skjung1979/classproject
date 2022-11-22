@@ -48,7 +48,7 @@ public class LoginCheckFilter implements Filter {
                 String uuid = cookie.getValue();
 
                 try {
-                    Member member = TodoService.selectByUUID(uuid);
+                    Member member =  null; //TodoService.selectByUUID(uuid);
 
                     if (member != null) {
                         log.info("uuid 값을 가지고 있는 회원의 정보롤 로그인 처리");

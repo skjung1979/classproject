@@ -1,5 +1,6 @@
 package com.todo.todo.member;
 
+import com.todo.todo.domain.LoginInfo;
 import lombok.*;
 
 @AllArgsConstructor
@@ -25,5 +26,27 @@ public class Member {
     private String memberphone;
     private String memberemail;
     private String uuid;
+    private String uphoto;
+
+// LogingInfo 참조변수들
+//    private int seq;
+//    private String memberid;
+//    private String membernm;
+//    private String memberphone;
+//    private String memberemail;
+//    private String uphoto;
+    public LoginInfo toLoginInfo(){
+
+        LoginInfo loginInfo = LoginInfo.builder()
+                .seq(seq)
+                .memberid(this.memberid)
+                .membernm(this.membernm)
+                .memberphone(this.memberphone)
+                .memberemail(this.memberemail)
+                .uphoto(this.uphoto)
+                .build();
+
+        return loginInfo;
+    }
 
 }

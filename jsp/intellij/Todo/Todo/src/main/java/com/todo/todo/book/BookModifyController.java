@@ -1,16 +1,27 @@
 package com.todo.todo.book;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
-import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "BookModifyController", value = "/book/modify")
-public class BookModifyController extends HttpServlet {
+@Controller
+@RequestMapping("/book/modify")
 
-    BookService service = new BookService();
-        @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+public class BookModifyController {
+
+    private final BookService bookService;
+
+    public BookModifyController(BookService bookService) {
+        this.bookService = bookService;
+    }
+
+    @GetMapping
+    public String getBookmodify(HttpServletRequest request, HttpServletResponse response){
 
         int bookId = Integer.parseInt(request.getParameter("bookId"));
         System.out.println("도서코드 : " + bookId);
@@ -18,22 +29,19 @@ public class BookModifyController extends HttpServlet {
         Book result = new Book();
 
         try {
-            result = service.selectBy(bookId);
+            result = bookService.selectBy(bookId);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         request.setAttribute("book", result);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/book/modify.jsp");
-        dispatcher.forward(request, response);
-
+        return "views/book/modify";
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @PostMapping
+    public String postBookModify(HttpServletRequest request, HttpServletResponse response){
 
-        request.setCharacterEncoding("utf-8");
         int bookId = Integer.parseInt(request.getParameter("bookId"));
         String bookName = request.getParameter("bookName");
         String publisher = request.getParameter("publisher");
@@ -44,11 +52,11 @@ public class BookModifyController extends HttpServlet {
         int result = 0;
 
         try {
-            result = service.updateBook(book);
+            result = bookService.updateBook(book);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
-        response.sendRedirect("/book/list");
+        return "redirect:/book/list";
     }
 }

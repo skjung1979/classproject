@@ -3,24 +3,33 @@ package com.todo.todo.orders;
 import com.todo.todo.book.BookService;
 import com.todo.todo.customer.Customer;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
-import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "OrdersListController", value = "/orders/list")
+@Controller
+@RequestMapping("/orders/list")
 @Log4j2
-public class OrdersListController extends HttpServlet {
+public class OrdersListController {
 
-    OrdersService service = new OrdersService();
+    private final OrdersService ordersService;
 
-    BookService service2 = new BookService(); // 회원정보 가져오는 메스드 사용을 위해
+   private final BookService bookService;
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public OrdersListController(OrdersService ordersService, BookService bookService) {
+        this.ordersService = ordersService;
+        this.bookService = bookService;
+    }
+
+    @GetMapping
+    public String getOrdersList(HttpServletRequest request, HttpServletResponse response){
 
         log.info("/orders/list 서블릿 진입");
 
@@ -30,8 +39,8 @@ public class OrdersListController extends HttpServlet {
 
         try {
 
-            list = service.ordersSelectAll();
-            custList = service2.custSelectAll();
+            list = ordersService.ordersSelectAll();
+            custList = bookService.custSelectAll();
             request.setAttribute("cId", 0);
 
         } catch (Exception e) {
@@ -44,12 +53,11 @@ public class OrdersListController extends HttpServlet {
         log.info("list 결과 결과");
         log.info(list);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/orders/list.jsp");
-        dispatcher.forward(request, response);
-
+        return "views/orders/list";
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+    @PostMapping
+    public String postOrdersList(HttpServletRequest request, HttpServletResponse response){
 
         log.info("OrdersListController.java doPost()진입 / 고객별 주문조회");
 
@@ -65,13 +73,13 @@ public class OrdersListController extends HttpServlet {
         try {
 
             if (ord.getCustid() == 0){
-                list = service.ordersSelectAll();
+                list = ordersService.ordersSelectAll();
                 request.setAttribute("cId", 0);
             } else {
-                list = service.ordersSelectBy(ord.getCustid());
+                list = ordersService.ordersSelectBy(ord.getCustid());
                 request.setAttribute("cId", ord.getCustid());
             }
-            custList = service2.custSelectAll();
+            custList = bookService.custSelectAll();
 
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -80,9 +88,6 @@ public class OrdersListController extends HttpServlet {
         request.setAttribute("custList", custList);
         request.setAttribute("reSelectList", list);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/orders/list.jsp");
-        dispatcher.forward(request, response);
-
+        return "views/orders/list";
     }
-
 }

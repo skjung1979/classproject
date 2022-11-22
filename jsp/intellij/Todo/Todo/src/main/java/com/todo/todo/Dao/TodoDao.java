@@ -88,17 +88,16 @@ public class TodoDao implements Dao {
     @Override
     public int insertTodoMember(Connection conn, Member member) throws SQLException {
 
-        String sql = "insert into member_td (membernm, memberid, memberpw, memberphone, memberemail) values (?,?,?,?,?)";
+        String sql = "insert into member_td (membernm, memberid, memberpw, memberphone, memberemail, uphoto) values (?,?,?,?,?,?)";
         @Cleanup PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setString(1, member.getMembernm());
         pstmt.setString(2, member.getMemberid());
         pstmt.setString(3, member.getMemberpw());
         pstmt.setString(4, member.getMemberphone());
         pstmt.setString(5, member.getMemberemail());
+        pstmt.setString(6, member.getUphoto());
 
-        int result = pstmt.executeUpdate();
-
-        return result;
+        return pstmt.executeUpdate();
     }
 
     @Override
@@ -120,6 +119,8 @@ public class TodoDao implements Dao {
                     .memberpw(rs.getString("memberpw"))
                     .memberphone(rs.getString("memberphone"))
                     .memberemail(rs.getString("memberemail"))
+                    .uuid(rs.getString("uuid"))
+                    .uphoto(rs.getString("uphoto"))
                     .build();
         }
 

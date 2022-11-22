@@ -1,34 +1,37 @@
 package com.todo.todo.dept;
 
-import javax.servlet.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import javax.servlet.http.*;
-import javax.servlet.annotation.*;
-import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "DeptListController", value = "/dept/list")
-public class DeptListController extends HttpServlet {
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+@Controller
+@RequestMapping("/dept/list")
+public class DeptListController  {
 
-        DeptService service = new DeptService();
+    private final DeptService deptService;
+
+    public DeptListController(DeptService deptService) {
+        this.deptService = deptService;
+    }
+
+    @GetMapping
+    public String getDeptList(HttpServletRequest request, HttpServletResponse response){
 
         System.out.println("dept list get 들어옴...");
 
         List<Dept> list = null;
 
         try {
-            list = service.getList();
+            list = deptService.getList();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
         request.setAttribute("list", list);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/dept/list.jsp");
-        dispatcher.forward(request, response);
-
-
+        return "views/dept/list";
     }
-
 }

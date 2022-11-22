@@ -2,9 +2,7 @@ package com.todo.todo.book;
 
 import com.todo.todo.customer.Customer;
 import com.todo.todo.orders.Orders;
-import com.todo.todo.util.ConnectionUtil;
 import lombok.Cleanup;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookDao {
+public class BookDao implements Dao {
     public List<Book> selectAll(Connection conn) throws SQLException {
 
         String sql = "select * from book";

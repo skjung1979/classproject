@@ -66,7 +66,7 @@ public class TodoMemberLoginController {
             Member member = todoService.login(userid, userpw);
 
             if (member == null){
-                return "redirect:/login?error=nf";
+                return "redirect:/member/loginTodoMember?error=nf";
             }
 
             if (keeplogin != null && keeplogin.equals("on")){
@@ -80,13 +80,14 @@ public class TodoMemberLoginController {
                 todoService.updateUUID(member.getSeq(), uuid.toString());
             }
 
-            session.setAttribute("loginInfo", member.getMemberid());
+            session.setAttribute("loginInfo", member);
+            log.info("로그인 처리 후 member => " + member);
 
             return "redirect:/";
 
         } catch (Exception e) {
             //throw new RuntimeException(e);
-            return "redirect:/login?error=e";
+            return "redirect:/member/loginTodoMember?error=e";
         }
     }
 }

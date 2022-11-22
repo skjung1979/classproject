@@ -1,8 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>JSP - Hello World</title>
+    <title>Todo - SKJUNG</title>
 </head>
 <body>
 <h1><%= "Hello World!" %>
@@ -18,8 +19,16 @@
 <br>
 <A href="/orders/list">orders list</A>
 <br>
+<c:if test="${loginInfo == null}">
 <A href="/member/regTodoMember">register for todo member</A>
 <br>
 <A href="/member/loginTodoMember">login for todo member</A>
+</c:if>
+<c:if test="${loginInfo != null}">
+<A href="/mypage">mypage</A>
+<br>
+<A href="/member/logoutTodoMember">logout</A>
+</c:if>
+
 </body>
 </html>

@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrdersDao {
+public class OrdersDao implements Dao{
     public List<Orders> ordersSelectAll(Connection conn) throws SQLException {
 
         List<Orders> list = new ArrayList<>();

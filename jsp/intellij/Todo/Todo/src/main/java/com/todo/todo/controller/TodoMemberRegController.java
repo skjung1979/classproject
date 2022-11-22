@@ -1,5 +1,6 @@
 package com.todo.todo.controller;
 
+import com.todo.todo.domain.MemberRegRequest;
 import com.todo.todo.member.Member;
 import com.todo.todo.service.TodoService;
 import lombok.extern.log4j.Log4j2;
@@ -34,38 +35,33 @@ public class TodoMemberRegController {
 
     @PostMapping
     public String reTodoMember(
-            HttpServletRequest request,
+            MemberRegRequest regRequest,
+            HttpServletRequest request, // 파일의 실제 저장 경로를 찾기 위한 것
             HttpServletResponse response
-    ){
-        log.info("회원 가인 post 진입");
+    ) throws Exception {
+        log.info("회원 가입 post 진입");
 
+        // 이전 방식(MemberRegRequest DTO를 생성하기 전!
         // 사용자 데이터 전달 받기
-        String memname = request.getParameter("username");
-        String memid = request.getParameter("userid");
-        String mempw = request.getParameter("userpw");
-        String memphone = request.getParameter("userphone");
-        String mememail = request.getParameter("useremail");
+//        String memname = request.getParameter("username");
+//        String memid = request.getParameter("userid");
+//        String mempw = request.getParameter("userpw");
+//        String memphone = request.getParameter("userphone");
+//        String mememail = request.getParameter("useremail");
 
-        Member member = Member.builder()
-                .membernm(memname)
-                .memberid(memid)
-                .memberpw(mempw)
-                .memberphone(memphone)
-                .memberemail(mememail)
-                .build();
+//        Member member = Member.builder()
+//                .membernm(memname)
+//                .memberid(memid)
+//                .memberpw(mempw)
+//                .memberphone(memphone)
+//                .memberemail(mememail)
+//                .build();
 
-        log.info(member);
+        log.info(regRequest);
 
-        int result = 0;
+        todoService.insertTodoMember(regRequest, request);
 
-        try {
-            result = todoService.insertTodoMember(member);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
-
-        return "redirect:/";
+        return "redirect:/member/loginTodoMember";
     }
 
 }

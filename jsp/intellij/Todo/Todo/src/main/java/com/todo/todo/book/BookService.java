@@ -3,16 +3,21 @@ package com.todo.todo.book;
 import com.todo.todo.customer.Customer;
 import com.todo.todo.orders.Orders;
 import com.todo.todo.util.ConnectionUtil;
-import lombok.AllArgsConstructor;
 import lombok.Cleanup;
-
+import org.springframework.stereotype.Service;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class BookService {
 
-    BookDao dao = new BookDao();
+    private final Dao dao;
+
+    public BookService(Dao dao) {
+        this.dao = dao;
+    }
+
     public List<Book> selectAll() throws Exception {
 
         List<Book> list = new ArrayList<>();

@@ -3,23 +3,29 @@ package com.todo.todo.book;
 import com.todo.todo.customer.Customer;
 import com.todo.todo.orders.Orders;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.*;
 import javax.servlet.http.*;
-import javax.servlet.annotation.*;
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-@WebServlet(name = "BookListController", value = "/book/list")
+@Controller
+@RequestMapping("/book/list")
 @Log4j2
-public class BookListController extends HttpServlet {
+public class BookListController {
 
-    BookService service = new BookService();
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private final BookService bookService;
+
+    public BookListController(BookService bookService) {
+        this.bookService = bookService;
+    }
+
+    @GetMapping
+    public String getBooklist(HttpServletRequest request, HttpServletResponse response){
 
         //log.info("booklistcontroller 로그 테스트");
 
@@ -29,8 +35,8 @@ public class BookListController extends HttpServlet {
 
         try {
 
-            list = service.selectAll();
-            custList = service.custSelectAll();
+            list = bookService.selectAll();
+            custList = bookService.custSelectAll();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -39,12 +45,11 @@ public class BookListController extends HttpServlet {
         request.setAttribute("list", list);
         request.setAttribute("custList", custList);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/book/list.jsp");
-        dispatcher.forward(request, response);
-
+        return "views/book/list";
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse respons)throws ServletException, IOException {
+    @PostMapping
+    public String postBookList(HttpServletRequest request, HttpServletResponse respons){
 
         log.info("BookListController.java doPost()진입 / 구매하기 처리");
 
@@ -69,7 +74,7 @@ public class BookListController extends HttpServlet {
         int result = 0;
 
         try {
-            result = service.ordersInsert(ord);
+            result = bookService.ordersInsert(ord);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -78,8 +83,7 @@ public class BookListController extends HttpServlet {
             log.info("구매하기 DB처리완료!!!!");
         }
 
-        respons.sendRedirect("/orders/list");
-
+        return "redirect:/orders/list";
     }
 
 }

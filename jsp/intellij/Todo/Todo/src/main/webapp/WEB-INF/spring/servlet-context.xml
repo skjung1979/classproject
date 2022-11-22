@@ -17,6 +17,8 @@
     <mvc:resources mapping="/css/**" location="/css/"></mvc:resources>
     <mvc:resources mapping="/js/**" location="/js/"></mvc:resources>
     <mvc:resources mapping="/image/**" location="/image/"></mvc:resources>
+    <!-- 파일 업로드 설정 -->
+    <mvc:resources mapping="/uploadfile/**" location="/uploadfile/"></mvc:resources>
 
     <!--        http://localhost:8080/resources/image/mini.jpg-->
     <!--        http://localhost:8080/css/default.css-->
@@ -32,5 +34,26 @@
         <property name="prefix" value="/WEB-INF/"></property>
         <property name="suffix" value=".jsp"></property>
     </bean>
+
+    <!--    파일 업로드를 위한 multipartResolver 등록-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="UTF-8"/>
+    </bean>
+
+    <bean id="authCheckInterceptor" class="com.todo.todo.interceptor.AuthCheckInterceptor"/>
+
+    <!--    회원 로그인 여부 체크 interceptor 등록 설정-->
+    <!--적용해야하는 경로를 추가해야 한다면 아래를 통으로 복사해서 경로를 수정하면 된다.-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/mypage/**"/>
+            <mvc:mapping path="/todo/**"/>
+            <mvc:mapping path="/dept/**"/>
+            <mvc:mapping path="/book/**"/>
+            <mvc:mapping path="/orders/**"/>
+            <bean class="com.todo.todo.interceptor.AuthCheckInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
 
 </beans>
