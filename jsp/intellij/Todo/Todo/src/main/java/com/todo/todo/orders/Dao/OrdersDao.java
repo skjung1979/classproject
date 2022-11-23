@@ -1,5 +1,6 @@
-package com.todo.todo.orders;
+package com.todo.todo.orders.Dao;
 
+import com.todo.todo.orders.domain.Orders;
 import lombok.Cleanup;
 import org.springframework.stereotype.Repository;
 import java.sql.Connection;

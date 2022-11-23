@@ -1,3 +1,5 @@
+package com.todo.todo.filter;
+
 import lombok.extern.log4j.Log4j2;
 
 import javax.servlet.*;
@@ -5,7 +7,7 @@ import javax.servlet.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
-@WebFilter(filterName = "UTF8Filter", urlPatterns = {"/*"})
+@WebFilter(filterName = "com.todo.todo.filter.UTF8Filter", urlPatterns = {"/*"})
 @Log4j2
 public class UTF8Filter implements Filter {
     public void init(FilterConfig config) throws ServletException {

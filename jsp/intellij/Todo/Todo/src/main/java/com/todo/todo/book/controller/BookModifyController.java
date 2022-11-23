@@ -1,13 +1,13 @@
-package com.todo.todo.book;
+package com.todo.todo.book.controller;
 
+import com.todo.todo.book.domain.Book;
+import com.todo.todo.book.service.BookService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.*;
 import javax.servlet.http.*;
-import java.io.IOException;
 
 @Controller
 @RequestMapping("/book/modify")

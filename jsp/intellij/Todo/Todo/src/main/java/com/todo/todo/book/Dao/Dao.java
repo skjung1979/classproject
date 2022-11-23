@@ -1,7 +1,8 @@
-package com.todo.todo.book;
+package com.todo.todo.book.Dao;
 
+import com.todo.todo.book.domain.Book;
 import com.todo.todo.customer.Customer;
-import com.todo.todo.orders.Orders;
+import com.todo.todo.orders.domain.Orders;
 import org.springframework.stereotype.Repository;
 import java.sql.Connection;
 import java.sql.SQLException;
