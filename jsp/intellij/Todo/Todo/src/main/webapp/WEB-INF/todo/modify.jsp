@@ -19,7 +19,7 @@
   할일: <input type="text" name="todo" value="${todo.todo}"><br>
   설명: <textarea name="memo">${todo.memo}</textarea><br>
   마감일: <input type="date" name="dueDate" value="${todo.dueDate}"><br>
-  완료여부: <input type="checkbox" value="${todo.finished ? '0' : '1'}" ${todo.finished ? 'checked' : ''} name="finished"> <%--수정화면에서 check를 안하면 finished는 null표현됨--%>
+  완료여부: <input type="checkbox" <%--value="${todo.finished ? '0' : '1'}"--%> ${todo.finished ? 'checked' : ''} name="finished"> <%--수정화면에서 check를 안하면 finished는 null표현됨--%>
   <br><br>
   <input type="reset">
   <input type="submit" value="수정">

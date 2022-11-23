@@ -1,4 +1,4 @@
-package com.todo.todospring.formatter;
+package com.todo.todo.formatter;
 
 import org.springframework.format.Formatter;
 import java.text.ParseException;
