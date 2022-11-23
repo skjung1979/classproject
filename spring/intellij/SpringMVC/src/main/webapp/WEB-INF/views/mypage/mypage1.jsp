@@ -13,6 +13,8 @@
 <body>
 
 <h1>My Page 1</h1>
+<h1>type: ${param.type}</h1>
+<h1>msg: ${param.msg}</h1>
 
 </body>
 </html>

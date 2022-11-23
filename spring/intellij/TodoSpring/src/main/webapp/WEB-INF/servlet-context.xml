@@ -45,6 +45,7 @@
             <set>
                 <bean class="com.todo.todospring.formatter.LocalDateFormatter"/>
                 <!-- 여기에 여러개 등록 하면 된다. -->
+                <bean class="com.todo.todospring.formatter.CheckBoxFormatter"/>
             </set>
         </property>
     </bean>

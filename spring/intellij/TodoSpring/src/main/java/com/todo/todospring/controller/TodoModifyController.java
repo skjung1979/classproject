@@ -43,7 +43,6 @@ public class TodoModifyController {
                         ){
 
         //TodoDTO todoDTO = new TodoDTO(tno, todo, LocalDate.parse(dueDate), finished == null ? false : true);
-
         log.info("todoDTO확인: " + todoDTO);
 
         todoService.modify(todoDTO);

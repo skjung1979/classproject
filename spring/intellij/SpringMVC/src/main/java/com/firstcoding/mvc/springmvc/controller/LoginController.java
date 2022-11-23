@@ -5,6 +5,8 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.datatransfer.DataFlavor;
@@ -38,7 +40,8 @@ public class LoginController {
             // ex) ${loginRequest}
             // 하지만 이름을 지정 할 수도 있다. 아래처럼
             @ModelAttribute("req") LoginRequest loginRequest2, // => jsp에서 공유하면 ${req}로 사용하면 된다. (객체 방식 유용!!!)
-            @RequestParam Map paraMap   // Map 형태로 받는다. (String, String)으로 받아온다.
+            @RequestParam Map paraMap,   // Map 형태로 받는다. (String, String)으로 받아온다.
+            RedirectAttributes redirectAttributes
     ){ // <- 매개변수에 받아오는 파라미터를 담아오는 여러가지 방법들
 
         String uId2 = request.getParameter("uid");  // 위 매개변수에서 request를 받았다.
@@ -52,11 +55,13 @@ public class LoginController {
         log.info("loginRequest => " + loginRequest);
         log.info("paraMap => " + paraMap);
 
-
         request.getSession().setAttribute("loginInfo", uid); // 로그인 됐다는 설정을 세션에 해 주었음
 
+        redirectAttributes.addAttribute("type", "test");
+        redirectAttributes.addFlashAttribute("msg", "에러메시지"); // 보내야할 데이터,, 메시지 등
+
         //return "login/login"; // redirect:/index 이렇게 하면 sendRedirect() 효과가 있다.
-        return "redirect:/mypage/mypage1";
+        return "redirect:/mypage/mypage1"; // redirect 후 예상치 ?type=test
     }
 
     @GetMapping("/info") // http://localhost:8080/login/info
