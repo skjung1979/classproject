@@ -1,5 +1,6 @@
-package com.todo.todo.dept;
+package com.todo.todo.dept.Dao;
 
+import com.todo.todo.dept.domain.Dept;
 import lombok.Cleanup;
 import org.springframework.stereotype.Repository;
 

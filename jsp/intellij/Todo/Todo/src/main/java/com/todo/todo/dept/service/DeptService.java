@@ -1,5 +1,7 @@
-package com.todo.todo.dept;
+package com.todo.todo.dept.service;
 
+import com.todo.todo.dept.Dao.Dao;
+import com.todo.todo.dept.domain.Dept;
 import com.todo.todo.util.ConnectionUtil;
 import lombok.Cleanup;
 import org.springframework.stereotype.Service;

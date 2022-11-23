@@ -1,5 +1,7 @@
-package com.todo.todo.dept;
+package com.todo.todo.dept.controller;
 
+import com.todo.todo.dept.domain.Dept;
+import com.todo.todo.dept.service.DeptService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
