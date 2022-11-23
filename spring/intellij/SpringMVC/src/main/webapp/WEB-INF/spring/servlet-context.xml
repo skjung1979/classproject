@@ -39,12 +39,24 @@
     </bean>
 
     <!-- 회원 로그인 여부 체크 interceptor 등록 설정!!!! -->
-    <!-- 적용해야하는 경로는 추가해야 한다면 아래를 통으로 복사해서 경로를 수정하면 된다. -->
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/mypage/**"/>
             <bean class="com.firstcoding.mvc.springmvc.interceptor.AuthCheckInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
+
+    <!-- 포매터 등록 시작-->
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="formatters">
+            <set>
+                <bean class="com.firstcoding.mvc.springmvc.formatter.LocalDateFormatter"/>
+                <!-- 여기에 여러개 등록 하면 된다. -->
+            </set>
+        </property>
+    </bean>
+
+    <mvc:annotation-driven conversion-service="conversionService"/>
+    <!-- 포매터 등록 끝-->
 
 </beans>

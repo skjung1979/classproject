@@ -6,9 +6,19 @@
         </Console>
     </Appenders>
     <Loggers>
+
+        <logger name="org.springframework" level="debug" additivity="false">
+            <AppenderRef ref="Console"/>
+        </logger>
+
+<!--        현재패키지경로 com-->
+<!--        info-->
+<!--        false-->
+
         <Root level="info">
             <AppenderRef ref="Console"/>
         </Root>
+
     </Loggers>
 </Configuration>
 

@@ -34,13 +34,15 @@ public class TodoModifyController {
     }
 
     @PostMapping
-    public String modify(@RequestParam("tno") long tno,
-                         @RequestParam("todo") String todo,
-                         @RequestParam("dueDate") String dueDate,
-                         @RequestParam(value = "finished", required = false) String finished // requred = false이면 null 들어와도 수용한다.
+    public String modify(
+//            @RequestParam("tno") long tno,
+//                         @RequestParam("todo") String todo,
+//                         @RequestParam("dueDate") String dueDate,
+//                         @RequestParam(value = "finished", required = false) String finished // requred = false이면 null 들어와도 수용한다.
+            TodoDTO todoDTO
                         ){
 
-        TodoDTO todoDTO = new TodoDTO(tno, todo, LocalDate.parse(dueDate), finished == null ? false : true);
+        //TodoDTO todoDTO = new TodoDTO(tno, todo, LocalDate.parse(dueDate), finished == null ? false : true);
 
         log.info("todoDTO확인: " + todoDTO);
 

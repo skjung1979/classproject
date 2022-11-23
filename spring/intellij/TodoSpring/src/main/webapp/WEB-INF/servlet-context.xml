@@ -39,4 +39,21 @@
         </mvc:interceptor>
     </mvc:interceptors>
 
+    <!-- 포매터 등록 시작-->
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="formatters">
+            <set>
+                <bean class="com.todo.todospring.formatter.LocalDateFormatter"/>
+                <!-- 여기에 여러개 등록 하면 된다. -->
+            </set>
+        </property>
+    </bean>
+
+    <mvc:annotation-driven conversion-service="conversionService"/>
+    <!-- 포매터 등록 끝-->
+
+
+
+
+
 </beans>
