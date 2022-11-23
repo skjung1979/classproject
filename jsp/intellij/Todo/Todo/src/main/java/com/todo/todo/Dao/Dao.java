@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface Dao {
 
-    public int insertTodo(Connection conn, String todo, String memo, String dueDate, boolean finished) throws SQLException;
+    public int insertTodo(Connection conn, TodoDTO todoDTO) throws SQLException;
 
     public List<TodoDTO> selectAll(Connection conn) throws SQLException;
 

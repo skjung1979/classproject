@@ -20,19 +20,11 @@ public class DeptListController  {
     }
 
     @GetMapping
-    public String getDeptList(HttpServletRequest request, HttpServletResponse response){
+    public String getDeptList(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         System.out.println("dept list get 들어옴...");
 
-        List<Dept> list = null;
-
-        try {
-            list = deptService.getList();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
-        request.setAttribute("list", list);
+        request.setAttribute("list", deptService.getList());
 
         return "views/dept/list";
     }

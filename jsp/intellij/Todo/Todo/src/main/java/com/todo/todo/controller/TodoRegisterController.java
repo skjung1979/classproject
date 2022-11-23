@@ -29,31 +29,28 @@ public class TodoRegisterController {
             HttpServletRequest request,
             HttpServletResponse response
     ){
-
         log.info("register get 들어옴");
 
         return "todo/register";
 
     }
-
     @PostMapping
     public String postReg(
-            HttpServletRequest request,
-            HttpServletResponse response
+            TodoDTO todoDTO
     ){
 
         // 사용자가 입력한 데이터를 받아서 처리하는 로직
         log.info("register post 들어옴");
 
-        String todo = request.getParameter("todo");
+       /* String todo = request.getParameter("todo");
         String memo = request.getParameter("memo");
         String dueDate = request.getParameter("dueDate");
         boolean finished = false;
-
+*/
         //TodoDTO todoDTO = new TodoDTO(todo, memo, dueDate, finished);
 
         try {
-            int result = service.insertTodo(todo, memo, dueDate, finished);
+            int result = service.insertTodo(todoDTO);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

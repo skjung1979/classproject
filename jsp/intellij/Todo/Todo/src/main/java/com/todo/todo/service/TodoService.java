@@ -36,12 +36,12 @@ public class TodoService {
     }
 
 
-    public int insertTodo(String todo, String memo, String dueDate, boolean finished) throws Exception {
+    public int insertTodo(TodoDTO todoDTO) throws Exception {
         int result = 0;
 
         @Cleanup Connection conn = ConnectionUtil.getInstance().getConnection();
 
-        result = dao.insertTodo(conn, todo, memo, dueDate, finished);
+        result = dao.insertTodo(conn, todoDTO);
 
         return result;
     }

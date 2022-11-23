@@ -34,7 +34,6 @@ public class OrdersListController {
         log.info("/orders/list 서블릿 진입");
 
         List<Orders> list = new ArrayList<>();
-
         List<Customer> custList = new ArrayList<>();
 
         try {

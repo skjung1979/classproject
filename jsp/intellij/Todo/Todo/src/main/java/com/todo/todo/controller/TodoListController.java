@@ -20,7 +20,7 @@ public class TodoListController{
     }
 
     @GetMapping("/todo/TodoList")
-    public String getTodoList(HttpServletRequest request){
+    public String getTodoList(HttpServletRequest request) throws Exception {
 
         log.info("todo list 들어옴");
 
@@ -28,16 +28,15 @@ public class TodoListController{
         request.setAttribute("title", "Todo List");
         //request.setAttribute("todoList", new TodoService().getTodoList()); // TodoServie를 생성해서 변수에 담지 않았고, 바로 메소드를 호출한다.
 
-        List<TodoDTO> list = new ArrayList<>();
-
+       /* List<TodoDTO> list = new ArrayList<>();
         try {
-           list = todoService.selectAll();
+           list = ;
         } catch (Exception e) {
             //throw new RuntimeException(e);
             e.printStackTrace();
-        }
+        }*/
 
-        request.setAttribute("list", list);
+        request.setAttribute("list", todoService.selectAll());
 
         return "todo/list";
     }

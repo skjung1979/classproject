@@ -17,15 +17,15 @@ import java.util.List;
 public class TodoDao implements Dao {
 
 
-    public int insertTodo(Connection conn, String todo, String memo, String dueDate, boolean finished) throws SQLException {
+    public int insertTodo(Connection conn, TodoDTO todoDTO) throws SQLException {
 
         int result = 0;
         String sql = "insert into tododto (todo, memo, dueDates, finished) values(?, ?, ?, ?)";
         @Cleanup PreparedStatement pstmt = conn.prepareStatement(sql);
-        pstmt.setString(1, todo);
-        pstmt.setString(2, memo);
-        pstmt.setString(3, dueDate);
-        pstmt.setBoolean(4, finished);
+        pstmt.setString(1, todoDTO.getTodo());
+        pstmt.setString(2, todoDTO.getMemo());
+        pstmt.setString(3, todoDTO.getDueDate());
+        pstmt.setBoolean(4, todoDTO.isFinished());
         result = pstmt.executeUpdate();
 
         return result;
