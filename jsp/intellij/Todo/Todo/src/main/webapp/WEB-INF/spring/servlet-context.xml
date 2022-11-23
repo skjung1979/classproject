@@ -40,7 +40,7 @@
         <property name="defaultEncoding" value="UTF-8"/>
     </bean>
 
-<!--    <bean id="authCheckInterceptor" class="com.todo.todo.interceptor.AuthCheckInterceptor"/>-->
+    <!--    <bean id="authCheckInterceptor" class="com.todo.todo.interceptor.AuthCheckInterceptor"/>-->
 
     <!--    회원 로그인 여부 체크 interceptor 등록 설정-->
     <!--적용해야하는 경로를 추가해야 한다면 아래를 통으로 복사해서 경로를 수정하면 된다.-->
@@ -55,4 +55,15 @@
         </mvc:interceptor>
     </mvc:interceptors>
 
-</beans>
+    <!-- formatter 등록 시작 -->
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="formatters">
+            <set>
+                <bean class="com.todo.todo.formatter.LocalDateFormatter"/>
+            </set>
+        </property>
+    </bean>
+    <!-- formatter 등록 끝 -->
+
+
+    </beans>
