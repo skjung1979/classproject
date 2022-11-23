@@ -54,7 +54,7 @@
   </script>
 </c:if>
 
-<c:if test="${param.error eq 'nf'}">
+<c:if test="${param.type eq 'nf'}">
   <script>
     alert('아이디 또는 비밀번호가 틀립니다.');
   </script>

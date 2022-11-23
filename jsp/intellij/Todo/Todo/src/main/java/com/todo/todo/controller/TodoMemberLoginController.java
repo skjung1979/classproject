@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,7 +35,8 @@ public class TodoMemberLoginController {
     @PostMapping
     public String postLoginTodoMember (
             HttpServletRequest request,
-            HttpServletResponse response
+            HttpServletResponse response,
+            RedirectAttributes redirectAttributes // 필요한 쿼리스트링을 구성하기 위함
     ) {
         String userid = request.getParameter("userid");
         String userpw = request.getParameter("userpw");
@@ -66,7 +69,11 @@ public class TodoMemberLoginController {
             Member member = todoService.login(userid, userpw);
 
             if (member == null){
-                return "redirect:/member/loginTodoMember?error=nf";
+
+                redirectAttributes.addAttribute("type", "nf");
+
+                //return "redirect:/member/loginTodoMember?error=nf";
+                return "redirect:/member/loginTodoMember";
             }
 
             if (keeplogin != null && keeplogin.equals("on")){
@@ -88,7 +95,10 @@ public class TodoMemberLoginController {
 
         } catch (Exception e) {
             //throw new RuntimeException(e);
-            return "redirect:/member/loginTodoMember?error=e";
+
+            redirectAttributes.addAttribute("type", "e");
+
+            return "redirect:/member/loginTodoMember";
         }
     }
 }
