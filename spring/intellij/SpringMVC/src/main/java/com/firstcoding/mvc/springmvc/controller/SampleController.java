@@ -38,7 +38,7 @@ public class SampleController {
             int num
     ){
 
-        String str = null;
+        String str = null; // 예외 발생을 위한 코딩
         str.trim();
 
         return String.valueOf(num); // num를 url에서 파라미터로 받도록 함
