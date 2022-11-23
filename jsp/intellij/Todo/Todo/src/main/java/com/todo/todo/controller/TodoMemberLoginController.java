@@ -91,7 +91,12 @@ public class TodoMemberLoginController {
             session.setAttribute("loginInfo", member);
             log.info("로그인 처리 후 member => " + member);
 
-            return "redirect:/";
+            if (session.getAttribute("preUri") != null){
+                String str = "redirect:" + session.getAttribute("preUri");
+                return str;
+            } else {
+                return "redirect:/";
+            }
 
         } catch (Exception e) {
             //throw new RuntimeException(e);
