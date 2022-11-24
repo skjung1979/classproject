@@ -1,3 +1,4 @@
+import com.app.manager.domain.DeptDTO;
 import com.app.manager.mapper.DeptMapper;
 import com.app.manager.mapper.TimeMapper;
 import lombok.extern.log4j.Log4j2;
@@ -27,7 +28,12 @@ public class ConnectionTest {
 
     @Test
     public void getDeptListTest(){
-        log.info("deptMapper.selectAll() >>>>>>>>>>> " + deptMapper.selectAll());
+        //log.info("deptMapper.selectAll() >>>>>>>>>>> " + deptMapper.selectAll());
+        //log.info("DEPT정보 >>>>>>>>>>> " + deptMapper.selectByDeptno(40));
+        DeptDTO deptDTO = new DeptDTO(50, "DEV", "SEOUL");
+        //log.info("DEPT 입력 >>>>>>>>>>> " + deptMapper.insertDept(deptDTO)); // 입력결과 성공하면 1로 표시됨
+        //log.info("DEPT 수정 >>>>>>>>>>> " + deptMapper.updateDept(deptDTO)); // 입력결과 성공하면 1로 표시됨
+        log.info("DEPT 삭제 >>>>>>>>>>> " + deptMapper.deleteByDeptno(50)); // 입력결과 성공하면 1로 표시됨
     }
 
 
