@@ -48,12 +48,13 @@ public class LoginCheckFilter implements Filter {
 
         log.info("세션 확인 전 req.getCookies() => " + req.getCookies());
 
-        if (session.getAttribute("loginInfo") == null){
+        if (session.getAttribute("loginInfo") == null) {
+
             Cookie cookie = findCookie(req.getCookies(), "uuid");
 
             log.info("쿠키 찾았나? => " + cookie);
 
-            if (cookie != null){
+            if (cookie != null) {
 
                 String uuid = cookie.getValue();
 
@@ -67,7 +68,7 @@ public class LoginCheckFilter implements Filter {
                     pstmt.setString(1, uuid);
                     @Cleanup ResultSet rs = pstmt.executeQuery();
 
-                    if (rs.next()){
+                    if (rs.next()) {
                         member = Member.builder()
                                 .seq(rs.getInt("seq"))
                                 .membernm(rs.getString("membernm"))
@@ -84,7 +85,8 @@ public class LoginCheckFilter implements Filter {
                         session.setAttribute("loginInfo", member);
 
                     }
-                } catch (Exception e){
+
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
 
@@ -94,23 +96,26 @@ public class LoginCheckFilter implements Filter {
             }
 
             log.info("비 로그인 상태 -> 로그인 페이지로 이동");
+
             res.sendRedirect("/member/loginTodoMember");
             return;
+
         }
 
         chain.doFilter(request, response);
+
     }
 
-    private Cookie findCookie(Cookie[] cookies, String name){
+    private Cookie findCookie(Cookie[] cookies, String name) {
 
-        if (cookies == null || cookies.length == 0){
+        if (cookies == null || cookies.length == 0) {
             return null;
         }
 
         Cookie cookie = null;
 
-        for (int i=0; i<cookies.length; i++){
-            if (name.equals(cookies[i].getName())){
+        for (int i = 0; i < cookies.length; i++) {
+            if (name.equals(cookies[i].getName())) {
                 cookie = cookies[i];
                 break;
             }
