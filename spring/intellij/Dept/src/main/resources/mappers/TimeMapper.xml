@@ -1,0 +1,11 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.app.manager.mapper.TimeMapper"> <!--mapper폴더에서 생성한 클래스명-->
+
+<select id="getTime" resultType="String"> <!--해당 클래스의 메소드명, 매개변수, 결과타입 설정-->
+    select now()  <!--쿼리문 입력-->
+</select>
+
+</mapper>
