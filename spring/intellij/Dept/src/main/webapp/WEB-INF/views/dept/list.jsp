@@ -33,14 +33,20 @@
             <Td>${dept.deptno}</Td>
             <Td>${dept.dname}</Td>
             <Td>${dept.loc}</Td>
-            <Td>수정 / 삭제</Td>
+            <Td><a href="/dept/edit?no=${dept.deptno}">수정</a> / <a onclick="deleteDept(${dept.deptno});" style="cursor: pointer">삭제</a></Td>
         </tr>
 
     </c:forEach>
-
-
-
 </table>
+
+<script>
+    function deleteDept(no){
+        if (confirm("삭제하시겠습니까?")){
+            location.href = '/dept/delete?deptno='+no;
+        }
+    }
+</script>
+
 
 </body>
 </html>
