@@ -20,4 +20,5 @@ public class DeptListService {
         return deptMapper.selectAll();
     }
 
+
 }

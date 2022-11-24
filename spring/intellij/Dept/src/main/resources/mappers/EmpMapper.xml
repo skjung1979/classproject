@@ -1,0 +1,46 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.app.manager.mapper.EmpMapper">
+
+    <select id="selectAll" resultType="com.app.manager.domain.EmpDTO">
+        select * from emp
+    </select>
+
+    <select id="selectByEmpno" resultType="com.app.manager.domain.EmpDTO">
+        select * from emp where empno=#{empno}
+    </select>
+
+    <select id="selectMaxEmpno" resultType="int">
+        SELECT max(empno) FROM emp
+    </select>
+
+    <select id="selectJob" resultType="String">
+        select distinct(job) from emp where job not in ('PRESIDENT')
+    </select>
+
+    <select id="selectMgr" resultType="com.app.manager.domain.EmpDTO">
+        select empno, ename from emp
+    </select>
+
+    <insert id="insertEmp" parameterType="com.app.manager.domain.EmpDTO">
+        insert into emp values (#{empno}, #{ename}, #{job}, #{mgr}, #{hiredate}, #{sal}, #{comm},#{deptno})
+    </insert>
+
+    <update id="updateEmpDTO" parameterType="com.app.manager.domain.EmpDTO">
+        update emp set ename=#{ename}, job=#{job}, mgr=#{mgr}, hiredate=#{hiredate}, sal=#{sal}, comm=#{comm}, deptno=#{deptno} where empno=#{empno}
+    </update>
+
+    <delete id="deleteEmp" parameterType="int">
+        delete from emp where empno=#{empno}
+    </delete>
+
+
+
+
+
+
+
+
+</mapper>

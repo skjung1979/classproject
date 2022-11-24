@@ -2,7 +2,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.app.manager.mapper.DeptMapper"> <!--mapper폴더에서 생성한 클래스명(풀네임으로!)-->
+<mapper namespace="com.app.manager.mapper.DeptMapper"> <!--mapper폴더에서 생성한 (인터페이스)클래스명(풀네임으로!)-->
 
 <select id="selectAll" resultType="com.app.manager.domain.DeptDTO"> <!--해당 클래스의 메소드명, 매개변수, 결과타입(풀네임으로!) 설정-->
     select * from dept  <!--쿼리문 입력-->
