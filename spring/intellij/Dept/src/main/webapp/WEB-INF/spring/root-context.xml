@@ -12,6 +12,8 @@
     <!--    핵심 로직 처리하는 Bean 등록 설정
         Service / Dao 등-->
 
+    <context:component-scan base-package="com.app.manager.service"></context:component-scan>
+
     <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
         <property name="jdbcUrl" value="jdbc:mysql://localhost:3307/project"></property>
@@ -35,6 +37,6 @@
         <property name="mapperLocations" value="classpath:/mappers/**/*.xml"></property>
     </bean>
 
-    <mybatis:scan base-package="com.app.manager.mapper"></mybatis:scan>
+    <mybatis:scan base-package="com.app.manager.mapper"></mybatis:scan> <!--mapper는 Dao를 의미한다.-->
 
 </beans>
