@@ -18,7 +18,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-@WebFilter(filterName = "LoginCheckFilter", urlPatterns = {"/todo/*,/mypage/*,/dept/*,/book/*,/orders/*"})
+//@WebFilter(filterName = "LoginCheckFilter", urlPatterns = {"/todo/*, /mypage/*, /dept/*, /book/*, /orders/*"})
+@WebFilter(filterName = "LoginCheckFilter", urlPatterns = {"/index.jsp"})
 @Log4j2
 public class LoginCheckFilter implements Filter {
 
