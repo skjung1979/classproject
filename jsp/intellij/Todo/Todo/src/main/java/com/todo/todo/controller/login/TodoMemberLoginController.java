@@ -1,4 +1,4 @@
-package com.todo.todo.controller.todo;
+package com.todo.todo.controller.login;
 
 import com.todo.todo.domain.member.Member;
 import com.todo.todo.service.todo.TodoService;
