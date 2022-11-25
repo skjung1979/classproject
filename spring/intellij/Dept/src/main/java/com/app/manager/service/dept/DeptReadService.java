@@ -15,8 +15,8 @@ public class DeptReadService {
 
     public DeptDTO getDept(int deptno){
 
-
         return deptMapper.selectByDeptno(deptno);
     }
+
 
 }

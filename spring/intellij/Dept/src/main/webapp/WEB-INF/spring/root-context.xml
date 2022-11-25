@@ -33,10 +33,25 @@
     </bean>
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSource" />
-        <property name="mapperLocations" value="classpath:/mappers/**/*.xml"></property>  <!-- main > resources 폴더 밑에 mapper 폴더의 경로 -->
+        <property name="dataSource" ref="dataSource"/>
+        <property name="mapperLocations"
+                  value="classpath:/mappers/**/*.xml"></property>  <!-- main > resources 폴더 밑에 mapper 폴더의 경로 -->
     </bean>
 
     <mybatis:scan base-package="com.app.manager.mapper"></mybatis:scan> <!--mapper는 Dao를 의미한다.-->
 
+    <!--    트랜젝션 설정 시작 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"></property>
+
+    </bean>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <!--    트랜젝션 설정 끝 -->
+
 </beans>
+
+
+
+
+
+

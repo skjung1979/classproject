@@ -30,7 +30,8 @@ public class DeptRegController {
         log.info("reg Post 진입");
         log.info(deptDTO);
 
-        deptRegService.insertDept(deptDTO);
+        //deptRegService.insertDept(deptDTO);
+        deptRegService.insertDepts(deptDTO);
 
         return "redirect:/dept/list";
     }
