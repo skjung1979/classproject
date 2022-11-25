@@ -1,6 +1,6 @@
-package com.todo.todo.dept.Dao;
+package com.todo.todo.Dao;
 
-import com.todo.todo.dept.domain.Dept;
+import com.todo.todo.domain.Dept;
 import lombok.Cleanup;
 import org.springframework.stereotype.Repository;
 
@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 @Repository
-public class DeptDao implements Dao {
+public class DeptDeptDaoImpl implements DeptDao {
 
     public List<Dept> selectAll(Connection conn) throws SQLException {
 

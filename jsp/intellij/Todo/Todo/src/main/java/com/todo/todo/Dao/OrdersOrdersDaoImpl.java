@@ -1,6 +1,6 @@
-package com.todo.todo.orders.Dao;
+package com.todo.todo.Dao;
 
-import com.todo.todo.orders.domain.Orders;
+import com.todo.todo.domain.Orders;
 import lombok.Cleanup;
 import org.springframework.stereotype.Repository;
 import java.sql.Connection;
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class OrdersDao implements Dao{
+public class OrdersOrdersDaoImpl implements OrdersDao {
     public List<Orders> ordersSelectAll(Connection conn) throws SQLException {
 
         List<Orders> list = new ArrayList<>();

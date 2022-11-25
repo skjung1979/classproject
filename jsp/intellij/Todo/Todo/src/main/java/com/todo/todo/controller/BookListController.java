@@ -1,9 +1,7 @@
-package com.todo.todo.book.controller;
+package com.todo.todo.controller;
 
-import com.todo.todo.book.domain.Book;
-import com.todo.todo.book.service.BookService;
-import com.todo.todo.customer.Customer;
-import com.todo.todo.orders.domain.Orders;
+import com.todo.todo.service.BookService;
+import com.todo.todo.domain.Orders;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 @RequestMapping("/book/list")

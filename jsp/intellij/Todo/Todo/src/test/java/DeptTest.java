@@ -1,4 +1,4 @@
-import com.todo.todo.dept.domain.Dept;
+import com.todo.todo.domain.Dept;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

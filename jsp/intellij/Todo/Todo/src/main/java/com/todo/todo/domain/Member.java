@@ -1,4 +1,4 @@
-package com.todo.todo.member;
+package com.todo.todo.domain;
 
 import com.todo.todo.domain.LoginInfo;
 import lombok.*;

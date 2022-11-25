@@ -1,4 +1,4 @@
-package com.todo.todo.dept.domain;
+package com.todo.todo.domain;
 
 import lombok.*;
 

@@ -1,9 +1,9 @@
-package com.todo.todo.orders.controller;
+package com.todo.todo.controller;
 
-import com.todo.todo.book.service.BookService;
-import com.todo.todo.customer.Customer;
-import com.todo.todo.orders.service.OrdersService;
-import com.todo.todo.orders.domain.Orders;
+import com.todo.todo.service.BookService;
+import com.todo.todo.domain.Customer;
+import com.todo.todo.service.OrdersService;
+import com.todo.todo.domain.Orders;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

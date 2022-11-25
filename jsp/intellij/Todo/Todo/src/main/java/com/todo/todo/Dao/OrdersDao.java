@@ -1,6 +1,6 @@
-package com.todo.todo.orders.Dao;
+package com.todo.todo.Dao;
 
-import com.todo.todo.orders.domain.Orders;
+import com.todo.todo.domain.Orders;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Repository
-public interface Dao {
+public interface OrdersDao {
 
     public List<Orders> ordersSelectAll(Connection conn) throws SQLException;
 

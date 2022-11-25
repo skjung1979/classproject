@@ -1,8 +1,6 @@
 package com.todo.todo.filter;
 
-import com.sun.tools.javac.comp.Todo;
-import com.todo.todo.member.Member;
-import com.todo.todo.service.TodoService;
+import com.todo.todo.domain.Member;
 import com.todo.todo.util.ConnectionUtil;
 import lombok.Cleanup;
 import lombok.extern.log4j.Log4j2;

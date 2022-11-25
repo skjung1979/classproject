@@ -1,7 +1,7 @@
-package com.todo.todo.orders.service;
+package com.todo.todo.service;
 
-import com.todo.todo.orders.Dao.Dao;
-import com.todo.todo.orders.domain.Orders;
+import com.todo.todo.Dao.OrdersDao;
+import com.todo.todo.domain.Orders;
 import com.todo.todo.util.ConnectionUtil;
 import lombok.Cleanup;
 import org.springframework.stereotype.Service;
@@ -13,10 +13,10 @@ import java.util.List;
 @Service
 public class OrdersService {
 
-    private final Dao dao;
+    private final OrdersDao ordersDao;
 
-    public OrdersService(Dao dao) {
-        this.dao = dao;
+    public OrdersService(OrdersDao ordersDao) {
+        this.ordersDao = ordersDao;
     }
 
     public List<Orders> ordersSelectAll() throws Exception {
@@ -25,7 +25,7 @@ public class OrdersService {
 
         @Cleanup Connection conn = ConnectionUtil.getInstance().getConnection();
 
-        list = dao.ordersSelectAll(conn);
+        list = ordersDao.ordersSelectAll(conn);
 
         return list;
     }
@@ -36,7 +36,7 @@ public class OrdersService {
 
         @Cleanup Connection conn = ConnectionUtil.getInstance().getConnection();
 
-        list = dao.ordersSelectBy(conn, custid);
+        list = ordersDao.ordersSelectBy(conn, custid);
 
         return list;
     }

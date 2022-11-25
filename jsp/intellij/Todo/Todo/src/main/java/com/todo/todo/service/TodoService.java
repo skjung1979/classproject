@@ -3,7 +3,7 @@ package com.todo.todo.service;
 import com.todo.todo.Dao.Dao;
 import com.todo.todo.domain.MemberRegRequest;
 import com.todo.todo.domain.TodoDTO;
-import com.todo.todo.member.Member;
+import com.todo.todo.domain.Member;
 import com.todo.todo.util.ConnectionUtil;
 import lombok.Cleanup;
 import org.springframework.stereotype.Service;

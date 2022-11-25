@@ -13,7 +13,7 @@
 </head>
 <body>
 
-<h1>Dept List</h1>
+<h1>Dept List &lt;<A href="/">HOME</A>&gt;</h1>
 <hr>
 <br>
 

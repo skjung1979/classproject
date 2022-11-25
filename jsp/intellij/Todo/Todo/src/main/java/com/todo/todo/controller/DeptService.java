@@ -1,7 +1,7 @@
-package com.todo.todo.dept.service;
+package com.todo.todo.controller;
 
-import com.todo.todo.dept.Dao.Dao;
-import com.todo.todo.dept.domain.Dept;
+import com.todo.todo.Dao.DeptDao;
+import com.todo.todo.domain.Dept;
 import com.todo.todo.util.ConnectionUtil;
 import lombok.Cleanup;
 import org.springframework.stereotype.Service;
@@ -12,17 +12,17 @@ import java.util.List;
 @Service
 public class DeptService {
 
-    private final Dao dao;
+    private final DeptDao deptDao;
 
-    public DeptService(Dao dao) {
-        this.dao = dao;
+    public DeptService(DeptDao deptDao) {
+        this.deptDao = deptDao;
     }
 
     public List<Dept> getList() throws Exception {
 
         @Cleanup Connection conn = ConnectionUtil.getInstance().getConnection();
 
-        List<Dept> list = dao.selectAll(conn);
+        List<Dept> list = deptDao.selectAll(conn);
 
         return list;
     }

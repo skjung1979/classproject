@@ -1,6 +1,5 @@
 package com.todo.todo.domain;
 
-import com.todo.todo.member.Member;
 import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
 

@@ -1,6 +1,6 @@
 package com.todo.todo.controller;
 
-import com.todo.todo.member.Member;
+import com.todo.todo.domain.Member;
 import com.todo.todo.service.TodoService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;

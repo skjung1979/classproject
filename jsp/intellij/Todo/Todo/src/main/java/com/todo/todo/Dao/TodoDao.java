@@ -1,10 +1,8 @@
 package com.todo.todo.Dao;
 
 import com.todo.todo.domain.TodoDTO;
-import com.todo.todo.member.Member;
-import lombok.AllArgsConstructor;
+import com.todo.todo.domain.Member;
 import lombok.Cleanup;
-import lombok.experimental.UtilityClass;
 import org.springframework.stereotype.Repository;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
