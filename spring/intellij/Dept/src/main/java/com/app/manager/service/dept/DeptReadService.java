@@ -1,4 +1,4 @@
-package com.app.manager.service;
+package com.app.manager.service.dept;
 
 import com.app.manager.domain.DeptDTO;
 import com.app.manager.mapper.DeptMapper;

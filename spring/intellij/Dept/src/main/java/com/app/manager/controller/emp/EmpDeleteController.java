@@ -1,6 +1,6 @@
-package com.app.manager.controller;
+package com.app.manager.controller.emp;
 
-import com.app.manager.service.EmpDeleteService;
+import com.app.manager.service.emp.EmpDeleteService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -1,8 +1,10 @@
-package com.app.manager.controller;
+package com.app.manager.controller.emp;
 
 import com.app.manager.domain.EmpDTO;
-import com.app.manager.service.DeptListService;
-import com.app.manager.service.EmpRegService;
+import com.app.manager.service.dept.DeptListService;
+import com.app.manager.service.emp.EmpEditService;
+import com.app.manager.service.emp.EmpListService;
+import com.app.manager.service.emp.EmpRegService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,11 +12,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @Log4j2
-@RequestMapping("/emp/register")
-public class EmpRegController {
+@RequestMapping("/emp/edit")
+public class EmpEditController {
+
+    @Autowired
+    private EmpEditService empEditService;
+
+    @Autowired
+    private EmpListService empListService;
 
     @Autowired
     private EmpRegService empRegService;
@@ -23,23 +32,22 @@ public class EmpRegController {
     private DeptListService deptListService;
 
     @GetMapping
-    public void getRegFrom(Model model) {
-        log.info("emp regForm 진입...");
+    public void editEmp(@RequestParam("no") int empno, Model model){
 
-        model.addAttribute("maxEmpNo", empRegService.selectMaxEmpno());
         model.addAttribute("kindOfJob", empRegService.selectJob());
         model.addAttribute("MgrList", empRegService.selectMgr());
         model.addAttribute("deptList", deptListService.getList());
 
+        model.addAttribute("empListBy", empListService.getListBy(empno));
+
     }
 
     @PostMapping
-    public String regEmp(
-            EmpDTO empDTO
-    ) {
-        log.info("emp reg Post 진입...");
+    public String postEditEmp(EmpDTO empDTO){
 
-        empRegService.insertEmp(empDTO);
+        log.info("emp edit post 진입, empDTO => " + empDTO);
+
+        empEditService.editEmp(empDTO);
 
         return "redirect:/emp/list";
     }

@@ -1,9 +1,8 @@
-package com.app.manager.controller;
+package com.app.manager.controller.dept;
 
 import com.app.manager.domain.DeptDTO;
-import com.app.manager.service.DeptEditService;
-import com.app.manager.service.DeptReadService;
-import com.app.manager.service.DeptRegService;
+import com.app.manager.service.dept.DeptEditService;
+import com.app.manager.service.dept.DeptReadService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

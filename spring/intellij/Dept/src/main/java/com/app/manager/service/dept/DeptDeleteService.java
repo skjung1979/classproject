@@ -1,4 +1,4 @@
-package com.app.manager.service;
+package com.app.manager.service.dept;
 
 import com.app.manager.mapper.DeptMapper;
 import lombok.extern.log4j.Log4j2;

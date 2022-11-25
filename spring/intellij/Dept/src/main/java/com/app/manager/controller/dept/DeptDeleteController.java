@@ -1,6 +1,6 @@
-package com.app.manager.controller;
+package com.app.manager.controller.dept;
 
-import com.app.manager.service.DeptDeleteService;
+import com.app.manager.service.dept.DeptDeleteService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
