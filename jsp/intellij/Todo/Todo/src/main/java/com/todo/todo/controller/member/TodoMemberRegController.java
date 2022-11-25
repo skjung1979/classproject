@@ -1,6 +1,7 @@
 package com.todo.todo.controller.member;
 
 import com.todo.todo.domain.member.MemberRegRequest;
+import com.todo.todo.service.member.MemberRegService;
 import com.todo.todo.service.todo.TodoService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
@@ -15,21 +16,19 @@ import javax.servlet.http.HttpServletResponse;
 @Log4j2
 public class TodoMemberRegController {
 
-    private final TodoService todoService;
+    private final MemberRegService memberRegService;
 
-    public TodoMemberRegController(TodoService todoService) {
-        this.todoService = todoService;
+
+    public TodoMemberRegController(MemberRegService memberRegService) {
+        this.memberRegService = memberRegService;
     }
-
 
     @GetMapping
     public String regTodoMember(
             HttpServletRequest request,
             HttpServletResponse response
     ){
-
         return "views/member/regform";
-
     }
 
     @PostMapping
@@ -58,9 +57,9 @@ public class TodoMemberRegController {
 
         log.info(regRequest);
 
-        todoService.insertTodoMember(regRequest, request);
+        memberRegService.insertTodoMember(regRequest, request);
 
-        return "redirect:/member/loginTodoMember";
+        return "redirect:/login/loginTodoMember";
     }
 
 }

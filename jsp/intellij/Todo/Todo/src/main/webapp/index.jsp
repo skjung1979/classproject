@@ -22,12 +22,12 @@
 <c:if test="${loginInfo == null}">
 <A href="/member/regTodoMember">register for todo member</A>
 <br>
-<A href="/member/loginTodoMember">login for todo member</A>
+<A href="/login/loginTodoMember">login for todo member</A>
 </c:if>
 <c:if test="${loginInfo != null}">
 <A href="/mypage">mypage</A>
 <br>
-<A href="/member/logoutTodoMember">logout</A>
+<A href="/login/logoutTodoMember">logout</A>
 </c:if>
 
 </body>

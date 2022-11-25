@@ -17,7 +17,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 //@WebFilter(filterName = "LoginCheckFilter", urlPatterns = {"/todo/*, /mypage/*, /dept/*, /book/*, /orders/*"})
-@WebFilter(filterName = "LoginCheckFilter", urlPatterns = {"/index.jsp"})
+@WebFilter(filterName = "LoginCheckFilter", urlPatterns = {"/todo/*", "/mypage/*", "/dept/*", "/book/*", "/orders/*", "/index.jsp"})
 @Log4j2
 public class LoginCheckFilter implements Filter {
 
@@ -95,8 +95,8 @@ public class LoginCheckFilter implements Filter {
 
             log.info("비 로그인 상태 -> 로그인 페이지로 이동");
 
-            res.sendRedirect("/member/loginTodoMember");
-            return;
+            res.sendRedirect("/login/loginTodoMember");
+            return ;
 
         }
 

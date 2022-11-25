@@ -1,7 +1,7 @@
 package com.todo.todo.controller.login;
 
 import com.todo.todo.domain.member.Member;
-import com.todo.todo.service.todo.TodoService;
+import com.todo.todo.service.login.LoginService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,19 +17,19 @@ import java.util.UUID;
 
 @Controller
 @Log4j2
-@RequestMapping("/member/loginTodoMember")
+@RequestMapping("/login/loginTodoMember")
 public class TodoMemberLoginController {
 
-    private final TodoService todoService;
+    private final LoginService loginService;
 
-    public TodoMemberLoginController(TodoService todoService) {
-        this.todoService = todoService;
+    public TodoMemberLoginController(LoginService loginService) {
+        this.loginService = loginService;
     }
 
     @GetMapping
     public String getLoginTodoMember (){
 
-        return "views/member/login";
+        return "views/login/login";
     }
 
     @PostMapping
@@ -66,7 +66,7 @@ public class TodoMemberLoginController {
 
         // 입력받은 아이디와, 패스워드를 DTO에 저장한다.
         try {
-            Member member = todoService.login(userid, userpw);
+            Member member = loginService.login(userid, userpw);
 
             if (member == null){
 
@@ -84,7 +84,7 @@ public class TodoMemberLoginController {
                 c1.setPath("/");
                 response.addCookie(c1);
 
-                todoService.updateUUID(member.getSeq(), uuid.toString());
+                loginService.updateUUID(member.getSeq(), uuid.toString());
                 member.setUuid(uuid.toString());
             }
 

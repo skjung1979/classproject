@@ -41,6 +41,11 @@
       <td></td>
       <td><input type="checkbox" name="keeplogin" id="keeplogin" ${cookie.uuid.value == loginInfo.uuid ? 'checked' : ''}> 로그인 유지</td>
     </tr>
+    <tr>
+      <td></td>
+      <td><A href="/member/regTodoMember"> register for todo member</A></td>
+    </tr>
+
     <tr id="loginTdo">
       <Td></Td>
       <td><input type="submit" value="로그인" ></td>
