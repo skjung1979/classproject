@@ -75,15 +75,15 @@ deptno	int	YES	MUL--%>
         </tR>
         <tR>
             <th>입사일자</th>
-            <tD><input type="date" name="hiredate"></tD>
+            <tD><input type="date" name="hiredate" value="now()"></tD>
         </tR>
         <tR>
             <th>연봉($)</th>
-            <tD><input type="number" name="sal" min="1500" placeholder="1500달러 이상 입력하세요."></tD>
+            <tD><input type="number" name="sal" min="1500" max="5000" placeholder="1500달러 이상-5000달러 이하 입력"></tD>
         </tR>
         <tR>
             <th>인센($)</th>
-            <tD><input type="number" name="comm" min="0"></tD>
+            <tD><input type="number" name="comm" min="0" max="1000" placeholder="1000달러 이하 입력"></tD>
         </tR>
         <tR>
             <th>부서</th>
