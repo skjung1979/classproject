@@ -16,7 +16,7 @@ public class DeptListController {
     private DeptListService deptListService;
 
     @RequestMapping("/dept/list")
-    public void getDeptList(
+    public String getDeptList(
             DeptSearchOption searchOption,
             Model model
     ){
@@ -26,5 +26,6 @@ public class DeptListController {
 
         log.info("dept list 진입...");
 
+        return "dept/lists";
     }
 }
