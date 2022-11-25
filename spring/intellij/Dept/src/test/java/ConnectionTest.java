@@ -1,5 +1,5 @@
-import com.app.manager.domain.DeptDTO;
-import com.app.manager.domain.DeptSearchOption;
+import com.app.manager.domain.dept.DeptDTO;
+import com.app.manager.domain.dept.DeptSearchOption;
 import com.app.manager.mapper.DeptMapper;
 import com.app.manager.mapper.TimeMapper;
 import lombok.extern.log4j.Log4j2;

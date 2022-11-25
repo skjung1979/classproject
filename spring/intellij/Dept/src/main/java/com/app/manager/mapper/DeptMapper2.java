@@ -1,6 +1,6 @@
 package com.app.manager.mapper;
 
-import com.app.manager.domain.DeptDTO;
+import com.app.manager.domain.dept.DeptDTO;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;

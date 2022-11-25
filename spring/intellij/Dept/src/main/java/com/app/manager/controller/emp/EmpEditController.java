@@ -1,6 +1,6 @@
 package com.app.manager.controller.emp;
 
-import com.app.manager.domain.EmpDTO;
+import com.app.manager.domain.emp.EmpDTO;
 import com.app.manager.service.dept.DeptListService;
 import com.app.manager.service.emp.EmpEditService;
 import com.app.manager.service.emp.EmpListService;

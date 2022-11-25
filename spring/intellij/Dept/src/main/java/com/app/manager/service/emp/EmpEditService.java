@@ -1,6 +1,6 @@
 package com.app.manager.service.emp;
 
-import com.app.manager.domain.EmpDTO;
+import com.app.manager.domain.emp.EmpDTO;
 import com.app.manager.mapper.EmpMapper;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;

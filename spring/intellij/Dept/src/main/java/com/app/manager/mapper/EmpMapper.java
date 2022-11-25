@@ -1,12 +1,13 @@
 package com.app.manager.mapper;
 
-import com.app.manager.domain.EmpDTO;
+import com.app.manager.domain.emp.EmpDTO;
+import com.app.manager.domain.emp.EmpSearchOption;
 import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 @Mapper
 public interface EmpMapper {
-    List<EmpDTO> selectAll();
+    List<EmpDTO> selectSearchOption(EmpSearchOption empSearchOption);
 
     int insertEmp(EmpDTO empDTO);
 
@@ -21,4 +22,5 @@ public interface EmpMapper {
     void updateEmpDTO(EmpDTO empDTO);
 
     int deleteEmp(int empno);
+
 }

@@ -1,4 +1,4 @@
-package com.app.manager.domain;
+package com.app.manager.domain.dept;
 
 import lombok.*;
 

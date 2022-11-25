@@ -1,7 +1,7 @@
 package com.app.manager.mapper;
 
-import com.app.manager.domain.DeptDTO;
-import com.app.manager.domain.DeptSearchOption;
+import com.app.manager.domain.dept.DeptDTO;
+import com.app.manager.domain.dept.DeptSearchOption;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

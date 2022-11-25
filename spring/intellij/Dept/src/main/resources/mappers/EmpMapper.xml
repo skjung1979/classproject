@@ -4,11 +4,68 @@
 
 <mapper namespace="com.app.manager.mapper.EmpMapper">
 
-    <select id="selectAll" resultType="com.app.manager.domain.EmpDTO">
+    <select id="selectSearchOption" resultType="com.app.manager.domain.emp.EmpDTO" parameterType="com.app.manager.domain.emp.EmpSearchOption">
         select * from emp
+
+        <where>
+            <if test="searchType != null and keyword != null">
+                <if test="searchType == 'empno'">
+                    <include refid="searchEmpno"></include>
+                </if>
+                <if test="searchType == 'ename'">
+                    <include refid="searchEname"></include>
+                </if>
+                <if test="searchType == 'job'">
+                    <include refid="searchJob"></include>
+                </if>
+                <if test="searchType == 'mgr'">
+                    <include refid="searchMgr"></include>
+                </if>
+                <if test="searchType == 'hiredate'">
+                    <include refid="searchHiredate"></include>
+                </if>
+                <if test="searchType == 'sal'">
+                    <include refid="searchSal"></include>
+                </if>
+                <if test="searchType == 'comm'">
+                    <include refid="searchComm"></include>
+                </if>
+                <if test="searchType == 'deptno'">
+                    <include refid="searchDeptno"></include>
+                </if>
+            </if>
+        </where>
     </select>
 
-    <select id="selectByEmpno" resultType="com.app.manager.domain.EmpDTO">
+    <sql id="searchEmpno">
+        empno like concat('%', #{keyword}, '%')
+    </sql>
+    <sql id="searchEname">
+        ename like concat('%', #{keyword}, '%')
+    </sql>
+    <sql id="searchJob">
+        job like concat('%', #{keyword}, '%')
+    </sql>
+    <sql id="searchMgr">
+        mgr like concat('%', #{keyword}, '%')
+    </sql>
+    <sql id="searchHiredate">
+        hiredate >= #{keyword}
+    </sql>
+    <sql id="searchSal">
+        sal >= #{keyword}
+    </sql>
+    <sql id="searchComm">
+        comm >= #{keyword}
+    </sql>
+    <sql id="searchDeptno">
+        deptno = #{keyword}
+    </sql>
+
+
+
+
+    <select id="selectByEmpno" resultType="com.app.manager.domain.emp.EmpDTO">
         select * from emp where empno=#{empno}
     </select>
 
@@ -20,15 +77,15 @@
         select distinct(job) from emp where job not in ('PRESIDENT')
     </select>
 
-    <select id="selectMgr" resultType="com.app.manager.domain.EmpDTO">
+    <select id="selectMgr" resultType="com.app.manager.domain.emp.EmpDTO">
         select empno, ename from emp
     </select>
 
-    <insert id="insertEmp" parameterType="com.app.manager.domain.EmpDTO">
+    <insert id="insertEmp" parameterType="com.app.manager.domain.emp.EmpDTO">
         insert into emp values (#{empno}, #{ename}, #{job}, #{mgr}, #{hiredate}, #{sal}, #{comm},#{deptno})
     </insert>
 
-    <update id="updateEmpDTO" parameterType="com.app.manager.domain.EmpDTO">
+    <update id="updateEmpDTO" parameterType="com.app.manager.domain.emp.EmpDTO">
         update emp set ename=#{ename}, job=#{job}, mgr=#{mgr}, hiredate=#{hiredate}, sal=#{sal}, comm=#{comm}, deptno=#{deptno} where empno=#{empno}
     </update>
 

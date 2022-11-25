@@ -1,6 +1,6 @@
 package com.app.manager.controller.dept;
 
-import com.app.manager.domain.DeptDTO;
+import com.app.manager.domain.dept.DeptDTO;
 import com.app.manager.service.dept.DeptEditService;
 import com.app.manager.service.dept.DeptReadService;
 import lombok.extern.log4j.Log4j2;

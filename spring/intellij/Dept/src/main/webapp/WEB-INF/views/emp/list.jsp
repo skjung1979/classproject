@@ -11,13 +11,15 @@
 <head>
     <title>Emp List</title>
     <style>
-        table{
+        table {
             width: 850px;
             padding: 15px;
         }
+
         tr {
             background-color: #ecebeb;
         }
+
         #cen {
             text-align: center;
         }
@@ -31,7 +33,6 @@
 
 <a href="/emp/register">직원 등록</a>
 
-
 <%--empno	int	NO	PRI
 ename	varchar(20)	YES
 job	varchar(20)	YES
@@ -41,21 +42,37 @@ sal	decimal(7,2)	YES
 comm	decimal(7,2)	YES
 deptno	int	YES	MUL--%>
 
+<div style="margin-top: 10px">
+    <form>
+        <select name="searchType">
+            <option value="empno">사원번호</option>
+            <option value="ename">사원명</option>
+            <option value="job">직책</option>
+            <option value="mgr">관리자번호</option>
+            <option value="hiredate">입사일자(이후)</option>
+            <option value="sal">연봉(이상)</option>
+            <option value="comm">인센(이상)</option>
+            <option value="deptno">부서번호</option>
+        </select>
+        <input type="text" name="keyword">
+        <input type="submit" value="검색">
+    </form>
+</div>
+
+
 <table>
-<tR>
-    <th id="cen">사원번호</th>
-    <th id="cen">이름</th>
-    <th id="cen">직책</th>
-    <th id="cen">관리자번호</th>
-    <th id="cen">입사일자</th>
-    <th id="cen">연봉($)</th>
-    <th id="cen">인센($)</th>
-    <th id="cen">부서번호</th>
-    <th id="cen">관리</th>
-</tR>
-
+    <tR>
+        <th id="cen">사원번호</th>
+        <th id="cen">이름</th>
+        <th id="cen">직책</th>
+        <th id="cen">관리자번호</th>
+        <th id="cen">입사일자</th>
+        <th id="cen">연봉($)</th>
+        <th id="cen">인센($)</th>
+        <th id="cen">부서번호</th>
+        <th id="cen">관리</th>
+    </tR>
     <c:forEach var="emp" items="${empList}">
-
         <tr>
             <td id="cen">${emp.empno}</td>
             <td>${emp.ename}</td>
@@ -65,16 +82,17 @@ deptno	int	YES	MUL--%>
             <td>${emp.sal}</td>
             <td>${emp.comm}</td>
             <td id="cen">${emp.deptno}</td>
-            <Td id="cen"><a href="/emp/edit?no=${emp.empno}">수정</a> / <a onclick="deleteEmp(${emp.empno});" style="cursor: pointer">삭제</a></Td>
+            <Td id="cen"><a href="/emp/edit?no=${emp.empno}">수정</a> / <a onclick="deleteEmp(${emp.empno});"
+                                                                         style="cursor: pointer">삭제</a></Td>
         </tr>
 
     </c:forEach>
 </table>
 
 <script>
-    function deleteEmp(no){
-        if (confirm("삭제하시겠습니까?")){
-            location.href = '/emp/delete?empno='+no;
+    function deleteEmp(no) {
+        if (confirm("삭제하시겠습니까?")) {
+            location.href = '/emp/delete?empno=' + no;
         }
     }
 </script>

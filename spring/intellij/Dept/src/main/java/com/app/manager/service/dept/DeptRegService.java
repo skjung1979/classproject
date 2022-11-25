@@ -1,6 +1,6 @@
 package com.app.manager.service.dept;
 
-import com.app.manager.domain.DeptDTO;
+import com.app.manager.domain.dept.DeptDTO;
 import com.app.manager.mapper.DeptMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
