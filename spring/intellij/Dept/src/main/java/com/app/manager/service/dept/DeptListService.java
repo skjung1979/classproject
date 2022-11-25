@@ -1,6 +1,7 @@
 package com.app.manager.service.dept;
 
 import com.app.manager.domain.DeptDTO;
+import com.app.manager.domain.DeptSearchOption;
 import com.app.manager.mapper.DeptMapper;
 import com.app.manager.mapper.DeptMapper2;
 import lombok.extern.log4j.Log4j2;
@@ -24,5 +25,8 @@ public class DeptListService {
         return deptMapper2.selectAll();
     }
 
+    public List<DeptDTO> getSearchList(DeptSearchOption searchOption){
+        return deptMapper.selectByOption(searchOption);
+    }
 
 }

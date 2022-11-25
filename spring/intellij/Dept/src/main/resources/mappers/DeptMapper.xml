@@ -4,9 +4,52 @@
 
 <mapper namespace="com.app.manager.mapper.DeptMapper"> <!--mapper폴더에서 생성한 (인터페이스)클래스명(풀네임으로!)-->
 
-<select id="selectAll" resultType="com.app.manager.domain.DeptDTO"> <!--해당 클래스의 메소드명, 매개변수, 결과타입(풀네임으로!) 설정-->
-    select * from dept  <!--쿼리문 입력-->
-</select>
+    <select id="selectAll" resultType="com.app.manager.domain.DeptDTO"> <!--해당 클래스의 메소드명, 매개변수, 결과타입(풀네임으로!) 설정-->
+        select * from dept  <!--쿼리문 입력-->
+    </select>
+
+    <select id="selectByOption" parameterType="com.app.manager.domain.DeptSearchOption" resultType="com.app.manager.domain.DeptDTO">
+
+        select * from dept
+
+        <where> <!-- 아래 조건이 맞으면 이 자리에 where절이 생성된다. -->
+            <if test="searchType != null and keyword != null">
+                <if test="searchType == 'dname'">
+                    <!--dname like concat('%', #{keyword}, '%')-->
+                    <include refid="searchDname"/>
+                </if>
+                <if test="searchType == 'loc'">
+                    <!--loc like concat('%', #{keyword}, '%')-->
+                    <include refid="searchLoc"/>
+                </if>
+            </if>
+        </where>
+    </select>
+
+    <sql id="searchDname">
+        dname like concat('%', #{keyword}, '%')
+    </sql>
+
+    <sql id="searchLoc">
+        loc like concat('%', #{keyword}, '%')
+    </sql>
+
+
+    <select id="selectByDeptnos" parameterType="list" resultType="com.app.manager.domain.DeptDTO"> <!-- 파라미터가 리스트이면 Integer가 아닌 list로 타입-->
+
+        select * from dept
+
+        <where>
+            <if test="list != null and list.size != 0">
+                deptno in
+                <foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+
+    </select>
+
 
     <select id="selectByDeptno" resultType="com.app.manager.domain.DeptDTO"> <!--파라미터가 하나이면 parametertype 넣지 않아도된다.-->
         select * from dept where deptno=#{no}
