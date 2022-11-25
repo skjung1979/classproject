@@ -39,11 +39,11 @@
     </tr>
     <tr>
       <td></td>
-      <td><input type="checkbox" name="keeplogin" id="keeplogin" ${cookie.uuid.value == loginInfo.uuid ? 'checked' : ''}> 로그인 유지</td>
+      <td><input type="checkbox" name="keeplogin" id="keeplogin" ${cookie.uuid.value != null ? 'checked' : ''}> 로그인 유지</td>
     </tr>
     <tr>
       <td></td>
-      <td><A href="/member/regTodoMember"> register for todo member</A></td>
+      <td><A href="/member/regTodoMember"> 회원 가입</A></td>
     </tr>
 
     <tr id="loginTdo">
