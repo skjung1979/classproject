@@ -1,6 +1,6 @@
 package com.todo.todo.filter;
 
-import com.todo.todo.domain.Member;
+import com.todo.todo.domain.member.Member;
 import com.todo.todo.util.ConnectionUtil;
 import lombok.Cleanup;
 import lombok.extern.log4j.Log4j2;
