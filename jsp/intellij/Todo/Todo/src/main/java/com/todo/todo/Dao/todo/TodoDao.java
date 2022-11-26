@@ -32,7 +32,7 @@ public class TodoDao implements Dao {
     public List<TodoDTO> selectAll(Connection conn) throws SQLException {
 
         List<TodoDTO> list = new ArrayList<>();
-        String sql = "select * from tododto;";
+        String sql = "select * from tododto";
         @Cleanup PreparedStatement pstmt = conn.prepareStatement(sql);
         @Cleanup ResultSet rs = pstmt.executeQuery();
 

@@ -73,7 +73,7 @@ public class TodoMemberLoginController {
                 redirectAttributes.addAttribute("type", "nf");
 
                 //return "redirect:/member/loginTodoMember?error=nf";
-                return "redirect:/member/loginTodoMember";
+                return "redirect:/login/loginTodoMember";
             }
 
             if (keeplogin != null && keeplogin.equals("on")){
@@ -103,7 +103,7 @@ public class TodoMemberLoginController {
 
             redirectAttributes.addAttribute("type", "e");
 
-            return "redirect:/member/loginTodoMember";
+            return "redirect:/login/loginTodoMember";
         }
     }
 }

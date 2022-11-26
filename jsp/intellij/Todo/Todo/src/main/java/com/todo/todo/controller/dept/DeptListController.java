@@ -1,14 +1,15 @@
 package com.todo.todo.controller.dept;
 
+import com.todo.todo.service.dept.DeptService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @RequestMapping("/dept/list")
-public class DeptListController  {
+public class DeptListController {
 
     private final DeptService deptService;
 
