@@ -1,10 +1,9 @@
-package com.todo.todo.service.orders;
+package com.todo.todomybatis.service.orders;
 
-import com.todo.todo.domain.orders.Orders;
-import com.todo.todo.mapper.OrdersMapper;
+import com.todo.todomybatis.domain.orders.Orders;
+import com.todo.todomybatis.mapper.OrdersMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service

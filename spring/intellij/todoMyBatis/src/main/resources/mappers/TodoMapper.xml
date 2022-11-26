@@ -1,0 +1,23 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.todo.todomybatis.mapper.TodoMapper"> <!-- mapper폴더에서 생성한 (인터페이스)클래스명(풀네임으로!)-->
+
+    <insert id="insertTodo" parameterType="com.todo.todomybatis.domain.todo.TodoDTO">
+        insert into tododto (todo, memo, dueDates, finished) values(#{todo}, #{memo}, #{dueDate}, #{finished})
+    </insert>
+
+    <select id="selectBy" resultType="com.todo.todomybatis.domain.todo.TodoDTO">
+        select * from tododto where tno=#{tno}
+    </select>
+
+    <update id="updateTodo" parameterType="com.todo.todomybatis.domain.todo.TodoDTO">
+        update tododto set todo=#{todo}, memo=#{memo}, duedates=#{dueDate}, finished=#{finished} where tno=#{tno}
+    </update>
+
+    <delete id="deleteTodo">
+        delete from tododto where tno=#{tno}
+    </delete>
+
+</mapper>

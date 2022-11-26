@@ -1,6 +1,6 @@
-package com.todo.todo.controller.todo;
+package com.todo.todomybatis.controller.todo;
 
-import com.todo.todo.service.todo.TodoService;
+import com.todo.todomybatis.service.todo.TodoService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
