@@ -32,13 +32,18 @@
     <tr>
       <td></td>
       <td><input type="reset" value="초기화">
-        <input type="submit" value="등록"></td>
+        <input type="submit" value="등록"> <a href="/todo/TodoList">TodoList</a> </td>
     </tr>
   </table>
 
 </form>
 
+<c:if test="${param.type eq 'again'}">
+  <script>
+    alert('할일이 비어 있거나, 마감일이 오늘보다 과거입니다.');
+  </script>
+</c:if>
 
 </body>
-</body>
+
 </html>

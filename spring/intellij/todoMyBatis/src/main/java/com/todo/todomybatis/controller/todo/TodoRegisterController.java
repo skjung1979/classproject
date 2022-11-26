@@ -5,11 +5,16 @@ import com.todo.todomybatis.service.todo.TodoService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/todo/TodoRegister")
@@ -31,24 +36,25 @@ public class TodoRegisterController {
     }
     @PostMapping
     public String postReg(
-            TodoDTO todoDTO
-    ){
+            @Valid TodoDTO todoDTO, // @Valid처리한 DTO 표시
+            BindingResult bindingResult, // validation 결과 담는 객체
+            RedirectAttributes redirectAttributes // 필요한 쿼리스트링을 얻기 위함
+    ) throws Exception {
 
-        // 사용자가 입력한 데이터를 받아서 처리하는 로직
+        if (bindingResult.hasErrors()){
+
+           /* for (ObjectError objectError : bindingResult.getAllErrors()){
+                log.info(objectError.getCodes()[1] + " => " + objectError.getDefaultMessage());
+            }*/
+
+            redirectAttributes.addAttribute("type", "again");
+
+            return "redirect:/todo/TodoRegister";
+        }
+
         log.info("register post 들어옴");
 
-       /* String todo = request.getParameter("todo");
-        String memo = request.getParameter("memo");
-        String dueDate = request.getParameter("dueDate");
-        boolean finished = false;
-*/
-        //TodoDTO todoDTO = new TodoDTO(todo, memo, dueDate, finished);
-
-        try {
-            int result = service.insertTodo(todoDTO);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+       service.insertTodo(todoDTO);
 
         return "redirect:/todo/TodoList";
 
