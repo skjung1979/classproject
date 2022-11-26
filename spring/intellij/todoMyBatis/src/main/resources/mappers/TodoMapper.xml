@@ -4,13 +4,13 @@
 
 <mapper namespace="com.todo.todomybatis.mapper.TodoMapper"> <!-- mapper폴더에서 생성한 (인터페이스)클래스명(풀네임으로!)-->
 
-    <select id="selectAll" resultType="com.todo.todomybatis.domain.todo.TodoDTO">
+<!--    <select id="selectAll" resultType="com.todo.todomybatis.domain.todo.TodoDTO">
         select * from tododto
-    </select>
+    </select>-->
 
-    <select id="selectBy" resultType="com.todo.todomybatis.domain.todo.TodoDTO">
+<!--    <select id="selectBy" resultType="com.todo.todomybatis.domain.todo.TodoDTO">
         select * from tododto where tno=#{tno}
-    </select>
+    </select>-->
 
     <insert id="insertTodo" parameterType="com.todo.todomybatis.domain.todo.TodoDTO">
         insert into tododto (todo, memo, dueDates, finished) values(#{todo}, #{memo}, #{dueDate}, #{finished})
@@ -20,8 +20,8 @@
         update tododto set todo=#{todo}, memo=#{memo}, duedates=#{dueDate}, finished=#{finished} where tno=#{tno}
     </update>
 
-    <delete id="deleteTodo">
+<!--    <delete id="deleteTodo">
         delete from tododto where tno=#{tno}
-    </delete>
+    </delete>-->
 
 </mapper>

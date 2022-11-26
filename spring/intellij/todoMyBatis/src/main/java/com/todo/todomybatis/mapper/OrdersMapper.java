@@ -8,7 +8,7 @@ import java.util.List;
 @Mapper
 public interface OrdersMapper {
 
-    /*@Sql("select a.orderid, a.custid, c.name, a.bookid, b.bookname, b.price, a.saleprice, a.orderdate, d.hap, e.total\n" +
+    /*@Select("select a.orderid, a.custid, c.name, a.bookid, b.bookname, b.price, a.saleprice, a.orderdate, d.hap, e.total\n" +
             "from orders a, book b, customer c, \n" +
             "(select a.custid as custid, sum(saleprice) as hap from orders a, book b, customer c where a.bookid=b.bookid and a.custid=c.custid group by a.custid) d,\n" +
             "(select sum(saleprice) as total from orders) e \n" +

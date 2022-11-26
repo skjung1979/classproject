@@ -4,13 +4,13 @@
 
 <mapper namespace="com.todo.todomybatis.mapper.LoginMapper"> <!-- mapper폴더에서 생성한 (인터페이스)클래스명(풀네임으로!)-->
 
-    <select id="selectByUidPw" resultType="com.todo.todomybatis.domain.member.Member">
-        select * from member_td where memberid=#{param1} and memberpw=#{param2}
-    </select>
+    <!--    <select id="selectByUidPw" resultType="com.todo.todomybatis.domain.member.Member">
+            select * from member_td where memberid=#{param1} and memberpw=#{param2}
+        </select>-->
 
-    <select id="selectByUUID" resultType="com.todo.todomybatis.domain.member.Member" parameterType="string">
-        select * from member_td where uuid=#{uuid}
-    </select>
+    <!--   <select id="selectByUUID" resultType="com.todo.todomybatis.domain.member.Member" parameterType="string">
+           select * from member_td where uuid=#{uuid}
+       </select>-->
 
     <update id="updateUUID">
         update member_td set uuid=#{param2} where seq=#{param1}

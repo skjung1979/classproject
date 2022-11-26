@@ -4,9 +4,10 @@
 
 <mapper namespace="com.todo.todomybatis.mapper.DeptMapper"> <!--mapper폴더에서 생성한 (인터페이스)클래스명(풀네임으로!)-->
 
+<!-- DeptMapper.java에서 어노테이션으로 대체함
 <select id="selectAll" resultType="com.todo.todomybatis.domain.dept.Dept">
     select * from dept
-</select>
+</select>-->
 
 
 </mapper>
