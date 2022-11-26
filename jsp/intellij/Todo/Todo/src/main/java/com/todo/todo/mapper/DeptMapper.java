@@ -7,7 +7,6 @@ import java.util.List;
 
 @Mapper
 public interface DeptMapper {
-
     @Sql("select * from dept")
     List<Dept> selectAll();
 }

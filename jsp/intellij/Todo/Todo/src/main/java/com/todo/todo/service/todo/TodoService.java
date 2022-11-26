@@ -4,8 +4,6 @@ import com.todo.todo.domain.todo.TodoDTO;
 import com.todo.todo.mapper.TodoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

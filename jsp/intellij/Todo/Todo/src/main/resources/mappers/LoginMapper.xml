@@ -8,9 +8,10 @@
     update member_td set uuid=#{param2} where seq=#{param1}
 </update>
 
-    <select id="selectByUidPw" parameterType="String, String" resultType="com.todo.todo.domain.member.Member">
+ <!--  LoginMapper.java에서 @sql로 처리함
+  <select id="selectByUidPw" parameterType="String, String" resultType="com.todo.todo.domain.member.Member">
         update member_td set uuid=#{param2} where seq=#{param1}
-    </select>
+    </select>-->
 
 
 </mapper>

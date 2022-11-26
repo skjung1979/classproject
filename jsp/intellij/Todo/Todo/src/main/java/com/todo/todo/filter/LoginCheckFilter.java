@@ -1,20 +1,16 @@
 package com.todo.todo.filter;
 
 import com.todo.todo.domain.member.Member;
-import com.todo.todo.util.ConnectionUtil;
-import lombok.Cleanup;
+import com.todo.todo.mapper.LoginMapper;
 import lombok.extern.log4j.Log4j2;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import javax.servlet.*;
-import javax.servlet.annotation.*;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
 //@WebFilter(filterName = "LoginCheckFilter", urlPatterns = {"/todo/*, /mypage/*, /dept/*, /book/*, /orders/*"})
 @WebFilter(filterName = "LoginCheckFilter", urlPatterns = {"/todo/*", "/mypage/*", "/dept/*", "/book/*", "/orders/*", "/index.jsp"})
@@ -29,6 +25,9 @@ public class LoginCheckFilter implements Filter {
 //    }
     //private TodoService service = new TodoService();
 
+    @Autowired
+    private LoginMapper loginMapper;
+
     public void init(FilterConfig config) throws ServletException {
 
     }
@@ -41,7 +40,6 @@ public class LoginCheckFilter implements Filter {
 
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
-
         HttpSession session = req.getSession();
 
         log.info("세션 확인 전 req.getCookies() => " + req.getCookies());
@@ -59,24 +57,9 @@ public class LoginCheckFilter implements Filter {
                 try {
 
                     Member member = null;
-                    @Cleanup Connection conn = ConnectionUtil.getInstance().getConnection();
+                    //@Cleanup Connection conn = ConnectionUtil.getInstance().getConnection();
 
-                    String sql = "select * from member_td where uuid=?";
-                    @Cleanup PreparedStatement pstmt = conn.prepareStatement(sql);
-                    pstmt.setString(1, uuid);
-                    @Cleanup ResultSet rs = pstmt.executeQuery();
-
-                    if (rs.next()) {
-                        member = Member.builder()
-                                .seq(rs.getInt("seq"))
-                                .membernm(rs.getString("membernm"))
-                                .memberid(rs.getString("memberid"))
-                                .memberpw(rs.getString("memberpw"))
-                                .memberphone(rs.getString("memberphone"))
-                                .memberemail(rs.getString("memberemail"))
-                                .uuid(rs.getString("uuid"))
-                                .build();
-                    }
+                    member = loginMapper.selectByUUID(uuid);
 
                     if (member != null) {
                         log.info("uuid 값을 가지고 있는 회원의 정보로 로그인 처리. member => " + member);
