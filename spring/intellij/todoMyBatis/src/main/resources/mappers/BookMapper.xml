@@ -5,11 +5,19 @@
 <mapper namespace="com.todo.todomybatis.mapper.BookMapper"> <!--mapper폴더에서 생성한 (인터페이스)클래스명(풀네임으로!)-->
 
     <select id="selectBy" resultType="com.todo.todomybatis.domain.book.Book">
-        select * from book where bookid=#{bookId}
+        select * from book where bookid=#{bookid}
     </select>
 
-    <select id="updateBook" parameterType="com.todo.todomybatis.domain.book.Book">
-        update book set bookname=#{bookName}, publisher=#{publisher}, price=#{price} where bookid=#{bookId}
+    <update id="updateBook" parameterType="com.todo.todomybatis.domain.book.Book">
+        update book set bookname=#{bookname}, publisher=#{publisher}, price=#{price} where bookid=#{bookid}
+    </update>
+
+    <select id="selectAll" resultType="com.todo.todomybatis.domain.book.Book">
+        select * from book
+    </select>
+
+    <select id="custSelectAll" resultType="com.todo.todomybatis.domain.customer.Customer">
+        select * from customer
     </select>
 
     <insert id="ordersInsert" parameterType="com.todo.todomybatis.domain.orders.Orders">

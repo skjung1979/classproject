@@ -18,13 +18,13 @@ public class Orders {
 
     private int orderid;
     private int custid;
-    private String custnm;
+    private String name;
     private int bookid;
-    private String booknm;
+    private String bookname;
     private int price;
     private int saleprice;
     private String orderdate;
-    private String sumprice;
+    private String hap;
     private String total;
 
 

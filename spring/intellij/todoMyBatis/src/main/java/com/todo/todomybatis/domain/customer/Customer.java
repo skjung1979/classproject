@@ -16,8 +16,8 @@ public class Customer {
     address	varchar(50)	YES
     phone	varchar(20)	YES*/
 
-    private int custId;
-    private String custnm;
+    private int custid;
+    private String name;
     private String address;
     private String phone;
 

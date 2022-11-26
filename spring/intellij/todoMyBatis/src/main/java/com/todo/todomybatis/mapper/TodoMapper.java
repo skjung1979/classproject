@@ -9,7 +9,7 @@ import java.util.List;
 public interface TodoMapper {
     int insertTodo(TodoDTO todoDTO);
 
-    @Sql("select * from tododto")
+    //@Sql("select * from tododto")
     List<TodoDTO> selectAll();
 
     TodoDTO selectBy(int tno);

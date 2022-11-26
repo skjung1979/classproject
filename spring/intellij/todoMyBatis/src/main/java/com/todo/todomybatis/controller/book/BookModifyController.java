@@ -3,6 +3,7 @@ package com.todo.todomybatis.controller.book;
 import com.todo.todomybatis.domain.book.Book;
 import com.todo.todomybatis.service.book.BookService;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,22 +17,19 @@ import javax.servlet.http.HttpServletRequest;
 @Log4j2
 public class BookModifyController {
 
-    private final BookService bookService;
-
-    public BookModifyController(BookService bookService) {
-        this.bookService = bookService;
-    }
+    @Autowired(required = false)
+    private BookService bookService;
 
     @GetMapping
     public String getBookmodify(
             HttpServletRequest request,
-            @RequestParam("bookId") int bookId
+            @RequestParam("bookid") int bookid
     ) throws Exception {
 
 //        int bookId = Integer.parseInt(request.getParameter("bookId"));
-        log.info("도서코드 : " + bookId);
+        log.info("도서코드 : " + bookid);
 
-        request.setAttribute("book", bookService.selectBy(bookId));
+        request.setAttribute("book", bookService.selectBy(bookid));
 
         return "views/book/modify";
     }

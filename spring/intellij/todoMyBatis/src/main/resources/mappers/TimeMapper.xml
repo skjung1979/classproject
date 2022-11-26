@@ -1,0 +1,12 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.todo.todomybatis.mapper.TimeMapper"> <!--mapper폴더에서 생성한 (인터페이스)클래스명(풀네임으로!)-->
+
+    <select id="getTime" resultType="string">
+        select now()
+    </select>
+
+
+</mapper>

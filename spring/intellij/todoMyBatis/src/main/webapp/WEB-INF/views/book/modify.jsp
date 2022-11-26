@@ -20,11 +20,11 @@
 <table>
     <tr>
         <th>도서코드</th>
-        <td><input type="text" name="bookId" value="${book.bookId}" readonly></td>
+        <td><input type="text" name="bookid" value="${book.bookid}" readonly></td>
     </tr>
     <tr>
         <th>도서명</th>
-        <td><input type="text" name="bookName" value="${book.bookName}"></td>
+        <td><input type="text" name="bookname" value="${book.bookname}"></td>
     </tr>
     <tr>
         <th>출판사</th>

@@ -1,4 +1,4 @@
-package com.todo.todomybatis.controller.todo;
+package com.todo.todomybatis.controller.member;
 
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;

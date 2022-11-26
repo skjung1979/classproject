@@ -3,6 +3,7 @@ package com.todo.todomybatis.controller.book;
 import com.todo.todomybatis.domain.orders.Orders;
 import com.todo.todomybatis.service.book.BookService;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,11 +18,8 @@ import java.time.LocalDate;
 @Log4j2
 public class BookListController {
 
-    private final BookService bookService;
-
-    public BookListController(BookService bookService) {
-        this.bookService = bookService;
-    }
+    @Autowired(required = false)
+    private BookService bookService;
 
     @GetMapping
     public String getBooklist(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -31,6 +29,8 @@ public class BookListController {
         request.setAttribute("list", bookService.selectAll());
         request.setAttribute("custList", bookService.custSelectAll());
 
+        log.info("booklistcontroller custList => " + bookService.custSelectAll());
+
         return "views/book/list";
     }
 
@@ -38,8 +38,8 @@ public class BookListController {
     public String postBookList(
 //            HttpServletRequest request,
 //            HttpServletResponse response
-            @RequestParam("custId") int custid,
-            @RequestParam("bookId") int bookid,
+            @RequestParam("custid") int custid,
+            @RequestParam("bookid") int bookid,
             @RequestParam("price") int price
     ) throws Exception {
 

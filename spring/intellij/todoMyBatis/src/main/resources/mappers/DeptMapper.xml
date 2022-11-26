@@ -4,7 +4,9 @@
 
 <mapper namespace="com.todo.todomybatis.mapper.DeptMapper"> <!--mapper폴더에서 생성한 (인터페이스)클래스명(풀네임으로!)-->
 
-
+<select id="selectAll" resultType="com.todo.todomybatis.domain.dept.Dept">
+    select * from dept
+</select>
 
 
 </mapper>

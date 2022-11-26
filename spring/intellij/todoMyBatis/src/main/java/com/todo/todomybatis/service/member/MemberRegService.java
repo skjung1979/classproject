@@ -39,8 +39,6 @@ public class MemberRegService {
             member.setUphoto(newFileName);
         }
 
-        //@Cleanup Connection conn = ConnectionUtil.getInstance().getConnection();
-
         return memberRegMapper.insertTodoMember(member);
     }
 }

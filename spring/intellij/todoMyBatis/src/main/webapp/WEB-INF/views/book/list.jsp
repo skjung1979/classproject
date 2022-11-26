@@ -39,8 +39,8 @@
   </tr>
 <c:forEach var="book" items="${list}">
   <tr>
-    <td>${book.bookId}</td>
-    <td><a href="/book/modify?bookId=${book.bookId}">${book.bookName}</a></td>
+    <td>${book.bookid}</td>
+    <td><a href="/book/modify?bookid=${book.bookid}">${book.bookname}</a></td>
     <td>${book.publisher}</td>
     <td>${book.price}</td>
    <td>
@@ -48,10 +48,10 @@
         구매자:
       <select style="display: inline" name="custId">
         <c:forEach var="cust" items="${custList}">
-        <option value="${cust.custId}">${cust.custnm}</option>
+        <option value="${cust.custid}">${cust.name}</option>
         </c:forEach>
       </select>
-      <input type="hidden" name="bookId" value="${book.bookId}">
+      <input type="hidden" name="bookid" value="${book.bookid}">
       <input type="hidden" name="price" value="${book.price}">
           <input type="submit" value="구매하기">
       </form>

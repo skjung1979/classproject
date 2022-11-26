@@ -3,6 +3,7 @@ package com.todo.todomybatis.controller.member;
 import com.todo.todomybatis.domain.member.MemberRegRequest;
 import com.todo.todomybatis.service.member.MemberRegService;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,12 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 @Log4j2
 public class TodoMemberRegController {
 
-    private final MemberRegService memberRegService;
-
-
-    public TodoMemberRegController(MemberRegService memberRegService) {
-        this.memberRegService = memberRegService;
-    }
+    @Autowired(required = false)
+    private MemberRegService memberRegService;
 
     @GetMapping
     public String regTodoMember(

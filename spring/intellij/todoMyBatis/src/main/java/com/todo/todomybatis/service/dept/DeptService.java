@@ -14,11 +14,7 @@ public class DeptService {
 
     public List<Dept> getList() throws Exception {
 
-        //@Cleanup Connection conn = ConnectionUtil.getInstance().getConnection();
-
-        List<Dept> list = deptMapper.selectAll();
-
-        return list;
+        return deptMapper.selectAll();
     }
 
 }

@@ -2,6 +2,7 @@ package com.todo.todomybatis.controller.todo;
 
 import com.todo.todomybatis.service.todo.TodoService;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,10 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 @Log4j2
 public class TodoReadController {
 
-    private final TodoService service;
-    public TodoReadController(TodoService service){
-        this.service = service;
-    }
+    @Autowired(required = false)
+    private TodoService service;
 
     @GetMapping
     public String getRead(

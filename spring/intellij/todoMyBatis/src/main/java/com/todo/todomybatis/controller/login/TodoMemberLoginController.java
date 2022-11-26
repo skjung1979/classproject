@@ -3,6 +3,7 @@ package com.todo.todomybatis.controller.login;
 import com.todo.todomybatis.domain.member.Member;
 import com.todo.todomybatis.service.login.LoginService;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,11 +20,8 @@ import java.util.UUID;
 @RequestMapping("/login/loginTodoMember")
 public class TodoMemberLoginController {
 
-    private final LoginService loginService;
-
-    public TodoMemberLoginController(LoginService loginService) {
-        this.loginService = loginService;
-    }
+    @Autowired(required = false)
+    private LoginService loginService;
 
     @GetMapping
     public String getLoginTodoMember (){

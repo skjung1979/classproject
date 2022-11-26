@@ -12,11 +12,6 @@ import java.util.List;
 @Service
 public class BookService {
 
-//    private final BookDao bookDao;
-//    public BookService(BookDao bookDao) {
-//        this.bookDao = bookDao;
-//    }
-
     @Autowired
     private BookMapper bookMapper;
 
@@ -24,43 +19,27 @@ public class BookService {
 
         List<Book> list = new ArrayList<>();
 
-//        @Cleanup Connection conn = ConnectionUtil.getInstance().getConnection();
-
         return bookMapper.selectAll();
     }
 
-    public Book selectBy(int bookId) throws Exception {
+    public Book selectBy(int bookid) throws Exception {
 
         Book result = new Book();
 
-//        @Cleanup Connection conn = ConnectionUtil.getInstance().getConnection();
-
-        return bookMapper.selectBy(bookId);
+        return bookMapper.selectBy(bookid);
     }
 
     public int updateBook(Book book) throws Exception {
-
-        int result = 0;
-
-//        @Cleanup Connection conn = ConnectionUtil.getInstance().getConnection();
 
         return bookMapper.updateBook(book);
     }
 
     public List<Customer> custSelectAll() throws Exception {
 
-        List<Customer> clist = new ArrayList<>();
-
-//        @Cleanup Connection conn = ConnectionUtil.getInstance().getConnection();
-
         return bookMapper.custSelectAll();
     }
 
     public int ordersInsert(Orders ord) throws Exception {
-
-        int result = 0;
-
-//        @Cleanup Connection conn = ConnectionUtil.getInstance().getConnection();
 
         System.out.println("BookService에서 ord.getSaleprice : " + ord.getSaleprice());
 

@@ -16,8 +16,8 @@ public class Book {
     publisher	varchar(40)	YES
     price	int	YES*/
 
-    private int bookId;
-    private String bookName;
+    private int bookid;
+    private String bookname;
     private String publisher;
     private int price;
 

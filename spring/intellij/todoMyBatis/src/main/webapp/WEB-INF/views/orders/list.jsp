@@ -19,7 +19,7 @@
     고객별 조회:
     <select name="custid">
         <c:forEach var="cust" items="${custList}">
-            <option value="${cust.custId}">${cust.custnm}</option>
+            <option value="${cust.custid}">${cust.name}</option>
         </c:forEach>
         <option value="0" selected>ALL</option>
     </select>
@@ -46,9 +46,9 @@
                 <td>${stat.count}</td>
                 <td>${order.orderid}</td>
                 <td>${order.custid}</td>
-                <td>${order.custnm}</td>
+                <td>${order.name}</td>
                 <td>${order.bookid}</td>
-                <td>${order.booknm}</td>
+                <td>${order.bookname}</td>
                 <td>${order.price}</td>
                 <td>${order.saleprice}</td>
                 <td>${order.orderdate}</td>
@@ -57,7 +57,7 @@
                         <td rowspan="50">${order.total}</td>
                     </c:if>
                     <c:if test="${cId != 0}">
-                        <td rowspan="50">${order.sumprice}</td>
+                        <td rowspan="50">${order.hap}</td>
                     </c:if>
 
                 </c:if>
@@ -71,9 +71,9 @@
                 <td>${stat.count}</td>
                 <td>${order.orderid}</td>
                 <td>${order.custid}</td>
-                <td>${order.custnm}</td>
+                <td>${order.name}</td>
                 <td>${order.bookid}</td>
-                <td>${order.booknm}</td>
+                <td>${order.bookname}</td>
                 <td>${order.price}</td>
                 <td>${order.saleprice}</td>
                 <td>${order.orderdate}</td>
@@ -82,7 +82,7 @@
                         <td rowspan="50">${order.total}</td>
                     </c:if>
                     <c:if test="${cId != 0}">
-                        <td rowspan="50">${order.sumprice}</td>
+                        <td rowspan="50">${order.hap}</td>
                     </c:if>
 
                 </c:if>

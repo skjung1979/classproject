@@ -4,12 +4,12 @@
 
 <mapper namespace="com.todo.todomybatis.mapper.OrdersMapper"> <!-- mapper폴더에서 생성한 (인터페이스)클래스명(풀네임으로!)-->
 
-    <<select id="ordersSelectBy" resultType="list">
-        select a.orderid, a.custid, c.name, a.bookid, b.bookname, b.price, a.saleprice, a.orderdate, d.hap, e.total\n" +
-        "from orders a, book b, customer c, \n" +
-        "(select a.custid as custid, sum(saleprice) as hap from orders a, book b, customer c where a.bookid=b.bookid and a.custid=c.custid group by a.custid) d,\n" +
-        "(select sum(saleprice) as total from orders) e \n" +
-        "where a.bookid=b.bookid and a.custid=c.custid and a.custid=d.custid and a.custid=#{custid} order by a.orderid
+    <select id="ordersSelectAll" resultType="com.todo.todomybatis.domain.orders.Orders">
+        select a.orderid, a.custid, c.name, a.bookid, b.bookname, b.price, a.saleprice, a.orderdate, d.hap, e.total from orders a, book b, customer c, (select a.custid as custid, sum(saleprice) as hap from orders a, book b, customer c where a.bookid=b.bookid and a.custid=c.custid group by a.custid) d, (select sum(saleprice) as total from orders) e where a.bookid=b.bookid and a.custid=c.custid and a.custid=d.custid order by a.orderid
+    </select>
+
+    <select id="ordersSelectBy" resultType="com.todo.todomybatis.domain.orders.Orders">
+        select a.orderid, a.custid, c.name, a.bookid, b.bookname, b.price, a.saleprice, a.orderdate, d.hap, e.total from orders a, book b, customer c, (select a.custid as custid, sum(saleprice) as hap from orders a, book b, customer c where a.bookid=b.bookid and a.custid=c.custid group by a.custid) d, (select sum(saleprice) as total from orders) e where a.bookid=b.bookid and a.custid=c.custid and a.custid=d.custid and a.custid=#{custid} order by a.orderid
     </select>
 
 

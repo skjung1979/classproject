@@ -14,35 +14,25 @@ public class TodoService {
 
     public int insertTodo(TodoDTO todoDTO) throws Exception {
 
-        //@Cleanup Connection conn = ConnectionUtil.getInstance().getConnection();
-
         return todoMapper.insertTodo(todoDTO);
     }
 
     public List<TodoDTO> selectAll() throws Exception {
-
-        //@Cleanup Connection conn = ConnectionUtil.getInstance().getConnection();
 
         return todoMapper.selectAll();
     }
 
     public TodoDTO selectBy(int tno) throws Exception {
 
-        //@Cleanup Connection conn = ConnectionUtil.getInstance().getConnection();
-
         return todoMapper.selectBy(tno);
     }
 
     public int updateTodo(TodoDTO dto) throws Exception {
 
-        //@Cleanup Connection conn = ConnectionUtil.getInstance().getConnection();
-
         return todoMapper.updateTodo(dto);
     }
 
     public int deletTodo(int tno) throws Exception {
-
-        //@Cleanup Connection conn = ConnectionUtil.getInstance().getConnection();
 
         return todoMapper.deleteTodo(tno);
     }

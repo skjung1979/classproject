@@ -2,6 +2,7 @@ package com.todo.todomybatis.controller.todo;
 
 import com.todo.todomybatis.service.todo.TodoService;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,12 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Log4j2
 public class TodoRemoveController {
 
-
-    private final TodoService todoService;
-
-    public TodoRemoveController(TodoService todoService) {
-        this.todoService = todoService;
-    }
+    @Autowired(required = false)
+    private TodoService todoService;
 
     @PostMapping
     public String removedTodo(
