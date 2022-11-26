@@ -29,8 +29,23 @@
 <body>
 <h1>Book List &lt;<a href="/">HOME</a>&gt;</h1>
 <hr>
+
+
+<div>
+    <form>
+        <select name="searchType">
+            <option value="bookname">도서명</option>
+            <option value="publisher">출판사명</option>
+            <option value="price">가격(이상)</option>
+        </select>
+        <input type="text" name="keyword">
+        <input type="submit" value="검색">
+    </form>
+</div>
+
 <table>
   <tr>
+      <th>선택</th>
     <th>도서코드</th>
     <th>도서명</th>
     <th>출판사명</th>
@@ -39,6 +54,7 @@
   </tr>
 <c:forEach var="book" items="${list}">
   <tr>
+      <td><input type="checkbox" name="bookid" value="${book.bookid}"></td>
     <td>${book.bookid}</td>
     <td><a href="/book/modify?bookid=${book.bookid}">${book.bookname}</a></td>
     <td>${book.publisher}</td>

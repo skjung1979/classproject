@@ -24,5 +24,39 @@
         insert into orders (custid, bookid, saleprice, orderdate) values (#{custid}, #{bookid}, #{saleprice}, #{orderdate})
     </insert>
 
+    <select id="selectBookSearchOption" resultType="com.todo.todomybatis.domain.book.Book" parameterType="com.todo.todomybatis.domain.book.BookSearchOption">
+        select * from book
+        <where>
+            <if test="searchType != null and keyword != null">
+                <if test="searchType == 'bookname'">
+                    bookname like concat('%', #{keyword}, '%')
+                </if>
+                <if test="searchType == 'publisher'">
+                    publisher like concat('%', #{keyword}, '%')
+                </if>
+                <if test="searchType == 'price'">
+                    <!--price >= #{keyword}-->
+                    <include refid="searchPrice"></include>
+                </if>
+
+            </if>
+        </where>
+    </select>
+
+    <sql id="searchPrice">
+        #{keyword} >= price
+    </sql>
+
+    <select id="selectBybookids" parameterType="list" resultType="com.todo.todomybatis.domain.book.Book">
+        select * from book
+        <where>
+            <if test="list != null list.size != 0">
+                bookid in
+                <foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </select>
 
 </mapper>

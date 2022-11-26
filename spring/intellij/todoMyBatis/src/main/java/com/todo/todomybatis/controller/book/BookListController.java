@@ -1,5 +1,6 @@
 package com.todo.todomybatis.controller.book;
 
+import com.todo.todomybatis.domain.book.BookSearchOption;
 import com.todo.todomybatis.domain.orders.Orders;
 import com.todo.todomybatis.service.book.BookService;
 import lombok.extern.log4j.Log4j2;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/book/list")
@@ -22,11 +25,18 @@ public class BookListController {
     private BookService bookService;
 
     @GetMapping
-    public String getBooklist(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public String getBooklist(
+            HttpServletRequest request,
+            HttpServletResponse response,
+            BookSearchOption bookSearchOption
+
+            ) throws Exception {
 
         log.info("booklistcontroller 로그 테스트");
 
-        request.setAttribute("list", bookService.selectAll());
+        //request.setAttribute("list", bookService.selectAll()); // 단순 전체 조회
+        request.setAttribute("list", bookService.getSearchList(bookSearchOption)); // 서치타입 지정하여 검색
+//         request.setAttribute("choicelist", bookService.getChoiceList()); // 선태하여 검색
         request.setAttribute("custList", bookService.custSelectAll());
 
         log.info("booklistcontroller custList => " + bookService.custSelectAll());

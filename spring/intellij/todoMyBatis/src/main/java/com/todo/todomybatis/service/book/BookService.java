@@ -1,6 +1,7 @@
 package com.todo.todomybatis.service.book;
 
 import com.todo.todomybatis.domain.book.Book;
+import com.todo.todomybatis.domain.book.BookSearchOption;
 import com.todo.todomybatis.domain.customer.Customer;
 import com.todo.todomybatis.domain.orders.Orders;
 import com.todo.todomybatis.mapper.BookMapper;
@@ -44,5 +45,16 @@ public class BookService {
         System.out.println("BookService에서 ord.getSaleprice : " + ord.getSaleprice());
 
         return bookMapper.ordersInsert(ord);
+    }
+
+    public List<Book> getSearchList(BookSearchOption bookSearchOption) {
+
+        return bookMapper.selectBookSearchOption(bookSearchOption);
+    }
+
+    /*아래는 아직 미 구현*/
+    public List<Book> getChoiceList(List<Integer> bookids) {
+
+        return bookMapper.selectBybookids(bookids);
     }
 }
