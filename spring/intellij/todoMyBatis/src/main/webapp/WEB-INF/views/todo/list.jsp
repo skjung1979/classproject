@@ -39,8 +39,8 @@ To change this template use File | Settings | File Templates.
         <tr>
             <td>${stat.index+1}</td>
             <td>${todo.tno}</td>
-            <td>${todo.todo}</a></td>
-            <td>${todo.dueDate}</td>
+            <td>${todo.todo}</td>
+            <td>${todo.dueDates}</td>
             <td>${todo.finished ? '완료' : '진행중'}</td>
             <td><a href="/todo/TodoRead?tno=${todo.tno}"><button>보기</button></td>
         </tr>

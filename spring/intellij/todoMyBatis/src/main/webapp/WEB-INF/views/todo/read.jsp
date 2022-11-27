@@ -16,7 +16,7 @@
 <h3>번호 : <input type="text" name="tno" readonly value="${todo.tno}"></h3>
 <h3>제목 : <input type="text" name="todo" readonly value="${todo.todo}"></h3>
 <h3>설명 : <textarea name="memo" readonly>${todo.memo}</textarea></h3>
-<h3>마감일 : <input type="date" name="dueDate" readonly value="${todo.dueDate}"></h3>
+<h3>마감일 : <input type="date" name="dueDates" readonly value="${todo.dueDates}"></h3>
 <h3>완료여부 : <input type="checkbox" name="finished" readonly ${todo.finished ? 'checked' : ''}"></h3>
 
 <a href="/todo/TodoModify?tno=${todo.tno}"><button>수정</button></a> <%--임시로 param.tno를 넣었음

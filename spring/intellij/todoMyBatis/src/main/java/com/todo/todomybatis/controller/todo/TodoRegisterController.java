@@ -47,12 +47,14 @@ public class TodoRegisterController {
                 log.info(objectError.getCodes()[1] + " => " + objectError.getDefaultMessage());
             }*/
 
-            redirectAttributes.addAttribute("type", "again");
+            //redirectAttributes.addAttribute("type", "again");
+            redirectAttributes.addFlashAttribute("msg", "할일 빈칸X / 마감일 미래날짜");
 
             return "redirect:/todo/TodoRegister";
         }
 
         log.info("register post 들어옴");
+        log.info("todoDTO => " + todoDTO);
 
        service.insertTodo(todoDTO);
 

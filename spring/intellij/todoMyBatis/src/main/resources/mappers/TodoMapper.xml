@@ -17,7 +17,7 @@
     </insert>
 
     <update id="updateTodo" parameterType="com.todo.todomybatis.domain.todo.TodoDTO">
-        update tododto set todo=#{todo}, memo=#{memo}, duedates=#{dueDate}, finished=#{finished} where tno=#{tno}
+        update tododto set todo=#{todo}, memo=#{memo}, duedates=#{dueDates}, finished=#{finished} where tno=#{tno}
     </update>
 
 <!--    <delete id="deleteTodo">

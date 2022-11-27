@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 public class TodoReadController {
 
     @Autowired(required = false)
-    private TodoService service;
+    private TodoService todoService;
 
     @GetMapping
     public String getRead(
@@ -33,7 +33,9 @@ public class TodoReadController {
         
         log.info("요청 번호: " + tno);
 
-        request.setAttribute("todo", service.selectBy(tno));
+        request.setAttribute("todo", todoService.selectBy(tno));
+
+        log.info("todoService.selectBy(tno) => : " + todoService.selectBy(tno));
 
         return "views/todo/read";
     }

@@ -24,7 +24,7 @@ public class TodoDTO {
     private String todo;
     private String memo; // 상세설명
     @Future
-    private LocalDate dueDate; // 마감일자
+    private LocalDate dueDates; // 마감일자
     private boolean finished;
 
 }

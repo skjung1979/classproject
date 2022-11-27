@@ -16,6 +16,10 @@
 <hr>
 <form method="post">
 
+<%--TodoRegisterController.java에서 redirectAttributes.addFlashAttribute로 등록한 메세지--%>
+    <c:if test="${msg != null}">
+        ${msg}
+    </c:if>
   <table>
     <Tr>
     <Td>할일: </Td>
@@ -27,7 +31,7 @@
     </Tr>
     <Tr>
       <Td>마감일:</Td>
-      <Td><input type="date" name="dueDate"></Td>
+      <Td><input type="date" name="dueDates"></Td>
     </Tr>
     <tr>
       <td></td>

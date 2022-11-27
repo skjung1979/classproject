@@ -74,7 +74,7 @@ public class TodoModifyController {
         log.info("수정 요청 받은 번호: " + todoDTO.getTno());
         log.info("수정 요청 받은 할일: " + todoDTO.getTodo());
         log.info("수정 요청 받은 설명: " + todoDTO.getMemo());
-        log.info("수정 요청 받은 기한: " + todoDTO.getDueDate());
+        log.info("수정 요청 받은 기한: " + todoDTO.getDueDates());
         log.info("수정 요청 받은 완료여부: " + todoDTO.isFinished());
 
         // Service로 보낼 DTO 생성 <- 사용자가 입력한 수정값으로 DTO객체를 생성해서 서비스로 보내는 것이다.
