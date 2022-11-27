@@ -28,10 +28,10 @@ public class TodoMemberLogoutController {
         c.setPath("/");
         response.addCookie(c);
 
-        Cookie c1 = new Cookie("preUri", "/");
+       /* Cookie c1 = new Cookie("preUri", "/");
         c1.setMaxAge(60*60);
         c1.setPath("/");
-        response.addCookie(c1);
+        response.addCookie(c1);*/
 
 
         return "redirect:/";

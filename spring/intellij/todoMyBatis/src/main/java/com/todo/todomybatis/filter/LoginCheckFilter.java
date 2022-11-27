@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 //@WebFilter(filterName = "LoginCheckFilter", urlPatterns = {"/todo/*, /mypage/*, /dept/*, /book/*, /orders/*"})
-@WebFilter(filterName = "LoginCheckFilter", urlPatterns = {"/todo/*", "/mypage/*", "/dept/*", "/book/*", "/orders/*", "/index.jsp"})
+@WebFilter(filterName = "LoginCheckFilter", urlPatterns = {"/todo/*", "/mypage/*", "/dept/*", "/book/*", "/orders/*"})
 @Log4j2
 public class LoginCheckFilter implements Filter {
 
@@ -42,6 +42,12 @@ public class LoginCheckFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
         HttpSession session = req.getSession();
+
+        /*로그인 후 접근했던 페이지로 바로 이동하게 하기 위한 세션 등록*/
+        String uri = req.getRequestURI();
+        log.info("uri ====> " + uri);
+        session = req.getSession();
+        session.setAttribute("preUri", uri);
 
         log.info("세션 확인 전 req.getCookies() => " + req.getCookies());
 
