@@ -6,11 +6,13 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/todo/TodoModify")
@@ -58,10 +60,24 @@ public class TodoModifyController {
     public String postModify(
 //            HttpServletRequest request,
 //            HttpServletResponse response
-            TodoDTO todoDTO
+            @Valid TodoDTO todoDTO,
+            BindingResult bindingResult,
+            Model model
     ) throws Exception {
 
         log.info("modify post 들어옴");
+
+
+
+        if (bindingResult.hasErrors()) {
+
+           /* for (ObjectError objectError : bindingResult.getAllErrors()){
+                log.info(objectError.getCodes()[1] + " => " + objectError.getDefaultMessage());
+            }*/
+            model.addAttribute("todo", todoDTO);
+
+            return "views/todo/modify";
+        }
 
         // 사용자가 수정한 데이터를 업데이트 처리
 //        String tno = request.getParameter("tno");
