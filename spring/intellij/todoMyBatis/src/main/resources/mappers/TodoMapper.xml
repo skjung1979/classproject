@@ -13,7 +13,7 @@
     </select>-->
 
     <insert id="insertTodo" parameterType="com.todo.todomybatis.domain.todo.TodoDTO">
-        insert into tododto (todo, memo, dueDates, finished) values(#{todo}, #{memo}, #{dueDate}, #{finished})
+        insert into tododto (todo, memo, dueDates, finished) values(#{todo}, #{memo}, #{dueDates}, #{finished})
     </insert>
 
     <update id="updateTodo" parameterType="com.todo.todomybatis.domain.todo.TodoDTO">

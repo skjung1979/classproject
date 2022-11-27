@@ -7,46 +7,65 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
-  <title>Todo Register</title>
+    <title>Todo Register</title>
+
+    <style type="text/css">
+
+        .table-column {
+            text-align: center;
+            font-size: 14px;
+            background-color: #ddffaa;
+        }
+        .error {
+            margin-left: 5px;
+            color: red;
+            font-size: 12px;
+        }
+
+    </style>
 </head>
 <body>
 <h1>Todo Register</h1>
 <hr>
-<form method="post">
 
-<%--TodoRegisterController.java에서 redirectAttributes.addFlashAttribute로 등록한 메세지--%>
-    <c:if test="${msg != null}">
-        ${msg}
-    </c:if>
-  <table>
-    <Tr>
-    <Td>할일: </Td>
-      <Td><input type="text" name="todo"></Td>
-    </Tr>
-    <Tr>
-      <Td>설명: </Td>
-      <Td><textarea name="memo">필요하다면 자세한 설명을 입력해주세요.</textarea></Td>
-    </Tr>
-    <Tr>
-      <Td>마감일:</Td>
-      <Td><input type="date" name="dueDates"></Td>
-    </Tr>
-    <tr>
-      <td></td>
-      <td><input type="reset" value="초기화">
-        <input type="submit" value="등록"> <a href="/todo/TodoList">TodoList</a> </td>
-    </tr>
-  </table>
 
-</form>
 
-<c:if test="${param.type eq 'again'}">
-  <script>
-    alert('할일이 비어 있거나, 마감일이 오늘보다 과거입니다.');
-  </script>
-</c:if>
+
+<form:form action="/todo/TodoRegister" method="post" modelAttribute="todoDTO">
+    <table border="1" width="500" cellpadding="5" cellspacing="0">
+        <Tr>
+            <Td>할일:</Td>
+            <td class="table-danger">
+                <input type="text" name="todo"/>
+                <form:errors path="todo" cssClass="error" />
+            </td>
+        </Tr>
+        <Tr>
+            <Td>설명:</Td>
+            <td class="table-danger">
+                <textarea name="memo" placeholder="자세한 설명을 입력하세요."></textarea>
+            </td>
+        </Tr>
+        <Tr>
+            <Td>마감일:</Td>
+            <td class="table-danger">
+                <input type="date" name="dueDates"/>
+                <form:errors path="dueDates" cssClass="error" />
+            </td>
+        </Tr>
+        <tr>
+            <td></td>
+            <td><input type="reset" value="초기화">
+                <input type="submit" value="등록"> <a href="/todo/TodoList">TodoList</a></td>
+        </tr>
+    </table>
+
+</form:form>
+
+
 
 </body>
 

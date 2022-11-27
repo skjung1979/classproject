@@ -9,6 +9,11 @@
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
        http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd">
 
+    <!--Validator가 messageSource를 사용하도록 설정-->
+  <!--  <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <property name="validationMessageSource" ref="messageSource" />
+    </bean>-->
+
 <!--    service 의존성 주입을 위한 설정 시작 -->
     <context:component-scan base-package="com.todo.todomybatis.service"></context:component-scan>
     <!--    service 의존성 주입을 위한 설정 끝 -->

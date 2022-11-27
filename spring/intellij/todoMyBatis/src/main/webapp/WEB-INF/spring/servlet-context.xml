@@ -10,6 +10,9 @@
        http://www.springframework.org/schema/context
        https://www.springframework.org/schema/context/spring-context.xsd">
 
+    <!--Controller가 앞에서 설정한 validator를 사용하도록 설정-->
+   <!-- <mvc:annotation-driven validator="validator"/>-->
+
 <!--    어노테이션 사용 설정 -->
     <mvc:annotation-driven></mvc:annotation-driven>
 
