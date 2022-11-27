@@ -39,20 +39,20 @@
         <Tr>
             <Td>할일:</Td>
             <td class="table-danger">
-                <input type="text" name="todo"/>
+                <input type="text" name="todo" value="${todo.todo}"/>
                 <form:errors path="todo" cssClass="error" />
             </td>
         </Tr>
         <Tr>
             <Td>설명:</Td>
             <td class="table-danger">
-                <textarea name="memo" placeholder="자세한 설명을 입력하세요."></textarea>
+                <textarea name="memo" placeholder="자세한 설명을 입력하세요." value="${todo.memo}"></textarea>
             </td>
         </Tr>
         <Tr>
             <Td>마감일:</Td>
             <td class="table-danger">
-                <input type="date" name="dueDates"/>
+                <input type="date" name="dueDates" value="${todo.dueDates}"/>
                 <form:errors path="dueDates" cssClass="error" />
             </td>
         </Tr>
