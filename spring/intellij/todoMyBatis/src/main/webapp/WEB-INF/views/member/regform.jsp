@@ -7,55 +7,74 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>회원 가입 페이지</title>
-  <style>
-    table {
-      padding: 5px;
+  <style type="text/css">
+
+    .table-column {
+      text-align: center;
+      font-size: 14px;
+      background-color: #ddffaa;
     }
-    td{
-      padding: 5px;
+    .error {
+      margin-left: 5px;
+      color: red;
+      font-size: 12px;
     }
+
   </style>
 </head>
 <body>
 <h1>Todo 회원 가입 페이지</h1>
 <hr>
-<form method="post" enctype="multipart/form-data">
 
+<form:form action="/member/regTodoMember" method="post" modelAttribute="regRequest" enctype="multipart/form-data">
   <table>
     <tr>
-      <td>이름: </td>
-      <td><input type="text" placeholder="이름을 입력하세요." name="username" id="username"></td>
+      <td class="table-danger">이름: </td>
+      <td class="table-danger">
+        <input type="text" placeholder="이름을 입력하세요." name="username" id="username" value="${regmem.username}">
+        <form:errors path="username" cssClass="error" />
+      </td>
     </tr>
     <tr>
-      <td>ID: </td>
-      <td><input type="text" placeholder="아이디를 입력하세요." name="userid" id="userid"></td>
+      <td class="table-danger">ID: </td>
+      <td class="table-danger">
+        <input type="text" placeholder="아이디를 입력하세요." name="userid" id="userid" value="${regmem.userid}">
+        <form:errors path="userid" cssClass="error" />
+      </td>
     </tr>
     <tr>
-      <td>PW: </td>
-      <td><input type="password" placeholder="비밀번호를 입력하세요." name="userpw" id="userpw"></td>
+      <td class="table-danger">PW: </td>
+      <td class="table-danger">
+        <input type="password" placeholder="비밀번호를 입력하세요." name="userpw" id="userpw" value="${regmem.userpw}">
+        <form:errors path="userpw" cssClass="error" />
+      </td>
     </tr>
     <tr>
-      <td>전화번호: </td>
-      <td><input type="tel" placeholder="전화번호를 입력하세요." name="userphone" id="userphone"></td>
+      <td class="table-danger">전화번호: </td>
+      <td class="table-danger"><input type="tel" placeholder="전화번호를 입력하세요." name="userphone" id="userphone" value="${regmem.userphone}"></td>
     </tr>
     <tr>
-      <td>이메일: </td>
-      <td><input type="email" placeholder="이메일을 입력하세요." name="useremail" id="useremail"></td>
+      <td class="table-danger">이메일: </td>
+      <td class="table-danger">
+        <input type="email" placeholder="이메일을 입력하세요." name="useremail" id="useremail" value="${regmem.useremail}">
+        <form:errors path="useremail" cssClass="error" />
+      </td>
     </tr>
     <tr>
-      <td>프로필 사진: </td>
-      <td><input type="file" name="userphoto" id="userphoto"></td>
+      <td class="table-danger">프로필 사진: </td>
+      <td class="table-danger"><input type="file" name="userphoto" id="userphoto" value="${regmem.userphoto}"></td>
     </tr>
     <tr id="regform">
-      <Td></Td>
-      <td><input type="submit" value="회원가입" ></td>
+      <Td class="table-danger"></Td>
+      <td class="table-danger"><input type="submit" value="회원가입" ></td>
     </tr>
   </table>
 
-</form>
+</form:form>
 
 
 </body>

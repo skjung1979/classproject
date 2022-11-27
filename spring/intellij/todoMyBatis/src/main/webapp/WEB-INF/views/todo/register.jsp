@@ -37,28 +37,28 @@
 <form:form action="/todo/TodoRegister" method="post" modelAttribute="todoDTO">
     <table border="1" width="500" cellpadding="5" cellspacing="0">
         <Tr>
-            <Td>할일:</Td>
+            <Td class="table-danger">할일:</Td>
             <td class="table-danger">
                 <input type="text" name="todo" value="${todo.todo}"/>
                 <form:errors path="todo" cssClass="error" />
             </td>
         </Tr>
         <Tr>
-            <Td>설명:</Td>
+            <Td class="table-danger">설명:</Td>
             <td class="table-danger">
                 <textarea name="memo" placeholder="자세한 설명을 입력하세요." value="${todo.memo}"></textarea>
             </td>
         </Tr>
         <Tr>
-            <Td>마감일:</Td>
+            <Td class="table-danger">마감일:</Td>
             <td class="table-danger">
                 <input type="date" name="dueDates" value="${todo.dueDates}"/>
                 <form:errors path="dueDates" cssClass="error" />
             </td>
         </Tr>
         <tr>
-            <td></td>
-            <td><input type="reset" value="초기화">
+            <td class="table-danger"></td>
+            <td class="table-danger"><input type="reset" value="초기화">
                 <input type="submit" value="등록"> <a href="/todo/TodoList">TodoList</a></td>
         </tr>
     </table>

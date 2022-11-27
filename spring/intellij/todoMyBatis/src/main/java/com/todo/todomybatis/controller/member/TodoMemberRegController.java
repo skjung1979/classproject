@@ -5,11 +5,14 @@ import com.todo.todomybatis.service.member.MemberRegService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/member/regTodoMember")
@@ -22,34 +25,29 @@ public class TodoMemberRegController {
     @GetMapping
     public String regTodoMember(
             HttpServletRequest request,
-            HttpServletResponse response
+            HttpServletResponse response,
+            Model model
     ){
         return "views/member/regform";
     }
 
     @PostMapping
     public String reTodoMember(
-            MemberRegRequest regRequest,
+            @Valid MemberRegRequest regRequest,
             HttpServletRequest request, // 파일의 실제 저장 경로를 찾기 위한 것
-            HttpServletResponse response
+            BindingResult bindingResult,
+            Model model
     ) throws Exception {
         log.info("회원 가입 post 진입");
 
-        // 이전 방식(MemberRegRequest DTO를 생성하기 전!
-        // 사용자 데이터 전달 받기
-//        String memname = request.getParameter("username");
-//        String memid = request.getParameter("userid");
-//        String mempw = request.getParameter("userpw");
-//        String memphone = request.getParameter("userphone");
-//        String mememail = request.getParameter("useremail");
+        if (bindingResult.hasErrors()){
 
-//        Member member = Member.builder()
-//                .membernm(memname)
-//                .memberid(memid)
-//                .memberpw(mempw)
-//                .memberphone(memphone)
-//                .memberemail(mememail)
-//                .build();
+            model.addAttribute("regmem", regRequest);
+
+            log.info("bindingResult.hasErrors() 진입");
+
+            return "views/member/regform";
+        }
 
         log.info(regRequest);
 

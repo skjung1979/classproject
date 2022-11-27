@@ -3,6 +3,9 @@ package com.todo.todomybatis.domain.member;
 import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -22,10 +25,14 @@ public class MemberRegRequest {
 //    uphoto	varchar(45)
 
     // 아래 변수명은 회원가입 폼에서 가져오는 name과 같아야 한다.
+    @NotEmpty(message="빈값이면 안됩니다.")
     private String username;
+    @NotEmpty(message="빈값이면 안됩니다.")
     private String userid;
+    @NotEmpty(message="빈값이면 안됩니다.")
     private String userpw;
     private String userphone;
+    @Email(message = "이메일 형식에 맞춰 입력해주세요.")
     private String useremail;
     private MultipartFile userphoto;
 
