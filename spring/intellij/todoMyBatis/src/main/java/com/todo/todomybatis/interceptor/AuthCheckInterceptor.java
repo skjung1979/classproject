@@ -1,6 +1,5 @@
 package com.todo.todomybatis.interceptor;
 
-import com.todo.todomybatis.domain.member.Member;
 import com.todo.todomybatis.service.login.LoginService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +22,7 @@ public class AuthCheckInterceptor implements HandlerInterceptor {
 
         log.info(">>> 회원 로그인 여부 체크 <<< ");
 
-        String uri = request.getRequestURI();
-        log.info("uri ====> " + uri);
-
         HttpSession session = request.getSession();
-
-        session.setAttribute("preUri", uri);
 
         // 회원 로그인 상태 체크
         session = request.getSession(false);
@@ -44,20 +38,17 @@ public class AuthCheckInterceptor implements HandlerInterceptor {
             log.info("uuid 값을 가지고 있는 회원의 정보로 로그인 처리. member => " + member);
             session.setAttribute("loginInfo", member);
         }
-
 */
 
         // 회원이 로그인 상태이다!
-        if (session != null && session.getAttribute("loginInfo") != null){
+        if (session != null && session.getAttribute("loginInfo") != null) {
             log.info("회원 로그인 상태!!!");
             return true;
         }
 
         log.info("회원 비로그인 상태!!!");
 
-
-
-      response.sendRedirect("/login/loginTodoMember");
+        response.sendRedirect("/login/loginTodoMember");
         return false;
     }
 
