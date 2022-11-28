@@ -38,7 +38,7 @@ public class TodoMemberRegController {
             BindingResult bindingResult,
             Model model
     ) throws Exception {
-        log.info("회원 가입 post 진입");
+        log.info("회원 가입 post 진입 >>>>>>>>>>>>  "+bindingResult.hasErrors());
 
         if (bindingResult.hasErrors()){
 

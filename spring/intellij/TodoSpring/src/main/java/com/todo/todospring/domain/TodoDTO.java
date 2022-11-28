@@ -14,7 +14,7 @@ public class TodoDTO {
 
     private long tno;
     private String todo;
-    private LocalDate dueDate;
+    private LocalDate duedates;
     private boolean finished;
 
 }

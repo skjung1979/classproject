@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 @Log4j2
@@ -19,13 +20,13 @@ import java.time.LocalDate;
 @RequestMapping("/todo/modify")
 public class TodoModifyController {
 
-    @Autowired
+    @Autowired(required = false)
     private TodoService todoService;
 
     @GetMapping
     public String getModifyForm(
             Model model,
-            @RequestParam("tno") int tno){
+            @RequestParam("tno") int tno) throws SQLException {
 
         model.addAttribute("todo", todoService.getTodo(tno));
 
@@ -40,7 +41,7 @@ public class TodoModifyController {
 //                         @RequestParam("dueDate") String dueDate,
 //                         @RequestParam(value = "finished", required = false) String finished // requred = false이면 null 들어와도 수용한다.
             TodoDTO todoDTO
-                        ){
+                        ) throws SQLException {
 
         //TodoDTO todoDTO = new TodoDTO(tno, todo, LocalDate.parse(dueDate), finished == null ? false : true);
         log.info("todoDTO확인: " + todoDTO);

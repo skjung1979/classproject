@@ -31,9 +31,6 @@
 <h1>Todo Register</h1>
 <hr>
 
-
-
-
 <form:form action="/todo/TodoRegister" method="post" modelAttribute="todoDTO">
     <table border="1" width="500" cellpadding="5" cellspacing="0">
         <Tr>

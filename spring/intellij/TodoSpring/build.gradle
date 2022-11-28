@@ -51,6 +51,11 @@ dependencies {
 
     implementation group: 'com.zaxxer', name: 'HikariCP', version: '5.0.1'
 
+    implementation group: 'org.springframework', name: 'spring-jdbc', version: '5.3.19'
+    implementation group: 'org.springframework', name: 'spring-tx', version: '5.3.19' /*트랜젝션 관련*/
+    implementation 'org.mybatis:mybatis:3.5.9'
+    implementation 'org.mybatis:mybatis-spring:2.0.7'
+
 
 }
 

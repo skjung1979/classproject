@@ -4,6 +4,7 @@ import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
 @AllArgsConstructor
@@ -25,7 +26,7 @@ public class MemberRegRequest {
 //    uphoto	varchar(45)
 
     // 아래 변수명은 회원가입 폼에서 가져오는 name과 같아야 한다.
-    @NotEmpty(message="빈값이면 안됩니다.")
+    @NotBlank(message="빈값이면 안됩니다.")
     private String username;
     @NotEmpty(message="빈값이면 안됩니다.")
     private String userid;

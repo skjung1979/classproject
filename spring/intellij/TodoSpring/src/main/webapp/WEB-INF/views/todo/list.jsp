@@ -25,7 +25,7 @@
         <tr>
             <td>${todo.tno}</td>
             <td><a href="/todo/read?tno=${todo.tno}">${todo.todo}</a></td>
-            <td>${todo.dueDate}</td>
+            <td>${todo.duedates}</td>
             <td>${todo.finished ? '완료' : '진행중'}</td>
         </tr>
     </c:forEach>

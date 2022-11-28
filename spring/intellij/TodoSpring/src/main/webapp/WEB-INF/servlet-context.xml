@@ -11,7 +11,7 @@
        https://www.springframework.org/schema/context/spring-context.xsd">
 
     <mvc:annotation-driven></mvc:annotation-driven>
-    <context:component-scan base-package="com.todo.todospring"></context:component-scan>
+    <context:component-scan base-package="com.todo.todospring.controller"></context:component-scan>
 
     <!-- 이하 3줄 바꿔도 된다. -->
     <mvc:resources mapping="/css/**" location="/css/"></mvc:resources>
@@ -43,8 +43,8 @@
     <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
         <property name="formatters">
             <set>
-                <bean class="com.todo.todospring.formatter.LocalDateFormatter"/>
                 <!-- 여기에 여러개 등록 하면 된다. -->
+                <bean class="com.todo.todospring.formatter.LocalDateFormatter"/>
                 <bean class="com.todo.todospring.formatter.CheckBoxFormatter"/>
             </set>
         </property>

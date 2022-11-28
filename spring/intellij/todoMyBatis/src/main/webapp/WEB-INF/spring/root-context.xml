@@ -41,8 +41,14 @@
         <property name="mapperLocations" value="classpath:/mappers/**/*.xml"></property>
     </bean>
     <mybatis:scan base-package="com.todo.todomybatis.mapper"></mybatis:scan>
-
-
     <!--    MyBatis 설정 끝 -->
+
+    <!--    트랜젝션 설정 시작 / 어노테이션은 service클래스에서 사용! -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"></property>
+
+    </bean>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <!--    트랜젝션 설정 끝 -->
 
 </beans>

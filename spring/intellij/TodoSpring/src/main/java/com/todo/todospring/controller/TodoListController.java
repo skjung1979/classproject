@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.sql.SQLException;
+
 @Controller
 @Log4j2
 public class TodoListController {
@@ -20,7 +22,7 @@ public class TodoListController {
     @RequestMapping("/todo/list")
     public String getTodoList(
         Model model
-    ) {
+    ) throws SQLException {
 
         // model에서 받은 매개변수를 서비스에 전달
         model.addAttribute("todoList", todoService.getTodoList());

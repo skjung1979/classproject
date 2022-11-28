@@ -1,7 +1,6 @@
 package com.todo.todomybatis.filter;
 
 import com.todo.todomybatis.domain.member.Member;
-import com.todo.todomybatis.mapper.LoginMapper;
 import com.todo.todomybatis.service.login.LoginService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 //@WebFilter(filterName = "LoginCheckFilter", urlPatterns = {"/todo/*, /mypage/*, /dept/*, /book/*, /orders/*"})
-@WebFilter(filterName = "LoginCheckFilter", urlPatterns = {"/todo/*", "/mypage/*", "/dept/*", "/book/*", "/orders/*"})
+@WebFilter(filterName = "LoginCheckFilter", urlPatterns = {"/todo/*", "/mypage/*", "/dept/*", "/book/*", "/orders/*", "/index.jsp"})
 @Log4j2
 public class LoginCheckFilter implements Filter {
 
@@ -39,6 +38,8 @@ public class LoginCheckFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
 
+        log.info("로그인 체크 필터 진입");
+        
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
         HttpSession session = req.getSession();
@@ -50,6 +51,13 @@ public class LoginCheckFilter implements Filter {
         session.setAttribute("preUri", uri);
 
         log.info("세션 확인 전 req.getCookies() => " + req.getCookies());
+
+      /*  Cookie cookie1 = findCookie(req.getCookies(), "uuid");
+        String uuid1 = cookie1.getValue();
+        Member member1 = loginService.selectByUUID(uuid1);
+        session.setAttribute("loginInfo", member1);
+*/
+        //loginService.selectByUUID(req.getCookies().toString());
 
         if (session.getAttribute("loginInfo") == null) {
 

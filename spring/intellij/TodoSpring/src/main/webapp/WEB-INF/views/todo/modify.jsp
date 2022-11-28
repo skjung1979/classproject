@@ -26,7 +26,7 @@
         </tr>
         <tr>
             <td>기한</td>
-            <td><input type="date" name="dueDate" value="${todo.dueDate}"></td>
+            <td><input type="date" name="dueDate" value="${todo.duedates}"></td>
         </tr>
         <tr>
             <td>상태</td>

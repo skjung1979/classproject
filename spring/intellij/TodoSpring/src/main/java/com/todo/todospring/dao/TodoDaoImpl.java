@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-@Repository(value = "todoDao")
+//@Repository(value = "todoDao")
 @Log4j2
 public class TodoDaoImpl implements TodoDao {
 
@@ -79,7 +79,7 @@ public class TodoDaoImpl implements TodoDao {
         String sql = "insert into tododto (todo, dueDates) values (?, ?)";
         @Cleanup PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setString(1, dto.getTodo());
-        pstmt.setDate(2, Date.valueOf(dto.getDueDate()));
+        pstmt.setDate(2, Date.valueOf(dto.getDuedates()));
         result = pstmt.executeUpdate();
 
         return result;
@@ -94,7 +94,7 @@ public class TodoDaoImpl implements TodoDao {
         String sql = "update tododto set todo=?, duedates=?, finished=? where tno=?";
         @Cleanup PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setString(1, dto.getTodo());
-        pstmt.setDate(2, Date.valueOf(dto.getDueDate()));
+        pstmt.setDate(2, Date.valueOf(dto.getDuedates()));
         pstmt.setBoolean(3, dto.isFinished());
         pstmt.setLong(4, dto.getTno());
         result = pstmt.executeUpdate();

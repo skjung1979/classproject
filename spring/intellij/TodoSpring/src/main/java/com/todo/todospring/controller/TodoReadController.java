@@ -7,14 +7,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.sql.SQLException;
+
 @Controller
 public class TodoReadController {
 
-    @Autowired
+    @Autowired(required = false)
     private TodoService todoService;
 
     @GetMapping("/todo/read")
-    public void readTodo(Model model, @RequestParam("tno") int tno){
+    public void readTodo(Model model, @RequestParam("tno") int tno) throws SQLException {
 
         model.addAttribute("todo", todoService.getTodo(tno));
 

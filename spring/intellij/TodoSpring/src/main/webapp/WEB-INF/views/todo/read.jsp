@@ -25,7 +25,7 @@
     </tr>
     <tr>
         <td>기한</td>
-        <td><input type="date" name="dueDate" value="${todo.dueDate}" readonly></td>
+        <td><input type="date" name="dueDate" value="${todo.duedates}" readonly></td>
     </tr>
     <tr>
         <td>상태</td>

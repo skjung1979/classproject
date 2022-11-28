@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 @Log4j2
@@ -32,10 +33,10 @@ public class TodoInsertController {
 //            @RequestParam("todo") String todo,
 //            @RequestParam("dueDate") String dueDate
             TodoDTO todoDTO
-    ){
+    ) throws SQLException {
 
         log.info(todoDTO.getTodo());
-        log.info(todoDTO.getDueDate());
+        //log.info(todoDTO.getDueDate());
         log.info(todoDTO);
 
 //        TodoDTO todoDTO = TodoDTO.builder()
