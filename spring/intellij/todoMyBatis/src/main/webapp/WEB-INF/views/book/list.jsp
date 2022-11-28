@@ -36,7 +36,7 @@
         <select name="searchType">
             <option value="bookname">도서명</option>
             <option value="publisher">출판사명</option>
-            <option value="price">가격(이상)</option>
+            <option value="price">가격(이하)</option>
         </select>
         <input type="text" name="keyword">
         <input type="submit" value="검색">

@@ -24,14 +24,10 @@ public class Member {
     uuid	varchar(60)	YES*/
 
     private int seq;
-    @NotBlank(message="빈값이면 안됩니다.")
     private String membernm;
-    @NotEmpty(message="빈값이면 안됩니다.")
     private String memberid;
-    @NotEmpty(message="빈값이면 안됩니다.")
     private String memberpw;
     private String memberphone;
-    @Email(message = "이메일 형식에 맞춰 입력해주세요.")
     private String memberemail;
     private String uuid;
     private String uphoto;

@@ -3,15 +3,17 @@ package com.todo.todomybatis.service.member;
 import com.todo.todomybatis.domain.member.Member;
 import com.todo.todomybatis.domain.member.MemberRegRequest;
 import com.todo.todomybatis.mapper.MemberRegMapper;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 
 @Service
+@Log4j2
 public class MemberRegService {
 
-    @Autowired
+    @Autowired(required = false)
     private MemberRegMapper memberRegMapper;
 
     public int insertTodoMember(MemberRegRequest regRequest, HttpServletRequest request) throws Exception {
@@ -28,6 +30,8 @@ public class MemberRegService {
 
             // 새로운 파일명을 부여한다: 같은 이름의 파일로 업로드하는 것을 방지
             newFileName = System.nanoTime() + "_" + regRequest.getUserphoto().getOriginalFilename();
+
+            log.info("실제 경로 dirRealpath => " + dirRealPath);
 
             // 3. 파일 저장
             regRequest.getUserphoto().transferTo(new File(dirRealPath, newFileName));

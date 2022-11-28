@@ -30,43 +30,42 @@
 <h1>Todo 회원 가입 페이지</h1>
 <hr>
 
-<form:form action="/member/regTodoMember" method="post" modelAttribute="regRequest" enctype="multipart/form-data">
+<form action="/member/regTodoMember2" method="post" enctype="multipart/form-data">
   <table>
     <tr>
       <td class="table-danger">이름: </td>
       <td class="table-danger">
-        <input type="text" placeholder="이름을 입력하세요." name="username" id="username" value="${regmem.username}">
-        <form:errors path="username" cssClass="error" />
+        <input type="text" placeholder="이름을 입력하세요." name="username" id="username">
       </td>
     </tr>
     <tr>
       <td class="table-danger">ID: </td>
       <td class="table-danger">
-        <input type="text" placeholder="아이디를 입력하세요." name="userid" id="userid" value="${regmem.userid}">
-        <form:errors path="userid" cssClass="error" />
+        <input type="text" placeholder="아이디를 입력하세요." name="userid" id="userid">
+
       </td>
     </tr>
     <tr>
       <td class="table-danger">PW: </td>
       <td class="table-danger">
-        <input type="password" placeholder="비밀번호를 입력하세요." name="userpw" id="userpw" value="${regmem.userpw}">
-        <form:errors path="userpw" cssClass="error" />
+        <input type="password" placeholder="비밀번호를 입력하세요." name="userpw" id="userpw">
+
       </td>
     </tr>
     <tr>
       <td class="table-danger">전화번호: </td>
-      <td class="table-danger"><input type="tel" placeholder="전화번호를 입력하세요." name="userphone" id="userphone" value="${regmem.userphone}"></td>
+      <td class="table-danger"><input type="tel" placeholder="전화번호를 입력하세요." name="userphone" id="userphone"></td>
     </tr>
     <tr>
       <td class="table-danger">이메일: </td>
       <td class="table-danger">
-        <input type="email" placeholder="이메일을 입력하세요." name="useremail" id="useremail" value="${regmem.useremail}">
-        <form:errors path="useremail" cssClass="error" />
+        <input type="email" placeholder="이메일을 입력하세요." name="useremail" id="useremail">
+
       </td>
     </tr>
     <tr>
       <td class="table-danger">프로필 사진: </td>
-      <td class="table-danger"><input type="file" name="userphoto" id="userphoto" value="${regmem.userphoto}"></td>
+      <td class="table-danger"><input type="file" name="userphoto" id="userphoto"></td>
     </tr>
     <tr id="regform">
       <Td class="table-danger"></Td>
@@ -74,7 +73,7 @@
     </tr>
   </table>
 
-</form:form>
+</form>
 
 
 </body>

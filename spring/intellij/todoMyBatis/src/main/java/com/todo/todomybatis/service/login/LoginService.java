@@ -23,7 +23,7 @@ public class LoginService {
         return loginMapper.updateUUID(seq, toString);
     }
 
-    public Member selectByUUID(String uuid) {
+    public Member selectByUUID(String uuid) throws Exception{
         return loginMapper.selectByUUID(uuid);
     }
 }

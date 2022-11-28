@@ -22,7 +22,7 @@
     </tr>
     <tr>
         <td>기한</td>
-        <td><input type="date" name="dueDate"></td>
+        <td><input type="date" name="duedates"></td>
     </tr>
     <tr>
         <td></td>

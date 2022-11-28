@@ -12,6 +12,8 @@
 
     <mvc:annotation-driven></mvc:annotation-driven>
     <context:component-scan base-package="com.todo.todospring.controller"></context:component-scan>
+    <!--예외 처리 설정-->
+    <context:component-scan base-package="com.todo.todospring.exception"></context:component-scan>
 
     <!-- 이하 3줄 바꿔도 된다. -->
     <mvc:resources mapping="/css/**" location="/css/"></mvc:resources>
@@ -31,7 +33,7 @@
         <property name="defaultEncoding" value="UTF-8"/>
     </bean>
 
-<!--    로그인 체크하는 인터셉터 등록-->
+    <!--    로그인 체크하는 인터셉터 등록-->
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/todo/**"/>
@@ -52,7 +54,6 @@
 
     <mvc:annotation-driven conversion-service="conversionService"/>
     <!-- 포매터 등록 끝-->
-
 
 
 

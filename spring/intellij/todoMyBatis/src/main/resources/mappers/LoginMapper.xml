@@ -8,9 +8,9 @@
             select * from member_td where memberid=#{param1} and memberpw=#{param2}
         </select>-->
 
-    <!--   <select id="selectByUUID" resultType="com.todo.todomybatis.domain.member.Member" parameterType="string">
-           select * from member_td where uuid=#{uuid}
-       </select>-->
+    <select id="selectByUUID" resultType="com.todo.todomybatis.domain.member.Member" parameterType="String">
+        select * from member_td where uuid=#{uuid}
+    </select>
 
     <update id="updateUUID">
         update member_td set uuid=#{param2} where seq=#{param1}

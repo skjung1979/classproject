@@ -2,7 +2,6 @@ package com.todo.todomybatis.domain.member;
 
 import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;

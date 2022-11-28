@@ -12,6 +12,6 @@ public interface LoginMapper {
     @Select("select * from member_td where memberid=#{param1} and memberpw=#{param2}")
     Member selectByUidPw(String userid, String userpw);
 
-    @Select("select * from member_td where uuid=#{param1}")
+    //@Select("select * from member_td where uuid=#{param1}")
     Member selectByUUID(String uuid);
 }

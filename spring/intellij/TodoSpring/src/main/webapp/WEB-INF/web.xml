@@ -20,6 +20,13 @@
             <param-value>/WEB-INF/servlet-context.xml</param-value> <!--바꿔도 된다-->
         </init-param>
 
+        <!-- 예외처리 관련 설정 시작 -->
+        <init-param>
+            <param-name>throwExceptionIfNoHandlerFound</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <!-- 예외처리 관련 설정 끝 -->
+
         <load-on-startup>1</load-on-startup>
     </servlet>
 

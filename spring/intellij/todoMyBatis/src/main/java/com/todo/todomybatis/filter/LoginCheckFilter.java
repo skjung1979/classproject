@@ -12,8 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-//@WebFilter(filterName = "LoginCheckFilter", urlPatterns = {"/todo/*, /mypage/*, /dept/*, /book/*, /orders/*"})
-@WebFilter(filterName = "LoginCheckFilter", urlPatterns = {"/todo/*", "/mypage/*", "/dept/*", "/book/*", "/orders/*", "/index.jsp"})
+@WebFilter(filterName = "LoginCheckFilter", urlPatterns = {"/todo/*", "/mypage/*", "/dept/*", "/book/*", "/orders/*"})
 @Log4j2
 public class LoginCheckFilter implements Filter {
 
@@ -25,8 +24,9 @@ public class LoginCheckFilter implements Filter {
 //    }
     //private TodoService service = new TodoService();
 
-    @Autowired
-    private LoginService loginService;
+/* 필터에서는 서비스를 주입 받을 수 없다.
+   @Autowired
+    private LoginService loginService;*/
 
     public void init(FilterConfig config) throws ServletException {
 
@@ -63,7 +63,7 @@ public class LoginCheckFilter implements Filter {
 
             Cookie cookie = findCookie(req.getCookies(), "uuid");
 
-            log.info("쿠키 찾았나? => " + cookie);
+            log.info("로그인 세션은 null / 쿠키 찾았나? => " + cookie);
 
             if (cookie != null) {
 
@@ -75,9 +75,9 @@ public class LoginCheckFilter implements Filter {
 
                     log.info("로그인 체크 필터 진입 / loginMapper.selectByUUID(uuid) 실행 직전 / 쿠키의 uuid는? => " + uuid);
 
-                    member = loginService.selectByUUID(uuid);
+//                    member = loginService.selectByUUID(uuid);
 
-                    log.info("로그인 체크 필터 진입 / selectByUUID의 결과 member =>  " + loginService.selectByUUID(uuid));
+//                    log.info("로그인 체크 필터 진입 / selectByUUID의 결과 member =>  " + loginService.selectByUUID(uuid));
 
                     if (member != null) {
                         log.info("uuid 값을 가지고 있는 회원의 정보로 로그인 처리. member => " + member);

@@ -10,16 +10,13 @@
        http://www.springframework.org/schema/context
        https://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!--Controller가 앞에서 설정한 validator를 사용하도록 설정-->
-   <!-- <mvc:annotation-driven validator="validator"/>-->
-
-<!--    어노테이션 사용 설정 -->
+    <!--    어노테이션 사용 설정 -->
     <mvc:annotation-driven></mvc:annotation-driven>
 
     <!--예외 처리 설정-->
-    <context:component-scan base-package="com.todo.todomybatis.exception"></context:component-scan>
+    <!--    <context:component-scan base-package="com.todo.todomybatis.exception"></context:component-scan>-->
 
-<!--    MyBatis 설정 -->
+    <!--    MyBatis 설정 -->
     <context:component-scan base-package="com.todo.todomybatis.controller"></context:component-scan>
 
     <mvc:resources mapping="/resources/**" location="/resources/"></mvc:resources>
@@ -46,6 +43,7 @@
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="defaultEncoding" value="UTF-8"/>
     </bean>
+    <mvc:resources mapping="/uploadfile/**" location="/uploadfile/"></mvc:resources>
 
     <!-- 회원 로그인 여부 체크 interceptor 등록 설정 시작 -->
     <mvc:interceptors>
