@@ -46,7 +46,7 @@
     <tr>
       <td class="table-danger">ID: </td>
       <td class="table-danger">
-        <input type="text" placeholder="아이디를 입력하세요." name="userid" id="userid" ${regmem.userid}>
+        <input type="text" placeholder="아이디를 입력하세요." name="userid" id="userid" value="${regmem.userid}">
         <form:errors path="userid" cssClass="error" />
       </td>
     </tr>
