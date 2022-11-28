@@ -53,9 +53,9 @@
             <mvc:mapping path="/book/**"/>
             <mvc:mapping path="/orders/**"/>
             <mvc:mapping path="/mypage/**"/>
-<!--            <mvc:mapping path="/mypage/**"/>-->
-<!--            <mvc:mapping path="/mypage/**"/>-->
-<!--            <mvc:mapping path="/mypage/**"/>-->
+
+<!--           <mvc:mapping path="/**"/>-->
+
             <bean class="com.todo.todomybatis.interceptor.AuthCheckInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>

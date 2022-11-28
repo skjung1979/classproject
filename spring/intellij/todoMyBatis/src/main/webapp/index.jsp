@@ -19,12 +19,12 @@
 <br>
 <A href="/orders/list">orders list</A>
 <br>
-<c:if test="${loginInfo == null}">
+<c:if test="${existUUID == null && loginInfo == null}">
     <A href="/member/regTodoMember">register for todo member</A>
     <br>
     <A href="/login/loginTodoMember">login for todo member</A>
 </c:if>
-<c:if test="${loginInfo != null}">
+<c:if test="${existUUID != null || loginInfo != null}">
     <A href="/mypage">mypage</A>
     <br>
     <A href="/login/logoutTodoMember">logout</A>

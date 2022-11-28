@@ -50,47 +50,14 @@ public class LoginCheckFilter implements Filter {
 
         log.info("세션 확인 전 req.getCookies() => " + req.getCookies());
 
-      /*  Cookie cookie1 = findCookie(req.getCookies(), "uuid");
-        String uuid1 = cookie1.getValue();
-        Member member1 = loginService.selectByUUID(uuid1);
-        session.setAttribute("loginInfo", member1);
-*/
-        //loginService.selectByUUID(req.getCookies().toString());
 
         if (session.getAttribute("loginInfo") == null) {
 
-            /*Cookie cookie = findCookie(req.getCookies(), "uuid");
-
-            log.info("로그인 세션은 null / 쿠키 찾았나? => " + cookie);
-
-            if (cookie != null) {
-
+            Cookie cookie = findCookie(req.getCookies(), "uuid");
+            if (cookie != null){
                 String uuid = cookie.getValue();
-
-                try {
-
-                    Member member = null;
-
-                    log.info("로그인 체크 필터 진입 / loginMapper.selectByUUID(uuid) 실행 직전 / 쿠키의 uuid는? => " + uuid);
-
-//                    member = loginService.selectByUUID(uuid);
-
-//                    log.info("로그인 체크 필터 진입 / selectByUUID의 결과 member =>  " + loginService.selectByUUID(uuid));
-
-                    if (member != null) {
-                        log.info("uuid 값을 가지고 있는 회원의 정보로 로그인 처리. member => " + member);
-                        session.setAttribute("loginInfo", member);
-
-                    }
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                chain.doFilter(request, response);
-                return;
-
-            }*/
+                session.setAttribute("existUUID",uuid);
+            }
 
             log.info("비 로그인 상태 -> 로그인 페이지로 이동");
 
