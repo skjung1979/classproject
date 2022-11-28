@@ -1,9 +1,6 @@
 package com.todo.todomybatis.filter;
 
-import com.todo.todomybatis.domain.member.Member;
-import com.todo.todomybatis.service.login.LoginService;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.Cookie;
@@ -12,7 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(filterName = "LoginCheckFilter", urlPatterns = {"/todo/*", "/mypage/*", "/dept/*", "/book/*", "/orders/*"})
+//@WebFilter(filterName = "LoginCheckFilter", urlPatterns = {"/todo/*", "/mypage/*", "/dept/*", "/book/*", "/orders/*"})
+@WebFilter(filterName = "LoginCheckFilter", urlPatterns = {""})
 @Log4j2
 public class LoginCheckFilter implements Filter {
 
@@ -61,7 +59,7 @@ public class LoginCheckFilter implements Filter {
 
         if (session.getAttribute("loginInfo") == null) {
 
-            Cookie cookie = findCookie(req.getCookies(), "uuid");
+            /*Cookie cookie = findCookie(req.getCookies(), "uuid");
 
             log.info("로그인 세션은 null / 쿠키 찾았나? => " + cookie);
 
@@ -92,7 +90,7 @@ public class LoginCheckFilter implements Filter {
                 chain.doFilter(request, response);
                 return;
 
-            }
+            }*/
 
             log.info("비 로그인 상태 -> 로그인 페이지로 이동");
 

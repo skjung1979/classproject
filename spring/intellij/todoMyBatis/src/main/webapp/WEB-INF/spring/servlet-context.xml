@@ -48,7 +48,14 @@
     <!-- 회원 로그인 여부 체크 interceptor 등록 설정 시작 -->
     <mvc:interceptors>
         <mvc:interceptor>
+            <mvc:mapping path="/todo/**"/>
+            <mvc:mapping path="/dept/**"/>
+            <mvc:mapping path="/book/**"/>
+            <mvc:mapping path="/orders/**"/>
             <mvc:mapping path="/mypage/**"/>
+<!--            <mvc:mapping path="/mypage/**"/>-->
+<!--            <mvc:mapping path="/mypage/**"/>-->
+<!--            <mvc:mapping path="/mypage/**"/>-->
             <bean class="com.todo.todomybatis.interceptor.AuthCheckInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
