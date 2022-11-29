@@ -15,7 +15,7 @@
 <br>
 <A href="/dept/list">dept list</A>
 <br>
-<A href="/book/list">book list & order</A>
+<A href="/book/list">book list & book register & order</A>
 <br>
 <A href="/orders/list">orders list</A>
 <br>

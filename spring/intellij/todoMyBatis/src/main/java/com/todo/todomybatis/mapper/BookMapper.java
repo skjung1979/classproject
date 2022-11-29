@@ -4,6 +4,7 @@ import com.todo.todomybatis.domain.book.Book;
 import com.todo.todomybatis.domain.book.BookSearchOption;
 import com.todo.todomybatis.domain.customer.Customer;
 import com.todo.todomybatis.domain.orders.Orders;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -30,4 +31,9 @@ public interface BookMapper {
 
     // 여러개 선택해서 조회 진행 예정
     List<Book> selectBybookids(List<Integer> bookids);
+
+    @Insert("insert into book values(#{bookid},#{bookname},#{publisher},#{price})")
+    int insertBook(Book book);
+
+    int deleteBybookids(List<Integer> bookids);
 }

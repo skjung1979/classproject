@@ -73,9 +73,9 @@ public class BookListController {
 
         log.info("setSaleprice 후 getSaleprice " + ord.getSaleprice());
 
-        bookService.ordersInsert(ord);
+        int orders = bookService.ordersInsert(ord);
 
-        if (bookService.ordersInsert(ord) > 0){
+        if (orders > 0){
             log.info("구매하기 DB처리완료!!!!");
         }
 

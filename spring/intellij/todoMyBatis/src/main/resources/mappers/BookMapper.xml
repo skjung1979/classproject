@@ -59,4 +59,16 @@
         </where>
     </select>
 
+    <delete id="deleteBybookids" parameterType="list">
+        delete from book
+        <where>
+            <if test="(list != null) and (list.size != 0)">
+                bookid in
+                <foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </delete>
+
 </mapper>

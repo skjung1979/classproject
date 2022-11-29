@@ -57,4 +57,15 @@ public class BookService {
 
         return bookMapper.selectBybookids(bookids);
     }
+
+    public int insertBook(Book book) {
+
+        return bookMapper.insertBook(book);
+    }
+
+    public int deleteByBookids(List<Integer> bookids){
+
+        return bookMapper.deleteBybookids(bookids);
+    }
+
 }
