@@ -7,15 +7,15 @@
     </Appenders>
     <Loggers>
 
+        <logger name="com.todo,todomybatis.mapper" level="trace" additivity="false">
+            <AppenderRef ref="Console"/>
+        </logger>
+
         <logger name="org.springframework" level="info" additivity="false">
             <AppenderRef ref="Console"/>
         </logger>
 
-        <logger name="com.todo.todomybatis.mapper" level="trace" additivity="false">
-            <AppenderRef ref="Console"/>
-        </logger>
-
-        <logger name="com.todo.todomybatis" level="info" additivity="false">
+        <logger name="com.todo.mapper" level="info" additivity="false">
             <AppenderRef ref="Console"/>
         </logger>
 
