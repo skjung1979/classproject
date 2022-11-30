@@ -1,7 +1,6 @@
 package com.bbs.springrestprj.filter;
 
 import lombok.extern.log4j.Log4j2;
-
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.Cookie;
@@ -9,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(filterName = "com.todo.todo.filter.UTF8Filter", urlPatterns = {"/*"})
+@WebFilter(filterName = "com.bbs.springrestprj.filter.UTF8Filter", urlPatterns = {"/*"})
 @Log4j2
 public class UTF8Filter implements Filter {
     public void init(FilterConfig config) throws ServletException {

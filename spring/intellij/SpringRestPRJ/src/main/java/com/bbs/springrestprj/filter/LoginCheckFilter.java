@@ -62,7 +62,7 @@ public class LoginCheckFilter implements Filter {
 
             log.info("비 로그인 상태 -> 로그인 페이지로 이동");
 
-            res.sendRedirect("/login/loginTodoMember");
+            res.sendRedirect("/login/loginMember");
             return ;
 
         }

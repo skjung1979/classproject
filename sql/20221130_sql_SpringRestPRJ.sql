@@ -11,3 +11,5 @@ create table tbl_board (
 );
 alter table tbl_board add constraint pk_board primary key (bno);
 ALTER TABLE `project`.`tbl_board` CHANGE COLUMN `bno` `bno` INT NOT NULL AUTO_INCREMENT;
+
+select * from member_td;
