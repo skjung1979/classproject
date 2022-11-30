@@ -3,7 +3,7 @@ plugins {
     id 'war'
 }
 
-group 'com.todo'
+group 'com.bbs'
 version '1.0-SNAPSHOT'
 
 repositories {
@@ -66,8 +66,11 @@ dependencies {
     implementation 'org.mybatis:mybatis-spring:2.0.7'
 // MyBatis설정 끝
 
+    // validation 설정
     implementation group: 'org.hibernate.validator', name: 'hibernate-validator', version: '6.2.1.Final'
 
+    // Jackson2 설정
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.14.0'
 }
 
 test {
