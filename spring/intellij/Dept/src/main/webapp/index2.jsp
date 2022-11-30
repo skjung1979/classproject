@@ -118,6 +118,25 @@
         })
 
 </script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script>
+    axios.get('/api/v1/depts/50')
+    .then(res => console.log('res', res.data))
+        // 태그 캐스팅 -> 데이터 변경
+    .catch(err => console.log(err))
+
+    axios.post('/api/v1/depts', {
+        "deptno": 55,
+        "dname": "전산",
+        "loc": "판교"
+    })
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
+
+
+
+</script>
 
 </body>
 </html>
