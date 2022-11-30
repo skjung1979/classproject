@@ -39,9 +39,9 @@ public class DeptRestController {
     private DeptDeleteService deptDeleteService;
 
     @GetMapping
-    public List<DeptDTO> getDeptList(){
+    public ResponseEntity<List<DeptDTO>> getDeptList(){
 
-        return deptListService.getList();
+        return new ResponseEntity<>(deptListService.getList(), HttpStatus.BAD_REQUEST);
     }
 
     @GetMapping("/{no}") // 요청 들어올 때 /api/vi/depts/10 이런 식으로 들어온다. 앞 JSP페이지에서 키값을 받아 올때 사용
@@ -88,7 +88,7 @@ public class DeptRestController {
         return new HttpEntity<String>("update OK", httpHeaders);
     }
 
-    @DeleteMapping("{no}")
+    @DeleteMapping("/{no}")
     public ResponseEntity<String> deleteDept(
             @PathVariable("no") int deptno
     ){
