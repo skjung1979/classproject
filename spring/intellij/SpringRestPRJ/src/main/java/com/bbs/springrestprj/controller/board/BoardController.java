@@ -30,8 +30,11 @@ public class BoardController {
 
         list = boardService.listBoards();
 
+        log.info(list);
+
         return new ResponseEntity(list, HttpStatus.OK);
     }
+
 
     @GetMapping("/{no}")
     public ResponseEntity<BoardDTO> listOneBoard(
@@ -42,7 +45,33 @@ public class BoardController {
 
         BoardDTO boardDTO = boardService.listOneBoard(bno);
 
+        log.info(boardDTO);
+
         return new ResponseEntity(boardDTO, HttpStatus.OK);
+    }
+
+    @GetMapping("/Maxbno")
+    public int maxBno(){
+
+        log.info("maxBno 메소드 호출...");
+
+        int result = boardService.maxBno();
+
+        log.info("Maxbno => " + result);
+
+        return result;
+    }
+
+    @GetMapping("/membernm")
+    public String membernm(){
+
+        log.info("membernm 메소드 호출...");
+
+        String result = boardService.membernm(7);
+
+        log.info("membernm => " + result);
+
+        return result;
     }
 
     @PostMapping
@@ -61,11 +90,13 @@ public class BoardController {
 
         try{
 
-            responseEntity = new ResponseEntity(boardService.addBoard(boardDTO), HttpStatus.OK);
+            boardService.addBoard(boardDTO);
+
+            responseEntity = new ResponseEntity("Insert OK!", HttpStatus.OK);
 
         } catch (Exception e){
 
-            responseEntity = new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
+            responseEntity = new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
 
         return responseEntity;
@@ -77,13 +108,15 @@ public class BoardController {
             @RequestBody BoardDTO boardDTO
     ){
 
-        log.info("modBoard 메소드 진입...");
+        log.info("editBoard 메소드 진입...");
         log.info(bno);
         log.info(boardDTO.toString());
 
         // Header 정의
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.set("some-header", "some-value");
+
+        boardService.editBoard(boardDTO);
 
         return new HttpEntity<String>("update OK", httpHeaders);
     }

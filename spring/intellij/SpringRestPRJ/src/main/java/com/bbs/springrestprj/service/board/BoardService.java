@@ -25,7 +25,7 @@ public class BoardService {
         return boardMapper.listOneBoard(bno);
     }
 
-    public ResponseEntity<String> addBoard(BoardDTO boardDTO) {
+    public int addBoard(BoardDTO boardDTO) {
 
         return boardMapper.addBoard(boardDTO);
     }
@@ -38,5 +38,15 @@ public class BoardService {
     public int removeBoard(Integer bno) {
 
         return boardMapper.removeBoard(bno);
+    }
+
+    public int maxBno() {
+
+        return boardMapper.maxBno();
+    }
+
+    public String membernm(int i) {
+
+        return boardMapper.membernm(7);
     }
 }
