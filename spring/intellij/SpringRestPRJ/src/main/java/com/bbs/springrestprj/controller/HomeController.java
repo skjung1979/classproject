@@ -36,4 +36,21 @@ public class HomeController {
         return "board/edit";
     }
 
+    @GetMapping("members/register")
+    public String regMem(){
+        return "member/regform";
+    }
+
+    @GetMapping("members/mypage")
+    public String mypage(){
+        return "member/mypage";
+    }
+
+    @GetMapping("logins/login")
+    public String login(){
+        return "login/login";
+    }
+
+//    로그아웃은 여기가 아닌 LogoutController로 연결되어 로그아웃 됨
+
 }

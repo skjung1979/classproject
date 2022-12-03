@@ -26,11 +26,20 @@ public class ReplyController {
 
         log.info("listReplys 메소드 호출...");
 
-        List<ReplyDTO> list = new ArrayList<>();
-
-        list = replyService.listReplys();
+        List<ReplyDTO> list = replyService.listReplys();
 
         log.info(list);
+
+        return new ResponseEntity(list, HttpStatus.OK);
+    }
+
+    @GetMapping("/board/{no}")
+    public ResponseEntity<List<ReplyDTO>> listReplysByBno(
+            @PathVariable("no") int bno
+    ){
+        log.info("listReplysByBno 메소드 호출...");
+
+        List<ReplyDTO> list = replyService.listReplysByBno(bno);
 
         return new ResponseEntity(list, HttpStatus.OK);
     }
@@ -75,7 +84,7 @@ public class ReplyController {
     }
 
     @PostMapping
-    public ResponseEntity<String> addBoard(
+    public ResponseEntity<String> addReply(
             @RequestBody ReplyDTO replyDTO
     ){
 

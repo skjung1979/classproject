@@ -1,23 +1,26 @@
 package com.bbs.springrestprj.controller.member;
 
+import com.bbs.springrestprj.domain.member.Member;
 import com.bbs.springrestprj.domain.member.MemberRegRequest;
-import com.bbs.springrestprj.service.member.MemberRegService;
+import com.bbs.springrestprj.service.member.MemberService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("/members")
 @Log4j2
-public class MemberRegController {
+public class MemberController {
 
     @Autowired(required = false)
-    private MemberRegService memberRegService;
+    private MemberService memberService;
 
     @GetMapping("/all")
     public String regMember(
@@ -82,7 +85,25 @@ public class MemberRegController {
         return "redirect:/login/loginMember";
     }*/
 
-    @PostMapping // JSON 데이터를 받아서 처리함,
+    @GetMapping("/loginMember")
+    public ResponseEntity<Member> oneMember(
+            HttpServletRequest request
+    ){
+        HttpSession session;
+        session = request.getSession();
+
+        log.info("oneMember 메소드 호출...");
+        log.info("session loginInfo 정보 => " + session.getAttribute("loginInfo"));
+
+        Member member = (Member) session.getAttribute("loginInfo");
+
+        log.info("member => " + member);
+
+        //return new ResponseEntity(boardListDTO, HttpStatus.OK);
+        return new ResponseEntity(member, HttpStatus.OK);
+    }
+
+    @PostMapping (consumes = MediaType.MULTIPART_FORM_DATA_VALUE)// JSON 데이터를 받아서 처리함,
     public ResponseEntity<String> regMember(
             HttpServletRequest request,
             @RequestBody MemberRegRequest memberRegRequest
@@ -92,7 +113,7 @@ public class MemberRegController {
 
         log.info("member => " + memberRegRequest);
 
-        memberRegService.insertMember(memberRegRequest, request);
+        memberService.insertMember(memberRegRequest, request);
 
         //return new ResponseEntity<>("insert OK", HttpStatus.OK);
         return new ResponseEntity<>("redirect:/", HttpStatus.OK);

@@ -25,9 +25,11 @@ public class ReplyService {
         return replyMapper.listOneReply(bno);
     }
 
-    public int addReply(ReplyDTO boardDTO) {
+    public int addReply(ReplyDTO replyDTO) {
 
-        return replyMapper.addReply(boardDTO);
+        log.info("ReplyService addReply 메소드 호출...");
+
+        return replyMapper.addReply(replyDTO);
     }
 
     public int editReply(ReplyDTO replyDTO) {
@@ -48,5 +50,10 @@ public class ReplyService {
     public String membernm(int i) {
 
         return replyMapper.membernm(7);
+    }
+
+    public List<ReplyDTO> listReplysByBno(int bno) {
+
+        return replyMapper.listReplysByBno(bno);
     }
 }

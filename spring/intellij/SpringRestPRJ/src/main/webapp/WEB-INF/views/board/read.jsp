@@ -35,14 +35,28 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
-            bno = document.querySelector("#bno")
-            writer = document.querySelector("#writer")
-            title = document.querySelector("#title")
-            content = document.querySelector("#content")
-            editA = document.querySelector("#editA")
-            regdate = document.querySelector("#regdate")
+            /*현재 날짜*/
+            const date = new Date();
+            const year = date.getFullYear();
+            const month = ('0' + (date.getMonth() + 1)).slice(-2);
+            const day = ('0' + date.getDate()).slice(-2);
+            const dateStr = year + '-' + month + '-' + day;
+            console.log(dateStr);
+
+            /* 문서 객체 생성 */
+            const bno = document.querySelector("#bno")
+            const writer = document.querySelector("#writer")
+            const title = document.querySelector("#title")
+            const content = document.querySelector("#content")
+            const editA = document.querySelector("#editA")
+            const regdate = document.querySelector("#regdate")
+
+            const rno = document.querySelector("#rno")
+            const rcontent = document.querySelector("#rcontent")
 
 
+
+            /*선택한 게시글 하나 불러옴*/
             axios.get('/boards/${param.bno}')
                 .then(res => {
                     console.log('res', res.data.bno);
@@ -52,10 +66,127 @@
                     content.value = res.data.content;
                     regdate.value = res.data.regdate;
                     editA.href = '/boards/edit?bno=' + res.data.bno;
-
                 })
                 .catch(err => console.log(err))
 
+            axios.get('/replys/Maxrno')
+                .then(res => rno.value = res.data+1)
+                .catch(err => console.log(err))
+
+            /*유저 아이디 불러오기 => 로그인 세션에서 id값 가져옴*/
+/*            axios.get('/replys/membernm')
+                .then(res => colsole.log(res))
+                .catch(err => console.log(err))*/
+
+            /*댓글쓰기버튼(btn_rep)을 누르면 댓글 입력함*/
+            $(function () {
+                $("#btn_rep").click(function () {
+                    axios.post('/replys', {
+                        rno: rno.value,
+                        userid: "sk",
+                        boardid: bno.value,
+                        content: rcontent.value,
+                        regdate: dateStr,
+                        updatedate: dateStr
+                    })
+                        .then(res => {
+                            console.log('댓글 쓰기 성공!!!');
+
+                            /*댓글 쓴 후 기존 리스트에 새댓글이 삽입되어야 함*/
+                            replyTbl = document.querySelector("#replyTbl")
+
+                            const newTrU = document.createElement('tr')
+                            const newTrC = document.createElement('tr')
+                            const newTrD = document.createElement('tr')
+
+                            let str1 = '<td>' + 'sk' + '</td>'
+                            let str2 = '<td>' + rcontent.value + '</td>'
+                            let str3 = '<td>' + dateStr + '<hr></td>'
+
+                            newTrU.innerHTML = str1
+                            replyTbl.appendChild(newTrU);
+
+                            newTrC.innerHTML = str2
+                            replyTbl.appendChild(newTrC);
+
+                            newTrD.innerHTML = str3
+                            replyTbl.appendChild(newTrD);
+
+                            /*댓글 쓴 후 기존 값들 초기화시킴*/
+                            rno.value = "";
+                            rcontent.value = "";
+
+                        })
+                        .catch(err => console.log(err)) /*end axios*/
+                });
+            });
+
+            /*댓글 중 bno와 일치하는 리스트 출력하기*/
+            $.ajax({
+                url: "/replys/board/${param.bno}",
+                type: "GET",
+                dataType: "json",
+                success: ajaxHtml,
+                error: function () {
+                    alert("error");
+                }
+            });
+
+            function ajaxHtml(data) {
+                var html = "<table class='table' id='replyTbl'>";
+
+                $.each(data, (index, obj) => {
+                    html += "<tr>";
+                    html += "<td>" + obj.userid + "</td>";
+                    html += "</tr>";
+                    html += "<tr>";
+                    html += "<td>" + obj.content + "</td>";
+                    html += "</tr>";
+                    html += "<tr>";
+                    html += "<td>" + obj.regdate + "<hr></td>";
+                })
+                html += "</table>";
+
+                $("#allReply").html(html);
+            }
+
+
+ /*           $(function () {
+                $("#btn_rep").click(function () {
+
+                    /!*유저 아이디는 로그인 세션에서의 memberid*!/
+                    /!*지금은 잠깐 임시로 sk로 사용함*!/
+
+                    axios.post('/replys', {
+                        rno: rno.value,
+                        userid: "sk",
+                        boardid: bno.value,
+                        content: rcontent.value,
+                        regdate: dateStr,
+                        updatedate: dateStr
+                    })
+                        .then(res => console.log('댓글달기 성공'))
+                        .catch(err => console.log(err))
+                })
+            })*/
+
+
+/*            $(function () {
+                $("#insert").click(function () {
+                    axios.post('/boards', {
+                        bno: bno.value,
+                        title: title.value,
+                        content: content.value,
+                        writer: writer.value,
+                        regdate: "2022-12-01",
+                        updatedate: "2022-12-01"
+                    })
+                        .then(res =>
+                            location.href = "list"
+                        )
+                        .catch(err => console.log(err)) /!*end axios*!/
+                });
+            });*/
 
             /*axios.get('/boards/membernm')
                 .then(res => writer.value = res.data)
@@ -155,12 +286,12 @@
 <table>
     <tr>
         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-        <td><div id="allReply">여기에 댓글 전체 목록이 출력됩니다.</div>
+        <td><div id="allReply">댓글 목록 로딩 중...</div>
         </td>
     </tr>
     <tr>
-        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-        <td><textarea id="newReply" class="rep" name="contentrep"></textarea><br><br>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="hidden" id="rno" name="rno"></td>
+        <td><textarea id="rcontent" class="rep" name="rcontent"></textarea><br><br>
             작성자: 아무개 <button id="btn_rep">댓글쓰기</button>
         </td>
     </tr>

@@ -16,6 +16,7 @@ public class BoardDTO {
     private String writer;
     private String regdate;
     private String updatedate;
+    private String rcnt;
 
 
 }

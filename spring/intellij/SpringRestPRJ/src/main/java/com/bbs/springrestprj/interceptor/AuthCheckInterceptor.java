@@ -70,7 +70,7 @@ public class AuthCheckInterceptor implements HandlerInterceptor {
             }
             // 여기는 로그인도 안되있고, 쿠키도 존재하지 않은 경우이므로,
             // 다시 로그인 폼으로 돌려보낸다.
-            response.sendRedirect("/login/loginMember");
+            response.sendRedirect("/logins/login");
             return false;
 
 

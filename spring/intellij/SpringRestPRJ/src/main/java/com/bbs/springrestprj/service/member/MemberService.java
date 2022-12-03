@@ -11,7 +11,7 @@ import java.io.File;
 
 @Service
 @Log4j2
-public class MemberRegService {
+public class MemberService {
 
     @Autowired(required = false)
     private MemberRegMapper memberRegMapper;

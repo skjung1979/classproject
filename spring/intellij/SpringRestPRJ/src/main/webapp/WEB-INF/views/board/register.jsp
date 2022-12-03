@@ -29,6 +29,14 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
+            /*현재 날짜*/
+            const date = new Date();
+            const year = date.getFullYear();
+            const month = ('0' + (date.getMonth() + 1)).slice(-2);
+            const day = ('0' + date.getDate()).slice(-2);
+            const dateStr = year + '-' + month + '-' + day;
+            console.log(dateStr);
+
             bno = document.querySelector("#bno")
             writer = document.querySelector("#writer")
             title = document.querySelector("#title")
@@ -53,8 +61,8 @@
                         title: title.value,
                         content: content.value,
                         writer: writer.value,
-                        regdate: "2022-12-01",
-                        updatedate: "2022-12-01"
+                        regdate: dateStr,
+                        updatedate: dateStr
                     })
                         .then(res =>
                             location.href = "list"

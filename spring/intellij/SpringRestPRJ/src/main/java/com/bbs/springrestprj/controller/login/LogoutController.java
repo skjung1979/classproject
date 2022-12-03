@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 
 @Log4j2
 @Controller
-@RequestMapping("/login/logoutMember")
+@RequestMapping("/logins/logout")
 public class LogoutController {
 
     @GetMapping

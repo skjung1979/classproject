@@ -54,5 +54,13 @@
 <a href="/boards/register">게시글 등록</a>
 <br>
 <a href="/boards/list">전체 게시글</a>
+<br>
+<a href="/members/register">회원 가입</a>
+<br>
+<a href="/logins/login">로그인</a>
+<br>
+<a href="/members/mypage">마이페이지</a>
+<br>
+<a href="/logins/logout">로그아웃</a>
 </body>
 </html>

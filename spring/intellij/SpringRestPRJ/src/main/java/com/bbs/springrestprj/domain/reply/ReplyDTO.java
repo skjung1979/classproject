@@ -15,4 +15,5 @@ public class ReplyDTO {
     private String boardid;
     private String content;
     private String regdate;
+    private String updatedate;
 }

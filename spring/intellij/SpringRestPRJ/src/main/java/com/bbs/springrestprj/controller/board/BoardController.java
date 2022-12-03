@@ -1,6 +1,7 @@
 package com.bbs.springrestprj.controller.board;
 
 import com.bbs.springrestprj.domain.board.BoardDTO;
+import com.bbs.springrestprj.domain.board.BoardListDTO;
 import com.bbs.springrestprj.service.board.BoardService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -22,17 +24,29 @@ public class BoardController {
     private BoardService boardService;
 
     @GetMapping("/all")
-    public ResponseEntity<List<BoardDTO>> listBoards(){
+    public ResponseEntity<List<BoardDTO>> listBoards(
+    //public ResponseEntity<BoardListDTO> listBoards(
+            @RequestParam(value = "p", defaultValue = "1") int p,
+            Model model
+    ){
 
         log.info("listBoards 메소드 호출...");
 
-        List<BoardDTO> list = new ArrayList<>();
+        //List<BoardDTO> list = boardService.listBoards();
 
-        list = boardService.listBoards();
+        // 리스트와 페이징을 한번에! Rest 스타일 아님.
+        BoardListDTO boardListDTO = boardService.getBoardList(p);
 
-        log.info(list);
+        model.addAttribute("page", boardListDTO);
 
-        return new ResponseEntity(list, HttpStatus.OK);
+        log.info(boardListDTO);
+
+        //log.info("model.getAttribute(\"page\") => " + model.getAttribute("page"));
+
+        //log.info(list);
+
+        //return new ResponseEntity(list, HttpStatus.OK);
+        return new ResponseEntity(boardListDTO, HttpStatus.OK);
     }
 
 

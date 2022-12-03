@@ -1,4 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: skjung_gram
@@ -7,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>게시글 리스트</title>
@@ -15,9 +15,11 @@
             width: 600px;
             border: 0px;
         }
+
         .cen {
             text-align: center;
         }
+
         .head {
             background-color: gray;
             color: white;
@@ -30,43 +32,118 @@
         document.addEventListener('DOMContentLoaded', () => {
 
             const wrap = document.querySelector("#wrap")
-
             const newTB = document.createElement('table');
             const newTR = document.createElement('tr');
             const newTD = document.createElement('td');
 
+            getList();
+            getPage();
 
-            $.ajax({
-                url: "/boards/all",
-                type: "GET",
-                dataType: "json",
-                success: ajaxHtml,
-                error: function () {
-                    alert("error");
-                }
-            });
+            function getList() {
 
-            function ajaxHtml(data) {
-                var html = "<table class='table'>";
-                html += "<tr class='head'>";
-                html += "<th>번호</th>";
-                html += "<th>제목</th>";
-                html += "<th>작성자</th>";
-                html += "<th>작성일자</th>";
-                html += "</tr>";
+                $.ajax({
+                    url: "/boards/all",
+                    type: "GET",
+                    dataType: "json",
+                    success: ajaxHtml,
+                    error: function () {
+                        alert("error");
+                    }
+                });
 
-                $.each(data, (index, obj) => {
-                    html += "<tr>";
-                    html += "<td class='cen'>" + obj.bno + "</td>";
-                    html += "<td><a href='/boards/read?bno=" + obj.bno + "'>" + obj.title + "</a></td>";
-                    html += "<td class='cen'>" + obj.writer + "</td>";
-                    html += "<td class='cen'>" + obj.regdate + "</td>";
+                function ajaxHtml(data) {
+
+                    console.log("dtolist => ", data.dtolist);
+
+                    var html = "<table class='table'>";
+                    html += "<tr class='head'>";
+                    html += "<th>번호</th>";
+                    html += "<th>제목</th>";
+                    html += "<th>작성자</th>";
+                    html += "<th>작성일자</th>";
                     html += "</tr>";
-                })
-                html += "</table>";
 
-                $("#allList").html(html);
+                    $.each(data.dtolist, (index, obj) => {
+
+                        if (obj.rcnt != "0") {
+                            html += "<tr>";
+                            html += "<td class='cen'>" + obj.bno + "</td>";
+                            html += "<td><a href='/boards/read?bno=" + obj.bno + "'>" + obj.title + "</a> <b>[" + obj.rcnt + "]</b></td>";
+                            html += "<td class='cen'>" + obj.writer + "</td>";
+                            html += "<td class='cen'>" + obj.regdate + "</td>";
+                            html += "</tr>";
+                        } else {
+                            html += "<tr>";
+                            html += "<td class='cen'>" + obj.bno + "</td>";
+                            html += "<td><a href='/boards/read?bno=" + obj.bno + "'>" + obj.title + "</a></td>";
+                            html += "<td class='cen'>" + obj.writer + "</td>";
+                            html += "<td class='cen'>" + obj.regdate + "</td>";
+                            html += "</tr>";
+                        }
+                    })
+                    html += "</table>";
+
+                    $("#allList").html(html);
+                }
+
             }
+
+            function getPage() {
+
+                $.ajax({
+                    url: "/boards/all",
+                    type: "GET",
+                    dataType: "json",
+                    success: ajaxHtml,
+                    error: function () {
+                        alert("error");
+                    }
+                });
+
+                function ajaxHtml(data) {
+
+                    console.log("요청 페이지 번호 => ", data.pageNum);
+                    console.log("페이지당 게시글 수 => ", data.psize);
+                    console.log("전체 페이지 수 => ", data.ptotal);
+                    console.log("시작 페이지 => ", data.start);
+                    console.log("마지막 페이지 => ", data.end);
+                    console.log("prev유무 => ", data.prev);
+                    console.log("next유무 => ", data.next);
+
+                    pagingDiv = document.querySelector("#paging")
+                    newDiv = document.createElement('div');
+
+                    let str = '';
+
+                    if (data.prev == true) {
+                        str += '<a>PREV</a>';
+                    }
+
+                    for (let i = data.start; i <= data.end; i++) {
+
+                        if (i == data.pageNum) {
+                            str += '<a href="/boards/all?p=' + i + '" onclick="getList();"><b>' + i + '</b></a>  ';
+                        } else {
+
+                            str += '<a href="/boards/all?p=' + i + '" onclick="getList();">' + i + '</a>  ';
+                        }
+                    }
+
+                    //if (data.pageNum < 10 && data.ptotal > 10) {
+                    if (data.next == true) {
+                        str += '<a href="#">NEXT</a>';
+                    }
+
+                    newDiv.innerHTML = str;
+                    pagingDiv.appendChild(newDiv);
+
+
+                }
+
+            }
+
+
+
 
 
             /*       axios.get('/boards/all')
@@ -105,9 +182,15 @@
                     $.ajax({
                         // 아래 타입과 url 및 데이터를 바꿔가며 테스트 진행
                         type: "POST",
-                        url: "${contextPath}/boards",
+                        url: "
+
+            ${contextPath}/boards",
+
+
 
             <%--//type: "PUT",--%>
+
+
 
             <%--//url: "${contextPath}/boards/1",--%>
                         contentType: "application/json",
@@ -132,7 +215,25 @@
 <h1>게시글 전체 목록</h1>
 <hr>
 
-<div id="allList">여기에 게시글 전체 목록이 출력됩니다.</div>
-<a href="/boards/register"><button>글쓰기</button></a>
+<div id="allList">전체 목록 로딩 중...</div>
+<div id="paging"></div>
+
+
+<%--   <c:if test="${page.pageNum > 10}">
+       <a>&laquo;</a>
+   </c:if>
+
+   <c:forEach var="num" begin="1" end="${page.totalCntOfPage}">
+       <a href="?p=${num}">${num}</a>
+   </c:forEach>
+
+   <c:if test="${page.pageNum < 10 and page.totalCntOfPage > 10}">
+       <a href="#">&raquo;</a>
+   </c:if>--%>
+
+
+<a href="/boards/register">
+    <button>글쓰기</button>
+</a>
 </body>
 </html>
