@@ -36,8 +36,68 @@
             const newTR = document.createElement('tr');
             const newTD = document.createElement('td');
 
-            getList();
+            //getList(); // ajax 방식
+            getList2() // axios 방식
             getPage();
+
+
+
+            function getList2(num) {
+
+                const allList = document.querySelector("#allList");
+                const newDiv = document.createElement('div');
+                const i = document.querySelector("#i");
+
+                axios.get('/boards/all' ,{
+                    params: {
+                        p: num
+                    }
+                })
+                    .then(res => {
+
+                        console.log("dtolist => ", res.data.dtolist);
+                        console.log("dtolist / bno => ", res.data.dtolist[0].bno);
+
+                        let html = "<table class='table'>";
+                        html += "<tr class='head'>";
+                        html += "<th>번호</th>";
+                        html += "<th>제목</th>";
+                        html += "<th>작성자</th>";
+                        html += "<th>작성일자</th>";
+                        html += "</tr>";
+
+                        for (let i=0; i<res.data.dtolist.length; i++){
+
+                            if (res.data.dtolist[i].rcnt != "0") {
+                                html += "<tr>";
+                                html += "<td class='cen'>" + res.data.dtolist[i].bno + "</td>";
+                                html += "<td><a href='/boards/read?bno=" + res.data.dtolist[i].bno + "'>" + res.data.dtolist[i].title + "</a> <b>[" + res.data.dtolist[i].rcnt + "]</b></td>";
+                                html += "<td class='cen'>" + res.data.dtolist[i].writer + "</td>";
+                                html += "<td class='cen'>" + res.data.dtolist[i].regdate + "</td>";
+                                html += "</tr>";
+
+                            } else {
+                                html += "<tr>";
+                                html += "<td class='cen'>" + res.data.dtolist[i].bno + "</td>";
+                                html += "<td><a href='/boards/read?bno=" + res.data.dtolist[i].bno + "'>" + res.data.dtolist[i].title + "</a></td>";
+                                html += "<td class='cen'>" + res.data.dtolist[i].writer + "</td>";
+                                html += "<td class='cen'>" + res.data.dtolist[i].regdate + "</td>";
+                                html += "</tr>";
+                            }
+
+                        }
+
+                        html += "</table>";
+
+                        newDiv.innerHTML = html;
+                        allList.appendChild(newDiv);
+
+                        //allList.textContent = html; // html 소스 그대로 들어감.
+
+                    })
+                    .catch(err => console.log(err))
+
+            }
 
             function getList() {
 
@@ -122,10 +182,13 @@
                     for (let i = data.start; i <= data.end; i++) {
 
                         if (i == data.pageNum) {
-                            str += '<a href="/boards/all?p=' + i + '" onclick="getList();"><b>' + i + '</b></a>  ';
+                            //str += '<a href="/boards/list?p=' + i + '" onclick="getList2(' + i + ');"><b>' + i + '</b></a>  ';
+                            str += '<a href="javascript: getList2(' + i + ')"><b>' + i + '</b></a>';
+
                         } else {
 
-                            str += '<a href="/boards/all?p=' + i + '" onclick="getList();">' + i + '</a>  ';
+                            //str += '<a href="/boards/list?p=' + i + '" onclick="getList2(' + i + ');">' + i + '</a>  ';
+                            str += '<a href="javascript: getList2(' + i + ')">' + i + '</a>';
                         }
                     }
 
@@ -137,21 +200,15 @@
                     newDiv.innerHTML = str;
                     pagingDiv.appendChild(newDiv);
 
-
                 }
 
             }
-
-
-
-
 
             /*       axios.get('/boards/all')
                        .then(res => console.log('res', res))
                        .then(res => console.log(res))
                        // 태그 캐스팅 -> 데이터 변경
                        .catch(err => console.log(err))*/
-
 
             /*         $(function () {
                          $("#insert").click(function () {
@@ -186,11 +243,7 @@
 
             ${contextPath}/boards",
 
-
-
             <%--//type: "PUT",--%>
-
-
 
             <%--//url: "${contextPath}/boards/1",--%>
                         contentType: "application/json",
@@ -207,7 +260,6 @@
                 });
             });*/
 
-
         });
     </script>
 </head>
@@ -215,7 +267,7 @@
 <h1>게시글 전체 목록</h1>
 <hr>
 
-<div id="allList">전체 목록 로딩 중...</div>
+<div id="allList"></div>
 <div id="paging"></div>
 
 

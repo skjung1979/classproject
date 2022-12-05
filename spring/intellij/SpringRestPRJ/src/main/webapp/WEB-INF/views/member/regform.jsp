@@ -38,7 +38,7 @@
                         userpw: userpw.value,
                         userphone: userphone.value,
                         useremail: useremail.value,
-                        userphoto: userphoto.value
+                        userphoto: userphoto.value // 파일은 따로 올려야 한다??
 
                     })
                         .then(res => {
