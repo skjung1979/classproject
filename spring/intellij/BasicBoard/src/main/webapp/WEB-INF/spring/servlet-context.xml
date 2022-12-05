@@ -48,7 +48,7 @@
           class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
         <property name="formatters">
             <set>
-                <bean class="com.app.board.formatter.LocalDateFomatter" />
+                <bean class="com.app.board.formatter.LocalDateFormatter" />
             </set>
         </property>
     </bean>
