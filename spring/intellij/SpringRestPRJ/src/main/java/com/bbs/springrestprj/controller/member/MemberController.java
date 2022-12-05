@@ -103,10 +103,10 @@ public class MemberController {
         return new ResponseEntity(member, HttpStatus.OK);
     }
 
-    @PostMapping (consumes = MediaType.MULTIPART_FORM_DATA_VALUE)// JSON 데이터를 받아서 처리함,
+    @PostMapping
     public ResponseEntity<String> regMember(
             HttpServletRequest request,
-            @RequestBody MemberRegRequest memberRegRequest
+            /*@RequestBody*/ MemberRegRequest memberRegRequest
     ) throws Exception {
         // ResponseEntity<String> => 응답 데이터를 제네릭으로 정의하는 것이다.
         // ResponseEntity를 사용함으로써 객체 생성 시 응답 데이터를 정의, http header, http status code를 정의해서 응답 처리 가능하다.
@@ -114,9 +114,10 @@ public class MemberController {
         log.info("member => " + memberRegRequest);
 
         memberService.insertMember(memberRegRequest, request);
+        log.info("회원 가입 완료 !!!");
 
         //return new ResponseEntity<>("insert OK", HttpStatus.OK);
-        return new ResponseEntity<>("redirect:/", HttpStatus.OK);
+        return new ResponseEntity<>("redirect:/logins/login", HttpStatus.OK);
     }
 
 

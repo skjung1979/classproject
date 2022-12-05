@@ -1,18 +1,13 @@
 package com.bbs.springrestprj.controller.login;
 
-import com.bbs.springrestprj.domain.board.BoardDTO;
-import com.bbs.springrestprj.domain.board.BoardListDTO;
 import com.bbs.springrestprj.domain.login.LoginInfo;
 import com.bbs.springrestprj.domain.member.Member;
-import com.bbs.springrestprj.domain.member.MemberRegRequest;
 import com.bbs.springrestprj.service.login.LoginService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -20,7 +15,6 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -62,7 +56,7 @@ public class LoginController {
             ///////////////////////////
 
             // 아이디 저장에 대한 처리: 체크하면 reId 쿠키 생성 아니면 소멸
-            if (loginInfo.getIdremember() != null){
+            if (loginInfo.getIdremember() != null || loginInfo.getIdremember().equals("on")){
                 Cookie c = new Cookie("reId", loginInfo.getMemberid());
                 c.setMaxAge(60*60*24*180);
                 c.setPath("/");
@@ -74,12 +68,21 @@ public class LoginController {
                 response.addCookie(c);
             }
 
+            log.info("reID 쿠키 생성 통과!");
+
             // 로그인 처리를 위한 기본 작업 => 현재 세션으로 객체를 생성한다.
             HttpSession session = request.getSession(); // 로그인 처리를 위해 현재 세션 객체 생성
 
             // 입력받은 아이디와, 패스워드를 DTO에 저장한다.
             try {
+
+                log.info("loginService.login() 진입 직전!!!");
+                log.info("loginInfo.getmemberid() => " + loginInfo.getMemberid());
+                log.info("loginInfo.getmemberpw() => " + loginInfo.getMemberpw());
+
                 Member member = loginService.login(loginInfo.getMemberid(), loginInfo.getMemberpw());
+
+                log.info("loginService.login() 처리후 member => " + member);
 
                 if (member == null){
 
@@ -89,13 +92,15 @@ public class LoginController {
                     //return "redirect:/logins/login";
                 }
 
-                if (loginInfo.getKeeplogin() != null && loginInfo.getKeeplogin().equals("on")){
+                if (loginInfo.getKeeplogin() != null || loginInfo.getKeeplogin().equals("on")){
 
                     UUID uuid = UUID.randomUUID();
                     Cookie c1 = new Cookie("uuid", uuid.toString());
                     c1.setMaxAge(60*60*24*30);
                     c1.setPath("/");
                     response.addCookie(c1);
+
+                    log.info("uuid 생성되었나? => " + uuid);
 
                     loginService.updateUUID(member.getSeq(), uuid.toString());
                     member.setUuid(uuid.toString());

@@ -31,15 +31,27 @@
                     const formData = new FormData();
                     const file = document.getElementById("userphoto")
 
+                    var frm = new FormData();
+                    var photoFile = document.getElementById("userphoto");
+                    frm.append("username", username.value);
+                    frm.append("userid", userid.value);
+                    frm.append("userpw", userpw.value);
+                    frm.append("userphone", userphone.value);
+                    frm.append("useremail", useremail.value);
+                    frm.append("userphoto", photoFile.files[0]);
 
-                    axios.post('/members', {
+                    axios.post('/members', frm /*{
                         username: username.value,
                         userid: userid.value,
                         userpw: userpw.value,
                         userphone: userphone.value,
                         useremail: useremail.value,
-                        userphoto: userphoto.value // 파일은 따로 올려야 한다??
+                        userphoto: userphoto.value
 
+                    }*/, {
+                        headers: {
+                            'Content-Type' : 'multipart/form-data'
+                        }
                     })
                         .then(res => {
                                 console.log('회원가입 성공!!!');
@@ -93,7 +105,9 @@
     </tr>
     <tr>
         <td>프로필 사진:</td>
+        <form>
         <td><input type="file" name="userphoto" id="userphoto"></td>
+        </form>
     </tr>
     <tr id="regform">
         <Td></Td>

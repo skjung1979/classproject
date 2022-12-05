@@ -73,12 +73,7 @@
                 .then(res => rno.value = res.data+1)
                 .catch(err => console.log(err))
 
-            /*유저 아이디 불러오기 => 로그인 세션에서 id값 가져옴*/
-/*            axios.get('/replys/membernm')
-                .then(res => colsole.log(res))
-                .catch(err => console.log(err))*/
 
-            /*댓글쓰기버튼(btn_rep)을 누르면 댓글 입력함*/
             $(function () {
                 $("#btn_rep").click(function () {
                     axios.post('/replys', {
@@ -98,10 +93,13 @@
                             const newTrU = document.createElement('tr')
                             const newTrC = document.createElement('tr')
                             const newTrD = document.createElement('tr')
+                            const newTrB = document.createElement('tr')
+                            const newBtn = document.createElement('button')
 
                             let str1 = '<td>' + 'sk' + '</td>'
                             let str2 = '<td>' + rcontent.value + '</td>'
-                            let str3 = '<td>' + dateStr + '<hr></td>'
+                            let str3 = '<td>' + dateStr + '</td>'
+                            let str4 = '<td><button>수정</button> <button>삭제</button><hr>'
 
                             newTrU.innerHTML = str1
                             replyTbl.appendChild(newTrU);
@@ -112,6 +110,9 @@
                             newTrD.innerHTML = str3
                             replyTbl.appendChild(newTrD);
 
+                            newTrB.innerHTML = str4;
+                            replyTbl.appendChild(newTrB);
+
                             /*댓글 쓴 후 기존 값들 초기화시킴*/
                             rno.value = "";
                             rcontent.value = "";
@@ -120,6 +121,15 @@
                         .catch(err => console.log(err)) /*end axios*/
                 });
             });
+
+            getReplys();
+
+
+
+
+        });
+
+        function getReplys(){
 
             /*댓글 중 bno와 일치하는 리스트 출력하기*/
             $.ajax({
@@ -137,118 +147,33 @@
 
                 $.each(data, (index, obj) => {
                     html += "<tr>";
-                    html += "<td>" + obj.userid + "</td>";
+                    html += "<td>" + obj.userid + "/" + obj.rno + "</td>";
                     html += "</tr>";
                     html += "<tr>";
                     html += "<td>" + obj.content + "</td>";
                     html += "</tr>";
                     html += "<tr>";
-                    html += "<td>" + obj.regdate + "<hr></td>";
+                    html += "<td>" + obj.regdate + "</td>";
+                    html += "</tr>";
+                    html += "<tr>";
+                    html += "<td><button>수정</button> <a href='javascript: removeReply(" + obj.rno + ")'><button>삭제</button></a><hr></td>";
+                    html += "</tr>";
                 })
                 html += "</table>";
 
                 $("#allReply").html(html);
             }
 
+        }
 
- /*           $(function () {
-                $("#btn_rep").click(function () {
-
-                    /!*유저 아이디는 로그인 세션에서의 memberid*!/
-                    /!*지금은 잠깐 임시로 sk로 사용함*!/
-
-                    axios.post('/replys', {
-                        rno: rno.value,
-                        userid: "sk",
-                        boardid: bno.value,
-                        content: rcontent.value,
-                        regdate: dateStr,
-                        updatedate: dateStr
-                    })
-                        .then(res => console.log('댓글달기 성공'))
-                        .catch(err => console.log(err))
-                })
-            })*/
-
-
-/*            $(function () {
-                $("#insert").click(function () {
-                    axios.post('/boards', {
-                        bno: bno.value,
-                        title: title.value,
-                        content: content.value,
-                        writer: writer.value,
-                        regdate: "2022-12-01",
-                        updatedate: "2022-12-01"
-                    })
-                        .then(res =>
-                            location.href = "list"
-                        )
-                        .catch(err => console.log(err)) /!*end axios*!/
-                });
-            });*/
-
-            /*axios.get('/boards/membernm')
-                .then(res => writer.value = res.data)
-                // 태그 캐스팅 -> 데이터 변경
+        function removeReply(no){
+            axios.delete('/replys/'+ no )
+                .then(res => getReplys())
                 .catch(err => console.log(err))
 
-            $(function () {
-                $("#insert").click(function () {
-                    axios.post('/boards', {
-                        bno: bno.value,
-                        title: title.value,
-                        content: content.value,
-                        writer: writer.value,
-                        regdate: "2022-12-01",
-                        updatedate: "2022-12-01"
-                    })
-                        .then(res =>
-                            location.href = "list"
-                        )
-                        .catch(err => console.log(err)) /!*end axios*!/
-                });
-            });*/
+        };
 
 
-            /*$(function () {
-                $("#insert").click(function () {
-                    var board = {
-                        bno: bno.value,
-                        title: title.value,
-                        content: content.value,
-                        writer: writer.value,
-                        regdate: "2022-12-01",
-                        updatedate: "2022-12-01"
-                    };
-                    $.ajax({
-                        // 아래 타입과 url 및 데이터를 바꿔가며 테스트 진행
-                        type: "POST",
-                        url: "
-
-            ${contextPath}/boards",
-
-
-            <%--//type: "PUT",--%>
-
-
-            <%--//url: "${contextPath}/boards/1",--%>
-                        contentType: "application/json",
-                        data: JSON.stringify(board),
-                        success: function (data, textStatus) {
-                            alert(data);
-                        },
-                        error: function (data, textStatus) {
-                            alert("에러가 발생했습니다.");
-                        },
-                        complete: function (data, textStatus) {
-                        }
-                    }); /!*end ajax*!/
-                });
-            });*/
-
-
-        });
     </script>
 </head>
 <body>

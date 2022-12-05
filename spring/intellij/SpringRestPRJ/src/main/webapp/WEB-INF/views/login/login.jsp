@@ -32,6 +32,10 @@
             idremember = document.querySelector("#idremember");
             keeplogin = document.querySelector("#keeplogin");
 
+
+            console.log("idremember.value", idremember.value);
+            console.log("keeplogin.value", keeplogin.value);
+
             $(function () {
                 $("#login").click(function () {
                     axios.post('/logins', {
@@ -71,13 +75,13 @@
     </tr>
     <tr>
         <td></td>
-        <td><input type="checkbox" name="idremember" id="idremember" ${cookie.reId.value ne null ? 'checked' : ''}>
+        <td><input type="checkbox" name="idremember" id="idremember" ${cookie.reId.value ne null ? 'checked value="on"' : 'value="off"'} >
             아이디 저장
         </td>
     </tr>
     <tr>
         <td></td>
-        <td><input type="checkbox" name="keeplogin" id="keeplogin" ${cookie.uuid.value != null ? 'checked' : ''}>
+        <td><input type="checkbox" name="keeplogin" id="keeplogin" ${cookie.uuid.value != null ? 'checked value="on"' : 'value="off"'}>
             로그인 유지
         </td>
     </tr>
@@ -89,7 +93,8 @@
     <tr id="loginTdo">
         <Td></Td>
         <td>
-            <button id="login">로그인</button>
+            <button id="login">로그인</button><br>
+            ${cookie.reId.value} / ${cookie.UUId.value}
         </td>
     </tr>
 </table>
