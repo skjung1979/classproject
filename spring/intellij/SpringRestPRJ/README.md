@@ -1,6 +1,6 @@
 # 게시판
 <br>
-## 기술/구조
+# 기술/구조
 * 웹표준
 * DBMS - Mysql
 * Spring Framework
