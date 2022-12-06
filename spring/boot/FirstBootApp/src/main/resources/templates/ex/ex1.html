@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Title</title>
+</head>
+<body>
+<h1>연산자</h1>
+<ul>
+    <li>10 + 20 = <span th:text="${10+20}"></span></li>
+    <li>10 > 20 = <span th:text="${10>20}"></span></li> <!--기대값: false-->
+    <li>10 % 2 == 0 ? '짝수' : '홀수' => <span th:text="${10 % 2 == 0 ? '짝수' : '홀수'}"></span></li>
+    <li>
+        ${data} ? : '데이터가 없습니다.' => <span th:text="${data} ?: '데이터가 없습니다.!!'"></span><br>
+        ${nullData} ? : '데이터가 없습니다.' => <span th:text="${nullData} ?: '데이터가 없습니다.!!'"></span>
+    </li>
+    <li>
+        ${data}?:_ => <span th:text="${data}?:_">데이터가 없습니다.</span><br> <!--기본값을 출력해야 하는 경우-->
+        ${nullData}?:_ => <span th:text="${nullData}?:_">데이터가 없습니다.</span> <!--기본값을 출력해야 하는 경우-->
+    </li>
+</ul>
+<hr>
+<h1>URI 경로 표현: @{}</h1>
+<ul>
+    <li><span th:text="@{/dept/list}"></span></li>
+    <li><a th:href="@{/dept/list}">LINK 1</a></li>
+
+    <li><span th:text="@{/dept/list(searchType=${'dname'}, keyword=${'AC'})}"></span></li> <!-- 결과 => /dept/list?searchType=dname&keyword=AC-->
+    <li><a th:href="@{/dept/list(searchType=${'dname'}, keyword=${'AC'})}">LINK 2</a></li> <!-- 결과 => /dept/list?searchType=dname&keyword=AC-->
+
+    <li><span th:text="@{/dept/list(searchType=${param.searchType}, keyword=${param.keyword})}"></span></li>  <!--<== 실제적 사용-->
+    <li><a th:href="@{/dept/list(searchType=${param.searchType}, keyword=${param.keyword})}">LINK 3</a></li>  <!--<== 실제적 사용-->
+
+    <li><span th:text="@{/dept/list/{param1}(param1=${10})}"></span></li> <!--  => pathvariable을 받고 매개벼수를 줄수 있다. 파라미터로 10을 넘기면 pathvariable로 매핑이 될 수 있다.  -->
+    <li><a th:href="@{/dept/list/{param1}(param1=${10})}">LINK 4</a></li> <!--  => pathvariable을 받고 매개벼수를 줄수 있다. 파라미터로 10을 넘기면 pathvariable로 매핑이 될 수 있다.  -->
+</ul>
+<hr>
+<h1>LocalDateTime 객체의 포맷팅</h1>
+<ul>
+    <li>현재 시간: <span th:text="${localDateTime}"></span></li>
+    <li>yyyy.MM.dd. HH:mm:ss => <span th:text="${#temporals.format(localDateTime, 'yyyy.MM.dd. HH:mm:ss')}"></span></li>
+    <li>yyyy-MM-dd/a hh:mm => <span th:text="${#temporals.format(localDateTime, 'yyyy-MM-dd/a hh:mm')}"></span></li>
+</ul>
+<hr>
+<h1>param, session의 속성</h1>
+<ul>
+    <li>요청 파라미터 type = <span th:text="${param.type}"></span></li>
+    <li>세션의 속성값 loginData: <span th:text="${session.loginData}"></span></li>
+</ul>
+
+<hr>
+<h1>지역 변수 선언과 활용</h1>
+<div th:with="item=${deptList[3]}">
+    <ul>
+        <li>부서번호: <span th:text="${item.deptno}">0</span></li>
+        <li>부서이름: <span th:text="${item.dname}"></span></li>
+        <li>부서위치: <span th:text="${item.loc}"></span></li>
+    </ul>
+</div>
+<hr>
+
+<h1>Map객체 접근</h1>
+<ul>
+    <li>10번 부서: [[${deptMap['10']}]]</li>
+    <li>20번 부서: [[${deptMap['20']}]]</li>
+    <li>10번 부서의 이름: [[${deptMap['10'].dname}]]</li>
+    <li>20번 부서의 이름: [[${deptMap['20'].dname}]]</li>
+    <li>20번 부서의 이름: <span>[[${deptMap['20'].dname}]]</span></li>
+</ul>
+
+<hr>
+<h1>List 객체 접근</h1>
+<ul>
+    <li>첫번째 부서: [[${deptList[0]}]]</li>
+    <li>첫번째 부서이름: [[${deptList[0].dname}]]</li>
+    <li>첫번째 부서이름: <span th:text="${deptList[0].dname}"></span></li>
+</ul>
+
+<hr>
+<h1>객체를 출력하는 표현식</h1>
+<ul>
+    <li>부서이름: [[${dept.dname + ' 20번의'}]]</li>
+    <li th:text="${dept.dname}"></li>
+    <li> 부서이름: <span th:text="${dept.dname}"></span></li>
+    <li th:text="${'부서이름: ' + dept.dname}"></li>
+</ul>
+
+<hr>
+<h1 th:text="${list}"></h1>
+<hr>
+<h4>[[${list}]]</h4>
+
+<div class="jumbotron text-center">
+    <h1>My First Bootstrap Page</h1>
+    <p>Resize this responsive page to see the effect!</p>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <h3>Column 1</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+        </div>
+        <div class="col-sm-4">
+            <h3>Column 2</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+        </div>
+        <div class="col-sm-4">
+            <h3>Column 3</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

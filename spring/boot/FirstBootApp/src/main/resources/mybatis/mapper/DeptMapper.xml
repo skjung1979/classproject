@@ -1,0 +1,70 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.first.app.mapper.DeptMapper"> <!--mapper폴더에서 생성한 (인터페이스)클래스명(풀네임으로!)-->
+
+    <select id="selectAll" resultType="com.first.app.domain.DeptDTO"> <!--해당 클래스의 메소드명, 매개변수, 결과타입(풀네임으로!) 설정-->
+        select * from dept  <!--쿼리문 입력-->
+    </select>
+
+    <select id="selectByOption" parameterType="com.first.app.domain.DeptSearchOption" resultType="com.first.app.domain.DeptDTO">
+
+        select * from dept
+
+        <where> <!-- 아래 조건이 맞으면 이 자리에 where절이 생성된다. -->
+            <if test="searchType != null and keyword != null">
+                <if test="searchType == 'dname'">
+                    <!--dname like concat('%', #{keyword}, '%')-->
+                    <include refid="searchDname"/>
+                </if>
+                <if test="searchType == 'loc'">
+                    <!--loc like concat('%', #{keyword}, '%')-->
+                    <include refid="searchLoc"/>
+                </if>
+            </if>
+        </where>
+    </select>
+
+    <sql id="searchDname">
+        dname like concat('%', #{keyword}, '%')
+    </sql>
+
+    <sql id="searchLoc">
+        loc like concat('%', #{keyword}, '%')
+    </sql>
+
+
+    <select id="selectByDeptnos" parameterType="list" resultType="com.first.app.domain.DeptDTO"> <!-- 파라미터가 리스트이면 Integer가 아닌 list로 타입-->
+
+        select * from dept
+
+        <where>
+            <if test="list != null and list.size != 0">
+                deptno in
+                <foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+
+    </select>
+
+
+    <select id="selectByDeptno" resultType="com.first.app.domain.DeptDTO"> <!--파라미터가 하나이면 parametertype 넣지 않아도된다.-->
+        select * from dept where deptno=#{no}
+    </select>
+
+    <insert id="insertDept" parameterType="com.first.app.domain.DeptDTO"> <!-- 정수반환이기 때문에 결과타입 생략가능-->
+        insert into dept values(#{deptno}, #{dname}, #{loc}) <!--DeptDTO의 참조변수와 매칭한다-->
+    </insert>
+
+    <update id="updateDept" parameterType="com.first.app.domain.DeptDTO"> <!-- 정수반환이기 때문에 결과타입 생략가능-->
+        update dept set dname=#{dname}, loc=#{loc} where deptno=#{deptno}
+    </update>
+
+    <delete id="deleteByDeptno">
+        delete from dept where deptno=#{no}
+    </delete>
+
+</mapper>

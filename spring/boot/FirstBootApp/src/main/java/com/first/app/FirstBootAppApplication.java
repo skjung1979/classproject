@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan("com.first.app.mapper") // 여기를 스캔하도록 한다.
+@MapperScan("com.first.app.mapper") // 여기를 스캔하도록 한다. 특정 패키지만 스캔하도록 설정 가능하다!
 public class FirstBootAppApplication {
 
 	// 이 메인 메소드가 시작점(WAS 구동되는 곳)이다!
