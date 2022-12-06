@@ -13,6 +13,8 @@ public class IndexController {
     @ResponseBody
     public String index(){
 
+        log.info(">>> get | / ");
+
         return "INDEX";
     }
 
