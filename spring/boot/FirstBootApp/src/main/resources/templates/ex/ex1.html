@@ -3,13 +3,125 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     <title>Title</title>
+    <style>
+        .title {
+            color: red;
+            font-weight: bold;
+            font-style: italic;
+            background-color: yellow;
+        }
+    </style>
 </head>
 <body>
+<h1>모듈화2 : replace => 기존 div태그를 대신해서 footer의 태그들로 대체한다.</h1>
+<div th:replace="~{fragment/footer :: copyParam('전화번호:010-0000-1111', 'email: aaa@gmail.com')}"></div>
+
+
+<hr>
+<h1>모듈화 : insert => 기존 div태그 안에 footer의 태그를 삽입한다.</h1>
+<div th:insert="~{fragment/footer :: copy}"></div>
+
+<hr>
+<h1>반복문</h1>
+<h3>부서 리스트</h3>
+
+<table border="1">
+    <tr>
+        <th>부서번호</th>
+        <th>부서이름</th>
+        <th>부서위치</th>
+    </tr>
+    <th:block th:each="dept : ${deptList}">
+        <div>block으로 묶어서 반복한 div</div> <!--추가 반복사항이 있는 경우 이렇게 같이 블럭으로 묶어서 반복한다!!!-->
+        <tr>
+            <td th:text="${dept.deptno}"></td>
+            <td th:text="${dept.dname}"></td>
+            <td th:text="${dept.loc}"></td>
+        </tr>
+    </th:block>
+</table>
+<bR>
+<table border="1">
+    <tr>
+        <th>index</th>
+        <th>count</th>
+        <th>부서번호</th>
+        <th>부서이름</th>
+        <th>부서위치</th>
+    </tr>
+    <tr th:each="dept, status : ${deptList}" th:object="${dept}"> <!--객체명이 긴 경우는 이렇게 오브젝트에 담는다.-->
+        <td th:text="${status.index}"></td>
+        <td th:text="${status.count}"></td>
+        <td th:text="*{deptno}"></td>
+        <td th:text="*{dname}"></td>
+        <td th:text="*{loc}"></td>
+    </tr>
+</table>
+<br>
+<table border="1">
+    <tr>
+        <th>index</th>
+        <th>count</th>
+        <th>부서번호</th>
+        <th>부서이름</th>
+        <th>부서위치</th>
+    </tr>
+    <tr th:each="dept, status : ${deptList}">
+        <td th:text="${status.index}"></td>
+        <td th:text="${status.count}"></td>
+        <td th:text="${dept.deptno}"></td>
+        <td th:text="${dept.dname}"></td>
+        <td th:text="${dept.loc}"></td>
+    </tr>
+</table>
+
+<hr>
+<h1>조건식</h1>
+<div th:with="age=${18}"> <!--div블럭 안에서 사용할 지역변수 선언-->
+
+    <ul>
+        <li><span th:text="${age}"></span></li>
+        <li>
+            <span th:text="성년" th:if="${age} > 19"></span>
+            <span th:text="미성년" th:unless="${age > 19}"></span>
+        </li>
+        <li th:switch="${age}">
+            <span th:case="15">15세</span> <!--다른 태그에도 응용하여 사용하면 된다.-->
+            <span th:case="20">20세</span>
+            <span th:case="25">25세</span>
+            <span th:case="*">26세 이상</span>
+        </li>
+    </ul>
+
+    <!--블럭(block)을 만드는 경우는 분기(이 블럭을 보여주거나 안 보여 주거나) 또는 반복해야하는 경우 사용한다.-->
+    <th:block th:if="${age>19}">
+        <div>성인입니다.</div>
+        <div>음주 가능합니다.</div>
+        <div>술집은 출입 가능합니다.</div>
+    </th:block>
+
+</div>
+<hr>
+<h1>속성의 추가/변경</h1>
+<ul>
+    <li><span>안녕하세요.</span></li>
+    <li><span th:class="${'title'}">안녕하세요.</span></li> <!--title은 서버에서 전달 받은 값으로 할수 있다.-->
+    <li><span class="sub" th:class="${'title'}">안녕하세요.</span></li>
+    <li><span class="sub" th:class="${'title'}">안녕하세요.</span></li>
+    <li><span class="sub" th:attrappend="class=${' title'}">안녕하세요. attrappend => |sub title|</span></li>
+    <li><span class="sub" th:attrprepend="class=${' title '}">안녕하세요. attrprepend => | title sub|</span></li>
+    <li><span class="sub" th:classappend="${'title'}">안녕하세요. classappend => |sub title|</span></li>
+    <li>checked</li>
+    <li><input type="checkbox" name="aaa" th:checked="true"></li> <!--true이면 체크가 된다-->
+    <li><input type="checkbox" name="aaa" th:checked="false"></li>
+    <li><input type="checkbox" name="aaa" th:checked="${10>1}"></li>
+</ul>
+<hr>
 <h1>연산자</h1>
 <ul>
     <li>10 + 20 = <span th:text="${10+20}"></span></li>
@@ -30,14 +142,20 @@
     <li><span th:text="@{/dept/list}"></span></li>
     <li><a th:href="@{/dept/list}">LINK 1</a></li>
 
-    <li><span th:text="@{/dept/list(searchType=${'dname'}, keyword=${'AC'})}"></span></li> <!-- 결과 => /dept/list?searchType=dname&keyword=AC-->
-    <li><a th:href="@{/dept/list(searchType=${'dname'}, keyword=${'AC'})}">LINK 2</a></li> <!-- 결과 => /dept/list?searchType=dname&keyword=AC-->
+    <li><span th:text="@{/dept/list(searchType=${'dname'}, keyword=${'AC'})}"></span></li>
+    <!-- 결과 => /dept/list?searchType=dname&keyword=AC-->
+    <li><a th:href="@{/dept/list(searchType=${'dname'}, keyword=${'AC'})}">LINK 2</a></li>
+    <!-- 결과 => /dept/list?searchType=dname&keyword=AC-->
 
-    <li><span th:text="@{/dept/list(searchType=${param.searchType}, keyword=${param.keyword})}"></span></li>  <!--<== 실제적 사용-->
-    <li><a th:href="@{/dept/list(searchType=${param.searchType}, keyword=${param.keyword})}">LINK 3</a></li>  <!--<== 실제적 사용-->
+    <li><span th:text="@{/dept/list(searchType=${param.searchType}, keyword=${param.keyword})}"></span></li>
+    <!--<== 실제적 사용-->
+    <li><a th:href="@{/dept/list(searchType=${param.searchType}, keyword=${param.keyword})}">LINK 3</a></li>
+    <!--<== 실제적 사용-->
 
-    <li><span th:text="@{/dept/list/{param1}(param1=${10})}"></span></li> <!--  => pathvariable을 받고 매개벼수를 줄수 있다. 파라미터로 10을 넘기면 pathvariable로 매핑이 될 수 있다.  -->
-    <li><a th:href="@{/dept/list/{param1}(param1=${10})}">LINK 4</a></li> <!--  => pathvariable을 받고 매개벼수를 줄수 있다. 파라미터로 10을 넘기면 pathvariable로 매핑이 될 수 있다.  -->
+    <li><span th:text="@{/dept/list/{param1}(param1=${10})}"></span></li>
+    <!--  => pathvariable을 받고 매개벼수를 줄수 있다. 파라미터로 10을 넘기면 pathvariable로 매핑이 될 수 있다.  -->
+    <li><a th:href="@{/dept/list/{param1}(param1=${10})}">LINK 4</a></li>
+    <!--  => pathvariable을 받고 매개벼수를 줄수 있다. 파라미터로 10을 넘기면 pathvariable로 매핑이 될 수 있다.  -->
 </ul>
 <hr>
 <h1>LocalDateTime 객체의 포맷팅</h1>
@@ -94,6 +212,30 @@
 <h1 th:text="${list}"></h1>
 <hr>
 <h4>[[${list}]]</h4>
+
+
+<script th:inline="javascript">
+
+    let deptno = [[${deptList[0].deptno}]];
+    let dname = [[${deptList[0].dname}]]; /*th:inline="javascript"를 삽입했으므로 작은 따옴표도 제거한다*/
+    let loc = [[${deptList[0].loc}]]; /*th:inline="javascript"를 삽입했으므로 작은 따옴표도 제거한다*/
+
+    // 객체를 자바스크립트로 받을 때는 JSON형식도 변환이 된다. 그러므로 <script> 태그에 'th:inline="javascript"'을 삽입하면 다시 객체화가 된다.
+    let dept = '[[${dept}]]'; /*=> 이렇게 작은 따옴표로 묶으면  dept는 다시 JSON화가 되었다.*/
+    let deptList = '[[${deptList}]]'; /*=> 이렇게 작은 따옴표로 묶으면 deptList는 다시 JSON화가 되었다.*/
+
+    let deptObj = JSON.parse(dept);
+    let deptListObj = JSON.parse(deptList);
+
+    console.log('deptno', deptno)
+    console.log('dname', dname)
+    console.log('loc', loc)
+
+    console.log('deptObj', deptObj);
+    console.log('deptListObj', deptListObj);
+
+</script>
+
 
 <div class="jumbotron text-center">
     <h1>My First Bootstrap Page</h1>

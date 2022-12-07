@@ -3,6 +3,7 @@ package com.first.app.controller;
 import com.first.app.domain.DeptDTO;
 import com.first.app.service.DeptListService;
 import com.first.app.service.DeptReadService;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,7 @@ import java.util.*;
 
 @Controller
 @RequestMapping("/ex")
+@Log4j2
 public class ExampleController {
 
     @Autowired

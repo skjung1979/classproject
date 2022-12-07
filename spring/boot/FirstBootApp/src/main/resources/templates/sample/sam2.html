@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<style>
+    .red{
+        background-color: red;
+    }
+</style>
+
+</head>
+
+<body>
+
+<span th:
+<ul>
+    <li th:each="dto, status : ${list}">
+        <span th:text="${status.odd} ? ${'ODD---' + dto.sno} : ${'EVEN---' + dto.sno}"></span>
+    </li>
+</ul>
+<hr>
+<ul>
+    <li th:each="dto, status : ${list}">
+        <span th:text="${status.odd} ? 'ODD---' + ${dto.sno} : 'EVEN---' + ${dto.sno}"></span>
+    </li>
+</ul>
+<hr>
+<ul>
+    <th:block th:each="dto, status : ${list}"> <!--block당 파라미터를 담아서 전달하거나 파라미터를 받을 수 있다. 레이아웃 구성할때-->
+        <li>
+            <A th:href="@{'/ex4/'+${dto.sno}(first=${dto.sno})}">[[${dto}]]</A>
+            <h3 th:text="${#temporals.format(dto.regTime, 'yyyy.MM.dd')}"></h3>
+        </li>
+    </th:block>
+</ul>
+<hr>
+<ul>
+    <th:block th:each="dto, status : ${list}"> <!--block당 파라미터를 담아서 전달하거나 파라미터를 받을 수 있다. 레이아웃 구성할때-->
+        <li><A th:href="@{'/ex4/'+${dto.sno}(first=${dto.sno})}">[[${dto}]]</A></li>
+    </th:block>
+</ul>
+<hr>
+<ul>
+    <th:block th:each="dto, status : ${list}"> <!--block당 파라미터를 담아서 전달하거나 파라미터를 받을 수 있다. 레이아웃 구성할때-->
+        <li th:text="${dto.sno % 5 == 0} ? ${dto.sno} : ${dto.first}"</li>
+    </th:block>
+</ul>
+<hr>
+<ul>
+    <li th:each="dto, status : ${list}">
+        <span th:class="${dto.sno % 5 == 0} ? 'red'">[[${dto}]]</span> <!--클래스에 색상 부여-->
+    </li>
+</ul>
+<hr>
+<ul>
+    <li th:each="dto, status : ${list}">
+        <span th:text="${dto.sno % 5 == 0} ? ${dto.sno} : ${dto.first}"></span> <!--3항 연산자 이지만, 2항으로도 변칙 사용 가능하다-->
+    </li>
+</ul>
+<hr>
+<ul>
+    <li th:each="dto, status : ${list}">
+        <span th:if="${dto.sno % 5 ==0}" th:text="${'--------------' + dto.sno}"></span>
+        <sapn th:unless="${dto.sno % 5 ==0}" th:text="${dto.first}"></sapn>
+    </li>
+</ul>
+<hr>
+<ul>
+    <li th:each="dto, status : ${list}" th:if="${dto.sno % 5 == 0}">
+      [[${status.index}]] ----- [[${dto}]]
+    </li>
+</ul>
+
+</body>
+</html>
