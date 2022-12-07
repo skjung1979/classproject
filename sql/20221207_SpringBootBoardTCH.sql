@@ -25,3 +25,17 @@ CREATE TABLE `tbl_reply` (
   KEY `fk_reply_board` (`bno`),
   CONSTRAINT `fk_reply_board` FOREIGN KEY (`bno`) REFERENCES `tbl_board` (`bno`)
 ) ;
+
+desc tbl_board;
+select * from tbl_board;
+select * from tbl_board order by bno desc limit 0, 3;
+
+-- 더미 데이터 넣기
+INSERT INTO `project`.`tbl_board` (`title`, `content`, `writer`) VALUES('test42','테스트 내용','쏜');
+INSERT INTO `project`.`tbl_board` (`title`, `content`, `writer`) VALUES('test43','테스트 내용','쏜');
+INSERT INTO `project`.`tbl_board` (`title`, `content`, `writer`) VALUES('test44','테스트 내용','쏜');
+INSERT INTO `project`.`tbl_board` (`title`, `content`, `writer`) VALUES('test45','테스트 내용','쏜');
+INSERT INTO `project`.`tbl_board` (`title`, `content`, `writer`) VALUES('test46','테스트 내용','쏜');
+INSERT INTO `project`.`tbl_board` (`title`, `content`, `writer`) VALUES('test47','테스트 내용','쏜');
+INSERT INTO `project`.`tbl_board` (`title`, `content`, `writer`) VALUES('test48','테스트 내용','쏜');
+
