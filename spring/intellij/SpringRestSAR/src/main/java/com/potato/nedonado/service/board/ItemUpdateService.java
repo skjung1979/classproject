@@ -8,13 +8,13 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Log4j2
-public class ItemWriteService {
+public class ItemUpdateService {
 
     @Autowired
     private BoardMapper boardMapper;
 
-    public int writeItem(ItemEntity itemEntity){
-        return boardMapper.insertItem(itemEntity);
+    public int updateItemByitemEntity(ItemEntity itemEntity){
+        return boardMapper.updateItem(itemEntity);
     }
 
 }

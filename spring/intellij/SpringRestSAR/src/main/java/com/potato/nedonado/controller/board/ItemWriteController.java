@@ -1,5 +1,6 @@
 package com.potato.nedonado.controller.board;
 
+import com.potato.nedonado.model.board.ItemEntity;
 import com.potato.nedonado.service.board.ItemWriteService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
