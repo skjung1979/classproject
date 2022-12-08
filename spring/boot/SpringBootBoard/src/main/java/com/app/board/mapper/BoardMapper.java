@@ -20,4 +20,5 @@ public interface BoardMapper {
     Integer totalCount();
 
 
+    void insert(BoardDTO boardDTO);
 }

@@ -19,7 +19,7 @@
     </div>
     <div class="card-body">
 
-        <div th:text="${listPage}"></div>
+        <!--        <div th:text="${listPage}"></div>-->
 
         <table class="table table-bordered text-center">
             <thead class="bg-primary text-white">
@@ -40,38 +40,44 @@
             </tbody>
         </table>
 
-<!--        pagination 시작-->
+
+        <!--        pagination 시작-->
         <nav aria-label="...">
             <ul class="pagination">
 
                 <th:block th:if="${listPage.prev}">
-                <li class="page-item">
-                    <a class="page-link" th:href="@{/board/list(p=${listPage.startNum-1})}">&laquo;</a>
-                </li>
+                    <li class="page-item">
+                        <a class="page-link" th:href="@{/board/list(p=${listPage.startNum-1})}">&laquo;</a>
+                    </li>
                 </th:block>
 
-                <th:block th:each="num : ${#numbers.sequence(listPage.startNum, listPage.endNum)}">
-                <li class="page-item">
-                    <a class="page-link" th:href="@{/board/list(p=${num})}" th:text="${num}"></a>
-                </li>
+                <th:block th:each="num : ${#numbers.sequence(listPage.startNum, listPage.endNum)}"
+                          th:with="active=${listPage.pageNum == num ? 'active' : ''}">
+                    <li class="page-item" th:classappend=" ${active}">
+                        <a class="page-link" th:href="@{/board/list(p=${num})}" th:text="${num}"></a>
+                    </li>
                 </th:block>
 
-<!--                <li class="page-item active">-->
-<!--                    <a class="page-link" href="#">2</a>-->
-<!--                </li>-->
-<!--                <li class="page-item">-->
-<!--                    <a class="page-link" href="#">3</a>-->
-<!--                </li>-->
+                <!--                <li class="page-item active">-->
+                <!--                    <a class="page-link" href="#">2</a>-->
+                <!--                </li>-->
+                <!--                <li class="page-item">-->
+                <!--                    <a class="page-link" href="#">3</a>-->
+                <!--                </li>-->
 
                 <th:block th:if="${listPage.next}">
-                <li class="page-item">
-                    <a class="page-link" th:href="@{/board/list(p=${listPage.endNum+1})}">&raquo;</a>
-                </li>
+                    <li class="page-item">
+                        <a class="page-link" th:href="@{/board/list(p=${listPage.endNum+1})}">&raquo;</a>
+                    </li>
                 </th:block>
 
             </ul>
         </nav>
-<!--        pagination 끝-->
+
+        <div class="text-end">
+            <a href="/board/write" class="btn btn-primary">글쓰기</a>
+        </div>
+        <!--        pagination 끝-->
 
     </div>
 </div>
