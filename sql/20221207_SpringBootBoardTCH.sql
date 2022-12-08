@@ -27,15 +27,30 @@ CREATE TABLE `tbl_reply` (
 ) ;
 
 desc tbl_board;
-select * from tbl_board;
+select * from tbl_board order by bno desc;
 select * from tbl_board order by bno desc limit 0, 3;
 
 -- 더미 데이터 넣기
-INSERT INTO `project`.`tbl_board` (`title`, `content`, `writer`) VALUES('test42','테스트 내용','쏜');
-INSERT INTO `project`.`tbl_board` (`title`, `content`, `writer`) VALUES('test43','테스트 내용','쏜');
-INSERT INTO `project`.`tbl_board` (`title`, `content`, `writer`) VALUES('test44','테스트 내용','쏜');
-INSERT INTO `project`.`tbl_board` (`title`, `content`, `writer`) VALUES('test45','테스트 내용','쏜');
-INSERT INTO `project`.`tbl_board` (`title`, `content`, `writer`) VALUES('test46','테스트 내용','쏜');
-INSERT INTO `project`.`tbl_board` (`title`, `content`, `writer`) VALUES('test47','테스트 내용','쏜');
-INSERT INTO `project`.`tbl_board` (`title`, `content`, `writer`) VALUES('test48','테스트 내용','쏜');
+INSERT INTO `project`.`tbl_board` (`title`, `content`, `writer`) VALUES('test82','테스트 내용','쏜');
+INSERT INTO `project`.`tbl_board` (`title`, `content`, `writer`) VALUES('test83','테스트 내용','쏜');
+INSERT INTO `project`.`tbl_board` (`title`, `content`, `writer`) VALUES('test84','테스트 내용','쏜');
+INSERT INTO `project`.`tbl_board` (`title`, `content`, `writer`) VALUES('test85','테스트 내용','쏜');
+INSERT INTO `project`.`tbl_board` (`title`, `content`, `writer`) VALUES('test86','테스트 내용','쏜');
+INSERT INTO `project`.`tbl_board` (`title`, `content`, `writer`) VALUES('test77','테스트 내용','쏜');
+INSERT INTO `project`.`tbl_board` (`title`, `content`, `writer`) VALUES('test78','테스트 내용','쏜');
+INSERT INTO `project`.`tbl_board` (`title`, `content`, `writer`) VALUES('test79','테스트 내용','쏜');
+INSERT INTO `project`.`tbl_board` (`title`, `content`, `writer`) VALUES('test80','테스트 내용','쏜');
+
+delete from tbl_board where bno=1;
+update tbl_board set title=, contenct=, writer=, photo=, where bno=;
+
+
+
+
+
+
+
+
+
+
 

@@ -1,7 +1,7 @@
 package com.app.board.service.board;
 
 import com.app.board.domain.BoardDTO;
-import com.app.board.domain.BoardWriteRequest;
+import com.app.board.domain.BoardEditRequest;
 import com.app.board.mapper.BoardMapper;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,23 +15,20 @@ import java.util.UUID;
 
 @Service
 @Log4j2
-public class BoardWriteService {
+public class BoardEditService {
 
     @Autowired
     private BoardMapper boardMapper;
 
-    public int write(BoardWriteRequest boardWriteRequest){
+    public int edit(BoardEditRequest boardEditRequest){
 
-        // 파일 유무 확인, 디렉토리 유무 확인, 저장 확인
-
-        MultipartFile file = boardWriteRequest.getFormFile();
+        MultipartFile file = boardEditRequest.getFormFile();
 
         File saveDir = null;
         String newFileName = null;
 
-
-        // 파일 유무에 확인을 하고(null이 아니고 비어있지 않고, 사이즈가 0보다 커야) 디렉토리를 만들고 파일을 저장한다.
-        if (file != null && !file.isEmpty() && file.getSize()>0){
+        if (file != null && !file.isEmpty()){
+            // 새로운 파일 저장
 
             String absolutePath = new File("").getAbsolutePath();
             log.info("absolutPath............ => " + absolutePath);
@@ -55,14 +52,18 @@ public class BoardWriteService {
             // 파일 저장
             try {
                 file.transferTo(newFile);
+                log.info("newFileName........ => " + newFileName);
             } catch (IOException e) {
+                log.info("IOException.............");
                 throw new RuntimeException(e);
             }
+            ////////////////////////
         }
 
-        BoardDTO boardDTO = boardWriteRequest.toBoardDTO();
+        // 이제 DB에 파일명을 저장해야 한다.
+        
+        BoardDTO boardDTO = boardEditRequest.toBoardDTO();
 
-        // 문제없이 저장 되었는지 확인하고 되었다면
         if (newFileName != null){
             boardDTO.setPhoto(newFileName);
         }
@@ -70,10 +71,22 @@ public class BoardWriteService {
         int result = 0;
 
         try {
-            // DB insert
-            result = boardMapper.insert(boardDTO);
-        } catch (SQLException e){
-            // 오류 나면 파일을 지워줘야 한다.
+            // db 업데이트
+            result = boardMapper.update(boardDTO);
+
+            // (db 업데이트 완료되면 아래 로직 실행됨. 실패하면 catch구문으로 이동) 새로운 파일이 저장 되고, 이전 파일이 존재한다면, 이전 파일을 삭제
+            String oldFileName = boardEditRequest.getOldFile();
+            if (newFileName != null && oldFileName != null && !oldFileName.trim().isEmpty()){
+                File delOldFile = new File(saveDir, oldFileName);
+                if (delOldFile.exists()){
+                    delOldFile.delete();
+                }
+
+            }
+
+        } catch (SQLException e) {
+            log.info("SQLException ..... ");
+            //새롭게 저장되면 기존 파일 삭제
             if (newFileName != null){
                 File delFile = new File(saveDir, newFileName);
                 if (delFile.exists()){

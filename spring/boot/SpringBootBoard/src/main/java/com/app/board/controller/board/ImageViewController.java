@@ -1,5 +1,6 @@
 package com.app.board.controller.board;
 
+import lombok.Cleanup;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -31,7 +32,7 @@ public class ImageViewController {
 
         if (saveFile.exists()){
             // 응답처리
-            InputStream imageStream = new FileInputStream(saveFile);
+            @Cleanup InputStream imageStream = new FileInputStream(saveFile); // close를 해줘야 파일 삭제가 제대로 된다!
             imageByteArray = imageStream.readAllBytes();
             status = HttpStatus.OK;
         }

@@ -37,8 +37,8 @@
             <tr>
                 <td class="col-2 text-center bg-light">첨부사진</td>
                 <td>
-                    <th:block th:if="${boardView.photo != null}">
-                    <img th:src="@{/upload/photo/{name}(name=${boardView.photo})}" height="200">
+                    <th:block th:if="${boardView.photo != null && (boardView.photo != '')}">
+                    <img th:src="@{/upload/photo/{name}(name=${boardView.photo})}" height="200" class="rounded float-start">
                     </th:block>
                 </td>
             </tr>
@@ -54,9 +54,9 @@
         </table>
 
         <div class="text-end">
-            <a class="btn btn-warning" th:href="@{/board/edit(bno=${boardView.bno},p=${currentPageNum})}">수정</a>
-            <a class="btn btn-danger" th:onclick="'deleteBoard(' + ${boardView.bno} + ')'">삭제</a>
-            <a class="btn btn-primary" th:href="@{/board/list(p=${currentPageNum})}">리스트</a>
+            <a class="btn btn-outline-warning" th:href="@{/board/edit(bno=${boardView.bno},p=${currentPageNum})}">수정</a>
+            <a class="btn btn-outline-danger" th:onclick="'deleteBoard(' + ${boardView.bno} + ')'">삭제</a>
+            <a class="btn btn-outline-primary" th:href="@{/board/list(p=${currentPageNum})}">리스트</a>
         </div>
 
         <script>
