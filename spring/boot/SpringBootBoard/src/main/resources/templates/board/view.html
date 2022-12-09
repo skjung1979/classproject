@@ -68,6 +68,20 @@
             <div class="card-body">
 
                 <!-- 댓글 작성 영역 시작 -->
+                <div class="p-3 border-bottom">
+                    <h5 class="title my-2">댓글 작성</h5>
+                    <div class="mb-3">
+                        <label class="form-label">작성자</label>
+                        <input type="text" class="form-control" id="replyer">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">내용</label>
+                        <textarea class="form-control" rows="3" id="reply"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <input type="submit" value="댓글 등록" id="btn_reply" class="form-control btn btn-primary">
+                    </div>
+                </div>
                 <!-- 댓글 작성 영역 끝 -->
 
                 <!-- 댓글 리스트 영역 시작 -->
@@ -120,6 +134,53 @@
         // 다 로딩이 되고 캐스팅 되어야 하므로, 이 블럭에 넣는다.
         replyList = document.querySelector('#replyList');
 
+        // 댓글 작성 버튼
+        const btn_reply = document.querySelector("#btn_reply")
+
+        // 버튼 이벤트 등록
+        btn_reply.addEventListener('click', () => {
+
+            // 서버로 전송할 payload 만든다. 객체 형태로.
+            const payload = {
+                bno : bno,
+                reply : document.querySelector("#reply").value,
+                replyer : document.querySelector("#replyer").value
+            }
+            console.log('payload => ', payload);
+
+            axios.post('/reply', payload)
+                .then(res => {
+                    console.log('댓글 등록 성공!')
+                    console.log('post -> response!', res.data)
+
+                    const reply = res.data;
+
+                    // replyList 영역에 새로운 tr을 추가한다.
+                    const newTR = document.createElement('tr');
+                    let html = '<td class="col-2">' + reply.replyer + '</td>';
+                    html += '<td class="col">' + reply.reply + '</td>';
+                    html += '<td class="col-2">' + reply.replydate + '</td>';
+                    html += '<td class="col-2">' +
+                        '<a href="javascript:showEditModal(' + reply.rno + ')" class="badge bg-warning text-decoration-none">수정</a> ' +
+                        ' <a href="javascript:deleteReply(' + reply.rno + ')" class="badge bg-danger text-decoration-none">삭제</a>' +
+                        '</td>';
+
+                    newTR.innerHTML = html;
+                    newTR.setAttribute('class', 'fs-6 text-center'); // fs-6 가장 작은 폰트 사이즈
+                    newTR.setAttribute('tr-index', reply.rno); // 추후 삭제버튼을 누르면 tr을 삭제해야하므로
+
+                    // 부모 태그에 요소를 추가
+                    replyList.appendChild(newTR);
+
+                })
+                .catch(err => console.log(err) )
+
+        })
+
+
+
+
+        // 페이지가 로드되면 리스트 출력
         setList();
 
     })
