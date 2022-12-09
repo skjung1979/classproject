@@ -138,47 +138,7 @@
         const btn_reply = document.querySelector("#btn_reply")
 
         // 버튼 이벤트 등록
-        btn_reply.addEventListener('click', () => {
-
-            // 서버로 전송할 payload 만든다. 객체 형태로.
-            const payload = {
-                bno : bno,
-                reply : document.querySelector("#reply").value,
-                replyer : document.querySelector("#replyer").value
-            }
-            console.log('payload => ', payload);
-
-            axios.post('/reply', payload)
-                .then(res => {
-                    console.log('댓글 등록 성공!')
-                    console.log('post -> responwase!', res.data)
-
-                    const reply = res.data;
-
-                    // replyList 영역에 새로운 tr을 추가한다.
-                    const newTR = document.createElement('tr');
-                    let html = '<td class="col-2">' + reply.replyer + '</td>';
-                    html += '<td class="col">' + reply.reply + '</td>';
-                    html += '<td class="col-2">' + reply.replydate + '</td>';
-                    html += '<td class="col-2">' +
-                        '<a href="javascript:showEditModal(' + reply.rno + ')" class="badge bg-warning text-decoration-none">수정</a> ' +
-                        ' <a href="javascript:deleteReply(' + reply.rno + ')" class="badge bg-danger text-decoration-none">삭제</a>' +
-                        '</td>';
-
-                    newTR.innerHTML = html;
-                    newTR.setAttribute('class', 'fs-6 text-center'); // fs-6 가장 작은 폰트 사이즈
-                    newTR.setAttribute('tr-index', reply.rno); // 추후 삭제버튼을 누르면 tr을 삭제해야하므로
-
-                    // 부모 태그에 요소를 추가
-                    replyList.appendChild(newTR);
-
-                })
-                .catch(err => console.log(err) )
-
-        })
-
-
-
+        btn_reply.addEventListener('click', insertReply)
 
         // 페이지가 로드되면 리스트 출력
         setList();
@@ -216,12 +176,53 @@
 
                 })
 
+
+
             })
             .catch(err => {
                 console.log(err)
             })
     }
 
+    function insertReply(){
+        // 서버로 전송할 payload 만든다. 객체 형태로.
+        const payload = {
+            bno : bno,
+            reply : document.querySelector("#reply").value,
+            replyer : document.querySelector("#replyer").value
+        }
+        console.log('payload => ', payload);
+
+        axios.post('/reply', payload)
+            .then(res => {
+                console.log('댓글 등록 성공!')
+                console.log('post -> responwase!', res.data)
+
+                const reply = res.data;
+
+                // replyList 영역에 새로운 tr을 추가한다.
+                const newTR = document.createElement('tr');
+                let html = '<td class="col-2">' + reply.replyer + '</td>';
+                html += '<td class="col">' + reply.reply + '</td>';
+                html += '<td class="col-2">' + reply.replydate + '</td>';
+                html += '<td class="col-2">' +
+                    '<a href="javascript:showEditModal(' + reply.rno + ')" class="badge bg-warning text-decoration-none">수정</a> ' +
+                    ' <a href="javascript:deleteReply(' + reply.rno + ')" class="badge bg-danger text-decoration-none">삭제</a>' +
+                    '</td>';
+
+                newTR.innerHTML = html;
+                newTR.setAttribute('class', 'fs-6 text-center'); // fs-6 가장 작은 폰트 사이즈
+                newTR.setAttribute('tr-index', reply.rno); // 추후 삭제버튼을 누르면 tr을 삭제해야하므로
+
+                // 부모 태그에 요소를 추가
+                replyList.appendChild(newTR);
+
+                document.querySelector("#reply").value = ''
+                document.querySelector("#replyer").value = ''
+
+            })
+            .catch(err => console.log(err) )
+    }
 
 </script>
 </body>
