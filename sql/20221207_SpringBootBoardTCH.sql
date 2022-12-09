@@ -29,6 +29,9 @@ CREATE TABLE `tbl_reply` (
 desc tbl_board;
 select * from tbl_board order by bno desc;
 select * from tbl_board order by bno desc limit 0, 3;
+select * from tbl_reply;
+desc tbl_reply;
+delete from tbl_board where bno=1;
 
 -- 더미 데이터 넣기
 INSERT INTO `project`.`tbl_board` (`title`, `content`, `writer`) VALUES('test82','테스트 내용','쏜');
@@ -41,10 +44,15 @@ INSERT INTO `project`.`tbl_board` (`title`, `content`, `writer`) VALUES('test78'
 INSERT INTO `project`.`tbl_board` (`title`, `content`, `writer`) VALUES('test79','테스트 내용','쏜');
 INSERT INTO `project`.`tbl_board` (`title`, `content`, `writer`) VALUES('test80','테스트 내용','쏜');
 
-delete from tbl_board where bno=1;
-update tbl_board set title=, contenct=, writer=, photo=, where bno=;
-
-
+insert into tbl_reply (bno, reply, replyer, replyDate) values (225, '댓글225-01','작성자225', now());
+insert into tbl_reply (bno, reply, replyer, replyDate) values (225, '댓글225-02','작성자225', now());
+insert into tbl_reply (bno, reply, replyer, replyDate) values (225, '댓글225-03','작성자225', now());
+insert into tbl_reply (bno, reply, replyer, replyDate) values (224, '댓글224-01','작성자224', now());
+insert into tbl_reply (bno, reply, replyer, replyDate) values (224, '댓글224-02','작성자224', now());
+insert into tbl_reply (bno, reply, replyer, replyDate) values (224, '댓글224-03','작성자224', now());
+insert into tbl_reply (bno, reply, replyer, replyDate) values (223, '댓글223-01','작성자223', now());
+insert into tbl_reply (bno, reply, replyer, replyDate) values (223, '댓글223-02','작성자223', now());
+insert into tbl_reply (bno, reply, replyer, replyDate) values (223, '댓글223-03','작성자223', now());
 
 
 
