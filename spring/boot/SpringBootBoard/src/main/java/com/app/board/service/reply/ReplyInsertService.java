@@ -11,7 +11,7 @@ public class ReplyInsertService {
     @Autowired
     private ReplyMapper replyMapper;
 
-    public int insertReply(ReplyDTO replyDTO){
+    public int insertReply(ReplyDTO replyDTO) {
 
         return replyMapper.insertReply(replyDTO);
     }

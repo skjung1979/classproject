@@ -32,7 +32,7 @@ public class ReplyRestController {
     @GetMapping(value = "/{bno}", produces = MediaType.APPLICATION_JSON_VALUE) // produces 이 메소드의 반환 형식?타입 정의
     public ResponseEntity<List<ReplyDTO>> selectList(
             @PathVariable("bno") int bno
-    ){
+    ) {
 
         List<ReplyDTO> list = replyListService.selectAll(bno);
 
@@ -43,7 +43,7 @@ public class ReplyRestController {
     public ResponseEntity<ReplyDTO> insertReply(
             // client로 부터 JSON 데이터를 받아서 DB insert
             @RequestBody ReplyDTO replyDTO
-    ){
+    ) {
         log.info("PostMapping .... insert 전 replyDTO => " + replyDTO);
 
         replyInsertService.insertReply(replyDTO);
