@@ -113,6 +113,35 @@
 </div>
 <!--부트스트랩 카드 끝-->
 
+<!--수정 모달 시작-->
+<div class="modal fade" id="replyEditModal" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">댓글 수정</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="form-label">작성자</label>
+                    <input type="text" class="form-control" id="ereplyer" readonly>
+                    <input type="hidden" id="erno">
+                    <input type="hidden" id="ereplydate">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">내용</label>
+                    <textarea class="form-control" rows="3" id="ereply"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btn_edit">수정</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--수정 모달 끝-->
+
+
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
@@ -128,6 +157,7 @@
 
     // 생명 주기를 위해 여기서 변수 선언을 한다. function getList()에서도 사용해야 하므로!!!
     let replyList;
+    let editModal;
 
     document.addEventListener('DOMContentLoaded', () => {
 
@@ -137,13 +167,21 @@
         // 댓글 작성 버튼
         const btn_reply = document.querySelector("#btn_reply")
 
+        // 댓글 수정 버튼
+        const btn_edit = document.querySelector('#btn_edit')
+
+        editModal = new bootstrap.Modal('#replyEditModal')
+
         // 버튼 이벤트 등록
         btn_reply.addEventListener('click', insertReply)
+        btn_edit.addEventListener('click', editReply)
 
         // 페이지가 로드되면 리스트 출력
         setList();
 
     })
+
+
 
     function setList() {
 
@@ -222,6 +260,80 @@
 
             })
             .catch(err => console.log(err) )
+    }
+
+    function deleteReply(rno){
+
+        if (!confirm('삭제하시겠습니까?')){ // 물음에 삭제 노하면..
+            return; // 리턴
+        }
+
+
+        console.log('rno => ', rno)
+
+        axios.delete('/reply/'+rno)
+            .then(res => {
+                console.log('삭제 성공이면 1 =>', res.data)
+
+                if (res.data == 1){
+                    //  댓글 리스트에서 해당 댓글을 삭제. tr-index = rno인 행을 삭제하기
+                    const delTR = document.querySelector('tr[tr-index="' + rno + '"]');
+                    replyList.removeChild(delTR);
+                    alert('삭제되었습니다.')
+                } else {
+                    alert('삭제할 대상이 존재하지 않습니다.')
+                }
+
+            })
+            .catch(err => console.log(err))
+
+    }
+
+    function showEditModal(rno){
+
+        editModal.show()
+
+        // tr-index속성값이 14인 tr의 td를 캐스팅한다 => tr들을 받는다.
+        const editTD = document.querySelectorAll('tr[tr-index="' + rno + '"]>td')
+
+        console.log('editTD[0].textContent => ', editTD[0].textContent)
+        console.log('editTD[1].textContent => ', editTD[1].textContent)
+        console.log('editTD[2].textContent => ', editTD[2].textContent)
+
+        document.querySelector('#erno').value = rno
+        document.querySelector('#ereplyer').value = editTD[0].textContent
+        document.querySelector('#ereply').value = editTD[1].textContent
+        document.querySelector('#ereplydate').value = editTD[2].textContent
+
+    }
+
+    function editReply(){
+
+        // 서버로 전송할 payload
+        // put => 전체 데이터의 변경, 모든 데이터를 서버로 전송해야한다. 값이 없으면 기본값 저장
+        const payload = {
+            bno : bno,
+            rno : document.querySelector('#erno').value,
+            reply : document.querySelector("#ereply").value,
+            replyer : document.querySelector("#ereplyer").value,
+            replydate : document.querySelector('#ereplydate').value
+        }
+
+        console.log(payload)
+
+        axios.put('/reply/' + payload.rno, payload)
+            .then(res => {
+
+                console.log('put 결과 res.data => ', res.data)
+
+                const editTD = document.querySelectorAll('tr[tr-index="'+ payload.rno+'"]>td')
+                editTD[1].textContent = payload.reply
+
+                editModal.hide()
+
+            })
+            .catch(err => console.log(err))
+
     }
 
 </script>

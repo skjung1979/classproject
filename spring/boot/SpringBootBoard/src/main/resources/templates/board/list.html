@@ -33,7 +33,9 @@
             <tbody>
             <tr th:each="board : ${listPage.list}">
                 <td th:text="${board.bno}">1</td>
-                <td><a th:text="${board.title}" th:href="@{/board/view(bno=${board.bno},p=${listPage.pageNum})}"></a></td>
+                <td><a th:text="${board.title}" th:href="@{/board/view(bno=${board.bno},p=${listPage.pageNum})}"></a>
+                <span th:if="${board.replycnt>0}" th:text="${board.replycnt}" class="badge bg-danger"></span>
+                </td>
                 <td th:text="${board.writer}">tester</td>
                 <td th:text="${board.regdate}">2022.12.07</td>
             </tr>

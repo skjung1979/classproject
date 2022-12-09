@@ -1,9 +1,7 @@
-package com.app.board.controller.board;
+package com.app.board.controller.reply;
 
 import com.app.board.domain.ReplyDTO;
-import com.app.board.service.reply.ReplyInsertService;
-import com.app.board.service.reply.ReplyListService;
-import com.app.board.service.reply.ReplyReadService;
+import com.app.board.service.reply.*;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,6 +31,12 @@ public class ReplyRestController {
     @Autowired
     private ReplyReadService replyReadService;
 
+    @Autowired
+    private ReplyDeleteService replyDeleteService;
+
+    @Autowired
+    private ReplyEditService replyEditService;
+
     @GetMapping(value = "/{bno}", produces = MediaType.APPLICATION_JSON_VALUE) // produces 이 메소드의 반환 형식?타입 정의
     public ResponseEntity<List<ReplyDTO>> selectList(
             @PathVariable("bno") int bno
@@ -55,5 +59,22 @@ public class ReplyRestController {
         log.info("PostMapping .... insert 후 replyDTO => " + replyDTO); // rno값이 갱신된 데이터에 들어가 있는지 확인!!!
 
         return new ResponseEntity<>(replyReadService.selectByRno(replyDTO.getRno()), HttpStatus.OK); // 갱신받은 rno로 다시 ReplyDTO를 담아온다.(DB의 등록일자 정보 가져옴)
+    }
+
+    @PutMapping("/{rno}")
+    public ResponseEntity<Integer> editReply(
+            @PathVariable("rno") int rno,
+            @RequestBody ReplyDTO replyDTO
+    ){
+        replyDTO.setRno(rno);
+
+        return new ResponseEntity<>(replyEditService.updateReply(replyDTO), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{rno}")
+    public ResponseEntity<Integer> delete(
+            @PathVariable("rno") int rno
+    ){
+        return new ResponseEntity<>(replyDeleteService.deleteByRno(rno), HttpStatus.OK);
     }
 }
