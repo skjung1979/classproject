@@ -31,5 +31,4 @@ public class Util {
         LocalDateTime localDate = LocalDateTime.ofInstant(Instant.ofEpochSecond(timestamp/1000), TimeZone.getDefault().toZoneId());
         return DateTimeFormatter.ofPattern("YYYY-MM-dd hh:mm:ss").format(localDate);
     }
-
 }

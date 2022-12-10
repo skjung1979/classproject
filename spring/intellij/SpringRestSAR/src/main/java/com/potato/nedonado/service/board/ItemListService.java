@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public class ItemListService {
 
-    @Autowired
+    @Autowired(required = false)
     private BoardMapper boardMapper;
 
     public List<ItemViewListInfo> selectBoardListByPage(int page){

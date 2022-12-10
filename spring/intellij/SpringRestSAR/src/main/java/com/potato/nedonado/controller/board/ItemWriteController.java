@@ -1,7 +1,11 @@
 package com.potato.nedonado.controller.board;
 
 import com.potato.nedonado.model.board.ItemEntity;
+import com.potato.nedonado.model.user.LoginInfo;
 import com.potato.nedonado.service.board.ItemWriteService;
+import com.potato.nedonado.util.CategoryUtil;
+import com.potato.nedonado.util.ConfigUtil;
+import com.potato.nedonado.util.Util;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -11,17 +15,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @Log4j2
@@ -91,7 +98,7 @@ public class ItemWriteController {
         return new ResponseEntity<>(nameList, httpHeaders, HttpStatus.OK);
     }
 
-    private Map<String, List<String>> fileProcess(MultipartHttpServletRequest multipartHttpServletRequest) throws Exception{
+    private Map<String, List<String>> fileProcess(MultipartHttpServletRequest multipartRequest) throws Exception{
 
         String CURR_IMAGE_REPO_PATH = (String) ConfigUtil.getConfig("fileSaveDir");
 
@@ -111,7 +118,7 @@ public class ItemWriteController {
             MultipartFile mFile = multipartRequest.getFile(fileName);
             // 실제 파일 이름 가져오기
             // String originalFileName = mFile.getOriginalFilename();
-            String originalFileName = "T" + Util.getCurrentTimestamp() + "." + mFile.getConentType().split("/")[1];
+            String originalFileName = "T" + Util.getCurrentTimestamp() + "." + mFile.getContentType().split("/")[1];
             // 파일 이름을 하나씩 fileList에 저장하기
             fileList.add(originalFileName);
 

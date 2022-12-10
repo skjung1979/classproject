@@ -1,0 +1,74 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.potato.nedonado.mapper.CommentMapper">
+
+    <select id="selectAllComments" resultType="com.potato.nedonado.model.comment.CommentDTO">
+
+        select * from boardComment
+        where #boardIdx = #{boardIdx}
+
+    </select>
+
+    <select id="selectByBoardIdx" resultType="com.potato.nedonado.model.comment.CommentDTO">
+
+        select * from boardComment
+        where boardIdx = #{boardIdx}
+        order by commentIdx asc
+        limit 0, 50
+
+    </select>
+
+    <select id="selectCommentByLastCommentIdxLimit" resultType="com.potato.nedonado.model.comment.CommentDTO">
+
+        select * from boardComment
+        where boardIdx = #{param1}
+        and commentIdx = #{param2}
+        order by commentIdx asc
+        limit 0, 50
+
+    </select>
+
+    <select id="selectCommentByLastCommentIdx" resultType="com.potato.nedonado.model.comment.CommentDTO">
+
+        select * from boardComment
+        where boardIdx = #{param1}
+        and commentIdx > #{param2}
+        order by commentIdx asc
+
+    </select>
+
+    <delete id="deleteComment">
+
+        delete from boardcomment
+        where commentIdx = #{param1}
+        and userIdx = #{param2}
+
+    </delete>
+
+    <delete id="deleteCommentByBoardIdx">
+
+        delete from boardComment
+        where boardIdx = #{boardIdx}
+
+    </delete>
+
+    <insert id="insertComment" parameterType="com.potato.nedonado.model.comment.CommentDTO">
+
+        insert into boardComment
+        (boardIdx, userIdx, nickname, content, writeDate)
+        values
+        (#{boardIdx}, #{userIdx}, #{nickname}, #{content}, #{writeDate})
+
+    </insert>
+
+    <!-- userIdx로 작성한 댓글 select -->
+    <select id="selectCommentByUserIdx" resultType="com.potato.nedonado.model.comment.CommentDTO">
+
+        select * from boardComment
+        where userIdx = #{userIdx}
+
+    </select>
+
+</mapper>

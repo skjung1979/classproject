@@ -1,5 +1,6 @@
 package com.potato.nedonado.model.user;
 
+import com.potato.nedonado.util.Util;
 import lombok.*;
 
 import javax.validation.constraints.NotEmpty;

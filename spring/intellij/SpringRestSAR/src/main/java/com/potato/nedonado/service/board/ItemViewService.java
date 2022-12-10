@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 @Log4j2
 public class ItemViewService {
 
-    @Autowired
+    @Autowired(required = false)
     private BoardMapper boardMapper;
 
     public ItemEntity selectItemByIdx(long idx){

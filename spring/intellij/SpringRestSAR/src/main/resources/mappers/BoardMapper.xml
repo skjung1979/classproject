@@ -1,0 +1,78 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.potato.nedonado.mapper.BoardMapper">
+
+    <select id="selectItemListByPage" resultType="com.potato.nedonado.model.board.ItemEntity">
+
+        select * from board
+        where onSale != 0
+        order by boardIdx desc
+        limit #{page}, 10
+
+    </select>
+
+    <insert id="insertItem" parameterType="com.potato.nedonado.model.board.ItemEntity">
+
+        insert into board(title, content, category, thumbnail, imgURL, price, userIdx, writeDate)
+        values (#{title}, #{content}, #{category}, #{thumbnail}, #{imgURL}, #{price}, #{userIdx}, #{writeDate})
+
+    </insert>
+
+    <select id="selectItemByIdx" resultType="com.potato.nedonado.model.board.ItemEntity">
+
+        select * from board
+        where boardIdx = #{boardIdx}
+
+    </select>
+
+    <select id="selectItemByIdxAndUserIdx" resultType="com.potato.nedonado.model.board.ItemEntity">
+
+        select * from board
+        where boardIdx = #{param1}
+        and userIdx = #{param2}
+
+    </select>
+    selectItemByIdxAndUserIdx
+    <select id="selectItemListByItemIdx" resultType="com.potato.nedonado.model.board.ItemEntity">
+
+        select * from board
+        <where>
+            onSale != 0
+            <if test="boardIdx != 0">
+                and boardIdx &lt; #{boardIdx}
+            </if>
+        </where>
+        order by boardIdx desc
+        limit 0, 10
+
+    </select>
+
+    <delete id="deleteByIdx">
+
+        delete from board
+        where boardIdx = #{param1}
+        and userIdx = #{param2}
+
+    </delete>
+
+    <update id="updateItem" parameterType="com.potato.nedonado.model.board.ItemEntity">
+
+        update board set
+        title = #{title}, content = #{content}, category = #{category},
+        thumbnail = #{thumbnail}, imgURL = #{imgURL}, price = #{price}
+        where boardIdx = #{boardIdx}
+        and userIdx = #{userIdx}
+
+    </update>
+
+    <select id="selectItemListByUserIdx" resultType="com.potato.nedonado.model.board.ItemEntity">
+
+        select * from board
+        where userIdx = #{userIdx}
+        order by boardIdx desc
+
+    </select>
+
+</mapper>

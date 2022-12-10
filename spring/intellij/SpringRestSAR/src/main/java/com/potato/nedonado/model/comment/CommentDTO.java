@@ -1,5 +1,6 @@
 package com.potato.nedonado.model.comment;
 
+import com.potato.nedonado.util.Util;
 import lombok.*;
 
 @AllArgsConstructor

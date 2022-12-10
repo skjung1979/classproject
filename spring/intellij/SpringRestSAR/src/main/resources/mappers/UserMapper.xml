@@ -1,0 +1,66 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.potato.nedonado.mapper.UserMapper">
+
+<!--    회원가입-->
+    <insert id="insertUser" parameterType="com.potato.nedonado.model.user.UserDTO">
+
+        insert into user
+        (userId, userPw, joinDate, location, nickname, phone, byear, bmonth, bday)
+        values
+        (#{userId},#{userPw},#{joinDate},#{location},#{nickname},#{phone},#{byear},#{bmonth},#{bday})
+
+    </insert>
+
+<!--    id, pw 확인 후 로그인-->
+    <select id="selectByIdAndPw" parameterType="com.potato.nedonado.model.user.UserDTO" resultType="com.potato.nedonado.model.user.UserDTO">
+
+        select * from user
+        where userId = #{userId} and userPw = #{userPw} and delete=0;
+
+    </select>
+
+<!--    idx로 유저 정보 조회-->
+    <select id="selectUserByIdx" resultType="com.potato.nedonado.model.user.UserDTO">
+
+        select * from user where userIdx = #{userIdx}
+
+    </select>
+
+<!--    정보 수정-->
+    <update id="editUserInfo" parameterType="com.potato.nedonado.model.user.UserDTO">
+
+        update user set
+        location = #{location}, nickname = #{nickname}, phone = #{phone},
+        byear = #{byear}, bmonth = #{bmonth}, bday = #{bday}
+        where userIdx = #{userIdx}
+
+    </update>
+
+<!--    회원 탈퇴-->
+    <delete id="deleteUser" parameterType="com.potato.nedonado.model.user.UserDTO">
+
+        delete from user
+        where userIdx = #{userIdx}
+
+    </delete>
+
+<!--    uuid로 회원 조회-->
+    <select id="selectUserByUUID" parameterType="String" resultType="com.potato.nedonado.model.user.UserDTO">
+
+        select * from user where uuid = #{uuid} and deleted=0
+
+    </select>
+
+    <update id="updateUUIDtoUser" parameterType="com.potato.nedonado.model.user.UserDTO">
+
+        update user set uuid = #{uuid}
+        where userIdx = #{userIdx}
+
+    </update>
+
+
+
+</mapper>

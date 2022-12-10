@@ -16,7 +16,7 @@ public class CommentListService {
     private CommentMapper commentMapper;
 
     public List<CommentDTO> selectAllComments(long boardIdx){
-        return commentMapper.selectCommentbyBoardIdx(boardIdx);
+        return commentMapper.selectCommentByBoardIdx(boardIdx);
     }
 
     public List<CommentViewInfo> selectBoardComment(long boardIdx, long lastIdx){

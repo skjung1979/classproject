@@ -14,7 +14,7 @@ public interface BoardMapper {
 
     ItemEntity selectItemByIdx(long boardIdx);
 
-    ItemEntity sslectItemByIdxAndUserIdx(long boardIdx, long userIdx);
+    ItemEntity selectItemByIdxAndUserIdx(long boardIdx, long userIdx);
 
     List<ItemEntity> selectItemListByItemIdx(long boardIdx);
 

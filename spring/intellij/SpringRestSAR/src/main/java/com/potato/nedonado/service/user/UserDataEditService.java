@@ -16,6 +16,6 @@ public class UserDataEditService {
     public long editUserInfo(UserDTO userDTO, long userIdx) throws SQLException{
 
         userDTO.setUserIdx(userIdx);
-        return userMapper.editUserInfo();
+        return userMapper.editUserInfo(userDTO);
     }
 }
