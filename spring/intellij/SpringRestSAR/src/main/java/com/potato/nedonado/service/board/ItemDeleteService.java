@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Log4j2
 public class ItemDeleteService {
 
-    @Autowired
+    @Autowired(required = false)
     private BoardMapper boardMapper;
 
     public int deleteItemByBoardIdx(long boardIdx, long userIdx){

@@ -19,6 +19,7 @@ public interface BoardMapper {
     List<ItemEntity> selectItemListByItemIdx(long boardIdx);
 
     int deleteByIdx(long boardIdx, long userIdx);
+
     int updateItem(ItemEntity itemEntity);
 
     // 내가 쓴 게시글 보기
