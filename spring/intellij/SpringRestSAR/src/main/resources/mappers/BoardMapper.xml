@@ -4,75 +4,72 @@
 
 <mapper namespace="com.potato.nedonado.mapper.BoardMapper">
 
-    <select id="selectItemListByPage" resultType="com.potato.nedonado.model.board.ItemEntity">
-
-        select * from board
-        where onSale != 0
-        order by boardIdx desc
-        limit #{page}, 10
-
+    <select id="selectItemListByPage"
+            resultType="com.potato.nedonado.model.board.ItemEntity">
+        SELECT *
+        FROM board
+        WHERE onSale != 0
+        ORDER BY boardIdx DESC
+        LIMIT #{page}, 10
     </select>
 
-    <insert id="insertItem" parameterType="com.potato.nedonado.model.board.ItemEntity">
-
-        insert into board(title, content, category, thumbnail, imgURL, price, userIdx, writeDate)
-        values (#{title}, #{content}, #{category}, #{thumbnail}, #{imgURL}, #{price}, #{userIdx}, #{writeDate})
-
+    <insert id="insertItem"
+            parameterType="com.potato.nedonado.model.board.ItemEntity">
+        INSERT INTO board(title, content, category, thumbnail, imgURL, price, userIdx, writeDate)
+        VALUES (#{title}, #{content}, #{category}, #{thumbnail}, #{imgURL}, #{price}, #{userIdx}, #{writeDate})
     </insert>
 
-    <select id="selectItemByIdx" resultType="com.potato.nedonado.model.board.ItemEntity">
-
-        select * from board
-        where boardIdx = #{boardIdx}
-
+    <select id="selectItemByIdx"
+            resultType="com.potato.nedonado.model.board.ItemEntity">
+        SELECT *
+        FROM board
+        WHERE boardIdx = #{boardIdx}
     </select>
 
-    <select id="selectItemByIdxAndUserIdx" resultType="com.potato.nedonado.model.board.ItemEntity">
-
-        select * from board
-        where boardIdx = #{param1}
-        and userIdx = #{param2}
-
+    <select id="selectItemByIdxAndUserIdx"
+            resultType="com.potato.nedonado.model.board.ItemEntity">
+        SELECT *
+        FROM board
+        WHERE boardIdx = #{param1}
+        AND userIdx = #{param2}
     </select>
-    selectItemByIdxAndUserIdx
-    <select id="selectItemListByItemIdx" resultType="com.potato.nedonado.model.board.ItemEntity">
 
-        select * from board
+
+    <select id="selectItemListByItemIdx"
+            resultType="com.potato.nedonado.model.board.ItemEntity">
+        SELECT *
+        FROM board
         <where>
             onSale != 0
             <if test="boardIdx != 0">
                 and boardIdx &lt; #{boardIdx}
             </if>
         </where>
-        order by boardIdx desc
-        limit 0, 10
-
+        ORDER BY boardIdx DESC
+        LIMIT 0, 10
     </select>
 
     <delete id="deleteByIdx">
-
-        delete from board
-        where boardIdx = #{param1}
-        and userIdx = #{param2}
-
+        DELETE FROM board
+        WHERE boardIdx = #{param1}
+        AND userIdx = #{param2}
     </delete>
 
-    <update id="updateItem" parameterType="com.potato.nedonado.model.board.ItemEntity">
+    <insert id="updateItem"
+            parameterType="com.potato.nedonado.model.board.ItemEntity">
+        UPDATE board
+        SET title = #{title}, content = #{content}, category = #{category}, thumbnail = #{thumbnail}, imgURL = #{imgURL}, price = #{price}
+        WHERE boardIdx = #{boardIdx}
+        AND userIdx = #{userIdx}
+    </insert>
 
-        update board set
-        title = #{title}, content = #{content}, category = #{category},
-        thumbnail = #{thumbnail}, imgURL = #{imgURL}, price = #{price}
-        where boardIdx = #{boardIdx}
-        and userIdx = #{userIdx}
 
-    </update>
-
+    <!-- userIdx로 작성한 게시글 select -->
     <select id="selectItemListByUserIdx" resultType="com.potato.nedonado.model.board.ItemEntity">
-
-        select * from board
-        where userIdx = #{userIdx}
-        order by boardIdx desc
-
+        SELECT *
+        FROM board
+        WHERE userIdx=#{userIdx}
+        ORDER BY boardIdx DESC
     </select>
 
 </mapper>

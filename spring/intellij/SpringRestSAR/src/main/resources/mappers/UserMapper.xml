@@ -18,7 +18,7 @@
     <select id="selectByIdAndPw" parameterType="com.potato.nedonado.model.user.UserDTO" resultType="com.potato.nedonado.model.user.UserDTO">
 
         select * from user
-        where userId = #{userId} and userPw = #{userPw} and delete=0;
+        where userId = #{userId} and userPw = #{userPw} and deleted=0;
 
     </select>
 

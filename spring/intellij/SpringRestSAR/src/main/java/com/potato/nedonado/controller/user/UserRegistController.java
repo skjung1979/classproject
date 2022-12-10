@@ -25,8 +25,10 @@ public class UserRegistController {
     }
 
     @GetMapping
-    public void getInsertUser(){
+    public String getInsertUser(){
         log.info("get register...");
+
+        return "user/register";
     }
 
     @PostMapping

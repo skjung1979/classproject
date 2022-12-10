@@ -36,3 +36,8 @@ bmonth varchar(10),
 bday varchar(10),
 primary key (userIdx)
 );
+
+select * from user;
+select * from board;
+
+

@@ -63,6 +63,7 @@ public class ItemRestController {
         return mav;
     }
 
+    @GetMapping("/list/{idx}")
     public ResponseEntity<List<ItemViewListInfo>> getBoardList(
             @PathVariable("idx") long boardIdx
     ){
