@@ -54,8 +54,30 @@ insert into tbl_reply (bno, reply, replyer, replyDate) values (223, '댓글223-0
 insert into tbl_reply (bno, reply, replyer, replyDate) values (223, '댓글223-02','작성자223', now());
 insert into tbl_reply (bno, reply, replyer, replyDate) values (223, '댓글223-03','작성자223', now());
 
+-- 정성균 추가
+create table tbl_user(
+usercd int not null auto_increment,
+userId varchar(50) not null,
+userPw varchar(50) not null,
+userName varchar(50) not null,
+userAddrZip varchar(10),
+userAddr1 varchar(45),
+userAddr2 varchar(45),
+userAddr3 varchar(45),
+userPhone varchar(20),
+userEmail varchar(50),
+byear char(4),
+bmonth char(2),
+bday char(2),
+photo varchar(50),
+uuid varchar(50),
+regDate Date,
+primary key (usercd)
+);
 
+select *  from tbl_user;
 
+insert into tbl_user (userId, userPw, userName, userAddrZip, userAddr1, userAddr2, userAddr3, userPhone, userEmail, byear, bmonth, bday, photo, regDate) values ('aaa', 'aaa', '정성균', '12177', 'userAddr1', 'userAddr2', 'userAddr3', '01011112222', 'sk@gmail.com', '1807', '05', '06', '1001000.jpg', now());
 
 
 
