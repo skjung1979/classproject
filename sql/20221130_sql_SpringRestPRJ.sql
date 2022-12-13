@@ -37,7 +37,7 @@ alter table tbl_reply add constraint fk_reply_board foreign key (bno) references
 
 
 
-select * from member_td;
+select *, now() from member_td;
 select * from tbl_board limit 0, 9;
 select * from tbl_board limit 0, 2;
 select * from tbl_board;

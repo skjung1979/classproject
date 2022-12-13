@@ -16,9 +16,11 @@ import java.io.*;
 @Log4j2
 public class ImageViewController {
 
-    @GetMapping(value = "/upload/photo/{fileName}", produces = MediaType.IMAGE_PNG_VALUE)
+    //@GetMapping(value = "/upload/photo/{fileName}", produces = MediaType.IMAGE_PNG_VALUE)
+    @GetMapping(value = "/upload/{dirName}/{fileName}", produces = MediaType.IMAGE_PNG_VALUE)
     @ResponseBody
     public ResponseEntity<byte[]> viewImage(
+            @PathVariable("dirName") String dirName, // 추가
             @PathVariable("fileName") String fileName
     ) throws IOException {
 
@@ -28,7 +30,8 @@ public class ImageViewController {
         HttpStatus status = HttpStatus.NOT_FOUND;
 
         // 파일을 찾아야 한다.
-        File saveFile = new File(new File("").getAbsolutePath(), "photo\\" + fileName);
+        //File saveFile = new File(new File("").getAbsolutePath(), "photo\\" + fileName);
+        File saveFile = new File(new File("").getAbsolutePath(), dirName + "\\" + fileName);
 
         if (saveFile.exists()){
             // 응답처리

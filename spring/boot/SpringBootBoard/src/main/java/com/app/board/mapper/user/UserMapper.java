@@ -2,10 +2,12 @@ package com.app.board.mapper.user;
 
 import com.app.board.domain.UserDTO;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import java.sql.SQLException;
 
+@Mapper
 public interface UserMapper {
 
 //    userId varchar(50) not null,

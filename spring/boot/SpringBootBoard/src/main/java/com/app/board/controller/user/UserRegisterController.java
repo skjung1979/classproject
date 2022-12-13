@@ -42,7 +42,7 @@ public class UserRegisterController {
 
         userRegisterService.userRegist(userRegistRequest);
 
-        return "/user/login";
+        return "redirect:/user/login";
     }
 
 
