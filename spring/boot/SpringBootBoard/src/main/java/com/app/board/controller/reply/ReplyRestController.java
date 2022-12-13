@@ -47,7 +47,7 @@ public class ReplyRestController {
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
-    @PostMapping // 저장하고 응답 해줘야 한다. 왜? => 댓글 리스트에 표시해 줘야 하므로!!
+    @PostMapping // 저장하고 응답 해줘야 한다. => 댓글 리스트에 표시해 줘야 하므로!!
     public ResponseEntity<ReplyDTO> insertReply(
             // client로 부터 JSON 데이터를 받아서 DB insert
             @RequestBody ReplyDTO replyDTO

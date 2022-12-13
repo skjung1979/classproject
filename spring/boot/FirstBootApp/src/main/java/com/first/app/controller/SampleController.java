@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDateTime;
@@ -15,8 +17,27 @@ import java.util.stream.IntStream;
 
 @Controller
 @Log4j2
-@RequestMapping("/sample")
+//@RequestMapping("/sample")
 public class SampleController {
+
+    @GetMapping("/ajax/form")
+    public void getForm(){ // void이므로 templatge 밑에 ajax 밑에 form 파일이 있어야 함.
+
+    }
+
+    @GetMapping("/parameter")
+    @ResponseBody // 응답처리를 문자열로 하겠다는 의미!
+    public String getParameter(
+            @RequestParam("name") String name,
+            @RequestParam("price") String price
+            ){
+
+        String result = name + " : " + price;
+        log.info("result ==> " + result);
+
+        return result;
+    }
+
 
     @GetMapping("/sam2")
     public void sam2(Model model){
