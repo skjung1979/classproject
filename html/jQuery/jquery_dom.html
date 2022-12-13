@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    
+    <style>
+        .title {
+            background-color: aqua;
+            color: blue;
+        }
+    </style>
+    
+    
+    <script>
+        $().ready(() => {
+
+            // $('h2').addClass('title');
+
+            // setTimeout(() => {
+            //     $('h2').removeClass('title');
+            // }, 3000);
+
+            ///////////////////////////////////////
+
+            // attr() 특정 속성의 값들 세팅
+
+            // let widths = [100,150,200];
+
+            // getter
+            // let srcPath = $('.img').attr('src');
+            // console.log('srcPath ==> ', srcPath)
+
+            // setter 1
+            // $('.img').attr('width', 200);
+
+            // setter 2
+            // $('.img').attr('width', function(index){
+            //     //return (index+1) * 100;
+            //     return widths[index]; // 위 줄과 동일
+            // });
+
+            // setter 3
+            // let option = {
+            //     width : 100,
+            //     height : function(index){
+            //         return widths[index]*2;
+            //     }
+            // };
+
+            // $('.img').attr(option);
+
+            // setTimeout(() => {
+            //     // 속성 제거
+            //     $('.img').removeAttr('height')
+            // }, 3000);
+
+            /////////////////////////////////////////////////////////////////
+
+            // //css() : style 속성 컨트롤
+
+            // //getter
+            // let colorVal = $('.title').css('color');
+            // console.log('colorVal', colorVal);
+
+            // //setter 1 ==> 값으로 넣기
+            // $('h1').css('background', 'yellow');
+
+            // //setter 2 ==> 함수로 넣기
+            // let colors = ['black', 'oragne', 'yellow'];
+            // $('h1').css('background', (index) => {
+            //     return colors[index];
+            // });
+            
+            // //setter 3 ==> 객체로 넣기
+            // $('h1').css({
+            //     backgroundColor : (index) => {
+            //         return colors[index];
+            //     },
+            //     color : 'red'
+            // })
+
+            /////////////////////////////////////////
+
+            // // html() ==> innerHtml
+            // // text() ==> textContent
+
+            // // getter
+            // console.log('html() => ', $('#menu1').html()); // html태그와 text 모두 가져옴
+            // console.log('text() => ', $('#menu2').text()); // text만 가져옴
+
+            // // setter 1 ==>값을 설정
+            // // $('#menu1').html('<h1>div tag</h1>');
+            // // $('#menu2').text('<h1>div tag</h1>')
+
+            // // setter 2 ==> fn
+            // $('div').html((index, oldHtml) => {
+            //     console.log(index, oldHtml)
+            //     // $(this).html('<h1>' + oldHtml + index + '</h1>'); this는 화살표 함수에서는 사용 불가함!!! this를 사용할때는 return 표기 필요 없음!!!
+            //     return '<h1>' + oldHtml + ' index:' + index + '</h1>';
+            // });
+
+            ////////////////////////////////////////
+
+            // $('#btn1').click(function(e){
+            //     $('#menu1').remove();
+            // })
+
+            // $('#btn2').click(function(e){
+            //     $('#menu2').empty(); // menu2 안에 있는 모든 요소들 비워준다.
+            // })
+
+            ///////////////////////////////////////////
+
+        
+
+
+            
+ 
+
+        })
+
+    </script>
+</head>
+<body>
+
+    <!-- <button id="btn1">메뉴 삭제</button>
+    <button id="btn2">내용 삭제</button>
+
+    <div id="menu1"><span>Text 1</span></div>
+    <div id="menu2"><span>Text 2</span></div> -->
+
+    <!-- <h1 class="title">header - 1</h1>
+    <h1 class="title">header - 2</h1>
+    <h1 class="title">header - 3</h1> -->
+
+    <!-- <img src="../images/mini01.jpg" class="img">
+    <img src="../images/mini02.jpg" class="img"> -->
+
+    <!-- <h2> header 2 </h2> -->
+
+</body>
+</html>

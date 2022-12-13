@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+
+    <style>
+
+        h1, div {
+            border: 1px solid #000;
+        }
+
+        .reverse {
+            background-color: blue;
+            color: yellow;
+        }
+    </style>
+
+    <script>
+        $().ready(() => {
+
+            // $('h1').on('click', function(e){
+            //     // this => 이벤트가 발생한 엘리먼트를 가르킨다!
+            //     $(this).html(function(index, oldHtml){
+            //         return oldHtml + '*'; // 클릭할때마다 * 표시를 추가한다. 혹은 원하는 문자열을 추가한다.
+            //     })
+            // })
+
+            // $('h1').on({
+            //     mouseenter: function(){
+            //         $(this).addClass('reverse')
+            //     },
+            //     mouseleave: function(){
+            //         $(this).removeClass('reverse')
+            //     }
+            // })
+
+            ////////////////////////////////////////////////////////
+
+            // $('div').click(function(e){
+
+            //     let h3 = $('h3', this).text();
+            //     let p = $('p', this).text();
+
+            //     console.log('h3, p ==> ', h3, p);
+            // })
+    
+            //////////////////////////////////////////////////////////
+          
+            // $('a').click(function(e){
+
+            //     //const event = event || window.event;
+
+            //     // 기본 이벤트 제거! 여기서는 a태그의 링크 걸어 둔것을 기본 이벤트라고 설정한 것이다. 실제적으로는 input의 type=submit인 버튼에 해당한다.
+            //     //e.preventDefault(); 혹은 return false하면 된다.
+
+            //     console.log('a clock!!!!');
+
+            // })
+
+            // $('form').submit(function(e){
+
+            //     console.log("form submit!!");
+
+            //     let uid = $('#uid').val()
+
+            //     if(uid == null || uid.length < 1){
+            //         // 공백이라면
+            //         alert('공백 불가!');
+            //         // 넘어가지 않도록한다.
+            //         return false;
+            //     }
+
+            // })
+
+            //////////////////////////////////////////////////
+
+            // // 기본 형식
+            // /* $('h1').click(function(){
+            //     var length = $('h1').length;
+            //     let oldHtml = $(this).html();
+            //     $('#wrap').append('<h1>'+ length + ' - ' + oldHtml + '</h1>');
+            // }) */
+
+            // // 기본 형식을 개선 ==> 동적으로 만들어야하는 것이 버튼이면 onclick 옆의 h1을 버튼 태그로 지정한다.
+            // $('#wrap').on('click', 'h1', function(){
+            //     var length = $('h1').length;
+            //     let oldHtml = $(this).html();
+            //     $('#wrap').append('<h1>'+ length + ' - ' + oldHtml + '</h1>');
+            // })
+
+            //////////////////////////////////////////////////////
+
+            // 키보드 이벤트
+            $('textarea').keyup(function(){
+                let cnt = $(this).val().length;
+                let remain = 150-cnt;
+
+                if(remain<0){
+                    alert('150자 까지만 작성이 가능합니다.');
+                    let str = $(this).val().substr(0,150);
+                    $(this).val(str);
+                    $('span').text('150');
+                    return false;
+                }
+                $('span').text(cnt);
+            })
+
+
+
+
+
+
+
+        })
+
+    </script>
+</head>
+<body>
+    
+    <textarea cols="50" rows="5"></textarea>
+    <span>0</span>/150
+
+
+    <!-- <div id="wrap">
+        <h1>header</h1>
+    </div> -->
+
+    <!-- <form action="http://www.naver.com">
+        <input type="text" id="uid" name="uid">
+        <input type="submit">
+    </form>
+
+    <a href="http://www.naver.com">네이버</a> -->
+
+    <!-- 
+    <div>
+        <h3>header 1</h3>
+        <p> paragraph1</p>
+        <input type="hidden" value="1">
+        </div>
+        <div>
+        <h3>header 2</h3>
+        <p> paragraph2</p>
+        </div>
+        <div>
+        <h3>header 3</h3>
+        <p> paragraph3</p>
+        </div> -->
+
+    <!-- <h1>header - 0</h1>
+    <h1>header - 1</h1>
+    <h1>header - 2</h1> -->
+
+</body>
+</html>
