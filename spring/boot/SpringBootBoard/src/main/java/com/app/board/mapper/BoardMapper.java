@@ -35,5 +35,10 @@ public interface BoardMapper {
     @Update("update tbl_board set title=#{title}, content=#{content}, writer=#{writer}, photo=#{photo}, updatedate=now() where bno=#{bno}")
     Integer update(BoardDTO boardDTO) throws SQLException;
 
+    // 파일 여러개 업로드 테스트 중: 파일명만 업데이트...
+    @Update("update tbl_board set photo=concat(photo, ' / ', #{param2}) where bno=#{param1}")
+    int updatePhoto(int bno, String newFileName);
 
+    @Select("select max(bno) from tbl_board")
+    int selectMaxBno();
 }

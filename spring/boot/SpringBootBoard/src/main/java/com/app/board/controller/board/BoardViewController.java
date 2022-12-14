@@ -25,5 +25,9 @@ public class BoardViewController {
         model.addAttribute("currentPageNum", p);
         model.addAttribute("boardView", boardViewService.selectBoardDTO(bno));
 
+
+
+
+
     }
 }
