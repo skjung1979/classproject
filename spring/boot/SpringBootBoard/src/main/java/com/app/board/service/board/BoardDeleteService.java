@@ -26,8 +26,11 @@ public class BoardDeleteService {
         // 해당 게시물이 DB에서 삭제되고, 해당 게시물의 사진 이름을 가지고 있다면 -> 파일을 삭제
         if (result > 0 && boardDTO.getPhoto() != null){
             log.info("boardDTO.getPhoto()........ => " + boardDTO.getPhoto());
+
             File delFile = new File(new File("").getAbsolutePath(), "photo" + File.separator + boardDTO.getPhoto());
+
             log.info("boardDTO.getPhoto()........ => " + boardDTO.getPhoto());
+
             if (delFile.exists()){
                 delFile.delete();
             }
