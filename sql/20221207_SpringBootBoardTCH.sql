@@ -28,6 +28,7 @@ CREATE TABLE `tbl_reply` (
 
 desc tbl_board;
 select * from tbl_board order by bno desc;
+select max(bno) from tbl_board;
 select * from tbl_board order by bno desc limit 0, 3;
 select * from tbl_reply;
 desc tbl_reply;
@@ -75,11 +76,25 @@ regDate Date,
 primary key (usercd)
 );
 
+-- 구글 검색 테이블 추가
+CREATE TABLE tbl_attach (
+    idx INT NOT NULL AUTO_INCREMENT COMMENT '파일 번호 (PK)',
+    board_idx INT NOT NULL COMMENT '게시글 번호 (FK)',
+    original_name VARCHAR(260) NOT NULL COMMENT '원본 파일명',
+    save_name VARCHAR(40) NOT NULL COMMENT '저장 파일명',
+    size INT NOT NULL COMMENT '파일 크기',
+    delete_yn ENUM('Y', 'N') NOT NULL DEFAULT 'N' COMMENT '삭제 여부',
+    insert_time DATETIME NOT NULL DEFAULT NOW() COMMENT '등록일',
+    delete_time DATETIME NULL COMMENT '삭제일',
+    PRIMARY KEY (idx)
+) comment '첨부 파일';
+alter table tbl_attach add constraint fk_attach_board_idx foreign key (board_idx) references tbl_board(bno);
+
 select *  from tbl_user;
 
 insert into tbl_user (userId, userPw, userName, userAddrZip, userAddr1, userAddr2, userAddr3, userPhone, userEmail, byear, bmonth, bday, photo, regDate) values ('aaa', 'aaa', '정성균', '12177', 'userAddr1', 'userAddr2', 'userAddr3', '01011112222', 'sk@gmail.com', '1807', '05', '06', '1001000.jpg', now());
 
-
+update tbl_board set photo=concat(photo, ' / ', '999') where bno=243;
 
 
 
