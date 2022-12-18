@@ -48,7 +48,7 @@ public class DeptRepositoryTest {
         Optional<Dept> dept1 = deptRepository.findById(10); // where deptno = ?
         Dept deptData = dept1.orElse(null);
 
-        log.info("Dept .................==> " + deptData);
+        log.info("dept1.orElse Dept .................==> " + deptData);
 
         log.info("::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
 
@@ -127,24 +127,6 @@ public class DeptRepositoryTest {
 
     }
 
-    @Test
-    public void testPaging(){
-
-        Pageable pageable = PageRequest.of(2, 4, Sort.by("deptno").descending());
-
-        Page<Dept> result = deptRepository.findAll(pageable);
-
-        log.info("result >>> 조회 항목 리스트 getContent " + result.getContent());
-        log.info("result >>> 전체 페이지 개수 getTotalPages " + result.getTotalPages());
-        log.info("result >>> 전체 게시물 개수 getTotalElements " + result.getTotalElements());
-        log.info("result >>> 요청 페이지 getNumber " + result.getNumber());
-        log.info("result >>> 해당 페이지의 항목 개수 getNumberOfElements " + result.getNumberOfElements());
-        log.info("result >>> 페이지당 표현 항목 개수 getSize " + result.getSize());
-
-        log.info(":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
-
-
-    }
 }
 
 
