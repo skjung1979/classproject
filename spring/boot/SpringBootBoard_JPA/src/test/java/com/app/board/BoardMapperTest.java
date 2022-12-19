@@ -1,6 +1,6 @@
 package com.app.board;
 
-import com.app.board.domain.BoardDTO;
+import com.app.board.domain.BoardArticleDTO;
 import com.app.board.mapper.BoardMapper;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
@@ -23,7 +23,7 @@ public class BoardMapperTest {
         log.info("list1................" + list1);*/
 
         // 1페이지: 10개의 게시물 가져오는지 확인
-        List<BoardDTO> list1 = boardMapper.selectList(30, 10);
+        List<BoardArticleDTO> list1 = boardMapper.selectList(30, 10);
         log.info(list1);
 
     }

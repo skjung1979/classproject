@@ -2,7 +2,9 @@ package com.app.board.service.board;
 
 import com.app.board.domain.BoardDTO;
 import com.app.board.domain.BoardWriteRequest;
+import com.app.board.entity.Board;
 import com.app.board.mapper.BoardMapper;
+import com.app.board.repository.BoardRepository;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,9 @@ public class BoardWriteService {
 
     @Autowired
     private BoardMapper boardMapper;
+
+    @Autowired
+    private BoardRepository boardRepository;
 
     public int write(BoardWriteRequest boardWriteRequest) {
 
@@ -71,19 +76,21 @@ public class BoardWriteService {
                 }
             }
 
-            BoardDTO boardDTO = boardWriteRequest.toBoardDTO();
+            //BoardDTO boardDTO = boardWriteRequest.toBoardDTO();
+            Board board = boardWriteRequest.toBoardEntity();
 
             // 문제없이 저장 되었는지 확인하고 되었다면, boradDTO의 Photo변수에 새로운 파일이름(newFileName)을 세팅한다.
             if (newFileName != null) {
-                boardDTO.setPhoto(newFileName);
+                board.setPhoto(newFileName);
             }
 
 
                 // 그렇게 세팅된 최동 boardDTO를 가지고 insert를 진행한다.
                 try {
                     // DB insert
-                    result = boardMapper.insert(boardDTO);
-                } catch (SQLException e) {
+                    //result = boardMapper.insert(boardDTO);
+                    result = boardRepository.save(board) != null ? 1 : 0;
+                } catch (Exception e) {
                     // 오류 나면 파일을 다시 지워줘야 한다.
                     if (newFileName != null) {
                         File delFile = new File(saveDir, newFileName);

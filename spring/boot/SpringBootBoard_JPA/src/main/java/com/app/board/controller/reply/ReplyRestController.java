@@ -1,6 +1,9 @@
 package com.app.board.controller.reply;
 
 import com.app.board.domain.ReplyDTO;
+import com.app.board.entity.Board;
+import com.app.board.entity.Reply;
+import com.app.board.repository.ReplyRepository;
 import com.app.board.service.reply.*;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +19,8 @@ import java.util.List;
 @Log4j2
 @RequestMapping("/reply")
 public class ReplyRestController {
+    @Autowired
+    private ReplyRepository replyRepository;
 
     // get "/reply" => list로 응답
     // post "/reply" => reply객체 그대로(@RequestBody로 받아-JSON형식) 전송
@@ -38,27 +43,32 @@ public class ReplyRestController {
     private ReplyEditService replyEditService;
 
     @GetMapping(value = "/{bno}", produces = MediaType.APPLICATION_JSON_VALUE) // produces 이 메소드의 반환 형식?타입 정의
-    public ResponseEntity<List<ReplyDTO>> selectList(
+    public ResponseEntity<List<Reply>> selectList(
             @PathVariable("bno") int bno
     ) {
 
-        List<ReplyDTO> list = replyListService.selectAll(bno);
+        List<Reply> list = replyListService.selectAll(bno);
 
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
     @PostMapping // 저장하고 응답 해줘야 한다. => 댓글 리스트에 표시해 줘야 하므로!!
-    public ResponseEntity<ReplyDTO> insertReply(
+    public ResponseEntity<Reply> insertReply(
             // client로 부터 JSON 데이터를 받아서 DB insert
             @RequestBody ReplyDTO replyDTO
     ) {
         log.info("PostMapping .... insert 전 replyDTO => " + replyDTO);
 
-        replyInsertService.insertReply(replyDTO);
+        //replyInsertService.insertReply(replyDTO);
+        Reply resultReply = replyInsertService.insertReply(replyDTO);
+        // ==> 새로 입력된 row의 rno값을 구할 수 있다.
 
-        log.info("PostMapping .... insert 후 replyDTO => " + replyDTO); // rno값이 갱신된 데이터에 들어가 있는지 확인!!!
+        Reply reply = replyReadService.selectByRno(resultReply.getRno());
 
-        return new ResponseEntity<>(replyReadService.selectByRno(replyDTO.getRno()), HttpStatus.OK); // 갱신받은 rno로 다시 ReplyDTO를 담아온다.(DB의 등록일자 정보 가져옴)
+        log.info("PostMapping .... insert 후 replyDTO => " + reply); // rno값이 갱신된 데이터에 들어가 있는지 확인!!!
+
+        //return new ResponseEntity<>(replyReadService.selectByRno(replyDTO.getRno()), HttpStatus.OK); // 갱신받은 rno로 다시 ReplyDTO를 담아온다.(DB의 등록일자 정보 가져옴)
+        return new ResponseEntity<>(resultReply, HttpStatus.OK); // 갱신받은 rno로 다시 ReplyDTO를 담아온다.(DB의 등록일자 정보 가져옴)
     }
 
     @PutMapping("/{rno}")

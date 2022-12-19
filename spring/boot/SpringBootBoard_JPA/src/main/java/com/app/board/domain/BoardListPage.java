@@ -1,5 +1,6 @@
 package com.app.board.domain;
 
+import com.app.board.entity.Board;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -18,7 +19,8 @@ public class BoardListPage {
     private int pageNum;
 
     // 표현 게시물의 리스트 (받아야함)
-    private List<BoardArticleDTO> list;
+    //private List<BoardArticleDTO> list;
+    private List<Board> list;
 
     // 전체 게시물의 개수 (받아야함)
     private int totalCount;
@@ -36,7 +38,7 @@ public class BoardListPage {
     private boolean next;
 
     // 생성자
-    public BoardListPage(int countPerPage, int pageNum, List<BoardArticleDTO> list, int totalCount) {
+    public BoardListPage(int countPerPage, int pageNum, List<Board> list, int totalCount) {
         this.countPerPage = countPerPage;
         this.pageNum = pageNum;
         this.list = list;

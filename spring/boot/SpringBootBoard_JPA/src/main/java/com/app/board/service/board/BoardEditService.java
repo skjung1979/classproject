@@ -2,7 +2,9 @@ package com.app.board.service.board;
 
 import com.app.board.domain.BoardDTO;
 import com.app.board.domain.BoardEditRequest;
+import com.app.board.entity.Board;
 import com.app.board.mapper.BoardMapper;
+import com.app.board.repository.BoardRepository;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,9 @@ public class BoardEditService {
 
     @Autowired
     private BoardMapper boardMapper;
+
+    @Autowired
+    private BoardRepository boardRepository;
 
     public int edit(BoardEditRequest boardEditRequest){
 
@@ -62,17 +67,24 @@ public class BoardEditService {
 
         // 이제 DB에 파일명을 저장해야 한다.
         
-        BoardDTO boardDTO = boardEditRequest.toBoardDTO();
+        //BoardDTO boardDTO = boardEditRequest.toBoardDTO();
+        Board board = boardEditRequest.toBoardEntity();
 
         if (newFileName != null){
-            boardDTO.setPhoto(newFileName);
+            //boardDTO.setPhoto(newFileName);
+            board.setPhoto(newFileName);
+        } else {
+            board.setPhoto(null);
         }
+
+        log.info(board);
 
         int result = 0;
 
         try {
             // db 업데이트
-            result = boardMapper.update(boardDTO);
+            //result = boardMapper.update(boardDTO);
+            boardRepository.save(board);
 
             // (db 업데이트 완료되면 아래 로직 실행됨. 실패하면 catch구문으로 이동) 새로운 파일이 저장 되고, 이전 파일이 존재한다면, 이전 파일을 삭제
             String oldFileName = boardEditRequest.getOldFile();
@@ -84,7 +96,7 @@ public class BoardEditService {
 
             }
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
             log.info("SQLException ..... ");
             //새롭게 저장되면 기존 파일 삭제
             if (newFileName != null){
