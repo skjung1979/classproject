@@ -1,29 +1,31 @@
 package com.app.board.security;
 
 import com.app.board.entity.BoardMember;
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
 import java.util.Collection;
 
+@Getter
 public class CustomUser extends User {
 
-    private BoardMember member; // 추가적인 회원의 정보
+    private BoardMember boardMember; // 추가적인 회원의 정보 (선택 사항)
 
     public CustomUser(String username, String password, Collection<? extends GrantedAuthority> authorities, BoardMember member) {
         super(username, password, authorities);
-        this.member = member;
+        this.boardMember = boardMember;
     }
 
     public CustomUser(String username, String password, boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities, BoardMember member) {
         super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
-        this.member = member;
+        this.boardMember = boardMember;
     }
 
     @Override
     public String toString() {
         return "CustomUser{" +
-                "member=" + member +
+                "member=" + boardMember +
                 '}';
     }
 }

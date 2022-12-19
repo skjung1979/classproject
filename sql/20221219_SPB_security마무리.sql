@@ -9,3 +9,5 @@ CREATE TABLE `boardmember` (
   PRIMARY KEY (`idx`),
   UNIQUE KEY `userid_UNIQUE` (`userid`)
 );
+
+SELECT * FROM project.boardmember;

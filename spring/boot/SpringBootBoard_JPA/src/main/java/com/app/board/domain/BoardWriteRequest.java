@@ -1,6 +1,7 @@
 package com.app.board.domain;
 
 import com.app.board.entity.Board;
+import com.app.board.entity.BoardMember;
 import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -16,26 +17,28 @@ public class BoardWriteRequest {
 
     // 폼에서 지정한 name과 같아야 한다.
     private String title;
-    private String writer;
+
+    // 작성자 이름 문자열 -> 작성자의 idx
+    private Integer writer;
     private String content;
     // 원본 private MultipartFile formFile;
     private List<MultipartFile> formFile;  ////////////////////////// 여기 변경함
 
-    public BoardDTO toBoardDTO(){
+    /*public BoardDTO toBoardDTO(){
 
         return BoardDTO.builder()
                 .title(title)
                 .content(content)
                 .writer(writer)
                 .build();
-    }
+    }*/
 
     public Board toBoardEntity(){
 
         return Board.builder()
                 .title(title)
                 .content(content)
-                .writer(writer)
+                .writer(BoardMember.builder().idx(writer).build())
                 //.photo(null)
                 .build();
     }

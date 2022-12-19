@@ -26,8 +26,12 @@ public class Board {
     @Column
     private String content;
 
-    @Column(updatable = false)
-    private String writer;
+//    @Column(updatable = false)
+//    private String writer;
+
+    @ManyToOne
+    @JoinColumn(name = "writer")
+    private BoardMember writer;
 
     @Column
     private String photo;
