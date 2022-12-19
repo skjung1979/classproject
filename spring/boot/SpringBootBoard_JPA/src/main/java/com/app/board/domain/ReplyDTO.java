@@ -1,5 +1,6 @@
 package com.app.board.domain;
 
+import com.app.board.entity.BoardMember;
 import com.app.board.entity.Reply;
 import lombok.*;
 
@@ -23,7 +24,7 @@ public class ReplyDTO {
     private int rno;
     private int bno;
     private String reply;
-    private String replyer;
+    private Integer replyer; // String -> Integer로 변경함(22.12.19)
     private String replydate;
     private String updatedate;
 
@@ -32,7 +33,7 @@ public class ReplyDTO {
                 .rno(rno)
                 .bno(bno)
                 .reply(reply)
-                .replyer(replyer)
+                .replyer(BoardMember.builder().idx(replyer).build())
                 //.replydate(LocalDate.parse(replydate)) // null이 들어오므로 받지 않는다.
                 .build();
     }

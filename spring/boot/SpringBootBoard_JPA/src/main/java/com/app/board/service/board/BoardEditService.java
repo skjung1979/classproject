@@ -1,6 +1,5 @@
 package com.app.board.service.board;
 
-import com.app.board.domain.BoardDTO;
 import com.app.board.domain.BoardEditRequest;
 import com.app.board.entity.Board;
 import com.app.board.mapper.BoardMapper;
@@ -12,7 +11,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.UUID;
 

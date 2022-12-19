@@ -25,14 +25,23 @@ public class Reply {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer rno;
+
     @Column
     private Integer bno;
+
     @Column
     private String reply;
-    @Column
-    private String replyer;
+
+    /* @Column
+    private String replyer;*/
+
+    @ManyToOne
+    @JoinColumn(name = "replyer")
+    private BoardMember replyer;
+
     @Column(insertable = false)
     private LocalDate replydate;
+
     @Column(insertable = false)
     private LocalDate updatedate;
 

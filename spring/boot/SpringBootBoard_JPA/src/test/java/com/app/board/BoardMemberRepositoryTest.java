@@ -28,8 +28,8 @@ public class BoardMemberRepositoryTest {
     public void saveTest(){
 
         BoardMember boardMember = BoardMember.builder()
-                .userid("cool")
-                .username("테스터")
+                .userid("hot")
+                .username("테스터2")
                 .password(encoder.encode("1111"))
                 .role("USER")
                 .regdate(LocalDateTime.now())

@@ -17,8 +17,7 @@ public class BoardWriteRequest {
     private String title;
     private String writer;
     private String content;
-    // 원본 private MultipartFile formFile;
-    private List<MultipartFile> formFile;  ////////////////////////// 여기 변경함
+    private MultipartFile formFile;
 
     public BoardDTO toBoardDTO(){
 

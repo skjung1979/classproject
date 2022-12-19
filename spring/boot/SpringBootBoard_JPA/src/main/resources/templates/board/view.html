@@ -57,8 +57,10 @@
         </table>
 
         <div class="text-end">
-            <a class="btn btn-outline-warning" th:href="@{/board/edit(bno=${boardView.bno},p=${currentPageNum})}">수정</a>
-            <a class="btn btn-outline-danger" th:onclick="'deleteBoard(' + ${boardView.bno} + ')'">삭제</a>
+            <th:block th:if="${authentication.principal.boardMember.idx} == ${boardView.writer.idx}">
+                <a class="btn btn-outline-warning" th:href="@{/board/edit(bno=${boardView.bno},p=${currentPageNum})}">수정</a>
+                <a class="btn btn-outline-danger" th:onclick="'deleteBoard(' + ${boardView.bno} + ')'">삭제</a>
+            </th:block>
             <a class="btn btn-outline-primary" th:href="@{/board/list(p=${currentPageNum})}">리스트</a>
         </div>
 
@@ -74,7 +76,10 @@
                     <h5 class="title my-2">댓글 작성</h5>
                     <div class="mb-3">
                         <label class="form-label">작성자</label>
-                        <input type="text" class="form-control" id="replyer">
+                        <input type="text" class="form-control"
+                               th:value="${#authentication.principal.boardMember.username}" readonly>
+                        <input type="hidden" class="form-control" id="replyer"
+                               th:value="${#authentication.principal.boardMember.idx}">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">내용</label>
@@ -127,7 +132,8 @@
             <div class="modal-body">
                 <div class="mb-3">
                     <label class="form-label">작성자</label>
-                    <input type="text" class="form-control" id="ereplyer" readonly>
+                    <input type="text" class="form-control" id="ereplyerName" readonly>
+                    <input type="hidden" class="form-control" id="ereplyer">
                     <input type="hidden" id="erno">
                     <input type="hidden" id="ereplydate">
                 </div>
@@ -152,6 +158,7 @@
 <script th:inline="javascript">
 
     var bno = [[${boardView.bno}]];
+    var midx = [[${mdix}]];
 
 </script>
 
@@ -184,12 +191,12 @@
             success: function (data) {
                 $.each(data, (index, obj) => {
 
-                    let html = '<td class="col-2">' + obj.replyer + '</td>';
+                    let html = '<td class="col-2">' + obj.replyer.username + '</td>';
                     html += '<td class="col">' + obj.reply + '</td>';
                     html += '<td class="col-2">' + obj.replydate + '</td>';
                     html += '<td class="col-2"> ' +
-                        '<a href="javascript:showEditModal(' + obj.rno + ')" class="badge bg-warning text-decoration-none">수정</a> ' +
-                        '<a href="javascript:deleteReply(' + obj.rno + ')" class="badge bg-danger text-decoration-none">삭제</a> ' +
+                        '<a href="javascript:showEditModal(' + obj.rno + ')" replyer-idx="${reply.replyer.idx}" class="badge bg-warning text-decoration-none">수정</a> ' +
+                        '<a href="javascript:deleteReply(' + obj.rno + ')" replyer-idx="${reply.replyer.idx}" class="badge bg-danger text-decoration-none">삭제</a> ' +
                         '</td>';
 
                     $('<tr></tr>').html(html).addClass('fs-6 text-center').attr('tr-index', obj.rno).appendTo('#replyList');
@@ -225,12 +232,12 @@
             contentType: 'application/json',
             success: function (res) {
 
-                let html = '<td class="col-2">' + res.replyer + '</td>';
+                let html = '<td class="col-2">' + res.replyer.username + '</td>';
                 html += '<td class="col">' + res.reply + '</td>';
                 html += '<td class="col-2">' + res.replydate + '</td>';
                 html += '<td class="col-2"> ' +
-                    '<a href="javascript:showEditModal(' + res.rno + ')" class="badge bg-warning text-decoration-none">수정</a> ' +
-                    '<a href="javascript:deleteReply(' + res.rno + ')" class="badge bg-danger text-decoration-none">삭제</a> ' +
+                    '<a href="javascript:showEditModal(' + res.rno + ')" replyer-idx="${reply.replyer.idx}" class="badge bg-warning text-decoration-none">수정</a> ' +
+                    '<a href="javascript:deleteReply(' + res.rno + ')" replyer-idx="${reply.replyer.idx}" class="badge bg-danger text-decoration-none">삭제</a> ' +
                     '</td>';
 
                 $('<tr></tr>').html(html).addClass('fs-6 text-center').attr('tr-index', res.rno).appendTo('#replyList');
@@ -245,6 +252,11 @@
     }
 
     function deleteReply(rno) {
+
+        if (midx != $(this).attr('replyer-idx')) {
+            alert('작성자만 수정 또는 삭제가 가능합니다.');
+            return false;
+        }
 
         if (!confirm('삭제하시겠습니까?')) { // 물음에 삭제 노하면..
             return; // 리턴
@@ -283,8 +295,13 @@
         console.log('editTD[1].textContent => ', $('tr[tr-index="' + rno + '"]').children('td:eq(1)').text())
         console.log('editTD[2].textContent => ', $('tr[tr-index="' + rno + '"]').children('td:eq(2)').text())
 
+        // $('#ereplyerName').val($(editTD).eq(0).text())
+        // $('#ereplyer').val($(this).attr("replyer-idx"))
+
         $('#erno').val(rno);
-        $('#ereplyer').val($('tr[tr-index="' + rno + '"]').children('td:eq(0)').text());
+        $('#ereplyerName').val($('tr[tr-index="' + rno + '"]').children('td:eq(0)').text());
+        //$('#ereplyer').val($('tr[tr-index="' + rno + '"]').children('td:eq(0)').text());
+        $('#ereplyer').val($(this).attr("replyer-idx"))
         $('#ereply').val($('tr[tr-index="' + rno + '"]').children('td:eq(1)').text());
         $('#ereplydate').val($('tr[tr-index="' + rno + '"]').children('td:eq(2)').text());
 
