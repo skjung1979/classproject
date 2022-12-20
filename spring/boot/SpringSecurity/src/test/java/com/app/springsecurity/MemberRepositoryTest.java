@@ -22,7 +22,7 @@ public class MemberRepositoryTest {
     @Test
     public void insertMember(){
         Member member = Member.builder()
-                .email("admin@gamil.com")
+                .email("admin@gmail.com")
                 .name("관리자")
                 .roleSet(new HashSet<MemberRole>())
                 .password(passwordEncoder.encode("1111"))

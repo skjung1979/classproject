@@ -23,7 +23,7 @@ public class Member {
     @Column
     private String name;
 
-    @ElementCollection(fetch = FetchType.LAZY) // 엔티티를 구성하지 않아도 엔티티처럼 사용 가능하다. / fetchType.lazy 천천히 마지막 순간에 실행하라.
+    @ElementCollection(fetch = FetchType.EAGER) // 엔티티를 구성하지 않아도 엔티티처럼 사용 가능하다. / fetchType.lazy는 천천히 마지막 순간에 실행하라.
     private Set<MemberRole> roleSet;
 
     public void addMemberRole(MemberRole role){
