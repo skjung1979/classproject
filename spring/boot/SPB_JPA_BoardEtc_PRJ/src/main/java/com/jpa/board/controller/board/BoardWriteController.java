@@ -43,7 +43,7 @@ public class BoardWriteController {
 
         boardWriteService.writeBoard(boardWriteRequest);
 
-        return "redirect:/";
+        return "redirect:/board/list";
     }
 
 }
