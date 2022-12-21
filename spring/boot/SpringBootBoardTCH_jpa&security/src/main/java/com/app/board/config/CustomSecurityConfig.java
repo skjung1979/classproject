@@ -19,19 +19,17 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Log4j2
 public class CustomSecurityConfig {
 
-
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
-
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http.csrf().disable();
 
-        // Scurity의 설정
+        // Security의 설정
         // 1. 요청(URL) 에 대한 인증과 허가에 대한 설정
         http.authorizeHttpRequests()
                 .antMatchers("/board/**","/reply/**","/todo/**").hasRole("USER")

@@ -29,17 +29,17 @@ public class BoardRepositoryTest {
         BoardWriteRequest -> Entity -> save()
         */
 
-        BoardWriteRequest writeRequest = BoardWriteRequest.builder()
-                .title("12월 16일 JPA 테스트 작성")
-                .writer("JPA")
-                .content("테스트 실행!")
-                .build();
-
-        Board board = writeRequest.toBoardEntity();
-
-        log.info("insert 전 : " + board);
-
-        log.info("insert 후 : " + boardRepository.save(board)   );
+//        BoardWriteRequest writeRequest = BoardWriteRequest.builder()
+//                .title("12월 16일 JPA 테스트 작성")
+//                .writer("JPA")
+//                .content("테스트 실행!")
+//                .build();
+//
+//        Board board = writeRequest.toBoardEntity();
+//
+//        log.info("insert 전 : " + board);
+//
+//        log.info("insert 후 : " + boardRepository.save(board)   );
 
     }
 

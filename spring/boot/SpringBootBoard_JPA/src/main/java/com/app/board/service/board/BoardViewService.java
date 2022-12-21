@@ -1,6 +1,5 @@
 package com.app.board.service.board;
 
-import com.app.board.domain.BoardDTO;
 import com.app.board.entity.Board;
 import com.app.board.mapper.BoardMapper;
 import com.app.board.repository.BoardRepository;
