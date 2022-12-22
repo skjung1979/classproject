@@ -21,6 +21,9 @@
         <!-- 게시판 편집 시작-->
         <form method="post" enctype="multipart/form-data" style="display: inline">
 
+            <input type="hidden" name="bidx" th:value="${boardEditView.bidx}">
+            <input type="hidden" name="currPageNum" th:value="${p}">
+
             <div class="mb-3">
                 <label for="title" class="form-label">제목</label>
                 <input type="text" class="form-control" id="title" name="title" th:value="${boardEditView.title}">
@@ -39,13 +42,14 @@
             </div>
             <div class="mb-3">
                 <label for="photo" class="form-label" style="display: block">첨부 사진</label>
+
                 <th:block th:if="${boardEditView.bphoto != null && (boardEditView.bphoto != '')}">
                     <img th:src="@{/upload/bphoto/{name}(name=${boardEditView.bphoto})}" height="200"
                          class="rounded float-start mb-3" style="display: block" id="photo">
-                <input class="form-control" type="file" id="bphoto" name="bphoto">
                 <input type="hidden" name="oldFile" th:value="${boardEditView.bphoto}">
 
                 </th:block>
+                <input class="form-control" type="file" id="bphoto" name="bphoto" th:value="${boardEditView.bphoto}">
             </div>
             <div class="mb-3" style="display: inline;">
                 <input class="btn btn-outline-warning" type="submit" value="변경 적용">

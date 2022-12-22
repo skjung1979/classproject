@@ -4,7 +4,10 @@ import com.jpa.board.entity.reply.Reply;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 public interface ReplyRepository extends JpaRepository<Reply, Long> {
 
@@ -19,7 +22,16 @@ public interface ReplyRepository extends JpaRepository<Reply, Long> {
     @Query("delete from Reply r where r.bidx = :bidx")
     int deleteByBidx(Long bidx);
 
+    @Query("select r from Reply r where r.bidx = :bidx order by r.ridx")
+    List<Reply> findByBidx(@Param("bidx") Long bidx);
+
+    @Transactional
+    @Modifying
+    @Query("delete from Reply r where r.ridx = :ridx")
+    int deleteByRidx(Long ridx);
 
 
 
+
+//    public void deleteReply(Long ridx);
 }

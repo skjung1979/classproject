@@ -2,9 +2,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Member Join</title>
+    <title>Board View</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"
+            integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
 </head>
 <body>
 <!--내비게이션 시작-->
@@ -14,7 +16,7 @@
 <!--부트스트랩 카드 시작-->
 <div class="card m-3">
     <div class="card-header">
-        View
+        Board View
     </div>
     <div class="card-body">
 
@@ -39,26 +41,264 @@
             <label for="bphoto" class="form-label">첨부 사진</label>
             <input class="form-control" type="text" id="bphoto" name="bphoto" th:value="${boardView.bphoto}" readonly>
             <th:block th:if="${boardView.bphoto != null && (boardView.bphoto != '')}">
-                <img th:src="@{/upload/bphoto/{name}(name=${boardView.bphoto})}" height="200" class="rounded float-start mt-3">
+                <img th:src="@{/upload/bphoto/{name}(name=${boardView.bphoto})}" height="200"
+                     class="rounded float-start mt-3">
             </th:block>
         </div>
     </div>
     <div class="m-3">
-        <!--            <th:block th:if="${authentication.principal.boardMember.idx} == ${boardView.writer.idx}">-->
         <a class="btn btn-outline-warning" th:href="@{/board/edit(bidx=${boardView.bidx},p=${pageNum})}">수정</a>
         <a class="btn btn-outline-danger" th:onclick="'deleteBoard(' + ${boardView.bidx} + ')'">삭제</a>
-        <!--            </th:block>-->
         <a class="btn btn-outline-primary" th:href="@{/board/list(p=${pageNum})}">리스트</a>
     </div>
+    <!-- 게시판 보기 끝-->
+
+    <div class="card m-2 mt-3">
+        <div class="card-header">
+            댓글 리스트
+        </div>
+        <div class="card-body">
+            <!--            댓글 작성 영역 시작-->
+            <div class="p-3 border-bottom">
+                <h5 class="title my-2">댓글 작성</h5>
+                <div class="mb-3">
+                    <label class="form-label">작성자</label>
+                    <input type="text" class="form-control" th:value="${session.loginInfo.memname}" readonly>
+                    <input type="hidden" class="form-control" th:value="${session.loginInfo.memcd}" id="replyer"
+                           name="replyer" readonly>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">내용</label>
+                    <textarea class="form-control" rows="3" id="reply"></textarea>
+                </div>
+                <div class="mb-3">
+                    <input type="submit" value="댓글 등록" id="btn_reply" class="form-control btn btn-primary">
+                </div>
+            </div>
+            <!--            댓글 작성 영역 끝-->
+
+            <!--            댓글 리스트 영역 시작-->
+            <table class="table">
+                <tbody id="replyList">
+
+                <!--                여기는 아래 java script에서 구현됨.-->
+
+                </tbody>
+            </table>
+            <!--            댓글 리스트 영역 끝-->
+        </div>
+
+    </div>
 </div>
-<!-- 게시판 보기 끝-->
+<!--부트스트랩 카드 끝-->
+<!--수정 모달 시작-->
+<div class="modal fade" id="replyEditModal" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">댓글 수정</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="form-label">작성자</label>
+                    <input type="text" class="form-control" id="ereplyerName" readonly>
+                    <input type="hidden" id="ereplyer">
+                    <input type="hidden" id="eridx">
+                    <input type="hidden" id="eregdate">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">내용</label>
+                    <textarea class="form-control" rows="3" id="ereply"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btn_edit">수정</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--수정 모달 끝-->
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script th:inline="javascript">
+
+    var bidx = [[${boardView.bidx}]];
+
+</script>
 
 <script>
-    function deleteBoard(bidx){
-        if (confirm("삭제하시겠습니까?")){
+    function deleteBoard(bidx) {
+        if (confirm("삭제하시겠습니까?")) {
             location.href = '/board/delete?bidx=' + bidx;
         }
     }
+</script>
+<script>
+
+    // 생명 주기를 위해 editModal변수는 여기에서 선언한다.
+    let editModal;
+
+    $(document).ready(function () {
+        console.log('document.ready 진입');
+
+        $('#btn_reply').click(insertReply);
+        $('#btn_edit').click(editReply);
+
+        getList();
+
+        editModal = new bootstrap.Modal('#replyEditModal');
+
+
+    })
+
+    function insertReply() {
+
+        if (($('#reply').val() == null || $('#reply').val() == '') || ($('#replyer').val() == null || $('#replyer').val() == '')) {
+            alert('작성자 또는 댓글 내용이 공란입니다. 작성해주세요.');
+            $('#reply').focus();
+            return false;
+        }
+
+        const payload = {
+            bidx: bidx,
+            reply: $('#reply').val(),
+            replyer: $('#replyer').val()
+        }
+        console.log('payload => ', payload);
+
+        $.ajax({
+            url: '/reply',
+            type: 'post',
+            data: JSON.stringify(payload),
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function (res) {
+                console.log('res==>', res)
+
+                getListTags(res);
+
+                $("#reply").val('');
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    }
+
+    function getList() {
+        console.log('getList()호출');
+
+        $.ajax({
+            url: '/reply/' + bidx,
+            type: 'GET',
+            dataType: 'json',
+            contentType: 'application.json',
+            success: function (data) {
+                $.each(data, (index, res) => {
+
+                    getListTags(res);
+
+                })
+            },
+            error: function (error) {
+                console.log(error)
+            }
+        })
+    }
+
+    function getListTags(res) {
+
+        let html = '<td class="col-2">' + res.replyer.memname + '</td>';
+        html += '<td class="col-1">' + res.replyer.memcd + '</td>';
+        html += '<td class="col">' + res.reply + '</td>';
+        html += '<td class="col-2">' + res.regdate + '</td>';
+        html += '<td class="col-2"> ' +
+            '<a href="javascript:showEditModal(' + res.ridx + ')" replyer-memcd="' + res.replyer.memcd + '" class="badge bg-warning text-decoration-none">수정</a> ' +
+            '<a href="javascript:deleteReply(' + res.ridx + ')" replyer-memcd="' + res.replyer.memcd + '" class="badge bg-danger text-decoration-none">삭제</a> ' +
+            '</td>';
+
+        $('<tr></tr>').html(html).addClass('fs-6 text-center').attr('tr-index', res.ridx).appendTo('#replyList');
+
+    }
+
+    function deleteReply(ridx) {
+
+        if (!confirm("선택하신 댓글을 삭제하겠습니까?")) {
+            return;
+        }
+
+        $.ajax({
+            url: '/reply/' + ridx,
+            type: 'delete',
+            contentType: 'apllication/json',
+            success: function (res) {
+
+                console.log('삭제 성공이면 1 => ', res)
+
+                if (res == 1) {
+                    // 댓글 리스트에서 해당 댓글을 삭제. tr-index = ridx 인 행을 삭제한다.
+                    $('tr[tr-index="' + ridx + '"]').remove();
+                    alert('삭제되었습니다.');
+                } else {
+                    alert('삭제할 댓글이 존재하지 않습니다.');
+                }
+            },
+            error: function (error) {
+                console.log(error)
+            }
+        })
+    }
+
+    function showEditModal(ridx) {
+
+        editModal.show()
+        console.log('ridx ==> ', ridx);
+        console.log('replyer ==> ', replyer);
+
+        $('#eridx').val(ridx);
+        $('#ereplyerName').val($('tr[tr-index="' + ridx + '"]').children('td:eq(0)').text());
+        $('#ereplyer').val($('tr[tr-index="' + ridx + '"]').children('td:eq(1)').text());
+        //$('#ereplyer').val($(this).attr("replyer-memcd"));
+        $('#ereply').val($('tr[tr-index="' + ridx + '"]').children('td:eq(2)').text());
+        $('#eregdate').val($('tr[tr-index="' + ridx + '"]').children('td:eq(3)').text());
+
+    }
+
+    function editReply() {
+
+        const payload = {
+            bidx: bidx,
+            ridx: $('#eridx').val(),
+            reply: $('#ereply').val(),
+            replyer: $('#ereplyer').val(),
+            regdate: $('#eregdate').val(),
+            updatedate: $('#eupdatedate').val()
+        }
+
+        console.log('payload ==> ', payload);
+
+        $.ajax({
+            url: '/reply/' + payload.ridx,
+            type: 'put',
+            data: JSON.stringify(payload),
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function (res) {
+
+                $('tr[tr-index="' + payload.ridx + '"]').children('td:eq(1)').text(payload.reply);
+
+                editModal.hide();
+
+            },
+            error: function (error) {
+                console.log(error)
+            }
+        })
+    }
+
+
 </script>
 
 </body>

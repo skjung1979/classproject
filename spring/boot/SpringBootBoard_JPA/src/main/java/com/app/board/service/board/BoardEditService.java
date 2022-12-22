@@ -100,7 +100,7 @@ public class BoardEditService {
 
         } catch (Exception e) {
             log.info("SQLException ..... ");
-            //새롭게 저장되면 기존 파일 삭제
+            //SQL 업데이트 문제가 발생했으므로, 새롭게 저장된 파일을 다시 삭제 처리한다.
             if (newFileName != null){
                 File delFile = new File(saveDir, newFileName);
                 if (delFile.exists()){

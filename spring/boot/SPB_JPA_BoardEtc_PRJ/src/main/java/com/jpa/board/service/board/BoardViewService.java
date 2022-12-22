@@ -17,4 +17,25 @@ public class BoardViewService {
 
         return boardRepository.findById(bidx).get();
     }
+
+
+    public void updateRcnt(Long bidx) {
+
+        Long rcnt = 0L;
+
+        Board board = boardRepository.findById(bidx).get();
+
+        if (board.getRcnt() == null){
+            rcnt = 1L;
+        } else {
+            rcnt = board.getRcnt() + 1;
+        }
+
+        log.info("rcnt ................................ ==> " + rcnt);
+
+        board.setRcnt(rcnt);
+
+        boardRepository.save(board);
+
+    }
 }

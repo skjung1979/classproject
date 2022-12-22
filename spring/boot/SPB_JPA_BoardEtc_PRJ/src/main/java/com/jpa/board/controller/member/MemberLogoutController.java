@@ -17,6 +17,7 @@ public class MemberLogoutController {
         HttpSession session = request.getSession();
 
         session.invalidate();
+        //session.setAttribute("logingInfo", null); 값만 없애는 방법으로 로그아웃 처리해도 된다.
 
         return "redirect:/";
     }
