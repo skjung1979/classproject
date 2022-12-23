@@ -46,7 +46,7 @@
             <input class="form-control" type="text" id="mphoto" name="mphoto" th:value="${session.loginInfo.mphoto}" readonly>
             <th:block th:if="${session.loginInfo.mphoto != null && (session.loginInfo.mphoto != '')}">
                 <img th:src="@{/upload/mphoto/{name}(name=${session.loginInfo.mphoto})}" height="200"
-                     class="rounded float-start">
+                     class="rounded float-start mt-3">
             </th:block>
         </div>
 

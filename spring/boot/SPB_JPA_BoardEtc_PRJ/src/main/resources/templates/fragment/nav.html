@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
-
 <nav class="navbar navbar-expand-lg" style="background-color: #285430;">
   <div class="container-fluid">
     <a class="navbar-brand" href="#" style="color: white">Nav</a>
@@ -28,16 +27,24 @@
             Account
           </a>
           <ul class="dropdown-menu">
+
+            <th:block th:if="${session.loginInfo != null}">
             <li>
               <a class="dropdown-item" href="/member/mypage" style="color: #285430">마이페이지</a>
             </li>
             <li>
               <a class="dropdown-item" href="/member/logout" style="color: #285430">로그아웃</a>
             </li>
+            </th:block>
 
-            <li><a class="dropdown-item" href="/member/login" style="color: #285430">로그인</a></li>
-            <li><a class="dropdown-item" href="/member/register" style="color: #285430">회원가입</a>
+            <th:block th:if="${session.loginInfo == null}">
+            <li>
+              <a class="dropdown-item" href="/member/login" style="color: #285430">로그인</a>
             </li>
+            <li>
+              <a class="dropdown-item" href="/member/register" style="color: #285430">회원가입</a>
+            </li>
+            </th:block>
             <!--                        <li><hr class="dropdown-divider"></li> 중간 구분선 -->
 
           </ul>

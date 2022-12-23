@@ -47,8 +47,10 @@
         </div>
     </div>
     <div class="m-3">
+        <th:block th:if="${session.loginInfo.memcd == boardView.writer.memcd}">
         <a class="btn btn-outline-warning" th:href="@{/board/edit(bidx=${boardView.bidx},p=${pageNum})}">수정</a>
         <a class="btn btn-outline-danger" th:onclick="'deleteBoard(' + ${boardView.bidx} + ')'">삭제</a>
+        </th:block>
         <a class="btn btn-outline-primary" th:href="@{/board/list(p=${pageNum})}">리스트</a>
     </div>
     <!-- 게시판 보기 끝-->
@@ -125,6 +127,7 @@
 <script th:inline="javascript">
 
     var bidx = [[${boardView.bidx}]];
+    var sessionMemcd = [[${session.loginInfo.memcd}]]
 
 </script>
 
@@ -149,7 +152,6 @@
         getList();
 
         editModal = new bootstrap.Modal('#replyEditModal');
-
 
     })
 
@@ -210,14 +212,18 @@
 
     function getListTags(res) {
 
+        console.log('sessionMemcd  /  res.replyer.memcd ==> ', sessionMemcd, res.replyer.memcd);
+
         let html = '<td class="col-2">' + res.replyer.memname + '</td>';
-        html += '<td class="col-1">' + res.replyer.memcd + '</td>';
+        html += '<td class="col-1" style="display: none">' + res.replyer.memcd + '</td>';
         html += '<td class="col">' + res.reply + '</td>';
         html += '<td class="col-2">' + res.regdate + '</td>';
-        html += '<td class="col-2"> ' +
-            '<a href="javascript:showEditModal(' + res.ridx + ')" replyer-memcd="' + res.replyer.memcd + '" class="badge bg-warning text-decoration-none">수정</a> ' +
-            '<a href="javascript:deleteReply(' + res.ridx + ')" replyer-memcd="' + res.replyer.memcd + '" class="badge bg-danger text-decoration-none">삭제</a> ' +
-            '</td>';
+        if (sessionMemcd == res.replyer.memcd){
+            html += '<td class="col-2"> ' +
+                '<a href="javascript:showEditModal(' + res.ridx + ')" replyer-memcd="' + res.replyer.memcd + '" class="badge bg-warning text-decoration-none">수정</a> ' +
+                '<a href="javascript:deleteReply(' + res.ridx + ')" replyer-memcd="' + res.replyer.memcd + '" class="badge bg-danger text-decoration-none">삭제</a> ' +
+                '</td>';
+        }
 
         $('<tr></tr>').html(html).addClass('fs-6 text-center').attr('tr-index', res.ridx).appendTo('#replyList');
 
@@ -287,7 +293,7 @@
             contentType: 'application/json',
             success: function (res) {
 
-                $('tr[tr-index="' + payload.ridx + '"]').children('td:eq(1)').text(payload.reply);
+                $('tr[tr-index="' + payload.ridx + '"]').children('td:eq(2)').text(payload.reply);
 
                 editModal.hide();
 

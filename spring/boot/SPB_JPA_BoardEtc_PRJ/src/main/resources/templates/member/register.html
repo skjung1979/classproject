@@ -3,7 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Member Join</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"
+            integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    <style>
+        .colorRed {
+            color: red;
+        }
+
+        .colorGreen {
+            color: green;
+        }
+    </style>
 </head>
 <body>
 <!--내비게이션 시작-->
@@ -18,20 +30,25 @@
     <div class="card-body">
 
         <!-- 회원가입 시작-->
-        <form method="post" enctype="multipart/form-data">
+        <form method="post" enctype="multipart/form-data" id="login_form">
 
             <div class="mb-3">
                 <label for="memid" class="form-label">아이디</label>
-                <input type="text" class="form-control" id="memid" name="memid">
+                <input type="text" class="form-control" id="memid" name="memid" onblur="idDuplicate()"><span
+                    id="idcheckmsg"></span>
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">비밀번호</label>
                 <input type="password" class="form-control" id="password" name="password">
             </div>
-<!--            <div class="mb-3">-->
-<!--                <label for="upwCheck" class="form-label">비밀번호 확인</label>-->
-<!--                <input type="password" class="form-control" id="upwCheck" name="upwCheck">-->
-<!--            </div>-->
+            <div class="mb-3">
+                <label for="password2" class="form-label" id="pwchlabel">비밀번호 확인</label>
+                <input type="password" class="form-control" id="password2" name="password2" onblur="pwCheck()">
+            </div>
+            <!--            <div class="mb-3">-->
+            <!--                <label for="upwCheck" class="form-label">비밀번호 확인</label>-->
+            <!--                <input type="password" class="form-control" id="upwCheck" name="upwCheck">-->
+            <!--            </div>-->
             <div class="mb-3">
                 <label for="memname" class="form-label">이름</label>
                 <input type="text" class="form-control" id="memname" name="memname">
@@ -41,14 +58,110 @@
                 <input class="form-control" type="file" id="mphoto" name="mphoto">
             </div>
             <div class="mb-3">
-                <input class="btn btn-primary" type="submit" value="회원 가입">
+                <input class="btn btn-primary" type="submit" value="회원 가입" id="btn_join">
             </div>
 
         </form>
         <!-- 회원가입 끝-->
+    </div>
+</div>
+
+<script th:inline="javascript">
+
+    function pwCheck() {
+        const pw1 = $('#password').val();
+        const pw2 = $('#password2').val();
+        const pwCheck = $('#pwchlabel');
+
+        if (pw1 != pw2) {
+            pwCheck.text("비밀번호 불일치");
+            pwCheck.css("color", "red");
+        } else {
+            pwCheck.text("비밀번호 일치");
+            pwCheck.css("color", "green");
+        }
+    }
+
+    function idDuplicate() {
+
+        const id = $('#memid').val();
+        const checkResult = $('#idcheckmsg');
+
+        if (id == null || id.length < 0){
+            checkResult.text("아이디를 입력해 주세요.");
+            $('#memid').focus();
+        }
+
+        $.ajax({
+            url: '/member/idcheck',
+            type: 'post',
+            dataType: "text",
+            data: {
+                memid: id
+            },
+            success: function (result) {
+
+                if (id.length > 0){
+
+                    if (result == "ok") {
+                        checkResult.text("사용 가능 ID");
+                        checkResult.css("color", "green");
+                    } else if (result == "no") {
+                        checkResult.text("이미 사용 중인 ID");
+                        checkResult.css("color", "red");
+                    }
+
+                } else {
+                    checkResult.text("아이디를 입력해 주세요.");
+                }
 
 
+            },
+            error: function (error) {
+                console.log(error)
+            }
+        });
+    }
 
+
+    $().ready(function () {
+
+
+        $('#btn_join').on('click', (e) => {
+
+            e.preventDefault();
+
+            let pwd_check = password_check();   // boolean값
+            let id_check = id_blank_check();
+            let name_check = name_blank_check();
+
+            if (!pwd_check || !id_check || !name_check) {
+                alert('아이디 또는 비밀번호 또는 이름이 공란입니다. 입력해주세요.');
+                 // 조건이 맞는 경우에만 submit
+            } else {
+                $('#login_form').submit();
+            }
+        })
+
+        function password_check() {
+            console.log($('#password').val(), $('#password2').val());
+            return $('#password').val() == $('#password2').val();    // ture or false
+        }
+
+        function id_blank_check() {
+            console.log('$(\'#memid\').val() != null', $('#memid').val() != null);
+            return $('#memid').val().length>0;
+        }
+
+        function name_blank_check() {
+            console.log('$(\'#memname\').val() != null',$('#memname').val() != null);
+            return $('#memname').val().length>0;
+        }
+
+    })
+
+
+</script>
 
 </body>
 </html>

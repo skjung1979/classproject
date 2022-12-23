@@ -1,6 +1,7 @@
 package com.jpa.board.entity.member;
 
 import lombok.*;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.PrintWriter;
 import java.util.Optional;
 
 @Controller
@@ -31,26 +33,42 @@ public class MemberLoginController {
     }
 
     @PostMapping
-    public String postmemberLogin(
+    public String postMemberLogin(
             @RequestParam("memid") String memid,
             @RequestParam("password") String password,
-            HttpServletRequest request
+            HttpServletRequest request,
+            HttpServletResponse response
     ) throws Exception {
         log.info("@Requestpara memid, password ==> " + memid + "/" + password);
 
         HttpSession session = request.getSession();
 
-        Optional<Member> result = memberRepository.findByMemid(memid, password);
+        Member result = memberLoginService.selectByIdPw(memid, password);
 
-        if (result.isEmpty()) {
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        if (result == null) {
+            out.println("<script charset=\"utf-8\"> alert('아이디 또는 비밀번호가 틀립니다.');");
+            out.println("history.go(-1); </script>");
+            out.close();
             throw new Exception("회원의 아이디 또는 비밀번호 확인!!!");
         }
 
-        log.info("result............... ==> " + result.get());
+        log.info("result............... ==> " + result);
 
-        session.setAttribute("loginInfo", result.get());
+        session.setAttribute("loginInfo", result);
+        session.setMaxInactiveInterval(60*60);
 
         log.info("getSession...........==> " + session.getAttribute("loginInfo"));
+
+        if (session.getAttribute("preUri") != null){
+
+            String uri = (String) session.getAttribute("preUri");
+            String qs = (String) session.getAttribute("preQs");
+
+            return "redirect:" + uri + "?" + qs;
+        }
 
         return "redirect:/member/mypage";
     }
