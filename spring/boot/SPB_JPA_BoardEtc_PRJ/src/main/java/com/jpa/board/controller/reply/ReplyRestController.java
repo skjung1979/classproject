@@ -1,5 +1,6 @@
 package com.jpa.board.controller.reply;
 
+import com.jpa.board.domain.BoardWriteRequest;
 import com.jpa.board.domain.ReplyWriteRequest;
 import com.jpa.board.entity.member.Member;
 import com.jpa.board.entity.reply.Reply;
@@ -52,7 +53,7 @@ public class ReplyRestController {
     @PostMapping
     public ResponseEntity<Reply> insertReply(
             @RequestBody ReplyWriteRequest replyWriteRequest
-    ){
+            ){
         log.info("PostMapping............. insert 전 replyWriteRequest ==> " + replyWriteRequest);
 
         Reply resultReply = replyInsertService.insertReply(replyWriteRequest);

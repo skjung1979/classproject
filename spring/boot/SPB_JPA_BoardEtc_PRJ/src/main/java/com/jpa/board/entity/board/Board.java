@@ -31,8 +31,11 @@ public class Board {
     @JoinColumn(name = "writer", nullable = false)
     private Member writer;
 
-    @Column
+    @Column(columnDefinition = "Long default 0")
     private Long rcnt;
+
+    @Column(columnDefinition = "Long default 0")
+    private Long rpcnt;
 
     @Column
     private String bphoto;
