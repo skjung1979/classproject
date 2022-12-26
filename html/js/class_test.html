@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+        // 클래스 정의
+        class Student {
+
+            // 생성자 정의
+            constructor(name, kor, eng, math) {
+                
+                this.name = name;
+                this.kor = kor;
+                this.eng = eng;
+                this.math = math;
+
+            }
+
+            // 메소드의 정의: 국어, 영어, 수학 총점 반환
+            getSum() {
+                return this.kor + this.eng + this.math;
+            }
+
+            // 메소드의 정의: 국, 영, 수 평균 반환
+            getAvg() {
+                return this.getSum()/3;
+            }
+
+            toString() {
+                return `${this.name}의 총점은 ${this.getSum()}, 평균은 ${this.getAvg()} 입니다! `;
+            }
+
+        }
+
+        // {
+        //     sum : function getSum() {
+        //         return // 합을 반환
+        //     }
+        // }
+
+        const student = new Student('손흥민', 100, 90, 80);
+
+        console.log(student.toString());
+
+        console.log('student => ', typeof student, student);
+
+        // const students = [
+        //     new Student(),
+        //     new Student(),
+        //     new Student(),
+        //     new Student()
+        // ]
+
+        // console.log('students =>', students);
+
+        class Rectangle {
+
+            constructor(width, height) {
+                this.width = width;
+                this.height = height;
+            }
+
+            // 메소드: 둘레 구하기
+            getPrimeter() {
+                return (this.width + this.height) * 2;
+            }
+
+            // 메소드: 넓이
+            getArea() {
+                return this.width * this.height;
+            }
+
+        }
+
+        class Square extends Rectangle {
+            
+            constructor(length) {
+
+                super(length, length) // super 상위 클래스의 생성자 호출
+
+            }
+        }
+
+        const square = new Square(10);
+
+        console.log('정사각형의 둘레: ', square.getPrimeter());
+        console.log('정사각형의 넓이: ', square.getArea());
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
