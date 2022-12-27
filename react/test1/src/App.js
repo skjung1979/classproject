@@ -10,6 +10,10 @@ import MyButton from './components/MyButton';
 import ConfirmButton from './components/ConfirmButton';
 import Greeting from './components/Greeting';
 import LoginControl from './components/LoginControl';
+import MailBox from './components/MailBox';
+import UserStatus from './components/UserStatus';
+import WarningBanner from './components/WarningBanner';
+import MainPage from './components/MainPage';
 
 const comment = {
     user : {
@@ -20,12 +24,17 @@ const comment = {
     replydate : '2022-12-25'
 }
 
+let list = [{}, {}, {}, {}]
+
 function App() {
   return (
 /*     <Comment user={comment.user} content={comment.content} replydate={comment.replydate}/> */
 
   //  <Greeting isLogin={true}/>
-   <LoginControl/>
+  //  <MailBox unReadMessage={list}/>
+    // <UserStatus isLogin={false}/>
+      // <WarningBanner warning={true}/>
+      <MainPage isLogin={false}/>
 
   );
 }
