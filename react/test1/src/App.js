@@ -14,6 +14,17 @@ import MailBox from './components/MailBox';
 import UserStatus from './components/UserStatus';
 import WarningBanner from './components/WarningBanner';
 import MainPage from './components/MainPage';
+import NumberList from './components/NumberList';
+import TeamPlayers from './components/TeamPlayers';
+import NameForm from './components/NameForm';
+import RequestForm from './components/RequestForm';
+import SelectForm from './components/SelectForm';
+import ReservationForm from './components/ReservationForm';
+import SignUp from './components/SignUp';
+import WelcomeMessage from './components/WelcomeMessage';
+import WelcomeDialog from './components/WelcomeDialog';
+import SignUpDialog from './components/SignUpDialog';
+import ProfileCard from './components/ProfileCard';
 
 const comment = {
     user : {
@@ -34,7 +45,18 @@ function App() {
   //  <MailBox unReadMessage={list}/>
     // <UserStatus isLogin={false}/>
       // <WarningBanner warning={true}/>
-      <MainPage isLogin={false}/>
+      // <MainPage isLogin={false}/>
+      // <NumberList/>
+      // <TeamPlayers/>
+      // <NameForm/>
+      // <RequestForm/>
+      // <SelectForm init='banana' /> // 초기값을 넘겨줘봤다.
+      // <ReservationForm/>
+      // <SignUp/>
+      // <WelcomeMessage/>
+      // <WelcomeDialog/>
+      // <SignUpDialog/>
+      <ProfileCard/>
 
   );
 }
