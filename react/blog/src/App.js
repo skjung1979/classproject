@@ -2,15 +2,16 @@ import Header from "./blog/Header";
 import Nav from "./blog/Nav";
 import Footer from "./blog/Footer";
 import Wrapper from "./blog/Wrapper";
+import {useState} from "react";
 
 // const datas = [{nav:0, html5:{}},{wrapper:1, d}]
 
 const headerData = {title: 'Seong-Kyun\'s Blog', body: '웹을 공부하는 블로그'}
 const navDatas = [
-    {nid: 1, title: 'html5'},
-    {nid: 2, title: 'css'},
-    {nid: 3, title: 'javascript'},
-    {nid: 4, title: 'react'}
+    {nid: 1, title: 'html5', body: 'html5 is ...............................'},
+    {nid: 2, title: 'css', body: 'css is ....................................'},
+    {nid: 3, title: 'javascript', body: 'javascript is .........................'},
+    {nid: 4, title: 'react', body: 'body is ....................................'}
 ]
 
 // article, category, lastest data를 어떻게 한번에?
@@ -63,15 +64,28 @@ const categoryDatas = [
 ]
 
 function App() {
+
+    const [mode, setMode] = useState('WELCOME');
+
+    let content = null;
+
+    if (mode === 'WELCOME') {
+        content = <Wrapper articleDatas={articleDatas} categoryDatas={categoryDatas} mode="WELCOME"/>
+    } else  if (mode === 'READ') {
+        content = <Wrapper navDatas={navDatas} categoryDatas={categoryDatas} mode="READ"/>
+    }
+
     return (
         <>
             <Header title={headerData.title} body={headerData.body} onChangeMode={() => {
                 // alert('환영합니다!!!')
+                setMode('WELCOME')
             }}/>
             <Nav datas={navDatas} onChangeMode={(id) => {
                 // alert(id)
+                setMode('READ')
             }}/>
-            <Wrapper articleDatas={articleDatas} categoryDatas={categoryDatas}/>
+            {content}
             <Footer/>
         </>
     );
