@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useState } from "react";
 import MainContent from "./MainContent";
 import ThemeContext from "./ThemeContext";
 
 function DarkOrWhite(props) {
 
-    const [theme, setTheme] = useState('white')
+    const [theme, setTheme] = useState('light')
 
-    const toggleTheme = (evnet) => {
-
-    }
+    const toggleTheme = useCallback(() => {
+        if(theme == 'light') {
+            setTheme("dark")
+        } else if (theme == "dark") {
+            setTheme("light")
+        }
+    }, [theme])
 
     return (
 
@@ -19,3 +23,5 @@ function DarkOrWhite(props) {
 
     )
 }
+
+export default DarkOrWhite
