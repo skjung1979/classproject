@@ -1,11 +1,14 @@
 import React from 'react';
 import '../default.css';
 
-function Nav({datas}) {
+function Nav({datas, onChangeMode}) {
 
     const list = [
         datas.map(item=>{
-            return <li key={item.nid}><a href={'/read/' + item.nid }>{item.title}</a></li>
+            return <li key={item.nid}><a id={item.nid} href={'/read/' + item.nid } onClick={(e)=>{
+            e.preventDefault();
+            onChangeMode(e.target.id);}
+            }>{item.title}</a></li>
         })
     ]
 
