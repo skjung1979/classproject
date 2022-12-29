@@ -4,33 +4,12 @@ import Footer from "./blog/Footer";
 import Wrapper from "./blog/Wrapper";
 import {useState} from "react";
 
-// const datas = [{nav:0, html5:{}},{wrapper:1, d}]
-
 const headerData = {title: 'Seong-Kyun\'s Blog', body: '웹을 공부하는 블로그'}
 const navDatas = [
     {nid: 1, title: 'html5', body: 'html5 is ...............................'},
     {nid: 2, title: 'css', body: 'css is ....................................'},
     {nid: 3, title: 'javascript', body: 'javascript is .........................'},
     {nid: 4, title: 'react', body: 'body is ....................................'}
-]
-
-// article, category, lastest data를 어떻게 한번에?
-const wrapperDatas = [
-    [
-        {},
-        {},
-        {}
-    ],
-    [
-        {},
-        {},
-        {}
-    ],
-    [
-        {},
-        {},
-        {}
-    ]
 ]
 
 const articleDatas = [
