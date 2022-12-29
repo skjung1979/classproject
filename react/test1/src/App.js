@@ -26,11 +26,9 @@ import WelcomeDialog from './components/WelcomeDialog';
 import SignUpDialog from './components/SignUpDialog';
 import ProfileCard from './components/ProfileCard';
 import DarkOrWhite from './components/DarkOrWhite';
-import ProductView from './components/ProductView';
-import ProductLeft from './components/ProductLeft';
-import ProductRight from './components/ProductRight';
 import Container from './components/ex1/Container';
 import WordContainer from './components/ex2/WordContainer';
+import ContainerSK from "./components/sk_ex1/ContainerSK";
 
 const comment = {
     user : {
@@ -66,7 +64,9 @@ function App() {
       // <DarkOrWhite/>
       // <ProductView left={ProductLeft} right={ProductRight} />
       // <Container /> // 왼쪽 상품 리스트, 오른쪽 상품 디테일
-      <WordContainer/> // 왼쪽 상품 추가, 오른쪽 상품 리스트 + 삭제 버튼
+      // <WordContainer/> // 왼쪽 상품 추가, 오른쪽 상품 리스트 + 삭제 버튼
+      <ContainerSK/>
+
 
   );
 }
