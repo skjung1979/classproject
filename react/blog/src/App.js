@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./blog/Header";
+import Nav from "./blog/Nav";
+import Footer from "./blog/Footer";
+import Wrapper from "./blog/Wrapper";
+
+// const datas = [{nav:0, html5:{}},{wrapper:1, d}]
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <>
+            <Header/>
+            <Nav/>
+            <Wrapper/>
+            <Footer/>
+        </>
+    );
 }
 
 export default App;
