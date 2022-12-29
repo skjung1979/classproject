@@ -2,11 +2,11 @@ import React from 'react';
 import Section from "./Section";
 import Aside from "./Aside";
 
-function Wrapper(props) {
+function Wrapper({articleDatas, categoryDatas}) {
     return (
         <div id="wrap">
-            <Section/>
-            <Aside/>
+            <Section articleDatas={articleDatas}/>
+            <Aside categoryDatas={categoryDatas} articleDatas={articleDatas}/>
         </div>
     );
 }

@@ -1,12 +1,11 @@
 import React from 'react';
 import Article from "./Article";
 
-function Section(props) {
+function Section({articleDatas}) {
+
     return (
         <section>
-            <Article/>
-            <Article/>
-            <Article/>
+            <Article articleDatas={articleDatas}/>
         </section>
     );
 }

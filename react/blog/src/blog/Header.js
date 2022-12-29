@@ -1,10 +1,10 @@
 import React from 'react';
 
-function Header(props) {
+function Header({title, body}) {
     return (
         <header>
-            <h1 className="title">Seong-Kyun's Blog</h1>
-            <p>웹을 공부하는 블로그</p>
+            <h1 className="title">{title}</h1>
+            <p>{body}</p>
         </header>
     );
 }

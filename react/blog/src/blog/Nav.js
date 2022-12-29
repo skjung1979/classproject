@@ -1,13 +1,18 @@
 import React from 'react';
 import '../default.css';
 
-function Nav(props) {
+function Nav({datas}) {
+
+    const list = [
+        datas.map(item=>{
+            return <li key={item.nid}><a href={'/read/' + item.nid }>{item.title}</a></li>
+        })
+    ]
+
     return (
         <nav>
             <ul>
-                <li>HTML5</li>
-                <li>CSS3</li>
-                <li>JavaScript</li>
+                {list}
             </ul>
             <div>
                 <input type="text"/>

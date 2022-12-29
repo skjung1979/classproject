@@ -1,14 +1,18 @@
 import React from 'react';
 
-function Latest(props) {
+function Latest({articleDatas}) {
+
+    const list = []
+
+    for (let i=articleDatas.length-1; i >= 0; i--) {
+        list.push(<li key={articleDatas[i].ano}>{articleDatas[i].title}</li>)
+    }
+
     return (
         <>
             <h4>최근 글</h4>
             <ul>
-                <li>data</li>
-                <li>data</li>
-                <li>data</li>
-                <li>data</li>
+                {list}
             </ul>
         </>
     );

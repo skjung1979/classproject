@@ -55,7 +55,7 @@ nav > ul {
 nav > ul > li {
     float: left;
 
-    width: 120px;
+    width: 80px;
     text-align: center;
     line-height: 38px; /* 글자 middle정렬효과*/
     
