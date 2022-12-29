@@ -29,6 +29,7 @@ import DarkOrWhite from './components/DarkOrWhite';
 import Container from './components/ex1/Container';
 import WordContainer from './components/ex2/WordContainer';
 import ContainerSK from "./components/sk_ex1/ContainerSK";
+import WordContainerSk from "./components/sk_ex2/WordContainerSK";
 
 const comment = {
     user : {
@@ -65,7 +66,8 @@ function App() {
       // <ProductView left={ProductLeft} right={ProductRight} />
       // <Container /> // 왼쪽 상품 리스트, 오른쪽 상품 디테일
       // <WordContainer/> // 왼쪽 상품 추가, 오른쪽 상품 리스트 + 삭제 버튼
-      <ContainerSK/>
+      // <ContainerSK/>
+      <WordContainerSk/>
 
 
   );
