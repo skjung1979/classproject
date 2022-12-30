@@ -7,7 +7,7 @@ function Nav({datas, onChangeMode}) {
         datas.map(item=>{
             return <li key={item.nid}><a id={item.nid} href={'/read/' + item.nid } onClick={(e)=>{
             e.preventDefault();
-            onChangeMode(e.target.id);}
+            onChangeMode(Number(e.target.id));}
             }>{item.title}</a></li>
         })
     ]
