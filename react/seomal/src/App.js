@@ -1,20 +1,28 @@
 import logo from './logo.svg';
 import './App.css';
+import {useState} from "react";
 
-function Header({title, body}) {
+function Header({title, body, onChangeMode}) {
     return (
         <header>
-            <h1 style={{display: 'inline'}}><a href="/">{title}</a></h1>
+            <h1 style={{display: 'inline'}}><a href="/" onClick={(e) => {
+                e.preventDefault()
+                onChangeMode()
+            }}>{title}</a></h1>
             {body}
         </header>
     )
 }
 
-function Nav({navDatas}) {
+function Nav({navDatas, onChangeMode}) {
 
     const list = [
         navDatas.map(item => {
-            return <li key={item.id}><a href={'/read/'+item.id}>{item.title}</a></li>
+            return <li key={item.id}><a id={item.id} href={'/read/' + item.id} onClick={(e) => {
+                e.preventDefault()
+                onChangeMode(e.target.id)
+            }
+            }>{item.title}</a></li>
         })
     ]
 
@@ -48,13 +56,33 @@ const navDatas = [
     {id: 3, title: 'javascript', body: 'javascript is...'}
 ]
 const articleData = {title: 'Welcome', body: '안녕하세요. 메인페이지 입니다.'}
+const articleData2 = {title: 'Read', body: '안녕하세요. Read!!!!'}
 
 function App() {
+
+    const [mode, setMode] = useState('WELCOME')
+
+    let content = null;
+
+    if (mode === 'WELCOME') {
+        content = <Article title={articleData.title} body={articleData.body}/>
+    } else if (mode === 'READ') {
+        content = <Article title={articleData2.title} body={articleData2.body}/>
+    }
+
     return (
         <div>
-            <Header title={headerData.title} body={headerData.body}/>
-            <Nav navDatas={navDatas}/>
-            <Article title={articleData.title} body={articleData.body}/>
+            <Header title={headerData.title} body={headerData.body} onChangeMode={() => {
+                // alert('Header!!!');
+                // mode = 'WELCOME';
+                setMode('WELCOME')
+            }}/>
+            <Nav navDatas={navDatas} onChangeMode={(id) => {
+                // alert(id)
+                // mode = 'READ';
+                setMode('READ')
+            }}/>
+            {content}
         </div>
     );
 }
