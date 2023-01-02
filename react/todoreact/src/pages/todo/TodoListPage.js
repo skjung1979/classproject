@@ -22,15 +22,15 @@ function TodoListPage(props) {
     }
 
     const moveToRead = (id) => {
-        const pageNum = page
-        const sizeNum = size
+        const pageNum = page || 1
+        const sizenum = size || 10
         navigate({
             pathname: `/todo/read/${id}`,
-            search: `?page=${pageNum}&size=${sizeNum}`
+            search: `?page=${pageNum}&size=${sizenum}`
         })
     }
 
-    const query = {page, size} // query는 TodoListComponent로 전달한다.
+    const query = {page, size}
 
     return (
         <PageLayout title={'Todo List Page'}>
@@ -39,6 +39,7 @@ function TodoListPage(props) {
                     <h1>Todo List Page</h1>
 
                     <TodoListComponent query={query} moveToRead={moveToRead}></TodoListComponent>
+
 
                     <Typography variant={'h5'}>page : {page}</Typography>
                     <Typography variant={'h5'}>size : {size}</Typography>

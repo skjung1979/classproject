@@ -20,7 +20,6 @@ function TodoRegisterPage(props) {
         navigate("/todo/list")
     }
 
-
     return (
         <PageLayout title={'Todo Register Page'}>
             <Grid item xs={12} md={12} lg={12}>
