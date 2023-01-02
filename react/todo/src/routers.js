@@ -5,7 +5,6 @@ import TodoListPage from "./pages/todo/TodoListPage";
 import TodoRegisterPage from "./pages/todo/TodoRegisterPage";
 import TodoReadPage from "./pages/todo/TodoReadPage";
 
-
 const routers = createBrowserRouter([
     {
         path: "",
@@ -36,7 +35,6 @@ const routers = createBrowserRouter([
             }
         ]
     }
-
 ])
 
 export default routers
