@@ -1,6 +1,7 @@
 import './App.css';
 import {useState} from "react";
 import styled from "styled-components";
+import Create from "react";
 
 // const Create = styled.button`
 //     margin: 10px;
@@ -72,23 +73,7 @@ function Article({title, body}) {
     )
 }
 
-function Create({onCreate}) {
-    return (
-        <article>
-            <h2>Create</h2>
-            <form onSubmit={e => {
-                e.preventDefault();
-                const title = e.target.tt.value;
-                const body = e.target.ta.value;
-                onCreate(title, body)
-            }}>
-                <p><input type="text" name="tt" placeholder="제목을 입력하세요."/></p>
-                <p><textarea name="ta" placeholder="본문을 입력하세요."></textarea></p>
-                <input type="submit" value="글작성"/>
-            </form>
-        </article>
-    )
-}
+
 
 const headerData = {title: 'WEBSITE', body: ' this is header'}
 const welcomeData = {title: 'Welcome', body: '안녕하세요. 메인 페이지 입니다.'}
