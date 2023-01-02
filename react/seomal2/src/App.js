@@ -74,7 +74,6 @@ function Article({title, body}) {
 }
 
 
-
 const headerData = {title: 'WEBSITE', body: ' this is header'}
 const welcomeData = {title: 'Welcome', body: '안녕하세요. 메인 페이지 입니다.'}
 
@@ -105,7 +104,7 @@ function App() {
         })
 
         content = <Article title={title} body={body}/>
-    } else if (mode === 'CREATE'){
+    } else if (mode === 'CREATE') {
         content = <Create onCreate={(tt, ta) => {
             const newNavData = {id: nextIdx, title: tt, body: ta}
             const newNavDatas = [...navDatas]
@@ -131,8 +130,8 @@ function App() {
             <br/>
             <a
                 href="/create" onClick={e => {
-                    e.preventDefault();
-                    setMode('CREATE');
+                e.preventDefault();
+                setMode('CREATE');
             }}
             >create</a>
         </div>

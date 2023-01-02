@@ -1,11 +1,15 @@
 import './App.css';
 import Ex1 from './components/ex/Ex1';
-import SamplePage from "./page/SamplePage";
+import MainPage from "./page/MainPage.js";
+import routers from "./routers"
 
 function App() {
-  return (
-    <SamplePage/>
-  );
+    return (
+        <>
+            <RouterProvider router={routers}/>
+        </>
+
+    );
 }
 
 export default App;
