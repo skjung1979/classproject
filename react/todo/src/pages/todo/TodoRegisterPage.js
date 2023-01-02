@@ -6,12 +6,10 @@ import Typography from "@mui/material/Typography";
 
 function TodoRegisterPage(props) {
 
-
-
     return (
         <PageLayout title={'Todo Register Page'}>
             <Grid item xs={12} md={12} lg={12}>
-                <Paper sx={{p:2, display:'flex',flexDirection: 'column'}}>
+                <Paper sx={{p: 2, display: 'flex', flexDirection: 'column'}}>
                     <h1>Todo Register Page</h1>
                 </Paper>
             </Grid>

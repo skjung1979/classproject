@@ -11,7 +11,7 @@ function TodoReadPage(props) {
     return (
         <PageLayout title={'Todo Read Page'}>
             <Grid item xs={12} md={12} lg={12}>
-                <Paper sx={{p:2, display:'flex',flexDirection: 'column'}}>
+                <Paper sx={{p: 2, display: 'flex', flexDirection: 'column'}}>
                     <h1>Todo Read Page</h1>
                     <Typography variant={'h3'}>{id}</Typography>
                 </Paper>
