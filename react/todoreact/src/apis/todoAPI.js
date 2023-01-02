@@ -6,3 +6,9 @@ export const postTodo = async (todo) => {
     const res = await axios.post('http://localhost:81/todos', todo)
     return res.data
 }
+
+// todo 전체 리스트 조회
+export const getTodoList = async () => {
+    const res = await axios.get('http://localhost:81/todos')
+    return res.data
+}

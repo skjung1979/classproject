@@ -3,6 +3,7 @@ import MainPage from "./pages/MainPage";
 import AboutPage from "./pages/AboutPage";
 import TodoListPage from "./pages/todo/TodoListPage";
 import TodoRegisterPage from "./pages/todo/TodoRegisterPage";
+import TodoReadPage from "./pages/todo/TodoReadPage";
 
 const routers = createBrowserRouter([
     {
@@ -27,14 +28,13 @@ const routers = createBrowserRouter([
             {  //       /todo
                 path: "",
                 element: <Navigate to={"/todo/list"} replace={true}></Navigate>
-            }/*,
+            },
             {
-                path: "read/:id",
+                path: ":cmd/:id",
                 element: <TodoReadPage></TodoReadPage>
-            }*/
+            }
         ]
     }
-
 ])
 
 export default routers
