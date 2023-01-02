@@ -5,8 +5,18 @@ import {useParams} from "react-router-dom";
 import Typography from "@mui/material/Typography";
 
 function TodoReadPage(props) {
+// 하나의 데이터를 가져와서 읽어야 하고, 삭제 처리도 함께 하려함.
 
-    const {id} = useParams()
+    const {cmd, id} = useParams()
+
+    const getComponent = () => {
+        if (cmd === 'read') {
+            return
+        } else if (cmd === 'modify') {
+            return null
+        }
+        return <></>
+    }
 
     return (
         <PageLayout title={'Todo Read Page'}>
