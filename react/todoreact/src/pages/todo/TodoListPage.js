@@ -40,7 +40,6 @@ function TodoListPage(props) {
 
                     <TodoListComponent query={query} moveToRead={moveToRead}></TodoListComponent>
 
-
                     <Typography variant={'h5'}>page : {page}</Typography>
                     <Typography variant={'h5'}>size : {size}</Typography>
                     <Button onClick={clickRegister}>등록</Button>

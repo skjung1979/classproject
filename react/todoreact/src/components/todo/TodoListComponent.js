@@ -7,11 +7,10 @@ function TodoListComponent({query, moveToRead}) {
     const [todos, setTodos] = useState([])
 
     useEffect(() => {
-        getTodoList().then( result => {
+        getTodoList().then(result => {
             setTodos(result)
         })
     }, [query])
-
 
     return (
         <>
@@ -30,9 +29,9 @@ function TodoListComponent({query, moveToRead}) {
                             <TableCell align={"center"}>{row.id}</TableCell>
                             <TableCell align={"center"}>{row.title}</TableCell>
                             <TableCell align={"center"}>{row.writer}</TableCell>
-                            <TableCell align={"center"}>{row.complete?'완료':'진행중'}</TableCell>
+                            <TableCell align={"center"}>{row.complete ? '완료' : '진행중'}</TableCell>
                         </TableRow>
-                    ) )}
+                    ))}
                 </TableBody>
             </Table>
         </>

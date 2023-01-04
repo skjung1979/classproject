@@ -4,9 +4,9 @@ import PageLayout from "../../layout/PageLayout";
 import {useNavigate, useParams, useSearchParams} from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import TodoReadComponent from "../../components/todo/TodoReadComponent";
+import TodoModifyComponent from "../../components/todo/TodoModifyComponent";
 
 function TodoReadPage(props) {
-// 하나의 데이터를 가져와서 읽어야 하고, 삭제 처리도 함께 하려함.
 
     const {cmd, id} = useParams()
     const [msg, setMsg] = useState(null)
@@ -46,7 +46,6 @@ function TodoReadPage(props) {
         })
     }
 
-
     const setResult = (result) => {
         setMsg(result)
     }
@@ -58,10 +57,15 @@ function TodoReadPage(props) {
     }
 
     const getComponent = () => {
+
+        console.log('id >>>> ', id)
+
         if (cmd === 'read') {
-            return <TodoReadComponent id={id} moveToList={moveToList} setResult={setResult} moveToModify={moveToModify()}></TodoReadComponent>
+            return <TodoReadComponent id={id} moveToList={moveToList} setResult={setResult}
+                                      moveToModify={moveToModify}></TodoReadComponent>
         } else if (cmd === 'modify') {
-            return <TodoReadComponent id={id} moveToList={moveToList} setResult={setResult} moveToModify={moveToModify()} moveToBack={moveToBack()}></TodoReadComponent>
+            return <TodoModifyComponent id={id} setResult={setResult} moveToList={moveToList}
+                                        moveToBack={moveToBack}></TodoModifyComponent>
         }
         return <></>
     }
@@ -70,7 +74,7 @@ function TodoReadPage(props) {
         <PageLayout title={'Todo Read Page'}>
             <Grid item xs={12} md={12} lg={12}>
                 <Paper sx={{p: 2, display: 'flex', flexDirection: 'column'}}>
-                    {getComponent}
+                    {getComponent()}
                 </Paper>
             </Grid>
 
@@ -78,8 +82,9 @@ function TodoReadPage(props) {
                     onClose={closeAndMove}
                     aria-labelledby="alert-dialog-title"
                     aria-describedby="alert-dialog-description"
-                    id="alert-dialog-title">
-                <DialogTitle>처리 결과</DialogTitle> {/*삭제 또는 수정에 대한 처리 결과*/}
+                    id="alert-dialog-title"
+            >
+                <DialogTitle>처리 결과</DialogTitle>
                 <Typography variant={'h6'}>{msg}</Typography>
             </Dialog>
 

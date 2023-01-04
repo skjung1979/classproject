@@ -7,16 +7,16 @@ import {useNavigate} from "react-router-dom";
 function MenuComponent(props) {
 
     const menuArr = [
-        {icon:<DashboardIcon/>, text:"Home", path: "/"},
-        {icon:<DashboardIcon/>, text:"About", path: "/about"},
-        {icon:<DashboardIcon/>, text:"Todo", path: "/todo"},
-        {icon:<DashboardIcon/>, text:"회원가입"},
+        {icon: <DashboardIcon/>, text: "Home", path: "/"},
+        {icon: <DashboardIcon/>, text: "About", path: "/about"},
+        {icon: <DashboardIcon/>, text: "Todo", path: "/todo"},
+        {icon: <DashboardIcon/>, text: "회원가입"},
     ]
 
     const navigate = useNavigate();
     const movePage = (path) => {
         console.log("movePage =>", path)
-        if(path){
+        if (path) {
             navigate(path)
         }
     }
@@ -28,12 +28,11 @@ function MenuComponent(props) {
                 return (
                     <ListItemButton key={index}>
                         <ListItemIcon>{menu.icon}</ListItemIcon>
-                        <ListItemText primary={menu.text} onClick={()=> movePage(menu.path)}/>
+                        <ListItemText primary={menu.text} onClick={() => movePage(menu.path)}/>
                     </ListItemButton>
                 )
             })}
         </List>
-
 
     );
 }
