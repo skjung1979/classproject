@@ -31,10 +31,10 @@ public class Board {
     @JoinColumn(name = "writer", nullable = false)
     private Member writer;
 
-    @Column(columnDefinition = "Long default 0")
+    @Column
     private Long rcnt;
 
-    @Column(columnDefinition = "Long default 0")
+    @Column
     private Long rpcnt;
 
     @Column

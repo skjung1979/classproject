@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 @RequestMapping("/board/view")
@@ -28,10 +27,9 @@ public class BoardViewController {
             @RequestParam("p") int pageNum,
             Model model,
             HttpServletRequest request
-    ){
+    ) {
 
         HttpSession session = request.getSession();
-
 
         ArrayList<Long> viewList = null;
 
@@ -61,19 +59,19 @@ public class BoardViewController {
         // 조회수 증가 새로운 방식 끝
 
         // 조회수 증가 기존 방식 시작 -> 중복 방지가 안된다
-        if (session.getAttribute("viewEnter") != bidx){
+        if (session.getAttribute("viewEnter") != bidx) {
             session.setAttribute("viewEnter", bidx);
         }
 
-        log.info("session viewEnter 상태 ========> " +  session.getAttribute("viewEnter"));
+        log.info("session viewEnter 상태 ========> " + session.getAttribute("viewEnter"));
 
-        if (session.getAttribute("viewEnter") == bidx){
+        if (session.getAttribute("viewEnter") == bidx) {
 
             log.info("viewEnter 진입....................");
             session.setAttribute("viewEnter", bidx);
-            log.info("viewEnter 진입 후 session viewEnter 상태 ========> " +  session.getAttribute("viewEnter"));
+            log.info("viewEnter 진입 후 session viewEnter 상태 ========> " + session.getAttribute("viewEnter"));
             boardViewService.updateRcnt(bidx);
-            
+
         }
 
         log.info("loginInfo 세션 확인 ................. ==> " + session.getAttribute("loginInfo"));
