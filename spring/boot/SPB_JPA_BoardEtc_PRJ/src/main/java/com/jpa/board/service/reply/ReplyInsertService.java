@@ -1,6 +1,5 @@
 package com.jpa.board.service.reply;
 
-import com.jpa.board.domain.BoardWriteRequest;
 import com.jpa.board.domain.ReplyWriteRequest;
 import com.jpa.board.entity.board.Board;
 import com.jpa.board.entity.reply.Reply;
