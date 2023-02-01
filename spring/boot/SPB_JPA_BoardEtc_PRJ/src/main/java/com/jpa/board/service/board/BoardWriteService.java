@@ -11,7 +11,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Service
 @Log4j2
@@ -27,7 +26,7 @@ public class BoardWriteService {
         File saveDir = null;
         String newFileName = null;
 
-        if (file != null && !file.isEmpty() && file.getSize()>0){
+        if (file != null && !file.isEmpty() && file.getSize() > 0) {
 
             String absolutePath = new File("").getAbsolutePath();
             log.info(absolutePath);
@@ -35,7 +34,7 @@ public class BoardWriteService {
             String path = "bphoto";
             saveDir = new File(absolutePath, path);
 
-            if (!saveDir.exists()){
+            if (!saveDir.exists()) {
                 saveDir.mkdir();
                 log.info(">>>>>>>>>>>>>> bphoto dir 생성!!!");
             }
@@ -53,14 +52,14 @@ public class BoardWriteService {
 
         Board board = boardWriteRequest.toBoard();
 
-        if (newFileName != null){
+        if (newFileName != null) {
             board.setBphoto(newFileName);
             board.setRegdate(LocalDate.now());
         }
 
         int result = 0;
 
-        try{
+        try {
 
             result = boardRepository.save(board) != null ? 1 : 0;
 
@@ -68,11 +67,10 @@ public class BoardWriteService {
 
             if (newFileName != null) {
                 File delFile = new File(saveDir, newFileName);
-                if (delFile.exists()){
+                if (delFile.exists()) {
                     delFile.delete();
                 }
             }
-
         }
 
         return result;
